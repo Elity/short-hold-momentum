@@ -1,0 +1,8 @@
+calendar: XNYS
+dev_start: 2005-01-01
+dev_end: 2018-12-31
+oos_start: 2019-01-01
+oos_end: null
+warmup_trading_days: 260
+rebalance_every_trading_days: 20
+

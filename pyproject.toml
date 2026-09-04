@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "short-hold-momentum"
+version = "0.1.0"
+description = "Auditable short-hold US equity momentum research system"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "exchange-calendars>=4.8,<5",
+  "numpy>=1.26,<3",
+  "pandas>=2.2,<3",
+  "pyarrow>=17,<24",
+  "plotly>=5.24,<6",
+  "pydantic>=2.10,<3",
+  "PyYAML>=6.0.2,<7",
+  "vectorbt>=0.28,<0.29",
+  "yfinance>=0.2.54,<1",
+]
+
+[project.scripts]
+shm = "shm.cli:main"
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3,<10",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shm"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["src"]
+testpaths = ["tests"]

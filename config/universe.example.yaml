@@ -1,0 +1,7 @@
+# Owner-only template. Create config/universe.yaml and commit it yourself.
+frozen_on: 2026-__-__
+rule_text: "<why these stocks belong in the fixed research universe>"
+exclusions:
+  - MSFT
+tickers: []
+

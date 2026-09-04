@@ -1,0 +1,17 @@
+.DS_Store
+.venv/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Market data is reproducible, large, and must stay local.
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/prices/
+data/raw/prices/*
+!data/raw/prices/.gitkeep
+

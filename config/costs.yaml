@@ -1,0 +1,6 @@
+model: fixed_bps_on_notional
+per_side_bps:
+  default: 10
+  stress: 25
+  floor: 5
+
