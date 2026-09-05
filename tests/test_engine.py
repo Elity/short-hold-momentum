@@ -43,6 +43,42 @@ def test_cost_floor_and_long_only_constraints() -> None:
         validate_target_weights(pd.DataFrame({"AAPL": [0.6], "NVDA": [0.5]}))
 
 
+def test_missing_open_forces_exit_and_skips_new_entry() -> None:
+    index = pd.bdate_range("2025-01-02", periods=5)
+    prices = {
+        "AAPL": pd.DataFrame(
+            {
+                "open": [100, 101, 102, np.nan, 104],
+                "close": [100, 102, 103, np.nan, 105],
+            },
+            index=index,
+        ),
+        "NVDA": pd.DataFrame(
+            {
+                "open": [50, 51, 52, np.nan, 54],
+                "close": [50, 52, 53, 54, 55],
+            },
+            index=index,
+        ),
+    }
+    targets = pd.DataFrame(
+        {"AAPL": [1.0, 0.0], "NVDA": [0.0, 1.0]},
+        index=[index[0], index[2]],
+    )
+
+    result = run_target_weight_backtest(prices, targets, cost_bps=10)
+
+    assert set(result.execution_fallbacks["action"]) == {
+        "forced_exit_previous_close",
+        "skipped_entry",
+    }
+    forced_exit = result.transactions.iloc[-1]
+    assert forced_exit["ticker"] == "AAPL"
+    assert forced_exit["side"] == "sell"
+    assert forced_exit["price"] == 103
+    assert result.weights.loc[index[3]].sum() == 0
+
+
 def test_same_input_is_deterministic() -> None:
     prices = _prices()
     signal_date = next(iter(prices.values())).index[0]

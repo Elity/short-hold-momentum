@@ -18,6 +18,7 @@ class BacktestResult:
     weights: pd.DataFrame
     costs: pd.Series
     transactions: pd.DataFrame
+    execution_fallbacks: pd.DataFrame
 
 
 def validate_target_weights(target_weights: pd.DataFrame) -> None:
@@ -111,6 +112,7 @@ def run_target_weight_backtest(
     daily_weights: dict[pd.Timestamp, pd.Series] = {}
     daily_costs: dict[pd.Timestamp, float] = {}
     transaction_rows: list[dict[str, object]] = []
+    fallback_rows: list[dict[str, object]] = []
     fee_rate = cost_bps / 10_000.0
 
     for session in sessions:
@@ -118,9 +120,35 @@ def run_target_weight_backtest(
         if session in executions:
             signal_date, desired_weights = executions[session]
             required = (holdings.ne(0.0)) | desired_weights.ne(0.0)
-            execution_prices = opens.loc[session]
-            if execution_prices[required].isna().any() or (execution_prices[required] <= 0).any():
-                raise ValueError(f"missing or invalid open price on {session.date()}")
+            execution_prices = opens.loc[session].copy()
+            invalid = required & (execution_prices.isna() | (execution_prices <= 0))
+            if invalid.any():
+                desired_weights = desired_weights.copy()
+                previous_closes = closes.loc[closes.index < session].ffill().iloc[-1]
+                for ticker in tickers[invalid]:
+                    if holdings[ticker] != 0.0:
+                        fallback_price = previous_closes[ticker]
+                        if pd.isna(fallback_price) or fallback_price <= 0:
+                            raise ValueError(
+                                f"missing liquidation price for {ticker} on {session.date()}"
+                            )
+                        execution_prices[ticker] = fallback_price
+                        action = "forced_exit_previous_close"
+                        price = float(fallback_price)
+                    else:
+                        action = "skipped_entry"
+                        price = None
+                    desired_weights[ticker] = 0.0
+                    fallback_rows.append(
+                        {
+                            "signal_date": signal_date,
+                            "execution_date": session,
+                            "ticker": ticker,
+                            "action": action,
+                            "price": price,
+                        }
+                    )
+                required = (holdings.ne(0.0)) | desired_weights.ne(0.0)
             safe_prices = execution_prices.where(required, 1.0)
             equity_open = float(cash_amount + (holdings * safe_prices).sum())
             new_holdings, new_cash, session_cost = _funded_target(
@@ -134,7 +162,7 @@ def run_target_weight_backtest(
             delta = new_holdings - holdings
             for ticker in tickers[delta.abs() > 1e-12]:
                 quantity = float(abs(delta[ticker]))
-                price = float(execution_prices[ticker])
+                price = float(safe_prices[ticker])
                 transaction_rows.append(
                     {
                         "signal_date": signal_date,
@@ -168,6 +196,10 @@ def run_target_weight_backtest(
         transaction_rows,
         columns=["signal_date", "execution_date", "ticker", "side", "quantity", "price", "notional", "cost"],
     )
+    execution_fallbacks = pd.DataFrame(
+        fallback_rows,
+        columns=["signal_date", "execution_date", "ticker", "action", "price"],
+    )
     return BacktestResult(
         equity=pd.Series(equity_values, name="equity"),
         cash=pd.Series(cash_values, name="cash"),
@@ -175,4 +207,5 @@ def run_target_weight_backtest(
         weights=pd.DataFrame.from_dict(daily_weights, orient="index").reindex(columns=tickers).fillna(0.0),
         costs=pd.Series(daily_costs, name="cost"),
         transactions=transactions,
+        execution_fallbacks=execution_fallbacks,
     )

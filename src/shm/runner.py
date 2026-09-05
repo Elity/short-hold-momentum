@@ -159,6 +159,7 @@ def _quality_check(
     prepared_quality: dict[str, object],
     plan: SignalPlan,
     dq05: CheckResult,
+    execution_fallbacks: int,
 ) -> CheckResult:
     quarantined = [ticker for ticker, report in prepared_quality.items() if report.quarantine]
     missing = [
@@ -167,10 +168,13 @@ def _quality_check(
     zero_volume = [ticker for ticker, report in prepared_quality.items() if report.zero_volume_flag]
     detail = (
         f"quarantine={len(quarantined)}, missing_history={len(missing)}, "
-        f"zero_volume_flags={len(zero_volume)}; {dq05.detail}"
+        f"zero_volume_flags={len(zero_volume)}, "
+        f"execution_fallbacks={execution_fallbacks}; {dq05.detail}"
     )
     if dq05.status == "INCONCLUSIVE" or plan.inconclusive:
         return CheckResult("INCONCLUSIVE", detail)
+    if execution_fallbacks:
+        return CheckResult("WARN_EXECUTION_FALLBACK", detail)
     return CheckResult("PASS", detail)
 
 
@@ -392,7 +396,12 @@ def run_development_backtest(
         "CHK-06": check_constraints(
             runs.default.weights, runs.default.cash, runs.default.transactions
         ),
-        "CHK-07": _quality_check(prepared.quality, plan, dq05),
+        "CHK-07": _quality_check(
+            prepared.quality,
+            plan,
+            dq05,
+            len(runs.default.execution_fallbacks) + len(pit_run.execution_fallbacks),
+        ),
     }
     checks["CHK-02"] = CheckResult(
         checks["CHK-02"].status,
