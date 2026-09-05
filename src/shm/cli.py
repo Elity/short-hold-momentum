@@ -13,6 +13,7 @@ from yaml import YAMLError
 from shm.config import load_config_bundle, load_universe_config
 from shm.paper import (
     PaperAccount,
+    build_paper_progress,
     generate_monthly_report,
     ingest_fills,
     read_fill_csv,
@@ -128,6 +129,10 @@ def build_parser() -> argparse.ArgumentParser:
     options.add_argument("--repo-root", type=Path, default=Path("."))
     options.add_argument("--account", type=Path, required=True)
     options.add_argument("--signal-date", required=True)
+    status = paper_commands.add_parser(
+        "status", help="Audit P4 cycle, report, and Gate readiness"
+    )
+    status.add_argument("--repo-root", type=Path, default=Path("."))
     return parser
 
 
@@ -283,6 +288,23 @@ def main(argv: list[str] | None = None) -> int:
             "paper option overlay ready: "
             f"as_of={outcome.as_of.date()}, orders={len(outcome.plan.orders)}, "
             f"skipped={len(outcome.plan.skipped)}, path={outcome.ticket_path}"
+        )
+        return 0
+    if args.command == "paper" and args.paper_command == "status":
+        try:
+            progress = build_paper_progress(args.repo_root.resolve())
+        except Exception as exc:
+            print(f"paper status failed: {exc}", file=sys.stderr)
+            return 2
+        blockers = "; ".join(progress.gate_blockers) or "none"
+        print(
+            "paper status: "
+            f"cycles={len(progress.completed_cycles)}/3, "
+            f"pending={len(progress.pending_cycles)}, "
+            f"monthly_reports={len(progress.monthly_reports)}/3, "
+            f"next_rebalance={progress.next_rebalance_date.date()}, "
+            f"p4_evidence_complete={str(progress.p4_evidence_complete).lower()}, "
+            f"gate_ready={str(progress.gate_ready).lower()}, blockers={blockers}"
         )
         return 0
     return 2

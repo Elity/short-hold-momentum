@@ -35,6 +35,7 @@ from shm.paper.option_overlay import PaperOptionOverlayResult, run_paper_option_
 from shm.paper.runner import PaperRebalanceResult, run_paper_rebalance
 from shm.paper.reporting import MonthlyReportResult, generate_monthly_report
 from shm.paper.simulator import SimulatedFillResult, simulate_next_open_fills
+from shm.paper.status import PaperProgress, build_paper_progress
 
 __all__ = [
     "FILL_COLUMNS",
@@ -50,11 +51,13 @@ __all__ = [
     "OrderTicket",
     "PaperAccount",
     "PaperOptionOverlayResult",
+    "PaperProgress",
     "PaperRebalanceResult",
     "SkippedCandidate",
     "SimulatedFillResult",
     "TicketPlan",
     "build_monthly_comparison_inputs",
+    "build_paper_progress",
     "fills_from_frame",
     "fills_to_frame",
     "generate_integer_share_tickets",

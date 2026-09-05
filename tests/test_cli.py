@@ -289,3 +289,30 @@ def test_option_overlay_cli_uses_account_snapshot_date(tmp_path, monkeypatch, ca
     assert received["as_of"] == "2026-09-18"
     assert received["account"].positions == {"AAA": 200}
     assert str(ticket_path) in capsys.readouterr().out
+
+
+def test_paper_status_cli_reports_evidence_and_blockers(tmp_path, monkeypatch, capsys) -> None:
+    progress = SimpleNamespace(
+        completed_cycles=("2026-09-17",),
+        pending_cycles=("2026-10-15",),
+        monthly_reports=("2026-09",),
+        next_rebalance_date=pd.Timestamp("2026-11-12"),
+        p4_evidence_complete=False,
+        gate_ready=False,
+        gate_blockers=("paper cycles 1/3", "monthly reports 1/3"),
+    )
+    received: dict[str, object] = {}
+
+    def build(repo_root):
+        received["repo_root"] = repo_root
+        return progress
+
+    monkeypatch.setattr(cli, "build_paper_progress", build)
+
+    assert cli.main(["paper", "status", "--repo-root", str(tmp_path)]) == 0
+    assert received["repo_root"] == tmp_path.resolve()
+    output = capsys.readouterr().out
+    assert "cycles=1/3" in output
+    assert "pending=1" in output
+    assert "monthly_reports=1/3" in output
+    assert "gate_ready=false" in output

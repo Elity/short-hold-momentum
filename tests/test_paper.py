@@ -18,6 +18,7 @@ from shm.paper import (
     Fill,
     OrderTicket,
     PaperAccount,
+    build_paper_progress,
     build_monthly_comparison_inputs,
     fills_from_frame,
     fills_to_frame,
@@ -616,3 +617,69 @@ def test_paper_option_overlay_uses_fill_basis_and_saved_ranking(
         execution_date,
     )
     assert repeated.ticket_path == result.ticket_path
+
+
+def test_paper_status_counts_only_complete_cycles(tmp_path) -> None:
+    repo_root, _ = _paper_repo(tmp_path)
+    (repo_root / "paper").mkdir(exist_ok=True)
+    (repo_root / "paper/p4.yaml").write_text(
+        yaml.safe_dump(
+            {
+                "mode": "paper",
+                "provider": "local_offline_simulator",
+                "forward_test_start": "2026-09-05",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    initial = build_paper_progress(repo_root)
+    signal_date = initial.next_rebalance_date
+    calendar = xcals.get_calendar(
+        "XNYS",
+        start=signal_date - pd.Timedelta("7D"),
+        end=signal_date + pd.Timedelta("30D"),
+    )
+    execution_date = calendar.next_session(signal_date)
+    write_ticket_csv(
+        repo_root / "paper/tickets" / f"{signal_date.date()}.csv",
+        [OrderTicket("AAA", "buy", 1)],
+    )
+    write_fill_csv(
+        repo_root / "paper/fills" / f"{execution_date.date()}.csv",
+        [Fill("AAA", 1, 100.0, f"{execution_date.date()} 09:30", 100.0)],
+    )
+    account_path = repo_root / "paper/accounts" / f"{execution_date.date()}.json"
+    account_path.parent.mkdir(parents=True, exist_ok=True)
+    account_path.write_text(
+        json.dumps(
+            {
+                "as_of": str(execution_date.date()),
+                "cash": 900.0,
+                "mode": "paper",
+                "positions": {"AAA": 1},
+            }
+        ),
+        encoding="utf-8",
+    )
+    report_path = repo_root / "reports/paper-2026-09.md"
+    report_path.parent.mkdir(parents=True)
+    report_path.write_text("observed\n", encoding="utf-8")
+
+    after_first = build_paper_progress(repo_root)
+    pending_signal = after_first.next_rebalance_date
+    write_ticket_csv(
+        repo_root / "paper/tickets" / f"{pending_signal.date()}.csv",
+        [OrderTicket("BBB", "buy", 1)],
+    )
+
+    progress = build_paper_progress(repo_root)
+
+    assert progress.completed_cycles == (str(signal_date.date()),)
+    assert progress.pending_cycles == (str(pending_signal.date()),)
+    assert progress.monthly_reports == ("2026-09",)
+    assert progress.p4_evidence_complete is False
+    assert progress.gate_ready is False
+    assert "paper cycles 1/3" in progress.gate_blockers
+    assert "monthly reports 1/3" in progress.gate_blockers
+    assert len(progress.missing_owner_notes) == 4

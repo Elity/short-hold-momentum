@@ -103,3 +103,9 @@ uses account snapshots, fills, or model signals before 2026-09-05.
 The forward-test start is the first real paper-account snapshot. Do not backfill
 it to the P2 OOS period. Three completed rebalance/fill cycles and three observed
 monthly reports are still required before P4 can pass.
+
+Audit those counters and the remaining Gate blockers without changing state:
+
+```sh
+uv run shm paper status --repo-root .
+```
