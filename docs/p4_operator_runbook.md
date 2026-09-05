@@ -12,6 +12,38 @@ simulator with $100,000 initial cash. Its initial tracked snapshot is
 }
 ```
 
+## Operator preflight
+
+Run every command from the repository root and inspect the current ledger
+before taking action:
+
+```sh
+cd /Users/fighting/code/short-hold-momentum
+uv run shm paper status --repo-root .
+```
+
+The active schedule starts with signal dates 2026-09-17, 2026-10-15, and
+2026-11-12. A daily heartbeat also checks this workflow. If it has already
+created the ticket, fill, account, option, or report artifact for a date, use
+that committed artifact instead of starting a second manual path.
+
+| Cycle | Signal date | Account used for rebalance | Next-session account output |
+|---:|---|---|---|
+| 1 | 2026-09-17 | `paper/accounts/2026-09-05.json` | `paper/accounts/2026-09-18.json` |
+| 2 | 2026-10-15 | latest prior snapshot | `paper/accounts/2026-10-16.json` |
+| 3 | 2026-11-12 | latest prior snapshot | `paper/accounts/2026-11-13.json` |
+
+After the relevant XNYS session has closed, refresh the local daily cache
+before running the corresponding paper command:
+
+```sh
+uv run shm data update --through-oos --skip-pit
+```
+
+This command refreshes data only. It does not authorize another backtest OOS
+unlock; the audited OOS budget remains exhausted at `3/3`. Never add
+`--unlock-oos` to a paper operation.
+
 After the selected XNYS rebalance session has closed and the local daily caches
 contain that completed date, generate the six-column ticket with:
 
