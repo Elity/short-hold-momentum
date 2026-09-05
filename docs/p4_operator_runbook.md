@@ -73,9 +73,18 @@ After the stock fills are recorded, the optional P3 overlay uses the actual
 account shares and cash, cost basis reconstructed from the local fill ledger,
 current cached spot prices, and `results.ranking` from the signal-date paper
 log. Pass only `top_n+1` through `top_n+5` to `build_overlay_plan`, then write
-the paper-only draft with `write_paper_ticket_csv`. If any required cost basis
-or delayed option chain is unavailable, record the skip instead of inferring
-it. The overlay never submits an order.
+the paper-only draft with:
+
+```sh
+uv run shm paper option-overlay \
+  --repo-root . \
+  --account paper/accounts/NEXT-SESSION.json \
+  --signal-date YYYY-MM-DD
+```
+
+If any required cost basis or delayed option chain is unavailable, the command
+fails instead of inferring it. Qualifying and skipped contracts are written to
+`paper/options/NEXT-SESSION.json`; the overlay never submits an order.
 
 After an XNYS calendar month has fully closed, generate the forward-only
 paper-versus-model report with:

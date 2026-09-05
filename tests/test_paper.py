@@ -1,6 +1,8 @@
 import json
+from datetime import date
 from pathlib import Path
 
+import exchange_calendars as xcals
 import numpy as np
 import pandas as pd
 import pytest
@@ -8,6 +10,7 @@ import yaml
 
 from shm.config import ConfigBundle
 from shm.experiments import compute_file_hash, compute_params_hash
+from shm.options import OptionOrder, OverlayPlan, OverlaySummary, SkippedOverlay
 from shm.paper import (
     FILL_COLUMNS,
     PAPER_LOOKBACK_SESSIONS,
@@ -25,6 +28,7 @@ from shm.paper import (
     read_ticket_csv,
     realized_cost_bps,
     render_monthly_report,
+    run_paper_option_overlay,
     run_paper_rebalance,
     simulate_next_open_fills,
     validate_paper_window,
@@ -511,3 +515,104 @@ def test_local_simulator_fills_stock_ticket_at_next_official_open(tmp_path) -> N
         ticket_path=ticket_path,
     )
     assert repeated.fill_path == result.fill_path
+
+
+def test_paper_option_overlay_uses_fill_basis_and_saved_ranking(
+    tmp_path, monkeypatch
+) -> None:
+    repo_root, signal_date = _paper_repo(tmp_path)
+    calendar = xcals.get_calendar(
+        "XNYS",
+        start=signal_date - pd.Timedelta("7D"),
+        end=signal_date + pd.Timedelta("30D"),
+    )
+    execution_date = calendar.next_session(signal_date)
+    for ticker in ("AAA", "BBB", "CCC"):
+        path = repo_root / "data/raw/prices" / f"{ticker}.parquet"
+        frame = pd.read_parquet(path)
+        row = frame.iloc[-1].copy()
+        row["date"] = execution_date
+        row[["open", "high", "low", "close"]] = 100.0
+        pd.concat([frame, row.to_frame().T], ignore_index=True).to_parquet(
+            path,
+            index=False,
+        )
+
+    write_ticket_csv(
+        repo_root / "paper/tickets" / f"{signal_date.date()}.csv",
+        [OrderTicket("AAA", "buy", 200)],
+    )
+    write_fill_csv(
+        repo_root / "paper/fills" / f"{execution_date.date()}.csv",
+        [Fill("AAA", 200, 100.0, f"{execution_date.date()} 09:30", 100.0)],
+    )
+    log_path = repo_root / "experiments/log.jsonl"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_path.write_text(
+        json.dumps(
+            {
+                "mode": "paper",
+                "status": "PAPER_TICKET_READY",
+                "period": {"end": str(signal_date.date())},
+                "results": {
+                    "ranking": ["AAA", "BBB", "CCC"],
+                    "selected": ["AAA"],
+                },
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    received: dict[str, object] = {}
+    plan = OverlayPlan(
+        orders=(
+            OptionOrder(
+                underlying="AAA",
+                strategy="covered_call",
+                contract_symbol="AAA261016C00110000",
+                expiration=date(2026, 10, 16),
+                strike=110.0,
+                contracts=2,
+                bid=1.0,
+                ask=1.1,
+                delta=0.25,
+                delta_source="chain",
+                max_loss=19_800.0,
+                upside_cap=110.0,
+                cash_usage=0.0,
+                covered_shares=200,
+            ),
+        ),
+        skipped=(SkippedOverlay("BBB", "cash_secured_put", "no liquid put"),),
+        summary=OverlaySummary(max_loss=19_800.0, cash_usage=0.0, csp_notional=0.0),
+    )
+
+    def build(**kwargs):
+        received.update(kwargs)
+        return plan
+
+    monkeypatch.setattr("shm.paper.option_overlay.build_overlay_plan", build)
+    account = PaperAccount(cash=80_000.0, positions={"AAA": 200})
+
+    result = run_paper_option_overlay(
+        account,
+        repo_root,
+        signal_date,
+        execution_date,
+    )
+
+    assert received["holdings"][0].cost_basis_per_share == 100.0
+    assert [candidate.ticker for candidate in received["candidates"]] == ["BBB", "CCC"]
+    assert received["portfolio_equity"] == 100_000.0
+    assert result.ticket_path.name == f"{execution_date.date()}-options.csv"
+    assert result.ticket_path.exists()
+    audit = json.loads(result.audit_path.read_text(encoding="utf-8"))
+    assert audit["paper_only"] is True
+    assert audit["orders"][0]["strategy"] == "covered_call"
+    repeated = run_paper_option_overlay(
+        account,
+        repo_root,
+        signal_date,
+        execution_date,
+    )
+    assert repeated.ticket_path == result.ticket_path

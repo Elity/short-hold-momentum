@@ -17,6 +17,7 @@ from shm.paper import (
     ingest_fills,
     read_fill_csv,
     read_ticket_csv,
+    run_paper_option_overlay,
     run_paper_rebalance,
     simulate_next_open_fills,
 )
@@ -121,6 +122,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     monthly.add_argument("--repo-root", type=Path, default=Path("."))
     monthly.add_argument("--month", required=True, help="completed month in YYYY-MM format")
+    options = paper_commands.add_parser(
+        "option-overlay", help="Generate a paper-only CC/CSP draft after stock fills"
+    )
+    options.add_argument("--repo-root", type=Path, default=Path("."))
+    options.add_argument("--account", type=Path, required=True)
+    options.add_argument("--signal-date", required=True)
     return parser
 
 
@@ -255,6 +262,27 @@ def main(argv: list[str] | None = None) -> int:
         print(
             "paper monthly report ready: "
             f"month={outcome.inputs.month}, path={outcome.report_path}"
+        )
+        return 0
+    if args.command == "paper" and args.paper_command == "option-overlay":
+        try:
+            root = args.repo_root.resolve()
+            account_path = _resolve(root, args.account)
+            account = _load_paper_account(account_path)
+            payload = json.loads(account_path.read_text(encoding="utf-8"))
+            outcome = run_paper_option_overlay(
+                account,
+                root,
+                args.signal_date,
+                payload["as_of"],
+            )
+        except Exception as exc:
+            print(f"paper option overlay failed: {exc}", file=sys.stderr)
+            return 2
+        print(
+            "paper option overlay ready: "
+            f"as_of={outcome.as_of.date()}, orders={len(outcome.plan.orders)}, "
+            f"skipped={len(outcome.plan.skipped)}, path={outcome.ticket_path}"
         )
         return 0
     return 2

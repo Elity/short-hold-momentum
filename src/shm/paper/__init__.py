@@ -31,6 +31,7 @@ from shm.paper.core import (
     write_monthly_report,
     write_ticket_csv,
 )
+from shm.paper.option_overlay import PaperOptionOverlayResult, run_paper_option_overlay
 from shm.paper.runner import PaperRebalanceResult, run_paper_rebalance
 from shm.paper.reporting import MonthlyReportResult, generate_monthly_report
 from shm.paper.simulator import SimulatedFillResult, simulate_next_open_fills
@@ -48,6 +49,7 @@ __all__ = [
     "MonthlyReportResult",
     "OrderTicket",
     "PaperAccount",
+    "PaperOptionOverlayResult",
     "PaperRebalanceResult",
     "SkippedCandidate",
     "SimulatedFillResult",
@@ -65,6 +67,7 @@ __all__ = [
     "render_monthly_report",
     "require_paper_mode",
     "run_paper_rebalance",
+    "run_paper_option_overlay",
     "simulate_next_open_fills",
     "tickets_from_frame",
     "validate_paper_window",

@@ -236,3 +236,56 @@ def test_monthly_report_cli_writes_completed_month(tmp_path, monkeypatch, capsys
     )
     assert received == {"repo_root": tmp_path.resolve(), "month": "2026-09"}
     assert str(report_path) in capsys.readouterr().out
+
+
+def test_option_overlay_cli_uses_account_snapshot_date(tmp_path, monkeypatch, capsys) -> None:
+    account_path = tmp_path / "paper/accounts/2026-09-18.json"
+    account_path.parent.mkdir(parents=True)
+    account_path.write_text(
+        json.dumps(
+            {
+                "as_of": "2026-09-18",
+                "cash": 80_000,
+                "mode": "paper",
+                "positions": {"AAA": 200},
+            }
+        ),
+        encoding="utf-8",
+    )
+    received: dict[str, object] = {}
+    ticket_path = tmp_path / "paper/tickets/2026-09-18-options.csv"
+
+    def run(account, repo_root, signal_date, as_of):
+        received.update(
+            account=account,
+            repo_root=repo_root,
+            signal_date=signal_date,
+            as_of=as_of,
+        )
+        return SimpleNamespace(
+            as_of=pd.Timestamp("2026-09-18"),
+            plan=SimpleNamespace(orders=(), skipped=()),
+            ticket_path=ticket_path,
+        )
+
+    monkeypatch.setattr(cli, "run_paper_option_overlay", run)
+
+    assert (
+        cli.main(
+            [
+                "paper",
+                "option-overlay",
+                "--repo-root",
+                str(tmp_path),
+                "--account",
+                str(account_path),
+                "--signal-date",
+                "2026-09-17",
+            ]
+        )
+        == 0
+    )
+    assert received["repo_root"] == tmp_path.resolve()
+    assert received["as_of"] == "2026-09-18"
+    assert received["account"].positions == {"AAA": 200}
+    assert str(ticket_path) in capsys.readouterr().out
