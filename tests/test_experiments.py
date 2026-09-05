@@ -3,6 +3,7 @@ from datetime import date
 import pytest
 
 from shm.experiments import (
+    apply_prereg_ofat,
     append_run_log,
     assert_data_access,
     compute_file_hash,
@@ -12,6 +13,22 @@ from shm.experiments import (
     reserve_variant,
     validate_universe_hash,
 )
+
+
+def test_prereg_ofat_applies_one_existing_params_change() -> None:
+    params = {
+        "signal": {"top_n": 15},
+        "eligibility": {},
+        "risk": {"trend_filter": {"off_exposure": 0.0}},
+        "execution": {},
+    }
+
+    updated = apply_prereg_ofat(params, "signal.top_n: 15 → 10")
+
+    assert params["signal"]["top_n"] == 15
+    assert updated["signal"]["top_n"] == 10
+    with pytest.raises(ValueError, match="baseline mismatch"):
+        apply_prereg_ofat(params, "signal.top_n: 20 → 10")
 
 
 def test_oos_lock_and_fourth_unlock_are_rejected(tmp_path) -> None:

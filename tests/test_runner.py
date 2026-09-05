@@ -79,10 +79,11 @@ def test_synthetic_approved_run_writes_report_daily_snapshot_and_log(tmp_path, m
     for name, payload in (("dates", dates), ("params", params), ("costs", costs), ("universe", universe)):
         (tmp_path / "config" / f"{name}.yaml").write_text(yaml.safe_dump(payload, sort_keys=False))
 
-    prereg = tmp_path / "experiments/prereg/V00.md"
+    prereg = tmp_path / "experiments/prereg/V01.md"
     prereg.write_text(
-        "# V00\n"
+        "# V01\n"
         "- 假设（一句话，可证伪）：Synthetic baseline completes.\n"
+        "- 与 V00 的唯一差别（OFAT）：signal.top_n: 2 → 1\n"
         "- 预测：No directional prediction.\n"
         "- owner 批准：[x] 日期：2026-09-04\n"
     )
@@ -121,6 +122,9 @@ def test_synthetic_approved_run_writes_report_daily_snapshot_and_log(tmp_path, m
     assert "CHK-07" in outcome.report_path.read_text()
     log = json.loads((tmp_path / "experiments/log.jsonl").read_text().strip())
     assert log["run_id"] == outcome.run_id
+    assert log["phase"] == "P2"
+    assert log["variant_index"] == 1
+    assert log["params"]["signal"]["top_n"] == 1
     assert log["universe_hash"] == compute_file_hash(tmp_path / "config/universe.yaml")
     assert runner._verdict_for_status("SUSPECT") == "无法判定"
     manifest = json.loads((tmp_path / "data/snapshots/manifest.json").read_text())

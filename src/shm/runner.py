@@ -25,6 +25,7 @@ from shm.checks import (
 from shm.config import ConfigBundle, load_config_bundle
 from shm.data import create_snapshot, update_price_caches
 from shm.experiments import (
+    apply_prereg_ofat,
     append_run_log,
     compute_file_hash,
     compute_params_hash,
@@ -276,8 +277,15 @@ def run_development_backtest(
     universe = load_frozen_universe(config_dir)
     prereg = load_approved_prereg(prereg_file)
     params = config.params.model_dump(mode="json")
-    params_hash = compute_params_hash(params, config.costs.per_side_bps.default)
     phase = _phase_for_prereg(prereg_file)
+    if phase == "P2":
+        params = apply_prereg_ofat(
+            params, prereg.get("与 V00 的唯一差别（OFAT）", "")
+        )
+        config = ConfigBundle.model_validate(
+            {**config.model_dump(mode="python"), "params": params}
+        )
+    params_hash = compute_params_hash(params, config.costs.per_side_bps.default)
     variant_index = reserve_variant(
         root / "experiments/log.jsonl", params_hash=params_hash, phase=phase
     )

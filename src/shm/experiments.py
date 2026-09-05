@@ -2,9 +2,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+from copy import deepcopy
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any, Literal
+
+import yaml
 
 
 MAX_P2_VARIANTS = 20
@@ -53,6 +56,38 @@ def compute_params_hash(params: dict[str, Any], default_cost_bps: float) -> str:
 
 def compute_file_hash(path: Path | str) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def apply_prereg_ofat(params: dict[str, Any], difference: str) -> dict[str, Any]:
+    try:
+        path, change = difference.split(":", 1)
+        old_text, new_text = change.split("→", 1)
+    except ValueError as error:
+        raise ValueError("P2 preregistration must contain one OFAT change") from error
+
+    keys = [part.strip() for part in path.strip().split(".")]
+    if len(keys) < 2 or keys[0] not in {"signal", "eligibility", "risk", "execution"}:
+        raise ValueError("P2 OFAT change must target a params.yaml field")
+
+    updated = deepcopy(params)
+    target: dict[str, Any] = updated
+    for key in keys[:-1]:
+        value = target.get(key)
+        if not isinstance(value, dict):
+            raise ValueError(f"unknown P2 OFAT field: {path.strip()}")
+        target = value
+
+    field = keys[-1]
+    if field not in target:
+        raise ValueError(f"unknown P2 OFAT field: {path.strip()}")
+    old_value = yaml.safe_load(old_text.strip())
+    if target[field] != old_value:
+        raise ValueError(
+            f"P2 OFAT baseline mismatch for {path.strip()}: "
+            f"expected {target[field]!r}, prereg says {old_value!r}"
+        )
+    target[field] = yaml.safe_load(new_text.strip())
+    return updated
 
 
 def validate_universe_hash(record: dict[str, Any], universe_path: Path | str) -> None:
