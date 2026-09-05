@@ -79,6 +79,30 @@ def test_missing_open_forces_exit_and_skips_new_entry() -> None:
     assert result.weights.loc[index[3]].sum() == 0
 
 
+def test_missing_close_forces_midperiod_exit() -> None:
+    index = pd.bdate_range("2025-01-02", periods=4)
+    prices = {
+        "AAPL": pd.DataFrame(
+            {
+                "open": [100, 101, 102, 103],
+                "close": [100, 102, np.nan, 104],
+            },
+            index=index,
+        )
+    }
+    targets = pd.DataFrame({"AAPL": [1.0]}, index=[index[0]])
+
+    result = run_target_weight_backtest(prices, targets, cost_bps=10)
+
+    fallback = result.execution_fallbacks.iloc[-1]
+    forced_exit = result.transactions.iloc[-1]
+    assert fallback["action"] == "forced_exit_missing_close"
+    assert forced_exit["execution_date"] == index[2]
+    assert forced_exit["side"] == "sell"
+    assert forced_exit["price"] == 102
+    assert result.weights.loc[index[2]].sum() == 0
+
+
 def test_same_input_is_deterministic() -> None:
     prices = _prices()
     signal_date = next(iter(prices.values())).index[0]

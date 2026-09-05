@@ -12,6 +12,8 @@ Do not use t+1 availability to change the signal formed at t. At execution:
   as cash;
 - force an existing holding with an unavailable t+1 open to exit at its most
   recent valid close;
+- force a holding that loses its close between rebalances to exit at its most
+  recent valid close and charge the normal transaction cost;
 - record each fallback and surface its count in CHK-07.
 
 This conservative rule keeps signal construction free of lookahead while

@@ -114,6 +114,7 @@ def run_target_weight_backtest(
     transaction_rows: list[dict[str, object]] = []
     fallback_rows: list[dict[str, object]] = []
     fee_rate = cost_bps / 10_000.0
+    last_signal_date: pd.Timestamp | None = None
 
     for session in sessions:
         session_cost = 0.0
@@ -176,11 +177,48 @@ def run_target_weight_backtest(
                     }
                 )
             holdings, cash_amount = new_holdings, new_cash
+            last_signal_date = signal_date
 
         close_prices = closes.loc[session]
         required_close = holdings.ne(0.0)
-        if close_prices[required_close].isna().any() or (close_prices[required_close] <= 0).any():
-            raise ValueError(f"missing or invalid close price on {session.date()}")
+        invalid_close = required_close & (close_prices.isna() | (close_prices <= 0))
+        if invalid_close.any():
+            if last_signal_date is None:
+                raise ValueError(f"missing holding signal date on {session.date()}")
+            previous_closes = closes.loc[closes.index < session].ffill().iloc[-1]
+            for ticker in tickers[invalid_close]:
+                fallback_price = previous_closes[ticker]
+                if pd.isna(fallback_price) or fallback_price <= 0:
+                    raise ValueError(
+                        f"missing liquidation price for {ticker} on {session.date()}"
+                    )
+                quantity = float(holdings[ticker])
+                fee = quantity * float(fallback_price) * fee_rate
+                cash_amount += quantity * float(fallback_price) - fee
+                session_cost += fee
+                holdings[ticker] = 0.0
+                transaction_rows.append(
+                    {
+                        "signal_date": last_signal_date,
+                        "execution_date": session,
+                        "ticker": ticker,
+                        "side": "sell",
+                        "quantity": quantity,
+                        "price": float(fallback_price),
+                        "notional": quantity * float(fallback_price),
+                        "cost": fee,
+                    }
+                )
+                fallback_rows.append(
+                    {
+                        "signal_date": last_signal_date,
+                        "execution_date": session,
+                        "ticker": ticker,
+                        "action": "forced_exit_missing_close",
+                        "price": float(fallback_price),
+                    }
+                )
+            required_close = holdings.ne(0.0)
         safe_close = close_prices.where(required_close, 0.0)
         market_values = holdings * safe_close
         equity = float(cash_amount + market_values.sum())
