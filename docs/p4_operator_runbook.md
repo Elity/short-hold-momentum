@@ -1,8 +1,8 @@
 # P4 paper operator runbook
 
-This workflow is offline and never submits an order. The owner must first pick
-Alpaca paper or an existing broker's simulation account and export its latest
-confirmed state to a local JSON file that is not committed:
+This workflow is offline and never submits an order. ADR-010 selects the local
+simulator with $100,000 initial cash. Its initial tracked snapshot is
+`paper/accounts/2026-09-05.json`:
 
 ```json
 {
@@ -32,16 +32,31 @@ content-addressed input snapshot in `data/snapshots/manifest.json` and appends
 one idempotent `mode: paper` audit row to `experiments/log.jsonl`. That row
 contains ticket diagnostics only—never a 2019-to-date performance metric.
 
-The ticket is a draft. Submit it manually in the chosen simulation account or
-through a separately reviewed paper-only adapter. On the next XNYS session,
-record confirmed fills in `paper/fills/YYYY-MM-DD.csv` using:
+The ticket is a draft. For the ADR-010 local simulator, wait until the next XNYS
+session is complete, then fill stock MOO/OPG tickets at that session's official
+open using the local cache. These fills have zero commission and are simulated,
+not observed broker execution. The resulting file uses:
 
 ```text
 ticker,qty,fill_price,fill_time,official_open
 ```
 
 An optional trailing `commission` column is supported. Never infer fills from
-the ticket. Apply confirmed fills and write a new account snapshot with:
+an external paper broker's ticket. For local simulated fills, use the Python API
+`simulate_next_open_fills`; for externally confirmed fills, apply them and write
+a new account snapshot with:
+
+```sh
+uv run shm paper simulate-fills \
+  --repo-root . \
+  --account paper/accounts/YYYY-MM-DD.json \
+  --signal-date YYYY-MM-DD \
+  --output-account paper/accounts/NEXT-SESSION.json
+```
+
+The command refuses to run before the next XNYS session is complete and only
+accepts stock `market_on_open` / `opg` tickets. For externally confirmed fills,
+use:
 
 ```sh
 uv run shm paper ingest-fills \

@@ -152,4 +152,57 @@ def test_paper_fill_ingestion_writes_confirmed_account_snapshot(tmp_path) -> Non
         == 0
     )
     updated = json.loads(output_path.read_text(encoding="utf-8"))
-    assert updated == {"cash": 494.0, "mode": "paper", "positions": {"AAA": 5}}
+    assert updated == {
+        "as_of": "2026-09-18",
+        "cash": 494.0,
+        "mode": "paper",
+        "positions": {"AAA": 5},
+    }
+
+
+def test_local_fill_simulation_writes_next_account_snapshot(tmp_path, monkeypatch) -> None:
+    account_path = tmp_path / "account-before.json"
+    account_path.write_text(
+        json.dumps({"mode": "paper", "cash": 1_000, "positions": {}}),
+        encoding="utf-8",
+    )
+    updated_account = cli.PaperAccount(cash=500, positions={"AAA": 5})
+    received: dict[str, object] = {}
+
+    def simulate(account, repo_root, signal_date, *, ticket_path=None):
+        received.update(
+            account=account,
+            repo_root=repo_root,
+            signal_date=signal_date,
+            ticket_path=ticket_path,
+        )
+        return SimpleNamespace(
+            execution_date=pd.Timestamp("2026-09-18"),
+            fill_path=tmp_path / "paper/fills/2026-09-18.csv",
+            ingestion=SimpleNamespace(account=updated_account, applied_fills=(object(),)),
+        )
+
+    monkeypatch.setattr(cli, "simulate_next_open_fills", simulate)
+    output_path = tmp_path / "paper/accounts/2026-09-18.json"
+    assert (
+        cli.main(
+            [
+                "paper",
+                "simulate-fills",
+                "--repo-root",
+                str(tmp_path),
+                "--account",
+                str(account_path),
+                "--signal-date",
+                "2026-09-17",
+                "--output-account",
+                str(output_path),
+            ]
+        )
+        == 0
+    )
+    assert received["signal_date"] == "2026-09-17"
+    assert received["ticket_path"] is None
+    updated = json.loads(output_path.read_text(encoding="utf-8"))
+    assert updated["as_of"] == "2026-09-18"
+    assert updated["positions"] == {"AAA": 5}

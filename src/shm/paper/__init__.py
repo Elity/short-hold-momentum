@@ -32,6 +32,7 @@ from shm.paper.core import (
     write_ticket_csv,
 )
 from shm.paper.runner import PaperRebalanceResult, run_paper_rebalance
+from shm.paper.simulator import SimulatedFillResult, simulate_next_open_fills
 
 __all__ = [
     "FILL_COLUMNS",
@@ -47,6 +48,7 @@ __all__ = [
     "PaperAccount",
     "PaperRebalanceResult",
     "SkippedCandidate",
+    "SimulatedFillResult",
     "TicketPlan",
     "build_monthly_comparison_inputs",
     "fills_from_frame",
@@ -60,6 +62,7 @@ __all__ = [
     "render_monthly_report",
     "require_paper_mode",
     "run_paper_rebalance",
+    "simulate_next_open_fills",
     "tickets_from_frame",
     "validate_paper_window",
     "write_fill_csv",

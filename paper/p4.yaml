@@ -1,0 +1,8 @@
+version: 1
+mode: paper
+provider: local_offline_simulator
+initial_equity_usd: 100000.0
+forward_test_start: 2026-09-05
+fill_model: official_next_open
+commission_per_order_usd: 0.0
+status: awaiting_first_rebalance

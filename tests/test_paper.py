@@ -13,6 +13,7 @@ from shm.paper import (
     PAPER_LOOKBACK_SESSIONS,
     TICKET_COLUMNS,
     Fill,
+    OrderTicket,
     PaperAccount,
     build_monthly_comparison_inputs,
     fills_from_frame,
@@ -25,6 +26,7 @@ from shm.paper import (
     realized_cost_bps,
     render_monthly_report,
     run_paper_rebalance,
+    simulate_next_open_fills,
     validate_paper_window,
     write_fill_csv,
     write_monthly_report,
@@ -464,3 +466,47 @@ def test_paper_rebalance_requires_spy_window_and_minimum_eligible_count(tmp_path
     with pytest.raises(ValueError, match="eligibility below minimum"):
         run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of)
     assert not (repo_root / "paper/tickets" / f"{as_of.date()}.csv").exists()
+
+
+def test_local_simulator_fills_stock_ticket_at_next_official_open(tmp_path) -> None:
+    signal_date = pd.Timestamp("2026-08-19")
+    execution_date = pd.Timestamp("2026-08-20")
+    ticket_path = write_ticket_csv(
+        tmp_path / "paper/tickets/2026-08-19.csv",
+        [OrderTicket("AAA", "buy", 5)],
+    )
+    cache_path = tmp_path / "data/raw/prices/AAA.parquet"
+    cache_path.parent.mkdir(parents=True)
+    pd.DataFrame(
+        {
+            "date": [execution_date],
+            "open": [101.0],
+            "high": [102.0],
+            "low": [100.0],
+            "close": [101.5],
+            "volume": [100_000],
+            "adjusted": [True],
+            "source": ["yfinance"],
+            "downloaded_at": [pd.Timestamp("2026-08-20", tz="UTC")],
+        }
+    ).to_parquet(cache_path, index=False)
+
+    result = simulate_next_open_fills(
+        PaperAccount(cash=1_000),
+        tmp_path,
+        signal_date,
+        ticket_path=ticket_path,
+    )
+
+    assert result.execution_date == execution_date
+    assert result.ingestion.account.cash == pytest.approx(495.0)
+    assert result.ingestion.account.positions == {"AAA": 5}
+    assert result.ingestion.realized_cost_bps == 0.0
+    assert read_fill_csv(result.fill_path)[0].official_open == 101.0
+    repeated = simulate_next_open_fills(
+        PaperAccount(cash=1_000),
+        tmp_path,
+        signal_date,
+        ticket_path=ticket_path,
+    )
+    assert repeated.fill_path == result.fill_path

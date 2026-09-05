@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
+import pandas as pd
 from pydantic import ValidationError
 from yaml import YAMLError
 
@@ -16,6 +17,7 @@ from shm.paper import (
     read_fill_csv,
     read_ticket_csv,
     run_paper_rebalance,
+    simulate_next_open_fills,
 )
 from shm.runner import run_development_backtest, update_development_data
 
@@ -35,12 +37,19 @@ def _resolve(root: Path, path: Path) -> Path:
     return path if path.is_absolute() else root / path
 
 
-def _write_paper_account(path: Path, account: PaperAccount) -> Path:
+def _write_paper_account(
+    path: Path,
+    account: PaperAccount,
+    *,
+    as_of: object | None = None,
+) -> Path:
     payload: dict[str, Any] = {
         "mode": account.mode,
         "cash": account.cash,
         "positions": dict(sorted(account.positions.items())),
     }
+    if as_of is not None:
+        payload["as_of"] = str(pd.Timestamp(as_of).date())
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -98,6 +107,14 @@ def build_parser() -> argparse.ArgumentParser:
     fills.add_argument("--tickets", type=Path, required=True)
     fills.add_argument("--fills", type=Path, required=True)
     fills.add_argument("--output-account", type=Path, required=True)
+    simulate = paper_commands.add_parser(
+        "simulate-fills", help="Fill a stock paper ticket at the next official open"
+    )
+    simulate.add_argument("--repo-root", type=Path, default=Path("."))
+    simulate.add_argument("--account", type=Path, required=True)
+    simulate.add_argument("--signal-date", required=True)
+    simulate.add_argument("--tickets", type=Path)
+    simulate.add_argument("--output-account", type=Path, required=True)
     return parser
 
 
@@ -176,8 +193,11 @@ def main(argv: list[str] | None = None) -> int:
             tickets = read_ticket_csv(_resolve(root, args.tickets))
             fills = read_fill_csv(_resolve(root, args.fills))
             outcome = ingest_fills(account, tickets, fills)
+            account_as_of = max((fill.fill_time for fill in fills), default=None)
             output = _write_paper_account(
-                _resolve(root, args.output_account), outcome.account
+                _resolve(root, args.output_account),
+                outcome.account,
+                as_of=account_as_of,
             )
         except Exception as exc:
             print(f"paper fill ingestion failed: {exc}", file=sys.stderr)
@@ -191,6 +211,33 @@ def main(argv: list[str] | None = None) -> int:
             "paper fills recorded: "
             f"fills={len(outcome.applied_fills)}, realized_cost={cost}, "
             f"cash={outcome.account.cash:.2f}, account={output}"
+        )
+        return 0
+    if args.command == "paper" and args.paper_command == "simulate-fills":
+        try:
+            root = args.repo_root.resolve()
+            account = _load_paper_account(_resolve(root, args.account))
+            ticket_path = None if args.tickets is None else _resolve(root, args.tickets)
+            outcome = simulate_next_open_fills(
+                account,
+                root,
+                args.signal_date,
+                ticket_path=ticket_path,
+            )
+            output = _write_paper_account(
+                _resolve(root, args.output_account),
+                outcome.ingestion.account,
+                as_of=outcome.execution_date,
+            )
+        except Exception as exc:
+            print(f"paper fill simulation failed: {exc}", file=sys.stderr)
+            return 2
+        print(
+            "paper fills simulated: "
+            f"execution_date={outcome.execution_date.date()}, "
+            f"fills={len(outcome.ingestion.applied_fills)}, "
+            f"cash={outcome.ingestion.account.cash:.2f}, fills_path={outcome.fill_path}, "
+            f"account={output}"
         )
         return 0
     return 2
