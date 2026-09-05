@@ -6,9 +6,11 @@ infrastructure, not investment advice.
 
 ## Current phase
 
-P1 baseline V00 completed on 2026-09-04 for the owner-approved 84-symbol
-universe, including MSFT. The result is `INCONCLUSIVE`; the owner-authored
-`docs/why/P1.md` remains the final P1 checkpoint before P2.
+P2 preregistration. P1 baseline V00 completed on 2026-09-04 for the
+owner-approved 84-symbol universe, including MSFT. The result is
+`INCONCLUSIVE`. The owner waived `docs/why/P1.md` in ADR-001 and instructed the
+project to continue to P2. ADR-002 delegates the remaining checkpoints and
+repository commits to the agent; all closed-set P2 batches are approved.
 
 ## Bootstrap
 
