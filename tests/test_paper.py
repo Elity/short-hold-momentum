@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import numpy as np
@@ -394,11 +395,15 @@ def test_monthly_markdown_contains_required_comparison_and_attribution(tmp_path)
     assert path.read_text(encoding="utf-8") == report
 
 
-def test_paper_rebalance_reads_frozen_local_window_and_writes_ticket(tmp_path) -> None:
+def test_paper_rebalance_reads_frozen_local_window_and_writes_ticket(
+    tmp_path, monkeypatch
+) -> None:
     repo_root, as_of = _paper_repo(tmp_path)
+    monkeypatch.setattr("shm.paper.runner._git_sha", lambda root: "abc123")
 
     result = run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of)
 
+    assert result.run_id == f"paper-{as_of:%Y%m%d}-{result.params_hash}"
     assert tuple(result.ranking.index) == ("AAA", "BBB")
     frozen = yaml.safe_load((repo_root / "config/p2_eligible.frozen.yaml").read_text())
     assert result.params_hash == frozen["params_hash"]
@@ -407,6 +412,8 @@ def test_paper_rebalance_reads_frozen_local_window_and_writes_ticket(tmp_path) -
     assert result.exposure == pytest.approx(1.0)
     assert result.ticket_path == repo_root / "paper/tickets" / f"{as_of.date()}.csv"
     assert result.ticket_path.exists()
+    assert result.snapshot_id
+    assert result.log_path == repo_root / "experiments/log.jsonl"
     assert tuple(pd.read_csv(result.ticket_path).columns) == TICKET_COLUMNS
     assert all(ticket.qty == int(ticket.qty) for ticket in result.ticket_plan.tickets)
     assert result.ticket_plan.projected_cash >= 0
@@ -414,6 +421,17 @@ def test_paper_rebalance_reads_frozen_local_window_and_writes_ticket(tmp_path) -
 
     repeated = run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of)
     assert repeated.ticket_path == result.ticket_path
+    rows = [
+        json.loads(line)
+        for line in result.log_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    assert len(rows) == 1
+    assert rows[0]["mode"] == "paper"
+    assert rows[0]["phase"] == "P4"
+    assert rows[0]["snapshot_id"] == result.snapshot_id
+    assert rows[0]["results"]["account_hash"]
+    assert "sharpe" not in rows[0]["results"]
     result.ticket_path.write_text("different\n", encoding="utf-8")
     with pytest.raises(FileExistsError, match="refusing to overwrite"):
         run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of)

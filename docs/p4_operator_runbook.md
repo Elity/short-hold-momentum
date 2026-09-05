@@ -27,7 +27,10 @@ uv run shm paper rebalance \
 The command loads `config/params.frozen.yaml`, verifies the P2 parameter and
 universe hashes, restricts reads to the latest 260 XNYS sessions, and writes
 `paper/tickets/YYYY-MM-DD.csv`. A same-date rerun is allowed only when the bytes
-are identical; it will not overwrite a changed ticket.
+are identical; it will not overwrite a changed ticket. It also records the
+content-addressed input snapshot in `data/snapshots/manifest.json` and appends
+one idempotent `mode: paper` audit row to `experiments/log.jsonl`. That row
+contains ticket diagnostics only—never a 2019-to-date performance metric.
 
 The ticket is a draft. Submit it manually in the chosen simulation account or
 through a separately reviewed paper-only adapter. On the next XNYS session,

@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
+import subprocess
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -11,8 +15,13 @@ import pandas as pd
 import yaml
 
 from shm.config import ConfigBundle
-from shm.data import read_price_cache
-from shm.experiments import compute_file_hash, compute_params_hash
+from shm.data import create_snapshot, read_price_cache
+from shm.experiments import (
+    append_run_log,
+    compute_file_hash,
+    compute_params_hash,
+    read_jsonl,
+)
 from shm.paper.core import (
     PAPER_MODE,
     PaperAccount,
@@ -38,9 +47,11 @@ from shm.universe import (
 
 @dataclass(frozen=True)
 class PaperRebalanceResult:
+    run_id: str
     as_of: pd.Timestamp
     params_hash: str
     universe_hash: str
+    snapshot_id: str
     eligibility: EligibilityResult
     ranking: pd.Series
     selected: tuple[str, ...]
@@ -50,6 +61,7 @@ class PaperRebalanceResult:
     vol_scale: float
     ticket_plan: TicketPlan
     ticket_path: Path
+    log_path: Path
 
 
 @dataclass(frozen=True)
@@ -110,13 +122,15 @@ def _paper_prices(
     repo_root: Path,
     tickers: set[str],
     as_of: pd.Timestamp,
-) -> dict[str, pd.DataFrame]:
+) -> tuple[dict[str, pd.DataFrame], dict[str, Path]]:
     window = paper_xnys_window(as_of)
     cache_dir = repo_root / "data/raw/prices"
     prices: dict[str, pd.DataFrame] = {}
+    paths: dict[str, Path] = {}
     for ticker in sorted(tickers):
+        path = cache_dir / f"{ticker}.parquet"
         frame = read_price_cache(
-            cache_dir / f"{ticker}.parquet",
+            path,
             ticker=ticker,
             start=window[0],
             end=as_of,
@@ -125,7 +139,8 @@ def _paper_prices(
         )
         validate_paper_window(frame["date"], as_of=as_of)
         prices[ticker] = frame
-    return prices
+        paths[ticker] = path
+    return prices, paths
 
 
 def _require_completed_session(signal_date: pd.Timestamp) -> None:
@@ -170,6 +185,48 @@ def _write_idempotent_ticket(path: Path, plan: TicketPlan) -> Path:
     return write_ticket_csv(path, plan)
 
 
+def _git_sha(repo_root: Path) -> str:
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo_root,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise RuntimeError("paper runs require a git commit so git_sha is reproducible")
+    return result.stdout.strip()
+
+
+def _account_hash(account: PaperAccount) -> str:
+    payload = {
+        "cash": account.cash,
+        "mode": account.mode,
+        "positions": dict(sorted(account.positions.items())),
+    }
+    canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()[:16]
+
+
+def _append_paper_log(log_path: Path, record: dict[str, Any]) -> None:
+    matches = [row for row in read_jsonl(log_path) if row.get("run_id") == record["run_id"]]
+    if matches:
+        stable_fields = (
+            "git_sha",
+            "params_hash",
+            "universe_hash",
+            "snapshot_id",
+            "period",
+            "results",
+            "checks",
+            "report",
+        )
+        if all(matches[-1].get(key) == record.get(key) for key in stable_fields):
+            return
+        raise ValueError(f"conflicting paper run record for run_id {record['run_id']}")
+    append_run_log(log_path, record)
+
+
 def run_paper_rebalance(
     account: PaperAccount,
     repo_root: Path | str,
@@ -207,7 +264,7 @@ def run_paper_rebalance(
     )
     benchmark = config.params.risk.trend_filter.benchmark
     requested = set(paper_universe.active_tickers) | set(account.positions) | {benchmark}
-    prices = _paper_prices(root, requested, signal_date)
+    prices, price_paths = _paper_prices(root, requested, signal_date)
     _require_benchmark_history(
         prices[benchmark],
         signal_date,
@@ -266,14 +323,67 @@ def run_paper_rebalance(
         estimated_cost_bps=config.costs.per_side_bps.default,
         as_of=signal_date,
     )
+    git_sha = _git_sha(root)
     ticket_path = _write_idempotent_ticket(
         root / "paper/tickets" / f"{signal_date.date().isoformat()}.csv",
         ticket_plan,
     )
+    snapshot = create_snapshot(
+        price_paths,
+        root / "data/snapshots/manifest.json",
+    )
+    run_id = f"paper-{signal_date:%Y%m%d}-{frozen.params_hash}"
+    log_path = root / "experiments/log.jsonl"
+    paper_window = paper_xnys_window(signal_date)
+    account_hash = _account_hash(account)
+    relative_ticket = ticket_path.relative_to(root).as_posix()
+    record = {
+        "run_id": run_id,
+        "timestamp": datetime.now(UTC).isoformat(),
+        "mode": "paper",
+        "phase": "P4",
+        "git_sha": git_sha,
+        "params_hash": frozen.params_hash,
+        "params": config.params.model_dump(mode="json"),
+        "universe_hash": frozen.universe_hash,
+        "snapshot_id": snapshot.id,
+        "period": {
+            "start": paper_window[0].date().isoformat(),
+            "end": signal_date.date().isoformat(),
+        },
+        "oos_used": False,
+        "variant_index": 4,
+        "prereg": "experiments/prereg/V04.md",
+        "hypothesis": "Forward paper execution of frozen V04 remains operationally feasible.",
+        "expected": "Generate a funded whole-share paper ticket without historical performance metrics.",
+        "results": {
+            "account_hash": account_hash,
+            "eligible_count": len(eligibility.eligible),
+            "selected": list(selected),
+            "target_exposure": exposure,
+            "ticket_count": len(ticket_plan.tickets),
+            "projected_cash": ticket_plan.projected_cash,
+        },
+        "results_stress": {},
+        "benchmark": {},
+        "checks": {
+            "PAPER_MODE": "PASS",
+            "PAPER_WINDOW_260": "PASS",
+            "FROZEN_IDENTITY": "PASS",
+            "COMPLETED_REBALANCE_DATE": "PASS",
+            "NO_LIVE_ENDPOINT": "PASS",
+        },
+        "status": "PAPER_TICKET_READY",
+        "verdict": "PENDING_FORWARD_EVIDENCE",
+        "report": relative_ticket,
+    }
+    _append_paper_log(log_path, record)
     return PaperRebalanceResult(
+        run_id=run_id,
         as_of=signal_date,
         params_hash=frozen.params_hash,
         universe_hash=frozen.universe_hash,
+        snapshot_id=snapshot.id,
         eligibility=eligibility,
         ranking=ranking,
         selected=selected,
@@ -283,4 +393,5 @@ def run_paper_rebalance(
         vol_scale=vol_scale,
         ticket_plan=ticket_plan,
         ticket_path=ticket_path,
+        log_path=log_path,
     )
