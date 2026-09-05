@@ -7,11 +7,22 @@ infrastructure, not investment advice.
 ## Current phase
 
 P2 research has passed KR2. The three frozen OOS candidates were run in the
-precommitted order: V04 and V08 passed, while V02 missed the strict SPY Sharpe
-comparison. V04 (`params_hash` `2064365d`) is frozen in
-`config/params.frozen.yaml`; detailed evidence is in
-`docs/p2_development_results.md`. P3 implementation is next. Owner-authored
-phase notes remain outstanding for the final Gate.
+precommitted order, exhausting the `3/3` OOS budget: V04 and V08 passed, while
+V02 missed the strict SPY Sharpe comparison. V04 (`params_hash` `2064365d`) is
+frozen in `config/params.frozen.yaml`; detailed evidence is in
+`docs/p2_development_results.md`.
+
+The P3 technical deliverables and the P4 local paper workflow are implemented.
+P4 starts from the $100,000 all-cash snapshot dated 2026-09-05 and remains at
+`0/3` completed rebalance/fill cycles and `0/3` monthly reports; the first
+eligible signal date is 2026-09-17. Check the machine-readable state with
+`uv run shm paper status --repo-root .` and follow
+`docs/p4_operator_runbook.md` for manual operation.
+
+Gate is not available yet. It still requires the genuine forward P4 evidence,
+owner-authored `docs/why/P1.md` through `P4.md`, resolution of ADR-010's
+deterministic zero-bps execution-cost limitation, and an owner-created
+`config/live.yaml`.
 
 ## Bootstrap
 
