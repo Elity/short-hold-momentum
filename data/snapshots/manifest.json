@@ -1,5 +1,2199 @@
 {
   "schema_version": 1,
-  "snapshots": []
+  "snapshots": [
+    {
+      "created_at": "2026-09-04T13:40:45.707117+00:00",
+      "files": {
+        "A": {
+          "path": "raw/prices/A.parquet",
+          "sha256": "ed785fe9700a725b7dc049d11389408a3854812140759e0c43e18f57ad95d98d"
+        },
+        "AAL": {
+          "path": "raw/prices/AAL.parquet",
+          "sha256": "2b8383d7f5aac275dbd97c5dd1d014354ef1dde82a7239622e69eafecfcbcf68"
+        },
+        "AAP": {
+          "path": "raw/prices/AAP.parquet",
+          "sha256": "d36c69c1b65654b8e4bd799a7340532297bb96851cfc098a2073e1df997eb42b"
+        },
+        "AAPL": {
+          "path": "raw/prices/AAPL.parquet",
+          "sha256": "804b1ecf70604c5b6f131f4e1705fdff67ae3b3531f1b7dfa02036e419ec16f4"
+        },
+        "ABBV": {
+          "path": "raw/prices/ABBV.parquet",
+          "sha256": "89c675e9740355ea90a03f3eb8a1a70188fc5a34940901a1818ce16cd5e7435f"
+        },
+        "ABT": {
+          "path": "raw/prices/ABT.parquet",
+          "sha256": "52f34893b6559087783397595dbb5d21ad77599cd06bf9957028b652ad7a35ef"
+        },
+        "ACLS": {
+          "path": "raw/prices/ACLS.parquet",
+          "sha256": "631e30cc4797959d7300f88d3211c8a884148421f86f4a96d001d48dfefedd7e"
+        },
+        "ACN": {
+          "path": "raw/prices/ACN.parquet",
+          "sha256": "e1c62e20cdeaec423cd50364601eec987396527435d87db90fd28312a27295bb"
+        },
+        "ACV": {
+          "path": "raw/prices/ACV.parquet",
+          "sha256": "8af35d0d68df9e8932ff87e50e8cf8ccc502a66e564bb2a594fb42ce8a8f3751"
+        },
+        "ADBE": {
+          "path": "raw/prices/ADBE.parquet",
+          "sha256": "e928d6e01cc03a975af9fc776428e5e5b6b530456578c94f27d5e5d440f84a21"
+        },
+        "ADI": {
+          "path": "raw/prices/ADI.parquet",
+          "sha256": "8d0fe288b34c1f3565f3bfd8cb76d35b20d072550026abbda66557f8873108ce"
+        },
+        "ADM": {
+          "path": "raw/prices/ADM.parquet",
+          "sha256": "611bae3d320c78df38bebc94a7847926e7b7143e1fdd5bed6473c420e854c138"
+        },
+        "ADP": {
+          "path": "raw/prices/ADP.parquet",
+          "sha256": "01368733dd1e816d459419d50cf815f85a777cfed94a420e9ed2d948aa82640b"
+        },
+        "ADSK": {
+          "path": "raw/prices/ADSK.parquet",
+          "sha256": "05d010acf9a0b7ac821f9d57f4aa21672ba294fc44c71fb46d20a9c4d81a4ab2"
+        },
+        "ADT": {
+          "path": "raw/prices/ADT.parquet",
+          "sha256": "95a222beb969df2f495bd0c8850a6660f8c57f49dead771835c6a94297375f02"
+        },
+        "AEE": {
+          "path": "raw/prices/AEE.parquet",
+          "sha256": "c77994e7bf23710e22020ba1538520425efe3486d3bfb1b3fac9401fe7be4406"
+        },
+        "AEP": {
+          "path": "raw/prices/AEP.parquet",
+          "sha256": "20d88f4afb92f195362e0bd3c12c815149643b65b99b3f20896cdb51ddd5b78a"
+        },
+        "AES": {
+          "path": "raw/prices/AES.parquet",
+          "sha256": "7f4a32408f2f0062506fbe008544f1da7f5bf9bdc93eef9336f9c4343d1227b2"
+        },
+        "AET": {
+          "path": "raw/prices/AET.parquet",
+          "sha256": "079eb90afcf69210d52ed4d5de410a5dedbe7e6a6eca1fb771463ac1ff75e6d0"
+        },
+        "AFL": {
+          "path": "raw/prices/AFL.parquet",
+          "sha256": "90f1b6fc91860c57ed86e9dc6d34166130eaade96364a5226b52fa7c7ae5cf23"
+        },
+        "AIG": {
+          "path": "raw/prices/AIG.parquet",
+          "sha256": "b33af8b51ad03920302bf8341ddc5cbd748f14773e4a2dacdd6cb32cb1ddae32"
+        },
+        "AIV": {
+          "path": "raw/prices/AIV.parquet",
+          "sha256": "695d84a1806f62f4297e0b6337acc928fb0fa87f1a4aef103b365fed7cb2a8e8"
+        },
+        "AIZ": {
+          "path": "raw/prices/AIZ.parquet",
+          "sha256": "a2b54a13f0b5fa29093b432473ee995925b8cdfc2553b150238bcc390192bfcb"
+        },
+        "AJG": {
+          "path": "raw/prices/AJG.parquet",
+          "sha256": "8ca2f7bcfda646d96d8cdb3f356b868f902744a81f0988ee85caca2496332525"
+        },
+        "AKAM": {
+          "path": "raw/prices/AKAM.parquet",
+          "sha256": "dfde5a8dae856e63a1fdee609aa1efbcf5865aee6b586c8ddbee93e8712e3c4e"
+        },
+        "ALB": {
+          "path": "raw/prices/ALB.parquet",
+          "sha256": "ade40821da7139bc2007f870c33b732cb04557b5dc8251d2be85ab17cbf80384"
+        },
+        "ALGN": {
+          "path": "raw/prices/ALGN.parquet",
+          "sha256": "43d271ab6d08d72589e83b0443748ddab5005b00a406128fdd1328bfffc1c85d"
+        },
+        "ALK": {
+          "path": "raw/prices/ALK.parquet",
+          "sha256": "4eb7b182d6c80b309237304c8d31ca7b44e156a40f529896355108d1b3298584"
+        },
+        "ALL": {
+          "path": "raw/prices/ALL.parquet",
+          "sha256": "f746f5f4ad6e47130ca85c6887826f32fff9bedc8a33aaa42396ed654714211f"
+        },
+        "ALLE": {
+          "path": "raw/prices/ALLE.parquet",
+          "sha256": "65b31f51058bd8b82a21293c20cdca82c64122a7bf4427a6beecd405003fab71"
+        },
+        "AMAT": {
+          "path": "raw/prices/AMAT.parquet",
+          "sha256": "db6811f333294338340aa5f3c9695e93097c9995f3c8ca3bae88ce78efdcc4f2"
+        },
+        "AMD": {
+          "path": "raw/prices/AMD.parquet",
+          "sha256": "1cad8e844e9b6d264100d093c395ba0a7a92492e2f9157420aca93a640026517"
+        },
+        "AME": {
+          "path": "raw/prices/AME.parquet",
+          "sha256": "77ec07991e9b638e429de88c4ec632b133aec37baae9ef32a27102a713a31dc2"
+        },
+        "AMG": {
+          "path": "raw/prices/AMG.parquet",
+          "sha256": "06fd21f9071f53601a2a4bc8fcb6ec5655d085f969a6e7b50aa86b6b71efc41b"
+        },
+        "AMGN": {
+          "path": "raw/prices/AMGN.parquet",
+          "sha256": "fdb8ce207c7acc0357c19c8dc666fdd66fb9b9547561382fc38ac7abdf4e9ef3"
+        },
+        "AMP": {
+          "path": "raw/prices/AMP.parquet",
+          "sha256": "66103eb70c1bfee750da675becf222afd7eef056909c85b75891dbf671da129c"
+        },
+        "AMT": {
+          "path": "raw/prices/AMT.parquet",
+          "sha256": "b1ee2454adf838ad8fbfbde2878e5c5cb1583841df6b16f49488414346faceef"
+        },
+        "AMZN": {
+          "path": "raw/prices/AMZN.parquet",
+          "sha256": "ecb1ee4a0afb1919f2da517f1fac836679ffe126cc73fd4bb770729ac94dcf05"
+        },
+        "AN": {
+          "path": "raw/prices/AN.parquet",
+          "sha256": "1abfdd8b972f0632544eee1796cfea5ed0c712ead32320699786986a2da71529"
+        },
+        "ANDV": {
+          "path": "raw/prices/ANDV.parquet",
+          "sha256": "a3e2d94bf33dab67333ae93232652f89ad58d5ec73f30e0b98537d3e28bced1b"
+        },
+        "ANET": {
+          "path": "raw/prices/ANET.parquet",
+          "sha256": "4dc34d8d16d8f95ec2f24d2fe44d0e051482c544e7dfcdd9561c6cc0c9942143"
+        },
+        "ANF": {
+          "path": "raw/prices/ANF.parquet",
+          "sha256": "ca3aca4778c7a44188b3da9629d1a0edc7db1d8ef6496c91162425264379ed7b"
+        },
+        "AON": {
+          "path": "raw/prices/AON.parquet",
+          "sha256": "de7602e80c842dccae28db66c45888ecfa443407d8a480952fe1436cacb92725"
+        },
+        "AOS": {
+          "path": "raw/prices/AOS.parquet",
+          "sha256": "d5e4f9085098b47820bb9818b14a0d5467f82106478bce070586e8d79ac9ccdb"
+        },
+        "APA": {
+          "path": "raw/prices/APA.parquet",
+          "sha256": "27596eb51ef6a6ba576b9121791685e9d1446e0f4b8a1109351834c1f695e04f"
+        },
+        "APD": {
+          "path": "raw/prices/APD.parquet",
+          "sha256": "3320a2f9072ef3cde385e39bd25356e1efb22e76af201c65bfcea29857116b12"
+        },
+        "APH": {
+          "path": "raw/prices/APH.parquet",
+          "sha256": "96ff74acfa613b5d35d61d59a1d6fb48e61df76a5d3916033f2e66c0857b6d7f"
+        },
+        "APTV": {
+          "path": "raw/prices/APTV.parquet",
+          "sha256": "c6708c47c6dcad0456ad84c4726d2d0316753c5dcb117baaa8163bef85434e87"
+        },
+        "ARE": {
+          "path": "raw/prices/ARE.parquet",
+          "sha256": "2b7dd4c07842eebd6cc06925fcc24ad32af0138c34cfbb56b0955026337dcd1f"
+        },
+        "ASH": {
+          "path": "raw/prices/ASH.parquet",
+          "sha256": "299f97e3b9e4a1af9eaaf844d9ce959b6be92195931fab227bbf6d7359df8ad5"
+        },
+        "ATI": {
+          "path": "raw/prices/ATI.parquet",
+          "sha256": "8b113a480f82ee50f1a67099bcf8222a71f3ffb73adf9636ac21a0f070bcd64c"
+        },
+        "AVGO": {
+          "path": "raw/prices/AVGO.parquet",
+          "sha256": "cfde2456d367ed5688dc1898c65af4bfcff0285e48f87c94e65901e733ced3f7"
+        },
+        "AVY": {
+          "path": "raw/prices/AVY.parquet",
+          "sha256": "79c590b3262343b28177fa97161026840215db19344f892c9de75bce3bf5e254"
+        },
+        "AWK": {
+          "path": "raw/prices/AWK.parquet",
+          "sha256": "53a4094cff0cb1572f4be170595a40944b1fb3e41425d3e2aae85c9a75d5f66e"
+        },
+        "AXP": {
+          "path": "raw/prices/AXP.parquet",
+          "sha256": "d56787c342f6395898a90e42985b15666f94ddc10e9edf5ea3c84dafb54d051a"
+        },
+        "AYI": {
+          "path": "raw/prices/AYI.parquet",
+          "sha256": "5e2b23e54bd78f5d153d93dc9dba0423899f96c45f4f754bee131083fcb1a6a9"
+        },
+        "AZO": {
+          "path": "raw/prices/AZO.parquet",
+          "sha256": "9f81bf09ad16cc5c8d9a91a29482365fd3f7684c7f1f0d87aafb5de3504ea0a3"
+        },
+        "BA": {
+          "path": "raw/prices/BA.parquet",
+          "sha256": "3b0bab5776c3118ffc46aa79a7fc614cb57d0807889df43cbbf66b774a88ee04"
+        },
+        "BAC": {
+          "path": "raw/prices/BAC.parquet",
+          "sha256": "539888b0891dfe54be9db4a35a2bef0748e7572022179baf4ee811b953d0031b"
+        },
+        "BAH": {
+          "path": "raw/prices/BAH.parquet",
+          "sha256": "4d27a2f67821a9b26805a31b716a4b01cf9efc4bc0fbe079f678d203f320b3d8"
+        },
+        "BAX": {
+          "path": "raw/prices/BAX.parquet",
+          "sha256": "8892c17a46c02bd71096944c1b865fabd5fe74e72460f6160fce13ea9d540c58"
+        },
+        "BBT": {
+          "path": "raw/prices/BBT.parquet",
+          "sha256": "d177b66503022456ec9d3b858c876ebe2b8a0dd237d6ba8768e814846dd3c12c"
+        },
+        "BBY": {
+          "path": "raw/prices/BBY.parquet",
+          "sha256": "69f53288aac17e718c9516a454a841fb70d72f7c94e04066b679b2d4e67355bc"
+        },
+        "BC": {
+          "path": "raw/prices/BC.parquet",
+          "sha256": "9b346595ce538b1377b85d5467e951eba3ca9ae1af07d03f52b1bfc5616ff0f5"
+        },
+        "BDX": {
+          "path": "raw/prices/BDX.parquet",
+          "sha256": "2f050799f9e3d2b0d7fd37f3ff42f64b495a2765b10f52a8c6adc9485ce3398a"
+        },
+        "BEN": {
+          "path": "raw/prices/BEN.parquet",
+          "sha256": "4cd43a02bf310b84e6137ffc194eaa852c6cdbd951c005800cefd148d72a7831"
+        },
+        "BF.B": {
+          "path": "raw/prices/BF.B.parquet",
+          "sha256": "8b97d62419cae8f15653c3fbece2166a6f78f7f9ea5edc51b4b3475c6256be83"
+        },
+        "BHF": {
+          "path": "raw/prices/BHF.parquet",
+          "sha256": "a87b0552d7bcc2ed75f4ad66e5d76c0c9f9152c0c9345a6da90942a98f52dd89"
+        },
+        "BIIB": {
+          "path": "raw/prices/BIIB.parquet",
+          "sha256": "baebdddc0e9f26a7f009ee638cdc1652160b760c270d0fc4b01bfc712ff607e1"
+        },
+        "BKNG": {
+          "path": "raw/prices/BKNG.parquet",
+          "sha256": "ae4742cf244a921c7273fe32cb1a9077a63b507de74200ce44302901fc5004be"
+        },
+        "BLK": {
+          "path": "raw/prices/BLK.parquet",
+          "sha256": "06fa2ac16b13f84a43a69ba723e0d76766ce93b29bfa65b9c1164e94dc7a577a"
+        },
+        "BMS": {
+          "path": "raw/prices/BMS.parquet",
+          "sha256": "716ee77004204ccdb0b2e33e0b9e0049086de586edcfc5b4b0b28eec23b7887f"
+        },
+        "BMY": {
+          "path": "raw/prices/BMY.parquet",
+          "sha256": "d01f4a7e069b3b2b9e2abf23a65b5abfad7f5ce3ec1f65eaba5ad7937dbbacf3"
+        },
+        "BR": {
+          "path": "raw/prices/BR.parquet",
+          "sha256": "60453bfe9ce4524fd2a2cbcc165a485323ea74ad266da6da2b961616119813cf"
+        },
+        "BRK.B": {
+          "path": "raw/prices/BRK.B.parquet",
+          "sha256": "dd906e0f92ba82541b0753f4d236569d117e7decf7aae6e125e7dc8dd4507a71"
+        },
+        "BSX": {
+          "path": "raw/prices/BSX.parquet",
+          "sha256": "41bdb5a234e655877878c0a217b11d3a926d4db92707c2388eb05e2b5b46907c"
+        },
+        "BUD": {
+          "path": "raw/prices/BUD.parquet",
+          "sha256": "04f8744ecdfb3d57db6b79c1f84602c783e59711b7b071eab3a6df030f6de160"
+        },
+        "BWA": {
+          "path": "raw/prices/BWA.parquet",
+          "sha256": "16f4557be883a30f79aed9d7ee794534cd4d37257c98c3a0fc7f393c24e05958"
+        },
+        "BXP": {
+          "path": "raw/prices/BXP.parquet",
+          "sha256": "4d0e587d3df818b4ed10077018294405dc06e20f17925741b0429657a9ad39d4"
+        },
+        "C": {
+          "path": "raw/prices/C.parquet",
+          "sha256": "096f3f24cf64c3dabc5fdcd101a97a84868b65084388b8f859e354b35d353118"
+        },
+        "CACI": {
+          "path": "raw/prices/CACI.parquet",
+          "sha256": "45c1fe7839ad087255afd35e1c6d45b210cc85d45e12bc2c612d841d0a6e45ff"
+        },
+        "CAG": {
+          "path": "raw/prices/CAG.parquet",
+          "sha256": "a780e7eb58cae48108d21273a0b29dd46d2aee2a91b463c1d0054731f51912a3"
+        },
+        "CAH": {
+          "path": "raw/prices/CAH.parquet",
+          "sha256": "edb6e69691faa04117eceb797079ef0e4855b6131b30ff921771a044fa1e60a9"
+        },
+        "CAR": {
+          "path": "raw/prices/CAR.parquet",
+          "sha256": "adae4fbd80c5f17b4338b503c35129ed01aa8e09da2c80fb23a36ef0c9845f7a"
+        },
+        "CAT": {
+          "path": "raw/prices/CAT.parquet",
+          "sha256": "7cbf9d69b90246c82065e9ed4e100555e8b18549ce399f07c76456e523238661"
+        },
+        "CB": {
+          "path": "raw/prices/CB.parquet",
+          "sha256": "7028de8029510e4996108f3ed231093ef8db094cd71b9f44dedd548cc55aea74"
+        },
+        "CBOE": {
+          "path": "raw/prices/CBOE.parquet",
+          "sha256": "7a8c12852202107b37a0000ce996e7fdea95e3e8b26a90a7f8a9a9f923e30ebb"
+        },
+        "CBRE": {
+          "path": "raw/prices/CBRE.parquet",
+          "sha256": "2fd4e468d5653738adc65498378c552a601080b527f414b5382d6d923ecf00c0"
+        },
+        "CCEP": {
+          "path": "raw/prices/CCEP.parquet",
+          "sha256": "3e64213f97aeb314913b9ca5109972f131642f01fcf4c5fa16da82040b245049"
+        },
+        "CCI": {
+          "path": "raw/prices/CCI.parquet",
+          "sha256": "cf19f58c639e61ca88f118eced3a6e650b035b5242f6699aa02b865ebde87b2c"
+        },
+        "CCL": {
+          "path": "raw/prices/CCL.parquet",
+          "sha256": "8c1c9f2d329bfcc297e24b6e8fc13a94e5fbb669cb080981932071ff6029ba4e"
+        },
+        "CCU": {
+          "path": "raw/prices/CCU.parquet",
+          "sha256": "820b93be582f44f5152de34203ca15c1ff84afd732672a8f513078dac5d08953"
+        },
+        "CDNS": {
+          "path": "raw/prices/CDNS.parquet",
+          "sha256": "7b82e5a1286958f17b000113396512efd17d534ff42e01153763d71c90633f30"
+        },
+        "CDW": {
+          "path": "raw/prices/CDW.parquet",
+          "sha256": "e3bec8a842dce785d8de2df09fcb8184960559696aee46934e31b1857e0dbc8e"
+        },
+        "CE": {
+          "path": "raw/prices/CE.parquet",
+          "sha256": "b47703aebac05661ff6588966485caa4fbac26f4b2f587a339b5477663325e09"
+        },
+        "CF": {
+          "path": "raw/prices/CF.parquet",
+          "sha256": "a52aa6ac7f6536db01a06ba3acbae04c35120b6d64b021f14460945b37413885"
+        },
+        "CFG": {
+          "path": "raw/prices/CFG.parquet",
+          "sha256": "fa5b53151d7516423f7dc973e2514071d36e2eb4293222c3b5fa77c059a86c2c"
+        },
+        "CHD": {
+          "path": "raw/prices/CHD.parquet",
+          "sha256": "62d8280cf5699bc7f952da4ccca2d3bd279545614ab82b64781e04224a86c51f"
+        },
+        "CHIR": {
+          "path": "raw/prices/CHIR.parquet",
+          "sha256": "deaf3f12452f5f6dbd4b6f1c9f306103357f2eb6ef6d80767cdcf1e0535b2bc1"
+        },
+        "CHKP": {
+          "path": "raw/prices/CHKP.parquet",
+          "sha256": "2dcf29ce43ecf3932e9c00be60aa2c1b1d8b7b84e2faa38c8289f33490abcde3"
+        },
+        "CHRW": {
+          "path": "raw/prices/CHRW.parquet",
+          "sha256": "1d1ef314933d1331e733296d3fd23064a911b356f6c3ec2f57496f258b6af37e"
+        },
+        "CHTR": {
+          "path": "raw/prices/CHTR.parquet",
+          "sha256": "33936b54f0b925068486a8815e3f3efaea1d9979fbf7960ac2acaed66e70c849"
+        },
+        "CI": {
+          "path": "raw/prices/CI.parquet",
+          "sha256": "bbe0a60f606ff2955822f9de18c6ace801345cc0dfa13a4f4c99631110ac2575"
+        },
+        "CIEN": {
+          "path": "raw/prices/CIEN.parquet",
+          "sha256": "b6477cb7029d6d3ea54db468c433731063f42630d543159502cc01518225ce80"
+        },
+        "CINF": {
+          "path": "raw/prices/CINF.parquet",
+          "sha256": "767f587be715317302d2dbbb8afca821fd6eab3e2067b9beef77a79028100a41"
+        },
+        "CL": {
+          "path": "raw/prices/CL.parquet",
+          "sha256": "e1aab859f74b5926de6799986036a32c21cc7eecf42b4c50858d6c693b06fd88"
+        },
+        "CLF": {
+          "path": "raw/prices/CLF.parquet",
+          "sha256": "1d8d4405d09c99b2ae69d849792f5ef384772cc69248f57ffd7aec06b667a93a"
+        },
+        "CLX": {
+          "path": "raw/prices/CLX.parquet",
+          "sha256": "2f7443c7d0607f0d80ae765059f6f2a5f3a8c62f0e67dab1893d021f7d0a9abc"
+        },
+        "CMCSA": {
+          "path": "raw/prices/CMCSA.parquet",
+          "sha256": "a8d32b06a07a8c84fecba82dab2b22eaa9f8ec8f36fd4cc9c37d24d727f3c2be"
+        },
+        "CME": {
+          "path": "raw/prices/CME.parquet",
+          "sha256": "e4d0a78ac7cb79eaf8ff1c0f19915cdf2571f06fea03370753b453018e84b23d"
+        },
+        "CMG": {
+          "path": "raw/prices/CMG.parquet",
+          "sha256": "0b043ad2835c68f1cb47e20318c1f838bbf250704d9925c412d9b844e55a9770"
+        },
+        "CMI": {
+          "path": "raw/prices/CMI.parquet",
+          "sha256": "201b5793d844b896de53d1739267df7c9e493381ce1072a4e84782adcff45022"
+        },
+        "CMS": {
+          "path": "raw/prices/CMS.parquet",
+          "sha256": "5fe2c578fe8d540f0ff07e991d983b7b453131625ec9576c309fa30d6d25ca8e"
+        },
+        "CNC": {
+          "path": "raw/prices/CNC.parquet",
+          "sha256": "29eeb4a18e5b9eff30e149fb98d35108625e1722628a1b0c456655e3d9b02dc5"
+        },
+        "CNP": {
+          "path": "raw/prices/CNP.parquet",
+          "sha256": "4dea9ff45895e2fd408194baf7b24456df2a601fc28aa38ba6f28f433fa31afc"
+        },
+        "CNX": {
+          "path": "raw/prices/CNX.parquet",
+          "sha256": "f6b4f4ace61e353cbdb267494ace66895ece4ade2b5f060f045e566a828566c8"
+        },
+        "COF": {
+          "path": "raw/prices/COF.parquet",
+          "sha256": "b9725066ba7ed8af63769e322cee7ad8705b0728e07ef92b4f54db945dcfcf2c"
+        },
+        "COHR": {
+          "path": "raw/prices/COHR.parquet",
+          "sha256": "3eb333a5c3ef336d6957905d932bba152f3730535177e451297b2031ba48c200"
+        },
+        "COL": {
+          "path": "raw/prices/COL.parquet",
+          "sha256": "124dccb4fad249e043b73a925acb5dc2828223f2b8505aded7863c95ce9b9cb1"
+        },
+        "COO": {
+          "path": "raw/prices/COO.parquet",
+          "sha256": "3da93ec462265e28ac3dc15cd27cf4888bff61133810118be20c4a5de9ef427d"
+        },
+        "COP": {
+          "path": "raw/prices/COP.parquet",
+          "sha256": "4fffc8c9a3d796b2942f93016d5eed5d34725f3175d653bf3c023b8c0525add2"
+        },
+        "COST": {
+          "path": "raw/prices/COST.parquet",
+          "sha256": "3de9efed1b1a02ae71482c2de5d97ad2adcb6c97650c1a0a3376f54a9e852178"
+        },
+        "COTY": {
+          "path": "raw/prices/COTY.parquet",
+          "sha256": "c18fc1437f1e2f4c8c286f55c88ca2dd0516988ca976e65394506bfa6c66df50"
+        },
+        "CPB": {
+          "path": "raw/prices/CPB.parquet",
+          "sha256": "f42bbbf5150f9e605b599ff47ffa718498df1398c95b72fa2481ac06ad6a7b6f"
+        },
+        "CPRI": {
+          "path": "raw/prices/CPRI.parquet",
+          "sha256": "322ac173f6393e0a6399522868e29a357cd6614af103b9d31ec757634f085fd3"
+        },
+        "CPRT": {
+          "path": "raw/prices/CPRT.parquet",
+          "sha256": "11de02a88f54f365c9a8b0a3fbd63c1fa8a025ca7dd65fea6ec2571fc3dead22"
+        },
+        "CPWR": {
+          "path": "raw/prices/CPWR.parquet",
+          "sha256": "4fe0551308420f1524553c4c077e82e60f843a025fa5cdae4ea0f9ea3f9483ab"
+        },
+        "CRM": {
+          "path": "raw/prices/CRM.parquet",
+          "sha256": "b89aed71b17b246e90991edb2b56c5fb9b304a8ca71b32343a5989686ddd08db"
+        },
+        "CSCO": {
+          "path": "raw/prices/CSCO.parquet",
+          "sha256": "4945fcf5551463a33d7798a973530b798b85bb7e3a31954a5328542c00e6bde8"
+        },
+        "CSX": {
+          "path": "raw/prices/CSX.parquet",
+          "sha256": "d0a2cd031cb876b84d087a723e65577d992c6cffe7925395c2a5f0788e69f414"
+        },
+        "CTAS": {
+          "path": "raw/prices/CTAS.parquet",
+          "sha256": "4634b7aefde27ff73b8958cc2dc3d4c1540dbe0031ae35b5fdebf2d77c684c57"
+        },
+        "CTSH": {
+          "path": "raw/prices/CTSH.parquet",
+          "sha256": "a441cfc8bb0b95c22115d946218ee424fa725e9ae3db31b9b30321fed65379e0"
+        },
+        "CVG": {
+          "path": "raw/prices/CVG.parquet",
+          "sha256": "de792318043da3d0b31cf2befce1c4fbbb5a8ed80e6d5923ac48b69b132b83c8"
+        },
+        "CVS": {
+          "path": "raw/prices/CVS.parquet",
+          "sha256": "5e628d200a3cff2cae929f13c7a468e779f14cc4a3c5661e1e2b9c64498f1b1b"
+        },
+        "CVX": {
+          "path": "raw/prices/CVX.parquet",
+          "sha256": "e79b6397820fa44c80edab0a65acaf735e01d6024b9b26a76e25df093c60b1a3"
+        },
+        "D": {
+          "path": "raw/prices/D.parquet",
+          "sha256": "0b6e28a6cb41c0cca9a25dff52251a5c2d11c7734ec993df46f388a9e767d60b"
+        },
+        "DAL": {
+          "path": "raw/prices/DAL.parquet",
+          "sha256": "18191f17b5b05afb47083677c6a82556f31e4a7d9be90fa57cf1c4ca14504011"
+        },
+        "DD": {
+          "path": "raw/prices/DD.parquet",
+          "sha256": "0fa4eb630456c241db5d775ecbcf402ecebfcb18b3a1600b2f5a9a62b3e649f6"
+        },
+        "DDS": {
+          "path": "raw/prices/DDS.parquet",
+          "sha256": "e10418d039d85fdf64d21a2ca3b6c991f76710478a7339ab5a640308b4720165"
+        },
+        "DE": {
+          "path": "raw/prices/DE.parquet",
+          "sha256": "7dcca9c55391255f6a3a945de573e171d9d2b4384773a19dddd88143c11f039b"
+        },
+        "DELL": {
+          "path": "raw/prices/DELL.parquet",
+          "sha256": "617ecab41a847a90733b02e4c7b504b9a3d9d5696b1727b223b50f5ce8cf9d47"
+        },
+        "DG": {
+          "path": "raw/prices/DG.parquet",
+          "sha256": "2d15b726339a5ee620283da0c4ac42e4c5c286ac678b0a106715c7e4eba783af"
+        },
+        "DGX": {
+          "path": "raw/prices/DGX.parquet",
+          "sha256": "ee80ced450e50b75d68a854ee1806995e7d447afbfba65df78c85bd0e5170b92"
+        },
+        "DHI": {
+          "path": "raw/prices/DHI.parquet",
+          "sha256": "9d47757be54aa630bf49d077b43c9041d2e87da9585198cc7af7741dfe2b2f3a"
+        },
+        "DHR": {
+          "path": "raw/prices/DHR.parquet",
+          "sha256": "bd78d517b485fc81695cb33c9e1de84c17b2c947b7af230db707f70a5faf96cf"
+        },
+        "DIS": {
+          "path": "raw/prices/DIS.parquet",
+          "sha256": "228579da275d1cfa71f117e92cdd676255b092bc88aa779095447d7a3d9f4686"
+        },
+        "DLR": {
+          "path": "raw/prices/DLR.parquet",
+          "sha256": "43d0a9ba1add14a71f95c24bef6810f92a59bfa32ca64f085d2cfae77274a59a"
+        },
+        "DLTR": {
+          "path": "raw/prices/DLTR.parquet",
+          "sha256": "aab47ffe8917d87b77f95f496e76dbc26093338de0f10ef0f88185ad40964c3a"
+        },
+        "DOCU": {
+          "path": "raw/prices/DOCU.parquet",
+          "sha256": "43ed91f51bfa4ec208c49801ad807f2ac54c7372217019d5f1bcdba4569b983f"
+        },
+        "DOV": {
+          "path": "raw/prices/DOV.parquet",
+          "sha256": "ab757b87a2a519c9c77eef2cd158aa518424e75207e9f4680aaad30e793e24b9"
+        },
+        "DRI": {
+          "path": "raw/prices/DRI.parquet",
+          "sha256": "3e0d35bb70aea08655ad504239d79a0c0d8e0b71bf820c2fda2473e366c001bc"
+        },
+        "DTE": {
+          "path": "raw/prices/DTE.parquet",
+          "sha256": "ca96422274cd9170105d6e8e2d1cda764ccaadf10ade6d4c2ee7971d9417686d"
+        },
+        "DUK": {
+          "path": "raw/prices/DUK.parquet",
+          "sha256": "a5fa91eea7d19484cf76b04da875542b58e2b1ba5710ccc822cb823bdc687620"
+        },
+        "DVA": {
+          "path": "raw/prices/DVA.parquet",
+          "sha256": "0464e12d34cb74ebee1ae93e125624301392115f03d1b2caa499869b9f71b0ea"
+        },
+        "DVN": {
+          "path": "raw/prices/DVN.parquet",
+          "sha256": "dd9bb18e21adb7fea846ecd0881eff6a058b05ab9c17a8be2fb630c0cc63a178"
+        },
+        "DXC": {
+          "path": "raw/prices/DXC.parquet",
+          "sha256": "aff31d84ae21bd07db6851b53ee2e0a14ae64fc9a73d11ba567cac0a3240b27e"
+        },
+        "EBAY": {
+          "path": "raw/prices/EBAY.parquet",
+          "sha256": "ed1b63e3612c481e06e370124a5ca497c7a87633e6c90454cdfab97181746fb6"
+        },
+        "EC": {
+          "path": "raw/prices/EC.parquet",
+          "sha256": "5cf35fc7c99e1517f4d1b4c8b1f414da2978298c684f9c0e63cc15b00649630c"
+        },
+        "ED": {
+          "path": "raw/prices/ED.parquet",
+          "sha256": "7751c4c2f55de0bd33968e9561bbbafd4e2c6888c9d26ced57467524afbaede0"
+        },
+        "EFX": {
+          "path": "raw/prices/EFX.parquet",
+          "sha256": "980c45d3feeaa902d0b196414d3a6f584141d077ee71007dd29d7adc72f65e92"
+        },
+        "EIX": {
+          "path": "raw/prices/EIX.parquet",
+          "sha256": "44d8c866facf2f8b167565f91c1324e28e523d3272543c8092542111eb9751ee"
+        },
+        "EL": {
+          "path": "raw/prices/EL.parquet",
+          "sha256": "9481a5b9cb2eec58d1b31ce4eaaed10157152b1e5d5d970ec00fd8ec976ab215"
+        },
+        "EMN": {
+          "path": "raw/prices/EMN.parquet",
+          "sha256": "0a613015d668a6439721e68cb143bdb088c0519ea14e9cea50c93577c8a63505"
+        },
+        "EMR": {
+          "path": "raw/prices/EMR.parquet",
+          "sha256": "869230d6ce5609afe2a819f8798c4f209651b98c283726a769e40e89734f8278"
+        },
+        "ENTG": {
+          "path": "raw/prices/ENTG.parquet",
+          "sha256": "464cb1b5d4e2ed8ea881a6f2457d4f22561738494b87181245d582047e8947c6"
+        },
+        "EOG": {
+          "path": "raw/prices/EOG.parquet",
+          "sha256": "08b84471a4ba2834198b26aeefd93d074dd15c1abae8957a0cd8f759ad210dd8"
+        },
+        "EP": {
+          "path": "raw/prices/EP.parquet",
+          "sha256": "f212a9b994a9ec8320a8a5e7f95c1f19e1dd9ab30bb462c5be068c6375403a6c"
+        },
+        "EPAM": {
+          "path": "raw/prices/EPAM.parquet",
+          "sha256": "affa86ebea1b1b07dec6a89e245de6bfa890f36a5b5c3e65e68cd14f3c31cdfc"
+        },
+        "EQ": {
+          "path": "raw/prices/EQ.parquet",
+          "sha256": "2f730fcaa5ea614684a154869649917741b978667e7b38f0705d22cb449dd84d"
+        },
+        "EQIX": {
+          "path": "raw/prices/EQIX.parquet",
+          "sha256": "70d094a12f62a5e6a0e439935e56d1e0294cbbaf9884c37d0ccbbd5107e99700"
+        },
+        "EQT": {
+          "path": "raw/prices/EQT.parquet",
+          "sha256": "5375e87a923232a73e617f07ba0420c2f8f06bcd3f35a003dbc7abb9aa56bd48"
+        },
+        "ES": {
+          "path": "raw/prices/ES.parquet",
+          "sha256": "3d4c5485ffe3f4c2090265cf430451761fd74af9a8f79c1cd6a157fd6f548059"
+        },
+        "ESRX": {
+          "path": "raw/prices/ESRX.parquet",
+          "sha256": "1cac689cc681b3148228338ea545c9259ddb264fd6fa9de9d1a756b4753feb90"
+        },
+        "ESS": {
+          "path": "raw/prices/ESS.parquet",
+          "sha256": "b41e4562d2b982de0320937394d6ecc1e475ec8f409fa1b9529f802f7bc57fb3"
+        },
+        "ESTC": {
+          "path": "raw/prices/ESTC.parquet",
+          "sha256": "7d482eea9541e4156d11f897dd2978f81418909e1f68a96d4b99361f7249e97b"
+        },
+        "ETN": {
+          "path": "raw/prices/ETN.parquet",
+          "sha256": "d8c977ec65675114309f46c5a82c25ee0f6c2113d0096a9674ee55a11e913d69"
+        },
+        "ETR": {
+          "path": "raw/prices/ETR.parquet",
+          "sha256": "fb8edf2f3448e5089322e6e92ef54488f44170504ea834b974c64988b901c6dc"
+        },
+        "EVHC": {
+          "path": "raw/prices/EVHC.parquet",
+          "sha256": "a1527556a4b15a409dae77f2f6bfb12b8291777c85c6cbaa9b5a8b02e125d838"
+        },
+        "EVRG": {
+          "path": "raw/prices/EVRG.parquet",
+          "sha256": "c0e64bf7ab2761b591aa5177e37485a6640d82945be70e9f48ffa5fd44edef0f"
+        },
+        "EW": {
+          "path": "raw/prices/EW.parquet",
+          "sha256": "2f2bd5a04f527189f7921ff36cb943bbe957fedf9ab806075d8ee3b56cc5ebd1"
+        },
+        "EXC": {
+          "path": "raw/prices/EXC.parquet",
+          "sha256": "00aeaad7a79b1b471dd589d68d2194cc4b2e879ed66da3a9aed56b1458986abf"
+        },
+        "EXPD": {
+          "path": "raw/prices/EXPD.parquet",
+          "sha256": "9cda00ba5d5234700c6362d8ce065a2350c3af1fdb50decb31f3f7f6a5743503"
+        },
+        "EXPE": {
+          "path": "raw/prices/EXPE.parquet",
+          "sha256": "ee2e59bcc8ac60e62e7e75333d4c0a8561ef09778a4d1fc42ab715064a0b285c"
+        },
+        "EXR": {
+          "path": "raw/prices/EXR.parquet",
+          "sha256": "909650847c4bb726477b92bf20ba98644d5ceca2be637c7e72dfd73a27233353"
+        },
+        "F": {
+          "path": "raw/prices/F.parquet",
+          "sha256": "abac2e7d6b312eea878061ec1e4ce064ed3a4951c4695a344ce9c00e46e4b476"
+        },
+        "FANG": {
+          "path": "raw/prices/FANG.parquet",
+          "sha256": "8819094a44c199bb2f026e3b0ce998827de6557087c6b6289bb05e99832cccae"
+        },
+        "FAST": {
+          "path": "raw/prices/FAST.parquet",
+          "sha256": "ad24e78bf80827c38db8c9fc7f920c96c4a1b006c9807cf61670392b4dc18855"
+        },
+        "FCPT": {
+          "path": "raw/prices/FCPT.parquet",
+          "sha256": "bae3ae219014fdf2e61760fec20e9beee38a56d935426ba2e4ea4734fde7b29b"
+        },
+        "FCX": {
+          "path": "raw/prices/FCX.parquet",
+          "sha256": "3689023a8c73df01c7956100265879d99c38360a37c5a549c1e04c547f99c80b"
+        },
+        "FDX": {
+          "path": "raw/prices/FDX.parquet",
+          "sha256": "8aabf92deb14e5ca7cc9aa74ee14d24f561e5381c46c3043568dab6a01adad7a"
+        },
+        "FE": {
+          "path": "raw/prices/FE.parquet",
+          "sha256": "72660ef5f36e5c4b9a53bffd1aea9529010ce4c7f646c82f45efaa13b8589665"
+        },
+        "FFIV": {
+          "path": "raw/prices/FFIV.parquet",
+          "sha256": "6057d9eb0609516744a3be09b317c98f6c1ba419ee6f2e0834580fbd5a1d39b9"
+        },
+        "FHN": {
+          "path": "raw/prices/FHN.parquet",
+          "sha256": "a5c12bd4fae97f254479effaa69ea170beaafc37103240334117e7b76946d5b6"
+        },
+        "FIS": {
+          "path": "raw/prices/FIS.parquet",
+          "sha256": "b97741d445638f99a7a7d4fc99e76f4ac14458528170c2545ecc4ad4392732ca"
+        },
+        "FISV": {
+          "path": "raw/prices/FISV.parquet",
+          "sha256": "86aee344386c65f2537d06cc63b2cfc626157acb252a2eaec2f17881fb1d3ce1"
+        },
+        "FITB": {
+          "path": "raw/prices/FITB.parquet",
+          "sha256": "a6cd419d7ab12fbf629f8b73cec31f137c6fb095fd9d57b18f53799f3c36ed32"
+        },
+        "FLR": {
+          "path": "raw/prices/FLR.parquet",
+          "sha256": "a9f8b9a059ab0e360f82ec5fd2a0029e3de650de3c792215034392f45b5d1c90"
+        },
+        "FLS": {
+          "path": "raw/prices/FLS.parquet",
+          "sha256": "725d7ab81d96be2a32ba118abc922b7d405a3845d04f09a63b3da2ccee8a6f67"
+        },
+        "FMC": {
+          "path": "raw/prices/FMC.parquet",
+          "sha256": "15d65bef09d907d8562355bfa36e9a2d4ef3eefe8143557da832139950d5caea"
+        },
+        "FMCC": {
+          "path": "raw/prices/FMCC.parquet",
+          "sha256": "09a805e167bddb32ea950eb5f85cd26a011491d575f992ff7478687807cf95b0"
+        },
+        "FNMA": {
+          "path": "raw/prices/FNMA.parquet",
+          "sha256": "eae43a43d363dd9761c7c46febb7f58803efd6c7e79bd730dabf36ff03276e93"
+        },
+        "FOSL": {
+          "path": "raw/prices/FOSL.parquet",
+          "sha256": "3aac1770e3858fe50363dec3c8a4911cc221aaf22eb687a78a7f910bad5b08fc"
+        },
+        "FRT": {
+          "path": "raw/prices/FRT.parquet",
+          "sha256": "0124148a121c8d0d7048cbb4f85beebfcc12f217587832869cf28819b817976e"
+        },
+        "FSLR": {
+          "path": "raw/prices/FSLR.parquet",
+          "sha256": "ef197642b9bf9444a0dab611edcaba5ad854e8ebcc5aec87d6adde3ee6a76003"
+        },
+        "FTI": {
+          "path": "raw/prices/FTI.parquet",
+          "sha256": "68bcdaf8162272d91e28a15d898e8d2c7498f06dbff6fe792ea8588e930fd3c5"
+        },
+        "FTNT": {
+          "path": "raw/prices/FTNT.parquet",
+          "sha256": "d64ac30da1240245109a16495f06bcf62679f3d5f804151f8dd1d82cfb195088"
+        },
+        "FTV": {
+          "path": "raw/prices/FTV.parquet",
+          "sha256": "12fe1d07957fed75231e663766e1f865d43063516e0c01327b0783fbe4ed7631"
+        },
+        "G": {
+          "path": "raw/prices/G.parquet",
+          "sha256": "136a4b3368e22b2349edaade88fa2e0a979b30bf31c688e79e150359b65bdcd6"
+        },
+        "GD": {
+          "path": "raw/prices/GD.parquet",
+          "sha256": "21edfc2a8b2374d2bc92613b9b29ed8a70ab26d133ec0c228d518ab6e92a12b5"
+        },
+        "GE": {
+          "path": "raw/prices/GE.parquet",
+          "sha256": "a662ecd34e63abfa059071d0450931a67936786b41a3d83b816a86cdd6c703fd"
+        },
+        "GEN": {
+          "path": "raw/prices/GEN.parquet",
+          "sha256": "2538e56e55763fa3d1ef58ef3c9e0447528f304c0c6b04acf8e1c0ba96201c33"
+        },
+        "GENZ": {
+          "path": "raw/prices/GENZ.parquet",
+          "sha256": "434378cfe904cc548a0f6cb814f49a8fd2b43e661c5bb94e46be95979164394e"
+        },
+        "GHC": {
+          "path": "raw/prices/GHC.parquet",
+          "sha256": "5224237298aacab0faa3218398bd3d05e63434ecb447501f09bb4062e9446c86"
+        },
+        "GILD": {
+          "path": "raw/prices/GILD.parquet",
+          "sha256": "9c92ff66461d85dfcaf149044cb7f24b4c253ad22c6aaae9523a42fd4d80b703"
+        },
+        "GIS": {
+          "path": "raw/prices/GIS.parquet",
+          "sha256": "8ff6b605b6d16ea93ac6abc0806535a5855e4a33bfd0438f3c2f4b99693dc330"
+        },
+        "GLW": {
+          "path": "raw/prices/GLW.parquet",
+          "sha256": "2ecb4c392e89a7d3c66794b03d338100382fa0de8019f6f29d845771cc734af3"
+        },
+        "GM": {
+          "path": "raw/prices/GM.parquet",
+          "sha256": "8119bb09f43f97f71f23e3fd0232b21ae2737e48418c2a957e961da0d7fa4bf4"
+        },
+        "GME": {
+          "path": "raw/prices/GME.parquet",
+          "sha256": "2142afd0a1439d4d4b9e61f6bb9f9cfd5be88d17d9cbe83f89a12d9986568591"
+        },
+        "GNW": {
+          "path": "raw/prices/GNW.parquet",
+          "sha256": "612ff6718e5da57182a89bc4e8a511edfc4a8d6bc432c84179a74ba902a6bc87"
+        },
+        "GOOG": {
+          "path": "raw/prices/GOOG.parquet",
+          "sha256": "63725e4cbbb48e115de5742a5bb69e1bacc201c0848eddb5a74eb008fbf4f491"
+        },
+        "GOOGL": {
+          "path": "raw/prices/GOOGL.parquet",
+          "sha256": "39a42cecef1695c27419c9a4150b8ae05142b6f3d0d51e96fcc1170b9d01e83b"
+        },
+        "GPC": {
+          "path": "raw/prices/GPC.parquet",
+          "sha256": "ddc8ba5daf077396ea6f0fe6e88a2a96a6e5217b487d69cef0e9b2e267fd5c2e"
+        },
+        "GPN": {
+          "path": "raw/prices/GPN.parquet",
+          "sha256": "a38d4e66b997c2749dc77c567282141aab1b512048d038281d0a2f1843e04f79"
+        },
+        "GRMN": {
+          "path": "raw/prices/GRMN.parquet",
+          "sha256": "067d5e3ec5de8a1bd5b4d5c6942fc8f7477af89f23ad9f1e2b1d0a64738f8bc5"
+        },
+        "GS": {
+          "path": "raw/prices/GS.parquet",
+          "sha256": "65a2be87061ffafb88e5af34e5ace01d91734666a1b89e5e3ec15d994ff06173"
+        },
+        "GT": {
+          "path": "raw/prices/GT.parquet",
+          "sha256": "63d34f6a33bd9dad199cd07af1e3254d1aa2f6fb9522908660c4d267b24ced50"
+        },
+        "GWW": {
+          "path": "raw/prices/GWW.parquet",
+          "sha256": "3e463276fb8e0a0b70af763a89bbee6416bedd615c2b0e0cccb4f80b325fc865"
+        },
+        "H": {
+          "path": "raw/prices/H.parquet",
+          "sha256": "7cb6b9dd5eb8ff761a9d1104a88dc529e337ae1767f6516b3cda2b927f5ea7b0"
+        },
+        "HAL": {
+          "path": "raw/prices/HAL.parquet",
+          "sha256": "2aa2227bd2b2cc03490d8e72a3d5cb5cf7f237c0b3e46080087c7faed9fa6b84"
+        },
+        "HAS": {
+          "path": "raw/prices/HAS.parquet",
+          "sha256": "d27362e31f62f4c875bde0d8cddb8074a5fed58e755701810814a90b2dc8d935"
+        },
+        "HBAN": {
+          "path": "raw/prices/HBAN.parquet",
+          "sha256": "60488426bed44b3c9461fc0312d393b392c01fb46c748b9f58fb58e8e278b111"
+        },
+        "HCA": {
+          "path": "raw/prices/HCA.parquet",
+          "sha256": "a482e8f73540911ac7a4433b6dab25cecbd3befdf11823ceca3c8ebb4f3326ee"
+        },
+        "HD": {
+          "path": "raw/prices/HD.parquet",
+          "sha256": "f0ec343c473285c04071b8e7fb225a1ce571029218f562a83a9ea89e45d7a94a"
+        },
+        "HIG": {
+          "path": "raw/prices/HIG.parquet",
+          "sha256": "977c9930f7ea94176e3fb7913287a53ecbf26ff271111f14e99947757fd60533"
+        },
+        "HII": {
+          "path": "raw/prices/HII.parquet",
+          "sha256": "5363badb8c098993e268595e9a50507c9fb9ffe2e886c919273fec5738775ec0"
+        },
+        "HLT": {
+          "path": "raw/prices/HLT.parquet",
+          "sha256": "fb65533a44af707fe53e2d98ccb1c7d56a385d56253c4ba612fbe464d81df309"
+        },
+        "HOG": {
+          "path": "raw/prices/HOG.parquet",
+          "sha256": "ad49ac580a31b4f387173d53c19bb84b2ed0abf36d902245fd431f009915a070"
+        },
+        "HON": {
+          "path": "raw/prices/HON.parquet",
+          "sha256": "cd19b7ca0385cc35494fd0022ae9f26c74212f81df227f389fc507225580e537"
+        },
+        "HOT": {
+          "path": "raw/prices/HOT.parquet",
+          "sha256": "d3a0c0fdcfa52945855c0e474489df4f0de41e197c3961d391b52c210268122c"
+        },
+        "HP": {
+          "path": "raw/prices/HP.parquet",
+          "sha256": "d6f5489b718245052f52c6da75c7a37a1a9ce3c58d517d634b02f19fcba2883d"
+        },
+        "HPE": {
+          "path": "raw/prices/HPE.parquet",
+          "sha256": "1130808fe3a924125fb5a6c640fe5ef8023acad094097705219aa85412b1de6a"
+        },
+        "HPQ": {
+          "path": "raw/prices/HPQ.parquet",
+          "sha256": "cfaf17a20f0a1a7a096987e53ce03ce79b2d2143b2bd2cb8e493713372e8fab4"
+        },
+        "HRB": {
+          "path": "raw/prices/HRB.parquet",
+          "sha256": "8d90ee45b5c97ec84d850504a0ea949ec36cd71096a813d712c8435ae19c14cd"
+        },
+        "HRL": {
+          "path": "raw/prices/HRL.parquet",
+          "sha256": "62813e6c7a60825369560e693fa4912a4ae3606d1ccec0740e386f5cf53b1489"
+        },
+        "HSIC": {
+          "path": "raw/prices/HSIC.parquet",
+          "sha256": "04232e1121811b19a706d81b17cf518df4acf8be19b5fd99a840ccef643b2096"
+        },
+        "HST": {
+          "path": "raw/prices/HST.parquet",
+          "sha256": "f5c44d3a664b9d02839a627f006bf210dd1b3b89a5e54c4baaa20e6cf33ded96"
+        },
+        "HSY": {
+          "path": "raw/prices/HSY.parquet",
+          "sha256": "f709be23c329a1f6be50a4a893ab164ce3a107a3ec160018c2c8664d5c80f20a"
+        },
+        "HUM": {
+          "path": "raw/prices/HUM.parquet",
+          "sha256": "0409ff6fdbf46ea7d07dc1903d3a5faa4635eaf044e0f344154d910c14575190"
+        },
+        "IBM": {
+          "path": "raw/prices/IBM.parquet",
+          "sha256": "d3bc167f99b6056716d114f08d62f8e52703a300a7c8b7a563f6a56bae55e97b"
+        },
+        "ICE": {
+          "path": "raw/prices/ICE.parquet",
+          "sha256": "b6d2e6fc8dc7643b931714dba8b9b8af54a27917dea22673a8a96904907dabfe"
+        },
+        "IDXX": {
+          "path": "raw/prices/IDXX.parquet",
+          "sha256": "92ca0088f7f4bc8d3ab8746e20fe07d570f87e99512166782b2ae6e1c9d52891"
+        },
+        "IFF": {
+          "path": "raw/prices/IFF.parquet",
+          "sha256": "5c15f5cd167b09248e733f7295fba74854482e26a9600f42e204cff094d51004"
+        },
+        "ILMN": {
+          "path": "raw/prices/ILMN.parquet",
+          "sha256": "f3f61e23506e5fbe607c73198d8a5beab7c1c45e9f278c82e3234fb80406bf50"
+        },
+        "INCY": {
+          "path": "raw/prices/INCY.parquet",
+          "sha256": "ceeece4f5f6042490c2374e0b17eaa033dc056426eba2cdae68ce15c18b23182"
+        },
+        "INTC": {
+          "path": "raw/prices/INTC.parquet",
+          "sha256": "8750df1b8373f002d05e25bd6bcfef5a0392ac0ae9b0f7645ef395f86308ecbd"
+        },
+        "INTU": {
+          "path": "raw/prices/INTU.parquet",
+          "sha256": "afd6c224ee35d385ba038085d904662f1f220b4fde2202d64f20faa9fcd7e205"
+        },
+        "IP": {
+          "path": "raw/prices/IP.parquet",
+          "sha256": "e8659dfa3f4d57c78e3742983f36e16adfa207cc0a009c94ffd09c235baf15fb"
+        },
+        "IPGP": {
+          "path": "raw/prices/IPGP.parquet",
+          "sha256": "2cd6b9d1c4a304a1b75ab981117534d92dedf27bf8d6e5e945e940dfcd29a8dd"
+        },
+        "IQV": {
+          "path": "raw/prices/IQV.parquet",
+          "sha256": "3ea42c82d3d3ae687a4dd587713a14b75524b0dc7624cb404fffc769e2c34cfd"
+        },
+        "IR": {
+          "path": "raw/prices/IR.parquet",
+          "sha256": "50ec018cd9a000f1b1e663dc5ba864b479123045937870426a433f1f3a924455"
+        },
+        "IRM": {
+          "path": "raw/prices/IRM.parquet",
+          "sha256": "83b65941463c8dd43b0552fa5c8d0ab9fe6c649ea259fc03df42b29e12c9f61e"
+        },
+        "ISRG": {
+          "path": "raw/prices/ISRG.parquet",
+          "sha256": "819e241fbec2d71757fc120a3f74c1d05c86239fea70db2d29a0e5f77ef4e6e2"
+        },
+        "IT": {
+          "path": "raw/prices/IT.parquet",
+          "sha256": "3ce6a9f6a0cd452d2f1387ecdf1bcaabb856a93708c8c2d39724fa5b68de7c3d"
+        },
+        "ITT": {
+          "path": "raw/prices/ITT.parquet",
+          "sha256": "1806e362133ae597768b302f9cb0ec79d1b5b0fe5b6c690563ee5ec3797c5871"
+        },
+        "ITW": {
+          "path": "raw/prices/ITW.parquet",
+          "sha256": "430364883d78beddb05fcd2e3d99d09d4123dd645705a58292832d9dd078c930"
+        },
+        "IVZ": {
+          "path": "raw/prices/IVZ.parquet",
+          "sha256": "5cbb2d01315591e65e8ac445291fdfd5406e3f462fb4a955c53e93b1b6f3ca63"
+        },
+        "JBHT": {
+          "path": "raw/prices/JBHT.parquet",
+          "sha256": "2e48818b752d2f9f1d0e5d8610910eef66f8b065ebab56dbdeed00ac0f194738"
+        },
+        "JBL": {
+          "path": "raw/prices/JBL.parquet",
+          "sha256": "a21f15d66ed230a90118f5b7eef311fa08959edbb48862b9811b025103ffbe8c"
+        },
+        "JCI": {
+          "path": "raw/prices/JCI.parquet",
+          "sha256": "68fa4ef495f00c1cd8e327827b4b2a727cc14a5940f76420db45c74d7d42d628"
+        },
+        "JEF": {
+          "path": "raw/prices/JEF.parquet",
+          "sha256": "5585af72c6eb10545096cb9d4730c12d215fc05bf140f6e1050dc62b36a415e6"
+        },
+        "JKHY": {
+          "path": "raw/prices/JKHY.parquet",
+          "sha256": "9fc30b3d8e43729fb95b6886eaa137b4fa9e11f46f5466e155ba49b55501f875"
+        },
+        "JNJ": {
+          "path": "raw/prices/JNJ.parquet",
+          "sha256": "8ebb6ffac6fa2205f69638051825e4b4a1a9d8d7057732ceaf359ab5f3470679"
+        },
+        "JPM": {
+          "path": "raw/prices/JPM.parquet",
+          "sha256": "166c1a439b7de936db2eff3b280bb3374626daad93bc6eccbe5dc25de8afc947"
+        },
+        "KBH": {
+          "path": "raw/prices/KBH.parquet",
+          "sha256": "15defcfacf30aa7b1232ba380b4f095b12399ceb3ff8140f9b9990d184b643af"
+        },
+        "KDP": {
+          "path": "raw/prices/KDP.parquet",
+          "sha256": "e6a4befef97f3304f432207f33a9f33408beacdd60898db66fbdbd5157a90a00"
+        },
+        "KEY": {
+          "path": "raw/prices/KEY.parquet",
+          "sha256": "19c47ef3f52e478c7aab944631b9530823d5cafc502e778b34ddd771364e0e8c"
+        },
+        "KEYS": {
+          "path": "raw/prices/KEYS.parquet",
+          "sha256": "fc27f910062325cd61400f1992f77d5cd1178c1c93cd77a07988eed8a96687c7"
+        },
+        "KG": {
+          "path": "raw/prices/KG.parquet",
+          "sha256": "3014b5aad559e0c84f83a896572a2080c29f89bf7f84d74ae5c21b31ca3f9455"
+        },
+        "KHC": {
+          "path": "raw/prices/KHC.parquet",
+          "sha256": "2056837c087b2cedd30895d8c8162c7705a694e800fab95bce26deaf0b99c4dd"
+        },
+        "KIM": {
+          "path": "raw/prices/KIM.parquet",
+          "sha256": "87c8d8c4e4bb86ee97d75117111b215669d3c958560b5130fbbbe9d355f635e5"
+        },
+        "KLAC": {
+          "path": "raw/prices/KLAC.parquet",
+          "sha256": "611104075067164f170585bbd3d75611418c969a1defdf8a3af7afeb20f3bc3f"
+        },
+        "KMB": {
+          "path": "raw/prices/KMB.parquet",
+          "sha256": "c44c3dee04c97d6facd915a058211e312dd84fbbbc1a9b0840203fa7b0bcc1b5"
+        },
+        "KMG": {
+          "path": "raw/prices/KMG.parquet",
+          "sha256": "e7fd785e90969fac06c11c0b330c76e445ad1c834d0b166036bf7a5a8d0f9ad7"
+        },
+        "KMI": {
+          "path": "raw/prices/KMI.parquet",
+          "sha256": "dae99e575e91ae1dc3059bcc2c9f72ba4f53811ad719264b3f1a100ee22b5857"
+        },
+        "KMX": {
+          "path": "raw/prices/KMX.parquet",
+          "sha256": "e20c58ec168612609a774707a66b19043242f705f7213567650e2c7c2179f275"
+        },
+        "KO": {
+          "path": "raw/prices/KO.parquet",
+          "sha256": "352919cf9bac99ed258e7d8b3806cf84a17dc1c1d7974861c7462692a4d32359"
+        },
+        "KR": {
+          "path": "raw/prices/KR.parquet",
+          "sha256": "b3124e5da21203d65e563e229a23e072aa5b45547e105e2e153eef8f9d7833cc"
+        },
+        "KSS": {
+          "path": "raw/prices/KSS.parquet",
+          "sha256": "b03565771f9bb127f271efb6b07c13b0fc5755439c049fcdfdfe77d30e8fb876"
+        },
+        "L": {
+          "path": "raw/prices/L.parquet",
+          "sha256": "cc6f8ad4fffc7f57307b7c870d223c679c943ee3feb51519be1e838e628a50f1"
+        },
+        "LDOS": {
+          "path": "raw/prices/LDOS.parquet",
+          "sha256": "6298de39e0950b41842f455600b22d7f662ba66f2e468283ff7827ad56541b5f"
+        },
+        "LEG": {
+          "path": "raw/prices/LEG.parquet",
+          "sha256": "b6fd859a100a195ad3ed7500a0fcb52bff97a2de87edf4d6000de345681a61eb"
+        },
+        "LEN": {
+          "path": "raw/prices/LEN.parquet",
+          "sha256": "80da53549bedf355bd02e5686083e1651e0e9535e278b98c28410a1b10983f6f"
+        },
+        "LH": {
+          "path": "raw/prices/LH.parquet",
+          "sha256": "a4b1e0789a4e265250617af4821bbcf9509c5be1c0fecc65636f6ad6f0e2710a"
+        },
+        "LIN": {
+          "path": "raw/prices/LIN.parquet",
+          "sha256": "f62d0f8854f7c4df4a49e56453cef234e611fcc8d7b91eafad649fba833d2902"
+        },
+        "LITE": {
+          "path": "raw/prices/LITE.parquet",
+          "sha256": "c50ba9cf75b6b6ccdda23cfb8d6256f66cede91f5b265f6b961165559a877bb1"
+        },
+        "LKQ": {
+          "path": "raw/prices/LKQ.parquet",
+          "sha256": "10ca13e419995adead1d61ca5486636b5ba1c19e93edb51764f4bb2f6e77fc30"
+        },
+        "LLY": {
+          "path": "raw/prices/LLY.parquet",
+          "sha256": "aa960edb3c6d1ac8d220ae1160d3e9ebbd2a0b687afeccd281c50624d963fe0c"
+        },
+        "LMT": {
+          "path": "raw/prices/LMT.parquet",
+          "sha256": "e8593b0e24eefbe021eccff1bdc60f02ed11efed705a5dd61fcf9568fea03ed6"
+        },
+        "LNC": {
+          "path": "raw/prices/LNC.parquet",
+          "sha256": "2fe0249506503fd047ce47af9f93c13d588a82859985ba697428aa8dc8121cf4"
+        },
+        "LNT": {
+          "path": "raw/prices/LNT.parquet",
+          "sha256": "effb0c262e7749580ce9955a37805421395f7d21e3a898b937143251a28b3b63"
+        },
+        "LOW": {
+          "path": "raw/prices/LOW.parquet",
+          "sha256": "6fbe34631bf8ee81e4b3110737459ad2205cce8742ccf020bc6800c30471064c"
+        },
+        "LPX": {
+          "path": "raw/prices/LPX.parquet",
+          "sha256": "8dda00cbd2227f4a25caa320d1222b40e3ea8ab3daad3c2ed2abac2a361044fb"
+        },
+        "LRCX": {
+          "path": "raw/prices/LRCX.parquet",
+          "sha256": "b947181e6bcd4793626623818f5ae6dfd2af682bdbb308c3ee1e6a551e2c5eba"
+        },
+        "LSCC": {
+          "path": "raw/prices/LSCC.parquet",
+          "sha256": "cfa02a07ae02e7bdf01b834ff0304e421986dc78460fc8a3e565232bb6d7a2b7"
+        },
+        "LUV": {
+          "path": "raw/prices/LUV.parquet",
+          "sha256": "bf62e87fb66d5d2b876467ff3c396297fbb97d025e05faae784dc7a7b73dce1e"
+        },
+        "LW": {
+          "path": "raw/prices/LW.parquet",
+          "sha256": "ebd3aec776fafc926d6b9a8d44ff684efc7b0f9efe06c064c1ff13be2cafa313"
+        },
+        "LYB": {
+          "path": "raw/prices/LYB.parquet",
+          "sha256": "20477b0c145205aeb936c6696af03509c10e4b9b0dbea280c769797ee011938a"
+        },
+        "M": {
+          "path": "raw/prices/M.parquet",
+          "sha256": "525785b6176e3deb947b7ffb8b5c6ffb6b0eb8fa1cc96701eb8f0e003a76f0ae"
+        },
+        "MA": {
+          "path": "raw/prices/MA.parquet",
+          "sha256": "f922b462953cae24290eb115b0cacae0867e8a13c3df786f3db6925534af5b02"
+        },
+        "MAA": {
+          "path": "raw/prices/MAA.parquet",
+          "sha256": "e5d5e39d58a9ae10bd6282c3a3c1f67a7c505e38f0c928900eb3444603451614"
+        },
+        "MAC": {
+          "path": "raw/prices/MAC.parquet",
+          "sha256": "a3d119d8d29cda0a48a4c4cd4a8fb625a32e0d61e4695eff081f70603067eeff"
+        },
+        "MAR": {
+          "path": "raw/prices/MAR.parquet",
+          "sha256": "4559c7fd3e129f9e7b444bcfad79abccead91b4c6e5f0f8cbd6e2e956dbeb44f"
+        },
+        "MAS": {
+          "path": "raw/prices/MAS.parquet",
+          "sha256": "49ffc6907f2a9ea21308d523557149e062cc60627539c4482ff1cf4a2cf513e9"
+        },
+        "MAT": {
+          "path": "raw/prices/MAT.parquet",
+          "sha256": "fb3ad93dc3f97d9cbfaffa8e36555fe84b9441bea8b677a296babf23cb5411cd"
+        },
+        "MBI": {
+          "path": "raw/prices/MBI.parquet",
+          "sha256": "72b02fe79e15d1a2cc7e17e49b1866bd25d9382c222e7dbd9a7ed3ea63c8e616"
+        },
+        "MCD": {
+          "path": "raw/prices/MCD.parquet",
+          "sha256": "bc31c8fb537e00465dc62726d47e9043553f37ca22e67e24196fc9bfc133dc22"
+        },
+        "MCHP": {
+          "path": "raw/prices/MCHP.parquet",
+          "sha256": "c8d95353783a88a974482e3d0a33077cc8e3527bb851605ce8f12f17e9a77529"
+        },
+        "MCK": {
+          "path": "raw/prices/MCK.parquet",
+          "sha256": "9083275e1c14cced2a94bea312c959294e3716b11c689b059ffd080f4388d237"
+        },
+        "MCO": {
+          "path": "raw/prices/MCO.parquet",
+          "sha256": "4bd5826d80a56b1f9a28e4b19a9e3dfe55f991828508247b345f8203be1ef988"
+        },
+        "MDB": {
+          "path": "raw/prices/MDB.parquet",
+          "sha256": "ef72c47c723fa8858ca408626f0ad6c0191804a851773499da365eb30f37cfed"
+        },
+        "MDLZ": {
+          "path": "raw/prices/MDLZ.parquet",
+          "sha256": "39559520f8a20953487755f8ebe1d3c9d9fe66ce862fad0aa8dfb98278334f09"
+        },
+        "MDT": {
+          "path": "raw/prices/MDT.parquet",
+          "sha256": "b6b8db895d814ddc893090b14177a229f548171dc879aa7a23830a22314c2ae3"
+        },
+        "MET": {
+          "path": "raw/prices/MET.parquet",
+          "sha256": "aed3a49c4e44546091107826561d3e1902b209b1727206cd4730817594cecb94"
+        },
+        "META": {
+          "path": "raw/prices/META.parquet",
+          "sha256": "4c421003916e3ecd48ff2bb6ee129cb4f5b9f6f478331152afa1c9a4c2e38fb3"
+        },
+        "MGM": {
+          "path": "raw/prices/MGM.parquet",
+          "sha256": "6b37c1c053130efe7381da00eb47658f29d0b3b86f3caa5776230d0f88d61a9a"
+        },
+        "MHK": {
+          "path": "raw/prices/MHK.parquet",
+          "sha256": "0c7d0950171ca6dd62b8b49c445d1671311368404105c1f5cb64a0a3037010c9"
+        },
+        "MI": {
+          "path": "raw/prices/MI.parquet",
+          "sha256": "dd0d87a8913a82773be2b8dec14c1ff27135c9696042b0e6142d39e64df002bb"
+        },
+        "MKC": {
+          "path": "raw/prices/MKC.parquet",
+          "sha256": "91df78712420d6166e09685892d9725d0c8554e576a5bc6af341ce8b6790d37d"
+        },
+        "MLM": {
+          "path": "raw/prices/MLM.parquet",
+          "sha256": "fce1d1e503d2d6252ac68657abb91a5b356bc94bc6a2aee408575cab73f7ffb1"
+        },
+        "MMI": {
+          "path": "raw/prices/MMI.parquet",
+          "sha256": "6b2138c56b7253401e0b5a721b9b7b9ffffc112589d8ced074ac00ee088c97a4"
+        },
+        "MMM": {
+          "path": "raw/prices/MMM.parquet",
+          "sha256": "daac31d013770261b8366c1e73a93b2ffc4494c444b34383d4df897d989b0688"
+        },
+        "MNST": {
+          "path": "raw/prices/MNST.parquet",
+          "sha256": "0e385010462dd32e46412eb3a455bb32a9bb366db76cffaca7d5bcd0e0742789"
+        },
+        "MO": {
+          "path": "raw/prices/MO.parquet",
+          "sha256": "998d653848238cc8f7ef6d6f7d3538cb8a03b5859cbef0d971c22bad594f818f"
+        },
+        "MOS": {
+          "path": "raw/prices/MOS.parquet",
+          "sha256": "29f405cd824139333fec84d14acc3252d83846b051c3d6e7092b9469aa3ea61c"
+        },
+        "MPC": {
+          "path": "raw/prices/MPC.parquet",
+          "sha256": "8e3e8307244ef9ab23d6fcbb7c73164720da354e517cd98d481bea9cf7f59ec9"
+        },
+        "MPWR": {
+          "path": "raw/prices/MPWR.parquet",
+          "sha256": "8d94bf99273b2fb47ee38da0d554acf3279cd9ffc205e699398592be8c40aa97"
+        },
+        "MRK": {
+          "path": "raw/prices/MRK.parquet",
+          "sha256": "ff57d667f1785ee8c3c29af77d7c2a6b8ec746594e3de864b1ccf0b8d17540e0"
+        },
+        "MRVL": {
+          "path": "raw/prices/MRVL.parquet",
+          "sha256": "371bb8606b3c024ebea51910815fefda0cbd99355b4e98771007d351960b458f"
+        },
+        "MS": {
+          "path": "raw/prices/MS.parquet",
+          "sha256": "fcd327a9bd98b944c9024d991de2cc42fd79a25d645b50439dfeeae2e3853299"
+        },
+        "MSCI": {
+          "path": "raw/prices/MSCI.parquet",
+          "sha256": "d15ed634def1ea7223718faa2dff814909fef372e5f5d858541544cf01405d20"
+        },
+        "MSFT": {
+          "path": "raw/prices/MSFT.parquet",
+          "sha256": "d292f0c4af2310bfcd2256f77891f06d8010ab989a6a4e82e5d393438d4582c9"
+        },
+        "MSI": {
+          "path": "raw/prices/MSI.parquet",
+          "sha256": "6754104c1209871d34900682632868be77efdbd66c54d3a4f08603035f92260a"
+        },
+        "MTB": {
+          "path": "raw/prices/MTB.parquet",
+          "sha256": "37d996531f67ada7d9291704010f9523f8ef931008adb78b92c1ff18fd1fda96"
+        },
+        "MTD": {
+          "path": "raw/prices/MTD.parquet",
+          "sha256": "bfc31613a66feddb70b4a43e373d9c2862f624c256185c36dd840f67c2d89c31"
+        },
+        "MTG": {
+          "path": "raw/prices/MTG.parquet",
+          "sha256": "ca71c6df2f292ce1ac78ad040625034f31c4ad0d08b103c0abb100d1fbe468a2"
+        },
+        "MTW": {
+          "path": "raw/prices/MTW.parquet",
+          "sha256": "cc81315914e39bba676476461b944f3e7d9c392a01ae58a5d2bcb32c7cbb008c"
+        },
+        "MU": {
+          "path": "raw/prices/MU.parquet",
+          "sha256": "a5025ee2626cd33f01eb8c30298eb71221dea100ee01c6f6d34aa559bc87dd50"
+        },
+        "MUR": {
+          "path": "raw/prices/MUR.parquet",
+          "sha256": "a6daa98ae445505d72b4a48acbc6dd39059163afa9f9ce8820b2b70600de96eb"
+        },
+        "NAVI": {
+          "path": "raw/prices/NAVI.parquet",
+          "sha256": "e7f93b4b16effcb50075ea30736643199a726a98bdb1045b93981f5e0fb034dd"
+        },
+        "NBR": {
+          "path": "raw/prices/NBR.parquet",
+          "sha256": "a3321e7ed6459f534c8089a988d1639ac7107814c9787c877a37ab826149fb9c"
+        },
+        "NCLH": {
+          "path": "raw/prices/NCLH.parquet",
+          "sha256": "52263c2e209b92e4e9811f25d68d6fe6660efc1043e50978cbcdb48d509e0fa4"
+        },
+        "NDAQ": {
+          "path": "raw/prices/NDAQ.parquet",
+          "sha256": "475a7b2e416e6b922314827a6cd0bb416e993c21ae0339b8eee06a378db44cb1"
+        },
+        "NEE": {
+          "path": "raw/prices/NEE.parquet",
+          "sha256": "48508357f916dfc4b0ce5c85ce360aadc688920f16ff63b3d319af8027a441a2"
+        },
+        "NEM": {
+          "path": "raw/prices/NEM.parquet",
+          "sha256": "d424575c011e75184c08a97ba4966ecce85f223dc91b9a5b2f9e3db2ee4e2978"
+        },
+        "NFLX": {
+          "path": "raw/prices/NFLX.parquet",
+          "sha256": "eb4c9f1c49cd7312adbfea0a6abfad08f3f677ca401c76b783b516dfe592a354"
+        },
+        "NI": {
+          "path": "raw/prices/NI.parquet",
+          "sha256": "67e4bf86b5824aaf76ee39dd1c48496613e3a01d8bef114a7fcc684650d2a38c"
+        },
+        "NICE": {
+          "path": "raw/prices/NICE.parquet",
+          "sha256": "0418419aa818e721d6fe739fe5763867c873da69cd51cf9fb88ac57b78f97430"
+        },
+        "NKE": {
+          "path": "raw/prices/NKE.parquet",
+          "sha256": "72a52d89ea0c3f34bc4993a9eee8ae993ceff230d41fc3fb96efb1e704151fe4"
+        },
+        "NKTR": {
+          "path": "raw/prices/NKTR.parquet",
+          "sha256": "9a4aef7bc38799f20700b3efd11b69589e564e1e0e60c29c2c13efca01a27296"
+        },
+        "NOC": {
+          "path": "raw/prices/NOC.parquet",
+          "sha256": "1ce14cf3264eae99f0d7a9c86ca860a08d66af0b3b551a4a44bffa04408f009a"
+        },
+        "NOV": {
+          "path": "raw/prices/NOV.parquet",
+          "sha256": "e4b815b5fdbd5fedae86ebc79ed29b3ab1c10b2b2fc674fed088a8367bf53414"
+        },
+        "NOW": {
+          "path": "raw/prices/NOW.parquet",
+          "sha256": "009836cc2000bb4fcb4777a03073e9cc3035e8e4aac0fe135459cae1402bc507"
+        },
+        "NRG": {
+          "path": "raw/prices/NRG.parquet",
+          "sha256": "13aff24ccb49777b4e38921f91d2ec80549652f336c0134f6dd6a551c8ec2b30"
+        },
+        "NSC": {
+          "path": "raw/prices/NSC.parquet",
+          "sha256": "bde7057a4656fddea8570fe02ea75d95a04714f44adb360a7bc49c38ca33b4a5"
+        },
+        "NSM": {
+          "path": "raw/prices/NSM.parquet",
+          "sha256": "3aba61cf3bec375641b445374ffa581f9b3d343343154dba0d3fba31b6cf69cc"
+        },
+        "NTAP": {
+          "path": "raw/prices/NTAP.parquet",
+          "sha256": "4769db73ab1a1774d347877f43117853694f62ade95784a1a73d8de1e896146b"
+        },
+        "NTRS": {
+          "path": "raw/prices/NTRS.parquet",
+          "sha256": "222586ae0f82c94ab742b7920b0f82953f63df6104974681e769addc1d3c3862"
+        },
+        "NUE": {
+          "path": "raw/prices/NUE.parquet",
+          "sha256": "8db020b9c73dfa9ecfe866bfd79f200ea3f33c34cb89145452a8845d339786a8"
+        },
+        "NVDA": {
+          "path": "raw/prices/NVDA.parquet",
+          "sha256": "9a77d0a40d01da7c189645e5ca9e98da659740011f33762223e0bcb7e62372da"
+        },
+        "NWL": {
+          "path": "raw/prices/NWL.parquet",
+          "sha256": "de7754744785c20be232f2464e00c1c8293d6309d30026e5de7ede17cddbac59"
+        },
+        "NWS": {
+          "path": "raw/prices/NWS.parquet",
+          "sha256": "0fccff9881945f4a1e1bfd1d9c942350363a05689939eba31578e759327ead5f"
+        },
+        "NWSA": {
+          "path": "raw/prices/NWSA.parquet",
+          "sha256": "6cca58fad62591dea74c3a4b13951fa68f123b126271f43fd06d91fec04374a6"
+        },
+        "NXPI": {
+          "path": "raw/prices/NXPI.parquet",
+          "sha256": "7e99c6d0b7347146118e9f919889ef3e1b02e74e9d43531db5bfb4f14b174e68"
+        },
+        "NYT": {
+          "path": "raw/prices/NYT.parquet",
+          "sha256": "9b56b219b68139940730b64162dc06fa1eee7f70463161b3cbebfdda43a77770"
+        },
+        "O": {
+          "path": "raw/prices/O.parquet",
+          "sha256": "e29fbab743afebd76a4ceb90b650d86c924abf4f12347f24a579804cf679f010"
+        },
+        "OI": {
+          "path": "raw/prices/OI.parquet",
+          "sha256": "0e89e854c515610d8a4d7ca2da2c5f72a493ca9e8d72e5c478ef33c6f7f9c269"
+        },
+        "OKE": {
+          "path": "raw/prices/OKE.parquet",
+          "sha256": "3141fa4ace54e3a323ef1574376e08a5462b0fbeb6a73107dcab63dfc9a068de"
+        },
+        "OMC": {
+          "path": "raw/prices/OMC.parquet",
+          "sha256": "2b1a5714edb1c035ee37383d6ef0a437ecbd6fe74d80e71654f1693f45d57a74"
+        },
+        "ON": {
+          "path": "raw/prices/ON.parquet",
+          "sha256": "8b7e4393b84b1422e38865ecc34534ad337447f4dabe8ec9be9fb2abfa957cc4"
+        },
+        "ORCL": {
+          "path": "raw/prices/ORCL.parquet",
+          "sha256": "6050aba051551ae226c83abd3103f3dd18558a96389eca181f0995e3f9795b66"
+        },
+        "ORLY": {
+          "path": "raw/prices/ORLY.parquet",
+          "sha256": "73b9e6e59621fc5283db90b35143a168a11d9f5ef652bafc3b3c583906203c83"
+        },
+        "OXY": {
+          "path": "raw/prices/OXY.parquet",
+          "sha256": "aafd22a6d7eea435f6c074699e75b86cbe96943cee54f8249891870579c2d5a8"
+        },
+        "PANW": {
+          "path": "raw/prices/PANW.parquet",
+          "sha256": "e43f251f0515d9bdd5ed2359be7cdcd36794295688780b904b1f45ad5151201f"
+        },
+        "PAYX": {
+          "path": "raw/prices/PAYX.parquet",
+          "sha256": "d2891f9909048cef38d3aa9329d116640227794bdaea6f6d821274ce38d531b6"
+        },
+        "PBI": {
+          "path": "raw/prices/PBI.parquet",
+          "sha256": "0a1185a018fc0df49133244e350a97de38417f7ab7637614aca595b402bd821d"
+        },
+        "PCAR": {
+          "path": "raw/prices/PCAR.parquet",
+          "sha256": "5e246e8487e3021196d31f66aec2fa86d74fdd8e8aa98049908d0cb6b9dc79e8"
+        },
+        "PCG": {
+          "path": "raw/prices/PCG.parquet",
+          "sha256": "83c29dbb988cd3b03b44c807fde7729646896e7d7a967794a691211e07719ec0"
+        },
+        "PEG": {
+          "path": "raw/prices/PEG.parquet",
+          "sha256": "c5d725b932a0aa56e274fecf86d3400056c524fbd405ae60ccd6756322791d4d"
+        },
+        "PEP": {
+          "path": "raw/prices/PEP.parquet",
+          "sha256": "663b627794d03450adb24d7f79c10cb246e6492eb6eff92effd7157f3cfb4e2b"
+        },
+        "PFE": {
+          "path": "raw/prices/PFE.parquet",
+          "sha256": "f463c71a9b237a378cd4f42612928fb512d70f28f2d1d437e08253aae14c7d68"
+        },
+        "PFG": {
+          "path": "raw/prices/PFG.parquet",
+          "sha256": "ef830239fa849d75288644b0555ee8ede2d90f6d5d7a60e81f53f5e0b3e84fc0"
+        },
+        "PG": {
+          "path": "raw/prices/PG.parquet",
+          "sha256": "a82270a9c6fa391011a63c67865652909888f071a3a13e9d737a3247c0e4a625"
+        },
+        "PGR": {
+          "path": "raw/prices/PGR.parquet",
+          "sha256": "c577b1e38c1bc120658246bc235df10ea4668e3ca96cae98c16f19ad9d0ddb9b"
+        },
+        "PH": {
+          "path": "raw/prices/PH.parquet",
+          "sha256": "8aa47134c3aa7ef6d44f8e4d4399ff6aa1e088d816a287c5d57bb1efa86568ec"
+        },
+        "PHM": {
+          "path": "raw/prices/PHM.parquet",
+          "sha256": "e97aa8c1721fff1563a531253c960424ca12c1ebae2caff382124a507b62b03a"
+        },
+        "PKG": {
+          "path": "raw/prices/PKG.parquet",
+          "sha256": "e9040f7ab2a369a866f6fe5715dd57675e8a0f8c69b6b3a5d66a2a95d064262e"
+        },
+        "PLD": {
+          "path": "raw/prices/PLD.parquet",
+          "sha256": "29411873d527a7edc6003bbe03a0cd7537e84599c4dee341ae0b03aa052e1f45"
+        },
+        "PM": {
+          "path": "raw/prices/PM.parquet",
+          "sha256": "d460dc0ddbcfb4f1b42363bd01cecfb40a2c32897812af29753724a6cbef31de"
+        },
+        "PNC": {
+          "path": "raw/prices/PNC.parquet",
+          "sha256": "e28ec580a7b7d8a0408bd27c0221f4773e0497f939b0afec4290b409f5263f76"
+        },
+        "PNR": {
+          "path": "raw/prices/PNR.parquet",
+          "sha256": "bf7d0d04cc3e2ff42df0219e4b4a843f3ed3507ed7c6995a04dbb3e8dd746ab5"
+        },
+        "PNW": {
+          "path": "raw/prices/PNW.parquet",
+          "sha256": "bf1fe1a19eb5f9228fd82fb44270a267e7a266a8f3f2a69d2c5a4b45a5ebe55f"
+        },
+        "PPG": {
+          "path": "raw/prices/PPG.parquet",
+          "sha256": "933db979ded99e6b1ac87900e078693c546c22236618468fc698c76ff21df28f"
+        },
+        "PPL": {
+          "path": "raw/prices/PPL.parquet",
+          "sha256": "e8928e7f3e4e5f01f961482430f213361ff790bf9d6c194037b8db3a4df41265"
+        },
+        "PRGO": {
+          "path": "raw/prices/PRGO.parquet",
+          "sha256": "73d3a62f2b835659f5a4a05965e937c3d298f5a3422dc6f5ee8dc2c6f656ccc8"
+        },
+        "PRU": {
+          "path": "raw/prices/PRU.parquet",
+          "sha256": "87a3b1196b08f1ae5d3e0174e07b6a138e06c317bf045074b9a069057f8f6c64"
+        },
+        "PSA": {
+          "path": "raw/prices/PSA.parquet",
+          "sha256": "8db7dd106520749bf5f69dacf63549e0dd586a8e9e4689c2a1398848815d07be"
+        },
+        "PSX": {
+          "path": "raw/prices/PSX.parquet",
+          "sha256": "bd7ff90582d3d4ec104bded2f3d7aa7b2244ce6bdf910314b9b787a6312226b7"
+        },
+        "PTC": {
+          "path": "raw/prices/PTC.parquet",
+          "sha256": "f4a0e12c590f9bcbf779999ec94e02144559f476ea765aa3fcd58be3f7861f5e"
+        },
+        "PVH": {
+          "path": "raw/prices/PVH.parquet",
+          "sha256": "7c267340a5c2062f1eb8fa05a8501ed55400a77bbc48c0f730e2ead1e95b0d8f"
+        },
+        "PWR": {
+          "path": "raw/prices/PWR.parquet",
+          "sha256": "ce5eb719340c8c075089fc3392ea455798eb36f8b8b06d8b5e54cfaf07c5cb90"
+        },
+        "PYPL": {
+          "path": "raw/prices/PYPL.parquet",
+          "sha256": "f4af82716f07b0ef95f0ce94cd2b5b1e7b2ade7b01801f888422fe54e3303654"
+        },
+        "QCOM": {
+          "path": "raw/prices/QCOM.parquet",
+          "sha256": "c5521b1f9fd106986d0c379f48c04e352a6367312fc16d3bb78364a92413bd2e"
+        },
+        "QRVO": {
+          "path": "raw/prices/QRVO.parquet",
+          "sha256": "b914ec174d7d46569d51c2171ab2d38c25984f4638ebaf352b4539da3e4fc02c"
+        },
+        "R": {
+          "path": "raw/prices/R.parquet",
+          "sha256": "f21334cc399cace48463b853828b49f9a0fda5bf77e7e0b595db0b21ac644ff9"
+        },
+        "RCL": {
+          "path": "raw/prices/RCL.parquet",
+          "sha256": "db391dc624414e660d01ef3832b9757678b79cb1b466d4bfff77964d6d72a601"
+        },
+        "REG": {
+          "path": "raw/prices/REG.parquet",
+          "sha256": "27b43574c0d66df8faa28ab8df7e056b72282bcf0f34c3509f5aef6a5c63eaea"
+        },
+        "REGN": {
+          "path": "raw/prices/REGN.parquet",
+          "sha256": "bf1918f77a5b0f2c89cd90c64fb45ef44b223a77bc4884ce0bdda18b69efa907"
+        },
+        "RF": {
+          "path": "raw/prices/RF.parquet",
+          "sha256": "b1ec15df73d324f663e139aa882ecc3c65938bb99dd71e3d1ce9be22c199dca0"
+        },
+        "RHI": {
+          "path": "raw/prices/RHI.parquet",
+          "sha256": "2ca6e0ac8609a1a45b5a112b368d929a55821710e7c96faa87ca618ad9476e8d"
+        },
+        "RIG": {
+          "path": "raw/prices/RIG.parquet",
+          "sha256": "7b6c4cf7d4a4d1297afa6e85aac014e662b37ae488af1e0d6c708b0aafb0e0e6"
+        },
+        "RJF": {
+          "path": "raw/prices/RJF.parquet",
+          "sha256": "bc96bbb3b6885de9ab12a22bf76bcc127fbd4b37869e5b801c430e1c1cd21c5f"
+        },
+        "RL": {
+          "path": "raw/prices/RL.parquet",
+          "sha256": "fff5b97375bfef85d7a13d4f5e9dd67d0281b44985f0f6401186e427872a7676"
+        },
+        "RMD": {
+          "path": "raw/prices/RMD.parquet",
+          "sha256": "25cd08f5e813a4fbf0b4af348e2c5cbb354506bfa530b96b5efc63203a8763fb"
+        },
+        "ROK": {
+          "path": "raw/prices/ROK.parquet",
+          "sha256": "674f5daee6129d8c9a81fbc001d535c799a28100c7aee0fee40624c86ca123dc"
+        },
+        "ROL": {
+          "path": "raw/prices/ROL.parquet",
+          "sha256": "509a22b68963f7c84c591dd13ff55c0ea6a1d9ea1efe14c432fc3cd633205904"
+        },
+        "ROP": {
+          "path": "raw/prices/ROP.parquet",
+          "sha256": "8475d1e6f6afedfdbf7cc36063f2cad923238789a6c28bef36a8654be0fcac2b"
+        },
+        "ROST": {
+          "path": "raw/prices/ROST.parquet",
+          "sha256": "df2d19e69890915dfa791d7669af016178471c64f67eb5d713e7129c278bbbac"
+        },
+        "RRC": {
+          "path": "raw/prices/RRC.parquet",
+          "sha256": "19ca5215c044c3be9e897363b794df459dc4468e8d396610cd0ac64d6373a55f"
+        },
+        "RSG": {
+          "path": "raw/prices/RSG.parquet",
+          "sha256": "a41e9709d154ef64852dfaa9126c620b06e3629ae4119190cab1cede4214e5d6"
+        },
+        "SAF": {
+          "path": "raw/prices/SAF.parquet",
+          "sha256": "ca6ec83466338a838f3c00642495e8f60b2a7f72c9d2549f0594216e1d794cd5"
+        },
+        "SAIC": {
+          "path": "raw/prices/SAIC.parquet",
+          "sha256": "984b449f748b58282a7f2714f73e9b8b47e0c119c3283672790184125caa2486"
+        },
+        "SANM": {
+          "path": "raw/prices/SANM.parquet",
+          "sha256": "42eeac8fcc3f8853f0271292d6a53c57fa39dd00905ced483bf3ea9fb3ceb65e"
+        },
+        "SBAC": {
+          "path": "raw/prices/SBAC.parquet",
+          "sha256": "ff2ee6aa800fbca9376a90887d9b07a009b5dff38dcfa923c3d3788c30911a5c"
+        },
+        "SBUX": {
+          "path": "raw/prices/SBUX.parquet",
+          "sha256": "9949f6a7b80e2d63cdc4156de151d7e6240cb8cd67af86c9400fbb763dbbb91d"
+        },
+        "SCG": {
+          "path": "raw/prices/SCG.parquet",
+          "sha256": "eeae81392940a27ce31cddefecaf8cf78557c45577d8e5ac0843ca6095596bdc"
+        },
+        "SCHW": {
+          "path": "raw/prices/SCHW.parquet",
+          "sha256": "161db8c92d714fdca418a552255c099fcba8d5ff83c99e831fe76675570108db"
+        },
+        "SDS": {
+          "path": "raw/prices/SDS.parquet",
+          "sha256": "544214244dee596cb8561717b99b61c220def68beea22b802dec5b1ca9000247"
+        },
+        "SE": {
+          "path": "raw/prices/SE.parquet",
+          "sha256": "eba2a015e4fb062f36e2a6a61ad5351ea3d8a77f238c3023fd1b5f2a4b7869ff"
+        },
+        "SHOP": {
+          "path": "raw/prices/SHOP.parquet",
+          "sha256": "72f86f26301e5e854a48c24627884fbe3f8ae65739dfc571dad658859fc99bd2"
+        },
+        "SHW": {
+          "path": "raw/prices/SHW.parquet",
+          "sha256": "ea7207c609c2fd0e2b3eececec60131f6c8e9a4697c1556dc618445ad328dc11"
+        },
+        "SIG": {
+          "path": "raw/prices/SIG.parquet",
+          "sha256": "e795364c2b19697cd0fcad3c1113b866d84ab95374256cb485a9b06cd82c6c92"
+        },
+        "SII": {
+          "path": "raw/prices/SII.parquet",
+          "sha256": "3a3f1def2bf96e5b9b73b78e7b4cab0c4cf2829dd7bf0997c20cf25e4b842383"
+        },
+        "SJM": {
+          "path": "raw/prices/SJM.parquet",
+          "sha256": "2cebe8cd3c31d944426b2727d88ecf3f66485bf4c5ff8dcd84d8f9c884093eec"
+        },
+        "SLB": {
+          "path": "raw/prices/SLB.parquet",
+          "sha256": "f141cad3a057f3db5cbb15d6e02ca7c966496f4386e1dae7d9003e463822d6fe"
+        },
+        "SLG": {
+          "path": "raw/prices/SLG.parquet",
+          "sha256": "09427f584ceed7fa516331f679dd4f93a5a2fd2f26702b7fbfd397291b3784f6"
+        },
+        "SLM": {
+          "path": "raw/prices/SLM.parquet",
+          "sha256": "e65d494f56605681a530764a25a89cba792eec10b6925d77d4eb9014745c5216"
+        },
+        "SMCI": {
+          "path": "raw/prices/SMCI.parquet",
+          "sha256": "0458aa8e3559d94153aa2e5b61e8f7bcd6bb58aeb0f95879e03bab7cccb47727"
+        },
+        "SNA": {
+          "path": "raw/prices/SNA.parquet",
+          "sha256": "ad82ff4491ce5a4fdf04d46c001f6cf1dd42ad6c393bd295c361843d49eb4422"
+        },
+        "SNPS": {
+          "path": "raw/prices/SNPS.parquet",
+          "sha256": "4879b2cc49dee595dfe35ebb2f94948793d0d185d3d234794ec5d47d08de17ed"
+        },
+        "SO": {
+          "path": "raw/prices/SO.parquet",
+          "sha256": "527c8cd11b83d34b628752d26285895beb03da6050d7fd8c5b0bbf48876b9d9a"
+        },
+        "SPG": {
+          "path": "raw/prices/SPG.parquet",
+          "sha256": "85f2d864888c0eea476493f61fd1813da465460720eda121722c9e0753ae5ec1"
+        },
+        "SPGI": {
+          "path": "raw/prices/SPGI.parquet",
+          "sha256": "4154e6805f203a1f354839bad6e6913196ce79c4b46e7a1f5067d0ca0e409b7f"
+        },
+        "SPY": {
+          "path": "raw/prices/SPY.parquet",
+          "sha256": "f8b23f049dd70b398e4e1fe3366aeaa13534f6a951a6b98eae5f85219a9f0862"
+        },
+        "SRE": {
+          "path": "raw/prices/SRE.parquet",
+          "sha256": "1ad285e42773ddc35118f6c4f7397b0b0dfc79c9837f0389e986009c274447db"
+        },
+        "SSP": {
+          "path": "raw/prices/SSP.parquet",
+          "sha256": "6b4c64962d837b96215a6cd8aa4adf5e6c6304b6346c13153d52d585cea44c78"
+        },
+        "STT": {
+          "path": "raw/prices/STT.parquet",
+          "sha256": "0019145744981d2dc6e5284dcd0b39207ae612188c5f00aa594b98b4391b642a"
+        },
+        "STX": {
+          "path": "raw/prices/STX.parquet",
+          "sha256": "12affe4d45031fb3a2741e6d1f7760250ed52b7ff9973de151a3675e6cdd232b"
+        },
+        "STZ": {
+          "path": "raw/prices/STZ.parquet",
+          "sha256": "dac3f9e306a673ed8a75df171ac133352aa779dd49b4cfaa53b431fa2a1a191b"
+        },
+        "SUN": {
+          "path": "raw/prices/SUN.parquet",
+          "sha256": "b13fe455a4fe62c5d8b7c0235069ee319316581a10b84534a0191e54312d8636"
+        },
+        "SVU": {
+          "path": "raw/prices/SVU.parquet",
+          "sha256": "0151203a38ff5fd7418eb19a350de96710c86cbddfe839335fb7fc0bc2c9693e"
+        },
+        "SWK": {
+          "path": "raw/prices/SWK.parquet",
+          "sha256": "0a0d12e4b49016e7e43d3be10d3037e450a11db251470a0fe6ea9c34ff40e22c"
+        },
+        "SWKS": {
+          "path": "raw/prices/SWKS.parquet",
+          "sha256": "2b7865cd3e49c013caad84429220883efed7fba4aea3e5483d42f1620b18e3c0"
+        },
+        "SYF": {
+          "path": "raw/prices/SYF.parquet",
+          "sha256": "bbe815060987a92fae1a072dd0ae4f7d25372eb3610840408b9c34848433fe6a"
+        },
+        "SYK": {
+          "path": "raw/prices/SYK.parquet",
+          "sha256": "58f6e778108d0a90b9b895a318c46c85c9a13bc8c971e3a91f7b7e6f27e366b9"
+        },
+        "SYY": {
+          "path": "raw/prices/SYY.parquet",
+          "sha256": "140769be5b9cd2e59bf4f5fc8a3acc1792cbfe87dd54009c0af700159fde4f52"
+        },
+        "T": {
+          "path": "raw/prices/T.parquet",
+          "sha256": "e6061553eaba76dde6103bfb6943427e96794e81d64f9c95fd1d1b0e0c0447f9"
+        },
+        "TAP": {
+          "path": "raw/prices/TAP.parquet",
+          "sha256": "8a80c39f4f03284a8124c6e0d903eaa652796dfee99518e04bdba61f74f53a1a"
+        },
+        "TDC": {
+          "path": "raw/prices/TDC.parquet",
+          "sha256": "611870e0252aab351fe9f850a234d22adfdde0cf3b16d5d86c2a9693cd690f86"
+        },
+        "TDG": {
+          "path": "raw/prices/TDG.parquet",
+          "sha256": "e05da73c7d28dab056d5e21e8dba4513ce86e361bd05629a8c9f6d0958e958e5"
+        },
+        "TEAM": {
+          "path": "raw/prices/TEAM.parquet",
+          "sha256": "8e3982a61dcb2c502425e1186736d2ea3eecea2134a6cd1fffc3c4c2ff9ec0dc"
+        },
+        "TEG": {
+          "path": "raw/prices/TEG.parquet",
+          "sha256": "10bcbeab6c8b9ec14227099e0a6801aed15727965948d7f70450214bcd23140a"
+        },
+        "TEL": {
+          "path": "raw/prices/TEL.parquet",
+          "sha256": "1022ccae9c0170b95e92250518d5dd05146c0f55bf245dcc29a422aff13f52a7"
+        },
+        "TER": {
+          "path": "raw/prices/TER.parquet",
+          "sha256": "74a8f406a6feae0a87986fb17bdb60c55b9284288fb031ef1c061732d038b2d3"
+        },
+        "TEX": {
+          "path": "raw/prices/TEX.parquet",
+          "sha256": "c32bd9841ad839a80073aac94fbff22252a192651409c9ec1c18b08637de1189"
+        },
+        "TGT": {
+          "path": "raw/prices/TGT.parquet",
+          "sha256": "489924e639533fff72b2803341b681cdcdff38643d00b02345717446d4089b5b"
+        },
+        "THC": {
+          "path": "raw/prices/THC.parquet",
+          "sha256": "3d67d7e06e816f45ace183326fc2b921a7511ffc472e78bc2dc5c694b51d3a76"
+        },
+        "TIE": {
+          "path": "raw/prices/TIE.parquet",
+          "sha256": "da52cb6ec82e80528b27b9d9a43d0d67b69474a9c0dc463303c817e21eae44c1"
+        },
+        "TJX": {
+          "path": "raw/prices/TJX.parquet",
+          "sha256": "8ad8cd7ebe61970222d51893e1d4e35088da383df11142d398e5e0211e4b3df9"
+        },
+        "TLAB": {
+          "path": "raw/prices/TLAB.parquet",
+          "sha256": "f3d5eda559dc4950f7913581e3636abfc298c472c93e3f9b3813e3dceb55df51"
+        },
+        "TMO": {
+          "path": "raw/prices/TMO.parquet",
+          "sha256": "31d84ec902eec1541e009e6f367f6229d466032218d43049aae98266c53d3323"
+        },
+        "TMUS": {
+          "path": "raw/prices/TMUS.parquet",
+          "sha256": "572732624f18e1618478d9f17425697f0a4e9bcf9170ab06b3fe50c0e803218a"
+        },
+        "TPR": {
+          "path": "raw/prices/TPR.parquet",
+          "sha256": "eafd5342de8a29981dd8f1797313652b51de37f258f9444178d7e641bce22b0b"
+        },
+        "TRIP": {
+          "path": "raw/prices/TRIP.parquet",
+          "sha256": "3dabaa05895c3d81944b83deff67fc5d1bb388d8093927bbee3fec2516b2574b"
+        },
+        "TROW": {
+          "path": "raw/prices/TROW.parquet",
+          "sha256": "a8cbca73aae21ffef380868a4a3a70f91eb64f115243b1bbb77499f42ce28a32"
+        },
+        "TRV": {
+          "path": "raw/prices/TRV.parquet",
+          "sha256": "46af23925c09f72c78c76a31e5b528572e66167515753f932eb189e33cbafa70"
+        },
+        "TSCO": {
+          "path": "raw/prices/TSCO.parquet",
+          "sha256": "28d60689db21affd44dfc0ca5e86035c09e70da2db642567baa2ab2961fc0d86"
+        },
+        "TSN": {
+          "path": "raw/prices/TSN.parquet",
+          "sha256": "6e701ef552e9811f61d7a8f43f655d9d9dd7e39ea3db40f49e440a43fdb5d132"
+        },
+        "TT": {
+          "path": "raw/prices/TT.parquet",
+          "sha256": "b224f6a97e7eba38b48f65b1a8afc738cf776bb58d87d550a105c7881de7c701"
+        },
+        "TTWO": {
+          "path": "raw/prices/TTWO.parquet",
+          "sha256": "92a929cb6189375e349a72bb2885cea1bc8d32be88f6c5a12cfe5618df673ba3"
+        },
+        "TWLO": {
+          "path": "raw/prices/TWLO.parquet",
+          "sha256": "9811f426c11b58bc76babe6e85344a78f5b3b9b0d06b39238d85563927c71c32"
+        },
+        "TWX": {
+          "path": "raw/prices/TWX.parquet",
+          "sha256": "b18b99530648f942ed771910fbd37fa4cfdb8ad87385a1a6d0d5e194d48e720a"
+        },
+        "TXN": {
+          "path": "raw/prices/TXN.parquet",
+          "sha256": "734a1281ef5260314b2f644becd224f5cadc7682fcae5335dc4e4e6243b4e3cb"
+        },
+        "TXT": {
+          "path": "raw/prices/TXT.parquet",
+          "sha256": "39d5cb9e066f854fd4fd26de6fdd083f14d6ee727d17747ceaac960b635b08aa"
+        },
+        "UA": {
+          "path": "raw/prices/UA.parquet",
+          "sha256": "96e640fccf4ff013a17c24f1ea3067149d31c723f5cc7f75ad812dfcf5db2159"
+        },
+        "UAA": {
+          "path": "raw/prices/UAA.parquet",
+          "sha256": "4678ba80981ad993d368dd6f31e32eabf79ea7d0e816023a89f7c6477726742f"
+        },
+        "UAL": {
+          "path": "raw/prices/UAL.parquet",
+          "sha256": "b5b16b62dfa41dffc5d5cf7bacd2e88598c94c8cac75c0ea58c7874e0f816cba"
+        },
+        "UDR": {
+          "path": "raw/prices/UDR.parquet",
+          "sha256": "10dbea07a314cc4391051939d7a8649940bbcf14973c73e2d2d0d6bf6041ece4"
+        },
+        "UHS": {
+          "path": "raw/prices/UHS.parquet",
+          "sha256": "33de1b8cd5aea06aa022a115d2b6a9afd355c5d29813cc75a116581125887cb0"
+        },
+        "UI": {
+          "path": "raw/prices/UI.parquet",
+          "sha256": "7d0bf931ad66ff68f16a1f527c26c7f30a5a5d8d81ebb344d504c4d642f7e029"
+        },
+        "UIS": {
+          "path": "raw/prices/UIS.parquet",
+          "sha256": "3e148c9887da8721b524318392fd025d11c1f4d197fc4ac8eb042951a9954a60"
+        },
+        "ULTA": {
+          "path": "raw/prices/ULTA.parquet",
+          "sha256": "8ecc7234815633841b3292ed562b87f0d877681c84fb677e89b7f10f8733bdc7"
+        },
+        "UNH": {
+          "path": "raw/prices/UNH.parquet",
+          "sha256": "76a2a5a4a19fc6fb5b1fd8539fc24d71f632903362180e5a28b0911e7f0062c7"
+        },
+        "UNM": {
+          "path": "raw/prices/UNM.parquet",
+          "sha256": "9a0581f122c52a800c866e897f9901499e73a732d4c53c0638cf62b3554373c1"
+        },
+        "UNP": {
+          "path": "raw/prices/UNP.parquet",
+          "sha256": "091c1347ff6f60cbde129162cbdf865c309c51aece1f96880fb604e347f89e66"
+        },
+        "UPS": {
+          "path": "raw/prices/UPS.parquet",
+          "sha256": "6f9b2da00838083421e9843cb47adf2c4813c2dda386076ca51c300ca14c29ce"
+        },
+        "URBN": {
+          "path": "raw/prices/URBN.parquet",
+          "sha256": "1a2356cde36bc965135d032401e0edf781f3d98d0276284c7850c30f16be8485"
+        },
+        "URI": {
+          "path": "raw/prices/URI.parquet",
+          "sha256": "a301a4d58fef9ee8dd47071c4ffed6986f5d83d2fcea67ab899afdc1dc39516e"
+        },
+        "USB": {
+          "path": "raw/prices/USB.parquet",
+          "sha256": "1ce0151aa1daba71cdef0a576c768d947bd7b565a413399f8c6d56067259c0ee"
+        },
+        "UST": {
+          "path": "raw/prices/UST.parquet",
+          "sha256": "884790ea5103c729fa360b4936d562197185717d67311128256dda5823dcc376"
+        },
+        "UVN": {
+          "path": "raw/prices/UVN.parquet",
+          "sha256": "91458172912c9bd829459f24a5caba1f82ed8ec83c1906bb288593b71a8901f3"
+        },
+        "V": {
+          "path": "raw/prices/V.parquet",
+          "sha256": "452fab3ca3b8105f39ea51898df1a0d8091510a81737375ef75dd52126bda943"
+        },
+        "VEEV": {
+          "path": "raw/prices/VEEV.parquet",
+          "sha256": "0cc658383dcb301d50488f072d140df6bc173bb98f648e23b097c72ff3a23d29"
+        },
+        "VFC": {
+          "path": "raw/prices/VFC.parquet",
+          "sha256": "b578606849db384ee20b39861b2ff2b39ccd2c604078320b714d886aca012309"
+        },
+        "VIAV": {
+          "path": "raw/prices/VIAV.parquet",
+          "sha256": "4a10d5b9e402a908fd0df1ddd153ae307e5a732cd3139846638308d478883180"
+        },
+        "VLO": {
+          "path": "raw/prices/VLO.parquet",
+          "sha256": "d0a20e79ca38a9511f4b11cdc7d3208aeed14f86d637d45dce1e8c42be9330cc"
+        },
+        "VMC": {
+          "path": "raw/prices/VMC.parquet",
+          "sha256": "631bb0f028053139a0c6bcef3eb6b8574af60c224a5a998e61560e2ee02172a8"
+        },
+        "VNO": {
+          "path": "raw/prices/VNO.parquet",
+          "sha256": "7c16ad2b4672ba933ca83000d33bf72e2c072336f8c33b35ccc28b89c452b5b9"
+        },
+        "VRSK": {
+          "path": "raw/prices/VRSK.parquet",
+          "sha256": "9641e0aacff819484ea12e52597d3e3dffd001c16e5488a4d76c7bcc35dfeb3f"
+        },
+        "VRSN": {
+          "path": "raw/prices/VRSN.parquet",
+          "sha256": "02437e873f242d931a853047c1a906a250c109db2bc73dad34af14a6a0e12c36"
+        },
+        "VRTS": {
+          "path": "raw/prices/VRTS.parquet",
+          "sha256": "9e89b959c38a48eedc938adc5012e706b8054b78f8270b3573e6865bda0799f9"
+        },
+        "VRTX": {
+          "path": "raw/prices/VRTX.parquet",
+          "sha256": "ff87df08b8255d182d287fc3c447ef62dc7382153761816f63d97daa0db443e9"
+        },
+        "VTR": {
+          "path": "raw/prices/VTR.parquet",
+          "sha256": "18b416b734ca1d944dc00470a744c5df4bc7165592c1c25eb7e081e1f92ba798"
+        },
+        "VZ": {
+          "path": "raw/prices/VZ.parquet",
+          "sha256": "e9e205c3d0066e0eac96fa6eeba575efc16f790fe12d125676c0ca185b5bfb08"
+        },
+        "WAT": {
+          "path": "raw/prices/WAT.parquet",
+          "sha256": "296c6152c8db5ba03ddcfaf7a194bb44be9aed3c48d146f10b6de5e59baa3897"
+        },
+        "WB": {
+          "path": "raw/prices/WB.parquet",
+          "sha256": "0a7c4172879fb6bba815c90eef571fa95647a3ec21ce0c8ef69ac3c9a2d5dc99"
+        },
+        "WDC": {
+          "path": "raw/prices/WDC.parquet",
+          "sha256": "b01b9fb577e06da4409ccb38f1f7d9a5260c33b2d844facf9c24233bb24dbe73"
+        },
+        "WEC": {
+          "path": "raw/prices/WEC.parquet",
+          "sha256": "5e506692589907fddbfab54f80c81aa48c86777b9c86b463abce479dfb992032"
+        },
+        "WELL": {
+          "path": "raw/prices/WELL.parquet",
+          "sha256": "575b3e27da815f75b68a5078b6d9ca11a3fd29fa44ee4c8c12bbd6dd4545b387"
+        },
+        "WEN": {
+          "path": "raw/prices/WEN.parquet",
+          "sha256": "5828f63d194d44f811070737099c492c8203a7a26e4489f29d19e7ef4ba0fe94"
+        },
+        "WFC": {
+          "path": "raw/prices/WFC.parquet",
+          "sha256": "134075d93802bad0292c64f6d494f44ee1222c080ee88854316fabaa2d0cf0a4"
+        },
+        "WHR": {
+          "path": "raw/prices/WHR.parquet",
+          "sha256": "dd1c1099e2fbdccc9ac7808f8f324b3fd152d574a3ae83dfea2d5824e94af2f1"
+        },
+        "WM": {
+          "path": "raw/prices/WM.parquet",
+          "sha256": "2701298924b91ae5b66af739e280cdb37a79a11fb0577810a2df1bbd27bfee70"
+        },
+        "WMB": {
+          "path": "raw/prices/WMB.parquet",
+          "sha256": "89dd86f247f70b26b35202a64f8dc86ab1b167ae0478e779eac912fd706f0e1c"
+        },
+        "WMT": {
+          "path": "raw/prices/WMT.parquet",
+          "sha256": "022bd655e9e8ae70c65e8bff4096edf2b50deeb75b87a2023b2fdcc7118cb59e"
+        },
+        "WU": {
+          "path": "raw/prices/WU.parquet",
+          "sha256": "efa03ad70626ff87aec291b1dd6eec99f9d408462d90ce885eb19e5e4344b858"
+        },
+        "WY": {
+          "path": "raw/prices/WY.parquet",
+          "sha256": "ae7565159ff41d68d255a62f54f9c0b5d943fd0f02dd334c6713bd73e9e48c51"
+        },
+        "WYNN": {
+          "path": "raw/prices/WYNN.parquet",
+          "sha256": "6345f928a7a75ddef66ea21c768d49de914c684d490004d5c897e964814abbca"
+        },
+        "XEL": {
+          "path": "raw/prices/XEL.parquet",
+          "sha256": "6e9ac0edc4d1a76e5d5ccc29af3b698166545387e0e4c02aa5ceb471da83187e"
+        },
+        "XOM": {
+          "path": "raw/prices/XOM.parquet",
+          "sha256": "7afd194e492a6ab6b53a6983225d3807514cb9fb0d69a5fbe301fef0a83dba4d"
+        },
+        "XRAY": {
+          "path": "raw/prices/XRAY.parquet",
+          "sha256": "9882be14a42b1fa3d70a2340b26ea92ebd1227ae8193c4dc55f4a362b5e48cea"
+        },
+        "XRX": {
+          "path": "raw/prices/XRX.parquet",
+          "sha256": "a118f95fea959fbaa32b02e22c3325793b77d88c88bbc02ccec4f125f9526bb2"
+        },
+        "XYL": {
+          "path": "raw/prices/XYL.parquet",
+          "sha256": "c5df94812efdb5fa405813e11ca7974a4e6dd3720509c87684e2a69c606d1c35"
+        },
+        "YUM": {
+          "path": "raw/prices/YUM.parquet",
+          "sha256": "2a185bc2cc014311c1db589b51be2fff46232e0e3734571a3cda44fefd8d0807"
+        },
+        "ZBH": {
+          "path": "raw/prices/ZBH.parquet",
+          "sha256": "ddc3aa3113b3e8257a2dbb7a6885b7497423309dd7568998f096d766436608d4"
+        },
+        "ZION": {
+          "path": "raw/prices/ZION.parquet",
+          "sha256": "60b32e52f9f4a0c4e44d5418b1c781dbe0be106acb700ceba1307c50446a92e7"
+        },
+        "ZS": {
+          "path": "raw/prices/ZS.parquet",
+          "sha256": "a54bea353df65ea0d6429d2d84fe49085da57b5f205b08f293e000cf7512a584"
+        },
+        "ZTS": {
+          "path": "raw/prices/ZTS.parquet",
+          "sha256": "462ba8e7e7bbc2f649d2d3e6895ecca7651a26015ce4d2c2b1862f0733c0af0b"
+        }
+      },
+      "id": "355d17ec78dd3a77"
+    }
+  ]
 }
-

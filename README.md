@@ -6,9 +6,9 @@ infrastructure, not investment advice.
 
 ## Current phase
 
-P1 implementation and development-period data preparation. The owner supplied
-an 84-symbol frozen universe and explicitly approved including MSFT, leaving
-all 84 symbols active.
+P1 baseline V00 completed on 2026-09-04 for the owner-approved 84-symbol
+universe, including MSFT. The result is `INCONCLUSIVE`; the owner-authored
+`docs/why/P1.md` remains the final P1 checkpoint before P2.
 
 ## Bootstrap
 
@@ -32,8 +32,10 @@ The frozen universe came directly from the owner. Changes to
 uv run shm config validate --config-dir config --require-universe
 ```
 
-V00 was owner-approved on 2026-09-04. Run it only from a reproducible commit:
+V00 was run from commit `c6059f4`:
 
 ```bash
 uv run shm backtest run --prereg experiments/prereg/V00.md
 ```
+
+The generated report is `reports/20260904-220347-109e68bf.md`.

@@ -31,3 +31,11 @@ price on that rebalance date. Because coverage is below the required 80%,
 CHK-02 will report `INCONCLUSIVE`. The missing history is concentrated in
 delisted and renamed symbols that Yahoo no longer serves under their historical
 identifiers.
+
+## V00 outcome
+
+- Run: `20260904-220347-109e68bf`
+- Status: `INCONCLUSIVE`
+- The Stooq automation endpoint returned a browser-verification response, so
+  DQ-05 was also `INCONCLUSIVE`. CHK-02 coverage and four below-minimum
+  rebalance dates independently keep the overall result inconclusive.
