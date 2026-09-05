@@ -359,6 +359,7 @@ def run_paper_rebalance(
         "results": {
             "account_hash": account_hash,
             "eligible_count": len(eligibility.eligible),
+            "ranking": list(ranked_tickers),
             "selected": list(selected),
             "target_exposure": exposure,
             "ticket_count": len(ticket_plan.tickets),

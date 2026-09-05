@@ -433,6 +433,7 @@ def test_paper_rebalance_reads_frozen_local_window_and_writes_ticket(
     assert rows[0]["phase"] == "P4"
     assert rows[0]["snapshot_id"] == result.snapshot_id
     assert rows[0]["results"]["account_hash"]
+    assert rows[0]["results"]["ranking"] == ["AAA", "BBB"]
     assert "sharpe" not in rows[0]["results"]
     result.ticket_path.write_text("different\n", encoding="utf-8")
     with pytest.raises(FileExistsError, match="refusing to overwrite"):
