@@ -6,12 +6,12 @@ infrastructure, not investment advice.
 
 ## Current phase
 
-P2 out-of-sample preparation. The closed development set V01-V11 is complete;
-V04, V08, and V02 were selected in that order before any OOS data was read.
-All development runs are `INCONCLUSIVE` on data-quality evidence, while their
-separate hypothesis verdicts are recorded in `docs/p2_development_results.md`.
-The owner waived `docs/why/P1.md` in ADR-001, and ADR-002 delegates the
-remaining checkpoints and repository commits to the agent.
+P2 research has passed KR2. The three frozen OOS candidates were run in the
+precommitted order: V04 and V08 passed, while V02 missed the strict SPY Sharpe
+comparison. V04 (`params_hash` `2064365d`) is frozen in
+`config/params.frozen.yaml`; detailed evidence is in
+`docs/p2_development_results.md`. P3 implementation is next. Owner-authored
+phase notes remain outstanding for the final Gate.
 
 ## Bootstrap
 

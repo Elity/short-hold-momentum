@@ -1,0 +1,28 @@
+signal:
+  name: xs_momentum_12_1
+  lookback_trading_days: 126
+  skip_trading_days: 21
+  top_n: 15
+  weighting: equal
+  tie_break: ticker_asc
+eligibility:
+  min_price_usd: 5.0
+  min_adv_usd: 10000000.0
+  adv_window_days: 60
+  require_full_history: true
+  min_eligible_count: 30
+risk:
+  trend_filter:
+    enabled: true
+    benchmark: SPY
+    sma_days: 200
+    off_exposure: 0.0
+  vol_target:
+    enabled: true
+    window_days: 20
+    target_annual_vol: 0.15
+    max_exposure: 1.0
+execution:
+  fill: next_open
+  fractional_shares_in_backtest: true
+  cash_yield_annual: 0.0

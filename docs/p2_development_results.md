@@ -35,3 +35,24 @@ frozen before the first OOS unlock.
 
 ADR-004 records why the generated report/log verdict fields were corrected
 after the batch without changing metrics, checks, status, or candidate order.
+
+## OOS results
+
+All three candidates used the frozen 2019-01-01 through 2026-09-04 interval,
+10 bps default cost, the same universe hash, and snapshot `24442fa7d1a43680`.
+The three audited unlocks exhaust the P2 OOS budget.
+
+| Rank | ID | Sharpe | SPY Sharpe | CAGR | MaxDD | Status | KR2 |
+|---:|---|---:|---:|---:|---:|---|---|
+| 1 | V04 | 0.926 | 0.900 | 14.03% | -15.11% | WARN | PASS |
+| 2 | V08 | 0.911 | 0.900 | 17.00% | -16.87% | WARN | PASS |
+| 3 | V02 | 0.893 | 0.900 | 13.21% | -12.89% | WARN | FAIL |
+
+V04 is frozen as the P2 winner. It preserves the pre-OOS priority order and
+has the highest OOS Sharpe and shallower drawdown than V08. V08 also passes KR2
+but is not selected for the frozen production parameters. V02 misses KR2 only
+because its Sharpe is 0.007 below SPY.
+
+The WARN status is not hidden: V04 and V08 trigger survivorship and one-year
+dependency warnings; V02 triggers the one-year warning. CHK-07 passes using the
+latest three complete common SPY years, and PIT coverage is 92.07%.
