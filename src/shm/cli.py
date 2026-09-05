@@ -4,12 +4,19 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 from pydantic import ValidationError
 from yaml import YAMLError
 
 from shm.config import load_config_bundle, load_universe_config
-from shm.paper import PaperAccount, run_paper_rebalance
+from shm.paper import (
+    PaperAccount,
+    ingest_fills,
+    read_fill_csv,
+    read_ticket_csv,
+    run_paper_rebalance,
+)
 from shm.runner import run_development_backtest, update_development_data
 
 
@@ -22,6 +29,23 @@ def _load_paper_account(path: Path) -> PaperAccount:
         positions=payload.get("positions", {}),
         mode=payload.get("mode", "paper"),
     )
+
+
+def _resolve(root: Path, path: Path) -> Path:
+    return path if path.is_absolute() else root / path
+
+
+def _write_paper_account(path: Path, account: PaperAccount) -> Path:
+    payload: dict[str, Any] = {
+        "mode": account.mode,
+        "cash": account.cash,
+        "positions": dict(sorted(account.positions.items())),
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary.replace(path)
+    return path
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -66,6 +90,14 @@ def build_parser() -> argparse.ArgumentParser:
     rebalance.add_argument("--repo-root", type=Path, default=Path("."))
     rebalance.add_argument("--account", type=Path, required=True)
     rebalance.add_argument("--as-of", required=True, help="completed XNYS signal date")
+    fills = paper_commands.add_parser(
+        "ingest-fills", help="Apply confirmed paper fills to an account snapshot"
+    )
+    fills.add_argument("--repo-root", type=Path, default=Path("."))
+    fills.add_argument("--account", type=Path, required=True)
+    fills.add_argument("--tickets", type=Path, required=True)
+    fills.add_argument("--fills", type=Path, required=True)
+    fills.add_argument("--output-account", type=Path, required=True)
     return parser
 
 
@@ -124,7 +156,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "paper" and args.paper_command == "rebalance":
         try:
             root = args.repo_root.resolve()
-            account_path = args.account if args.account.is_absolute() else root / args.account
+            account_path = _resolve(root, args.account)
             account = _load_paper_account(account_path)
             outcome = run_paper_rebalance(account, root, args.as_of)
         except Exception as exc:
@@ -135,6 +167,30 @@ def main(argv: list[str] | None = None) -> int:
             f"as_of={outcome.as_of.date()}, params_hash={outcome.params_hash}, "
             f"selected={len(outcome.selected)}, tickets={len(outcome.ticket_plan.tickets)}, "
             f"path={outcome.ticket_path}"
+        )
+        return 0
+    if args.command == "paper" and args.paper_command == "ingest-fills":
+        try:
+            root = args.repo_root.resolve()
+            account = _load_paper_account(_resolve(root, args.account))
+            tickets = read_ticket_csv(_resolve(root, args.tickets))
+            fills = read_fill_csv(_resolve(root, args.fills))
+            outcome = ingest_fills(account, tickets, fills)
+            output = _write_paper_account(
+                _resolve(root, args.output_account), outcome.account
+            )
+        except Exception as exc:
+            print(f"paper fill ingestion failed: {exc}", file=sys.stderr)
+            return 2
+        cost = (
+            "not observed"
+            if outcome.realized_cost_bps is None
+            else f"{outcome.realized_cost_bps:.2f} bps"
+        )
+        print(
+            "paper fills recorded: "
+            f"fills={len(outcome.applied_fills)}, realized_cost={cost}, "
+            f"cash={outcome.account.cash:.2f}, account={output}"
         )
         return 0
     return 2

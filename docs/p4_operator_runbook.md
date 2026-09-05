@@ -41,8 +41,21 @@ ticker,qty,fill_price,fill_time,official_open
 ```
 
 An optional trailing `commission` column is supported. Never infer fills from
-the ticket. Update the next account snapshot only from confirmed fills, then use
-the paper accounting and monthly-report APIs in `shm.paper` for cost and
+the ticket. Apply confirmed fills and write a new account snapshot with:
+
+```sh
+uv run shm paper ingest-fills \
+  --repo-root . \
+  --account /absolute/path/to/account-before.json \
+  --tickets paper/tickets/YYYY-MM-DD.csv \
+  --fills paper/fills/YYYY-MM-DD.csv \
+  --output-account /absolute/path/to/account-after.json
+```
+
+The command rejects fills without a matching ticket, overfills, uncovered
+sells, and any purchase that would make cash negative. It reports realized
+cost against the official open and updates the next account snapshot only from
+confirmed fills. Use the monthly-report APIs in `shm.paper` for subsequent
 paper-versus-model attribution.
 
 The forward-test start is the first real paper-account snapshot. Do not backfill

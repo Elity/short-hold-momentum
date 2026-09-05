@@ -5,6 +5,7 @@ from types import SimpleNamespace
 import pandas as pd
 
 import shm.cli as cli
+from shm.paper import Fill, OrderTicket, write_fill_csv, write_ticket_csv
 from shm.runner import DataUpdateSummary, RunOutcome
 
 
@@ -113,3 +114,42 @@ def test_paper_rebalance_rejects_live_account_snapshot(tmp_path, capsys) -> None
         == 2
     )
     assert "live endpoints are forbidden" in capsys.readouterr().err
+
+
+def test_paper_fill_ingestion_writes_confirmed_account_snapshot(tmp_path) -> None:
+    account_path = tmp_path / "account-before.json"
+    account_path.write_text(
+        json.dumps({"mode": "paper", "cash": 1_000, "positions": {}}),
+        encoding="utf-8",
+    )
+    ticket_path = write_ticket_csv(
+        tmp_path / "paper/tickets/2026-09-17.csv",
+        [OrderTicket("AAA", "buy", 5)],
+    )
+    fill_path = write_fill_csv(
+        tmp_path / "paper/fills/2026-09-18.csv",
+        [Fill("AAA", 5, 101, "2026-09-18 09:30", 100, commission=1)],
+    )
+    output_path = tmp_path / "paper/accounts/2026-09-18.json"
+
+    assert (
+        cli.main(
+            [
+                "paper",
+                "ingest-fills",
+                "--repo-root",
+                str(tmp_path),
+                "--account",
+                str(account_path),
+                "--tickets",
+                str(ticket_path),
+                "--fills",
+                str(fill_path),
+                "--output-account",
+                str(output_path),
+            ]
+        )
+        == 0
+    )
+    updated = json.loads(output_path.read_text(encoding="utf-8"))
+    assert updated == {"cash": 494.0, "mode": "paper", "positions": {"AAA": 5}}
