@@ -175,6 +175,37 @@ def validate_oos_unlock(
     raise PermissionError("OOS access requires a matching persisted unlock record")
 
 
+def validate_oos_prereg(prereg: dict[str, str]) -> str:
+    if prereg.get("是否使用样本外", "").strip().casefold() not in {"是", "yes", "true"}:
+        raise PermissionError("preregistration is not selected for OOS use")
+    prediction = prereg.get("样本外预测", "").strip()
+    if not prediction:
+        raise ValueError("OOS preregistration requires a non-empty prediction")
+    return prediction
+
+
+def load_development_run(
+    path: Path | str,
+    *,
+    prereg: str,
+    params_hash: str,
+) -> dict[str, Any]:
+    records = [
+        row
+        for row in read_jsonl(path)
+        if row.get("prereg") == prereg and not row.get("oos_used", False)
+    ]
+    if not records:
+        raise ValueError("OOS requires an existing development run for this preregistration")
+    matching = [row for row in records if row.get("params_hash") == params_hash]
+    if not matching:
+        raise ValueError("current parameters do not match the recorded development run")
+    record = matching[-1]
+    if record.get("variant_index") is None:
+        raise ValueError("development run is missing variant_index")
+    return record
+
+
 def reserve_variant(
     log_path: Path | str,
     *,

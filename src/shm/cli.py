@@ -27,16 +27,23 @@ def build_parser() -> argparse.ArgumentParser:
 
     data = commands.add_parser("data", help="Market-data cache operations")
     data_commands = data.add_subparsers(dest="data_command", required=True)
-    update = data_commands.add_parser("update", help="Update the development-period cache")
+    update = data_commands.add_parser("update", help="Update the market-data cache")
     update.add_argument("--config-dir", type=Path, default=Path("config"))
     update.add_argument("--cache-dir", type=Path, default=Path("data/raw/prices"))
     update.add_argument("--skip-pit", action="store_true", help="skip CHK-02 reference ticker caches")
+    update.add_argument(
+        "--through-oos",
+        action="store_true",
+        help="update through the configured OOS end or the latest available date",
+    )
 
     backtest = commands.add_parser("backtest", help="Research backtest operations")
     backtest_commands = backtest.add_subparsers(dest="backtest_command", required=True)
-    run = backtest_commands.add_parser("run", help="Run an approved P1 development backtest")
+    run = backtest_commands.add_parser("run", help="Run an approved development or OOS backtest")
     run.add_argument("--repo-root", type=Path, default=Path("."))
     run.add_argument("--prereg", type=Path, default=Path("experiments/prereg/V00.md"))
+    run.add_argument("--unlock-oos", action="store_true", help="run the selected OOS period")
+    run.add_argument("--reason", help="required audit reason when unlocking OOS")
     return parser
 
 
@@ -61,6 +68,7 @@ def main(argv: list[str] | None = None) -> int:
                 config_dir=args.config_dir,
                 cache_dir=args.cache_dir,
                 include_pit=not args.skip_pit,
+                through_oos=args.through_oos,
             )
         except Exception as exc:
             print(f"data update failed: {exc}", file=sys.stderr)
@@ -77,7 +85,12 @@ def main(argv: list[str] | None = None) -> int:
         try:
             root = args.repo_root.resolve()
             prereg = args.prereg if args.prereg.is_absolute() else root / args.prereg
-            outcome = run_development_backtest(repo_root=root, prereg_path=prereg)
+            outcome = run_development_backtest(
+                repo_root=root,
+                prereg_path=prereg,
+                unlock_oos=args.unlock_oos,
+                reason=args.reason,
+            )
         except Exception as exc:
             print(f"backtest failed: {exc}", file=sys.stderr)
             return 2

@@ -15,6 +15,24 @@ class CheckResult:
     detail: str = ""
 
 
+@dataclass(frozen=True)
+class KR2Result:
+    status: str
+    sharpe_beats_spy: bool
+    maxdd_beats_spy: bool
+    run_status_eligible: bool
+    detail: str
+
+    def to_dict(self) -> dict[str, object]:
+        return {
+            "status": self.status,
+            "sharpe_beats_spy": self.sharpe_beats_spy,
+            "maxdd_beats_spy": self.maxdd_beats_spy,
+            "run_status_eligible": self.run_status_eligible,
+            "detail": self.detail,
+        }
+
+
 def compose_status(checks: Mapping[str, CheckResult | str]) -> str:
     statuses = [value.status if isinstance(value, CheckResult) else value for value in checks.values()]
     if "FAIL" in statuses:
@@ -26,6 +44,30 @@ def compose_status(checks: Mapping[str, CheckResult | str]) -> str:
     if any(status.startswith("WARN") for status in statuses):
         return "WARN"
     return "PASS"
+
+
+def evaluate_kr2(
+    strategy: PerformanceMetrics,
+    benchmark: PerformanceMetrics,
+    run_status: str,
+) -> KR2Result:
+    sharpe_beats_spy = strategy.sharpe > benchmark.sharpe
+    maxdd_beats_spy = abs(strategy.maxdd) < abs(benchmark.maxdd)
+    run_status_eligible = run_status in {"PASS", "WARN", "SUSPECT_REVIEWED"}
+    passed = sharpe_beats_spy and maxdd_beats_spy and run_status_eligible
+    return KR2Result(
+        status="PASS" if passed else "FAIL",
+        sharpe_beats_spy=sharpe_beats_spy,
+        maxdd_beats_spy=maxdd_beats_spy,
+        run_status_eligible=run_status_eligible,
+        detail=(
+            f"Sharpe {strategy.sharpe:.3f} {'>' if sharpe_beats_spy else '<='} "
+            f"SPY {benchmark.sharpe:.3f}; |MaxDD| {abs(strategy.maxdd):.2%} "
+            f"{'<' if maxdd_beats_spy else '>='} SPY {abs(benchmark.maxdd):.2%}; "
+            f"run status {run_status} is "
+            f"{'eligible' if run_status_eligible else 'ineligible'}"
+        ),
+    )
 
 
 def check_truncated_signal(

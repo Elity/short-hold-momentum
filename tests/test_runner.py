@@ -7,10 +7,16 @@ import pandas as pd
 import yaml
 
 import shm.runner as runner
-from shm.checks import CheckResult
+from shm.checks import CheckResult, KR2Result
 from shm.experiments import compute_file_hash
 from shm.report import PerformanceMetrics
 from shm.runner import run_development_backtest
+
+
+def test_oos_verdict_uses_kr2_and_quality_eligibility() -> None:
+    assert runner._verdict_for_kr2(KR2Result("PASS", True, True, True, "")) == "支持"
+    assert runner._verdict_for_kr2(KR2Result("FAIL", False, True, True, "")) == "反驳"
+    assert runner._verdict_for_kr2(KR2Result("FAIL", True, True, False, "")) == "无法判定"
 
 
 def test_synthetic_approved_run_writes_report_daily_snapshot_and_log(tmp_path, monkeypatch) -> None:
@@ -85,9 +91,11 @@ def test_synthetic_approved_run_writes_report_daily_snapshot_and_log(tmp_path, m
         "- 假设（一句话，可证伪）：Synthetic baseline completes.\n"
         "- 与 V00 的唯一差别（OFAT）：signal.top_n: 2 → 1\n"
         "- 预测：No directional prediction.\n"
+        "- 是否使用样本外：是\n"
+        "- 样本外预测：Sharpe should remain above SPY.\n"
         "- owner 批准：[x] 日期：2026-09-04\n"
     )
-    sessions = xcals.get_calendar("XNYS", start="2023-10-01", end="2025-04-05").sessions
+    sessions = xcals.get_calendar("XNYS", start="2023-10-01", end="2025-06-01").sessions
     wave = np.sin(np.arange(len(sessions)) / 10) * 0.15
     for offset, ticker in enumerate(("AAA", "BBB", "CCC", "SPY")):
         close = (100 + offset * 10) * (1 + wave + np.arange(len(sessions)) * 0.0001)
@@ -129,6 +137,31 @@ def test_synthetic_approved_run_writes_report_daily_snapshot_and_log(tmp_path, m
     assert runner._verdict_for_status("SUSPECT") == "无法判定"
     manifest = json.loads((tmp_path / "data/snapshots/manifest.json").read_text())
     assert manifest["snapshots"]
+
+    reason = "owner approved final OOS check"
+    oos_outcome = run_development_backtest(
+        repo_root=tmp_path,
+        prereg_path=prereg,
+        unlock_oos=True,
+        reason=reason,
+        second_source_loader=lambda _start, _end: spy,
+        ticker_second_source_loader=lambda _ticker, _start, _end: spy,
+    )
+    records = [json.loads(line) for line in (tmp_path / "experiments/log.jsonl").read_text().splitlines()]
+    oos_log = records[-1]
+    unlock = json.loads((tmp_path / "experiments/oos_unlocks.jsonl").read_text().strip())
+    assert oos_log["run_id"] == oos_outcome.run_id == unlock["run_id"]
+    assert oos_log["params_hash"] == log["params_hash"]
+    assert oos_log["variant_index"] == log["variant_index"] == unlock["variant_index"]
+    assert oos_log["oos_used"] is True
+    assert oos_log["period"] == {"start": "2025-04-01", "end": "2025-05-30"}
+    assert oos_log["expected"] == unlock["predicted"] == "Sharpe should remain above SPY."
+    assert unlock["approved_by"] == "owner via ADR-002"
+    assert oos_log["kr2"]["run_status_eligible"] is False
+    assert oos_log["verdict"] == "无法判定"
+    oos_report = oos_outcome.report_path.read_text()
+    assert "## KR2 out-of-sample gate" in oos_report
+    assert "--unlock-oos --reason 'owner approved final OOS check'" in oos_report
 
 
 def test_suspect_checklist_contains_b01_through_b07(tmp_path) -> None:

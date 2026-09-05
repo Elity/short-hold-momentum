@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+import shlex
 import subprocess
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 from typing import Callable
 from zoneinfo import ZoneInfo
@@ -11,6 +12,7 @@ import pandas as pd
 
 from shm.checks import (
     CheckResult,
+    KR2Result,
     check_constraints,
     check_cost_fragility,
     check_next_session_execution,
@@ -21,16 +23,21 @@ from shm.checks import (
     compose_status,
     download_stooq_spy,
     download_stooq_ticker,
+    evaluate_kr2,
 )
 from shm.config import ConfigBundle, load_config_bundle
-from shm.data import create_snapshot, update_price_caches
+from shm.data import create_snapshot, read_price_cache, update_price_caches
 from shm.experiments import (
     apply_prereg_ofat,
     append_run_log,
+    assert_data_access,
     compute_file_hash,
     compute_params_hash,
     load_approved_prereg,
+    load_development_run,
+    record_oos_unlock,
     reserve_variant,
+    validate_oos_prereg,
 )
 from shm.pipeline import (
     SignalPlan,
@@ -86,6 +93,32 @@ def _warmup_start(config: ConfigBundle) -> pd.Timestamp:
     return trailing_xnys_sessions(first_signal, config.dates.warmup_trading_days + 1)[0]
 
 
+def _latest_oos_end(
+    *,
+    root: Path,
+    config: ConfigBundle,
+    run_id: str,
+    reason: str,
+) -> date:
+    if config.dates.oos_end is not None:
+        return config.dates.oos_end
+    benchmark = config.params.risk.trend_filter.benchmark
+    frame = read_price_cache(
+        root / "data/raw/prices" / f"{benchmark}.parquet",
+        ticker=benchmark,
+        start=config.dates.oos_start,
+        mode="backtest",
+        oos_start=config.dates.oos_start,
+        unlock_oos=True,
+        reason=reason,
+        oos_audit_path=root / "experiments/oos_unlocks.jsonl",
+        oos_run_id=run_id,
+    )
+    if frame.empty:
+        raise ValueError("SPY cache has no observations in the OOS period")
+    return pd.to_datetime(frame["date"]).max().date()
+
+
 def _phase_for_prereg(prereg_file: Path) -> str:
     return "P1" if prereg_file.stem == "V00" else "P2"
 
@@ -98,14 +131,24 @@ def _verdict_for_status(status: str) -> str:
     return "支持"
 
 
+def _verdict_for_kr2(kr2: KR2Result) -> str:
+    if kr2.status == "PASS":
+        return "支持"
+    if kr2.run_status_eligible:
+        return "反驳"
+    return "无法判定"
+
+
 def update_development_data(
     *,
     config_dir: Path | str,
     cache_dir: Path | str,
     include_pit: bool = True,
+    through_oos: bool = False,
 ) -> DataUpdateSummary:
     config = load_config_bundle(config_dir)
     universe = load_frozen_universe(config_dir)
+    update_end = config.dates.oos_end if through_oos else config.dates.dev_end
     benchmark = config.params.risk.trend_filter.benchmark
     tickers = list(universe.active_tickers)
     if benchmark not in tickers:
@@ -114,19 +157,20 @@ def update_development_data(
         tickers,
         cache_dir,
         start=_warmup_start(config).date(),
-        end=config.dates.dev_end,
+        end=update_end,
         failures_path=Path(cache_dir).parent / "_failures.jsonl",
     )
     pit_results = {}
     if include_pit:
         history = load_pit_history(Path(config_dir).parent / "data/reference/sp500_history.csv")
-        pit_tickers = pit_tickers_for_period(history, config.dates.dev_start, config.dates.dev_end)
+        pit_end = update_end or datetime.now(ZoneInfo("Asia/Taipei")).date()
+        pit_tickers = pit_tickers_for_period(history, config.dates.dev_start, pit_end)
         extras = [ticker for ticker in pit_tickers if ticker not in set(tickers)]
         pit_results = update_price_caches(
             extras,
             cache_dir,
             start=_warmup_start(config).date(),
-            end=config.dates.dev_end,
+            end=update_end,
             failures_path=Path(cache_dir).parent / "_failures.jsonl",
             retries=1,
         )
@@ -269,6 +313,8 @@ def run_development_backtest(
     *,
     repo_root: Path | str,
     prereg_path: Path | str,
+    unlock_oos: bool = False,
+    reason: str | None = None,
     second_source_loader: Callable[[str, str], pd.DataFrame] = download_stooq_spy,
     ticker_second_source_loader: Callable[[str, str, str], pd.DataFrame] = download_stooq_ticker,
 ) -> RunOutcome:
@@ -280,6 +326,7 @@ def run_development_backtest(
     config = load_config_bundle(config_dir)
     universe = load_frozen_universe(config_dir)
     prereg = load_approved_prereg(prereg_file)
+    prereg_relative = str(prereg_file.relative_to(root))
     params = config.params.model_dump(mode="json")
     phase = _phase_for_prereg(prereg_file)
     if phase == "P2":
@@ -289,21 +336,75 @@ def run_development_backtest(
         config = ConfigBundle.model_validate(
             {**config.model_dump(mode="python"), "params": params}
         )
-    params_hash = compute_params_hash(params, config.costs.per_side_bps.default)
-    variant_index = reserve_variant(
-        root / "experiments/log.jsonl", params_hash=params_hash, phase=phase
-    )
+    computed_params_hash = compute_params_hash(params, config.costs.per_side_bps.default)
+    log_path = root / "experiments/log.jsonl"
+    reason_text = (reason or "").strip()
+    if unlock_oos:
+        assert_data_access(
+            mode="backtest",
+            requested_end=config.dates.oos_start,
+            oos_start=config.dates.oos_start,
+            unlock_oos=True,
+            reason=reason_text,
+        )
+        oos_prediction = validate_oos_prereg(prereg)
+        development_run = load_development_run(
+            log_path,
+            prereg=prereg_relative,
+            params_hash=computed_params_hash,
+        )
+        params_hash = str(development_run["params_hash"])
+        variant_index = int(development_run["variant_index"])
+    else:
+        oos_prediction = None
+        params_hash = computed_params_hash
+        variant_index = reserve_variant(log_path, params_hash=params_hash, phase=phase)
     git_sha = _git_sha(root)
+    stamp = datetime.now(ZoneInfo("Asia/Taipei"))
+    run_id = f"{stamp:%Y%m%d-%H%M%S}-{params_hash}"
+
+    if unlock_oos:
+        record_oos_unlock(
+            root / "experiments/oos_unlocks.jsonl",
+            run_id=run_id,
+            variant_index=variant_index,
+            reason=reason_text,
+            predicted=oos_prediction or "",
+            approved_by="owner via ADR-002",
+            timestamp=stamp,
+        )
+        period_start = config.dates.oos_start
+        period_end = _latest_oos_end(
+            root=root,
+            config=config,
+            run_id=run_id,
+            reason=reason_text,
+        )
+    else:
+        period_start = config.dates.dev_start
+        period_end = config.dates.dev_end
 
     history = load_pit_history(root / "data/reference/sp500_history.csv")
-    pit_tickers = pit_tickers_for_period(history, config.dates.dev_start, config.dates.dev_end)
+    pit_tickers = pit_tickers_for_period(history, period_start, period_end)
+    rebalance_dates = xnys_rebalance_dates(
+        config.dates.dev_start,
+        period_end,
+        warmup_trading_days=config.dates.warmup_trading_days,
+        every_trading_days=config.dates.rebalance_every_trading_days,
+    )
+    if unlock_oos:
+        rebalance_dates = rebalance_dates[rebalance_dates >= pd.Timestamp(period_start)]
 
     prepared = prepare_cached_data(
         config=config,
         universe=universe,
         cache_dir=root / "data/raw/prices",
         start=_warmup_start(config),
-        end=config.dates.dev_end,
+        end=period_end,
+        unlock_oos=unlock_oos,
+        reason=reason_text or None,
+        oos_audit_path=root / "experiments/oos_unlocks.jsonl" if unlock_oos else None,
+        oos_run_id=run_id if unlock_oos else None,
         additional_tickers=pit_tickers,
     )
     snapshot = create_snapshot(prepared.paths, root / "data/snapshots/manifest.json")
@@ -312,10 +413,9 @@ def run_development_backtest(
         universe=universe,
         config=config,
         quarantined=frozenset(),
+        rebalance_dates=rebalance_dates,
     )
-    execution_prices = _slice_for_engine(
-        prepared.prices, config.dates.dev_start, config.dates.dev_end
-    )
+    execution_prices = _slice_for_engine(prepared.prices, period_start, period_end)
     runs = run_cost_scenarios(
         execution_prices,
         plan,
@@ -370,9 +470,7 @@ def run_development_backtest(
     coverage = pit_price_coverage(history, plan.target_weights.index, prepared.prices)
 
     try:
-        second_spy = second_source_loader(
-            str(config.dates.dev_start), str(config.dates.dev_end)
-        )
+        second_spy = second_source_loader(str(period_start), str(period_end))
         dq05 = check_spy_annual_returns(prepared.prices[benchmark_ticker], second_spy)
     except Exception as error:
         dq05 = CheckResult("INCONCLUSIVE", f"DQ-05 second source unavailable: {error}")
@@ -408,8 +506,6 @@ def run_development_backtest(
         checks["CHK-02"].detail
         + f"; PIT CAGR={pit_metrics.cagr:.2%}, Sharpe={pit_metrics.sharpe:.3f}, MaxDD={pit_metrics.maxdd:.2%}",
     )
-    stamp = datetime.now(ZoneInfo("Asia/Taipei"))
-    run_id = f"{stamp:%Y%m%d-%H%M%S}-{params_hash}"
     status = compose_status(checks)
     if status == "SUSPECT":
         full_lookahead = check_plan_no_lookahead(
@@ -428,8 +524,8 @@ def run_development_backtest(
             full_lookahead=full_lookahead,
             prices=prepared.prices,
             universe_tickers=universe.active_tickers,
-            start=str(config.dates.dev_start),
-            end=str(config.dates.dev_end),
+            start=str(period_start),
+            end=str(period_end),
             ticker_second_source_loader=ticker_second_source_loader,
             execution_check=check_next_session_execution(
                 runs.default.transactions, calendar=config.dates.calendar
@@ -456,17 +552,23 @@ def run_development_backtest(
     warnings = sorted(
         result.status for result in checks.values() if result.status.startswith("WARN")
     )
-    verdict = _verdict_for_status(status)
-    reproduce = f"uv run shm backtest run --prereg {prereg_file.relative_to(root)}"
+    kr2 = evaluate_kr2(strategy_metrics, benchmark_metrics, status) if unlock_oos else None
+    verdict = _verdict_for_kr2(kr2) if kr2 is not None else _verdict_for_status(status)
+    reproduce_parts = ["uv", "run", "shm", "backtest", "run", "--prereg", prereg_relative]
+    if unlock_oos:
+        reproduce_parts.extend(["--unlock-oos", "--reason", reason_text])
+    reproduce = shlex.join(reproduce_parts)
+    expected = oos_prediction if unlock_oos else prereg.get("预测", "")
     report = render_report(
         run_id=run_id,
         status=status,
         warnings=warnings,
         hypothesis=prereg["假设（一句话，可证伪）"],
-        expected=prereg.get("预测", ""),
+        expected=expected or "",
         verdict=verdict,
         metadata={
-            "period": f"{config.dates.dev_start}..{config.dates.dev_end}",
+            "period": f"{period_start}..{period_end}",
+            "oos_used": unlock_oos,
             "params_hash": params_hash,
             "universe_hash": compute_file_hash(config_dir / "universe.yaml"),
             "snapshot_id": snapshot.id,
@@ -483,6 +585,7 @@ def run_development_backtest(
         exposure=runs.default.weights.sum(axis=1),
         checks=checks,
         reproduce=reproduce,
+        kr2=kr2,
     )
     write_report(report_path, report)
     append_run_log(
@@ -497,18 +600,19 @@ def run_development_backtest(
             "params": params,
             "universe_hash": compute_file_hash(config_dir / "universe.yaml"),
             "snapshot_id": snapshot.id,
-            "period": {"start": str(config.dates.dev_start), "end": str(config.dates.dev_end)},
-            "oos_used": False,
+            "period": {"start": str(period_start), "end": str(period_end)},
+            "oos_used": unlock_oos,
             "variant_index": variant_index,
-            "prereg": str(prereg_file.relative_to(root)),
+            "prereg": prereg_relative,
             "hypothesis": prereg["假设（一句话，可证伪）"],
-            "expected": prereg.get("预测", ""),
+            "expected": expected or "",
             "results": strategy_metrics.to_dict(),
             "results_stress": stress_metrics.to_dict(),
             "benchmark": benchmark_metrics.to_dict(),
             "checks": {name: result.status for name, result in checks.items()},
             "status": status,
             "verdict": verdict,
+            "kr2": kr2.to_dict() if kr2 is not None else None,
             "report": str(report_path.relative_to(root)),
         },
     )

@@ -9,6 +9,7 @@ from shm.checks import (
     check_survivorship,
     check_too_good,
     compose_status,
+    evaluate_kr2,
 )
 from shm.report import PerformanceMetrics, calculate_metrics, render_report, yearly_returns
 
@@ -39,6 +40,20 @@ def test_status_precedence_and_future_peek_like_curve_is_suspect() -> None:
     assert compose_status({"CHK-01": "FAIL", "CHK-05": check}) == "FAIL"
 
 
+def test_kr2_requires_both_metric_edges_and_an_eligible_status() -> None:
+    strategy = PerformanceMetrics(0.10, -0.20, 0.60, 0.50, 1.0, 0.8, 20.0)
+    benchmark = PerformanceMetrics(0.08, -0.30, 0.50, 0.27, 1.0, 1.0, 20.0)
+
+    for status in ("PASS", "WARN", "SUSPECT_REVIEWED"):
+        assert evaluate_kr2(strategy, benchmark, status).status == "PASS"
+    result = evaluate_kr2(strategy, benchmark, "INCONCLUSIVE")
+    assert result.status == "FAIL"
+    assert not result.run_status_eligible
+
+    equal_sharpe = PerformanceMetrics(0.10, -0.20, 0.50, 0.50, 1.0, 0.8, 20.0)
+    assert evaluate_kr2(equal_sharpe, benchmark, "PASS").status == "FAIL"
+
+
 def test_constraint_check_rejects_same_day_trade() -> None:
     index = pd.bdate_range("2025-01-02", periods=2)
     weights = pd.DataFrame({"AAPL": [0.5, 0.5]}, index=index)
@@ -64,6 +79,11 @@ def test_report_contains_required_sections() -> None:
     index = pd.bdate_range("2025-01-02", periods=3)
     equity = pd.Series([100.0, 101.0, 102.0], index=index)
     metrics = calculate_metrics(equity)
+    kr2 = evaluate_kr2(
+        PerformanceMetrics(0.10, -0.20, 0.60, 0.50, 1.0, 0.8, 20.0),
+        PerformanceMetrics(0.08, -0.30, 0.50, 0.27, 1.0, 1.0, 20.0),
+        "WARN",
+    )
     report = render_report(
         run_id="run-1",
         status="WARN",
@@ -82,8 +102,15 @@ def test_report_contains_required_sections() -> None:
         exposure=pd.Series([0.0, 0.5, 0.5], index=index),
         checks={f"CHK-{index:02d}": CheckResult("PASS") for index in range(1, 8)},
         reproduce="uv run shm backtest run --prereg experiments/prereg/V00.md",
+        kr2=kr2,
     )
-    for heading in ("## Metrics", "## Calendar-year returns", "## Automated checks", "## Reproduce"):
+    for heading in (
+        "## Metrics",
+        "## Calendar-year returns",
+        "## KR2 out-of-sample gate",
+        "## Automated checks",
+        "## Reproduce",
+    ):
         assert heading in report
     assert "CHK-07" in report
 

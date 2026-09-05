@@ -42,3 +42,16 @@ uv run shm backtest run --prereg experiments/prereg/V00.md
 ```
 
 The generated report is `reports/20260904-220347-109e68bf.md`.
+
+After freezing an OOS candidate and prediction, refresh the cache and run the
+audited sample-out evaluation explicitly:
+
+```bash
+uv run shm data update --through-oos
+uv run shm backtest run --prereg experiments/prereg/V04.md \
+  --unlock-oos --reason "Run frozen P2 candidate V04 under ADR-002"
+```
+
+Each OOS invocation consumes one of the three unlock records in
+`experiments/oos_unlocks.jsonl` and reports the KR2 result separately from the
+run-quality status.

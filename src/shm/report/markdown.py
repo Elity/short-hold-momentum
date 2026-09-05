@@ -46,6 +46,7 @@ def render_report(
     exposure: pd.Series,
     checks: Mapping[str, Any],
     reproduce: str,
+    kr2: Any | None = None,
 ) -> str:
     warning_text = ", ".join(warnings) if warnings else "none"
     lines = [
@@ -102,6 +103,23 @@ def render_report(
             "",
             f"- Equity: `{_sparkline(equity)}`",
             f"- Exposure: `{_sparkline(exposure)}`",
+        ]
+    )
+    if kr2 is not None:
+        lines.extend(
+            [
+                "",
+                "## KR2 out-of-sample gate",
+                "",
+                f"- Result: {kr2.status}",
+                f"- Sharpe above SPY: {kr2.sharpe_beats_spy}",
+                f"- Absolute MaxDD below SPY: {kr2.maxdd_beats_spy}",
+                f"- Run status eligible: {kr2.run_status_eligible}",
+                f"- Detail: {kr2.detail}",
+            ]
+        )
+    lines.extend(
+        [
             "",
             "## Automated checks",
             "",

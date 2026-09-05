@@ -1,3 +1,4 @@
+import json
 from datetime import date
 
 import pytest
@@ -9,8 +10,10 @@ from shm.experiments import (
     compute_file_hash,
     compute_params_hash,
     load_approved_prereg,
+    load_development_run,
     record_oos_unlock,
     reserve_variant,
+    validate_oos_prereg,
     validate_universe_hash,
 )
 
@@ -57,6 +60,46 @@ def test_oos_lock_and_fourth_unlock_are_rejected(tmp_path) -> None:
             reason="Another check.",
             predicted="No change.",
             approved_by="owner",
+        )
+
+
+def test_oos_prereg_and_development_identity_are_required(tmp_path) -> None:
+    prediction = "Sharpe remains above SPY."
+    assert validate_oos_prereg(
+        {"是否使用样本外": "是", "样本外预测": prediction}
+    ) == prediction
+    with pytest.raises(PermissionError, match="not selected"):
+        validate_oos_prereg({"是否使用样本外": "否", "样本外预测": prediction})
+    with pytest.raises(ValueError, match="non-empty prediction"):
+        validate_oos_prereg({"是否使用样本外": "是"})
+
+    log = tmp_path / "log.jsonl"
+    records = [
+        {
+            "prereg": "experiments/prereg/V04.md",
+            "params_hash": "2064365d",
+            "variant_index": 4,
+            "oos_used": False,
+        },
+        {
+            "prereg": "experiments/prereg/V04.md",
+            "params_hash": "2064365d",
+            "variant_index": 4,
+            "oos_used": True,
+        },
+    ]
+    log.write_text("\n".join(json.dumps(record) for record in records) + "\n")
+    development = load_development_run(
+        log,
+        prereg="experiments/prereg/V04.md",
+        params_hash="2064365d",
+    )
+    assert development["variant_index"] == 4
+    with pytest.raises(ValueError, match="do not match"):
+        load_development_run(
+            log,
+            prereg="experiments/prereg/V04.md",
+            params_hash="different",
         )
 
 
