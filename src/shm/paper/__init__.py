@@ -31,6 +31,7 @@ from shm.paper.core import (
     write_monthly_report,
     write_ticket_csv,
 )
+from shm.paper.runner import PaperRebalanceResult, run_paper_rebalance
 
 __all__ = [
     "FILL_COLUMNS",
@@ -44,6 +45,7 @@ __all__ = [
     "MonthlyComparisonInputs",
     "OrderTicket",
     "PaperAccount",
+    "PaperRebalanceResult",
     "SkippedCandidate",
     "TicketPlan",
     "build_monthly_comparison_inputs",
@@ -57,6 +59,7 @@ __all__ = [
     "realized_cost_bps",
     "render_monthly_report",
     "require_paper_mode",
+    "run_paper_rebalance",
     "tickets_from_frame",
     "validate_paper_window",
     "write_fill_csv",

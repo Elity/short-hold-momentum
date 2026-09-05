@@ -1,0 +1,59 @@
+version: 1
+source_phase: P2
+source_period:
+  start: 2005-01-01
+  end: 2018-12-31
+derivation: active universe tickers passing development-period DQ-03 and DQ-04
+params_hash: 2064365d
+universe_hash: 1b259d1ce72c625db28b23459cda3623e85fab6e6bc492b9bbd35157d78fc74c
+eligible_count: 48
+excluded_count: 36
+tickers:
+  - AAPL
+  - MSFT
+  - NVDA
+  - GOOGL
+  - AMZN
+  - ORCL
+  - CRM
+  - CSCO
+  - IBM
+  - AMD
+  - INTC
+  - QCOM
+  - TXN
+  - MU
+  - ADI
+  - AMAT
+  - LRCX
+  - KLAC
+  - MCHP
+  - MRVL
+  - "ON"
+  - ADBE
+  - INTU
+  - SNPS
+  - CDNS
+  - ADSK
+  - AKAM
+  - FFIV
+  - NTAP
+  - WDC
+  - STX
+  - GLW
+  - HPQ
+  - VRSN
+  - IT
+  - CTSH
+  - GEN
+  - CHKP
+  - NICE
+  - MPWR
+  - SWKS
+  - LSCC
+  - ENTG
+  - COHR
+  - ACLS
+  - TER
+  - CIEN
+  - CACI

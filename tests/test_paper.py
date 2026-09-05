@@ -1,6 +1,12 @@
+from pathlib import Path
+
+import numpy as np
 import pandas as pd
 import pytest
+import yaml
 
+from shm.config import ConfigBundle
+from shm.experiments import compute_file_hash, compute_params_hash
 from shm.paper import (
     FILL_COLUMNS,
     PAPER_LOOKBACK_SESSIONS,
@@ -17,11 +23,129 @@ from shm.paper import (
     read_ticket_csv,
     realized_cost_bps,
     render_monthly_report,
+    run_paper_rebalance,
     validate_paper_window,
     write_fill_csv,
     write_monthly_report,
     write_ticket_csv,
 )
+from shm.universe import xnys_rebalance_dates
+
+
+def _paper_repo(tmp_path):
+    config_dir = tmp_path / "config"
+    cache_dir = tmp_path / "data/raw/prices"
+    config_dir.mkdir(parents=True)
+    cache_dir.mkdir(parents=True)
+    dates = {
+        "calendar": "XNYS",
+        "dev_start": "2024-01-02",
+        "dev_end": "2024-12-31",
+        "oos_start": "2025-01-01",
+        "oos_end": None,
+        "warmup_trading_days": 260,
+        "rebalance_every_trading_days": 20,
+    }
+    params = {
+        "signal": {
+            "name": "xs_momentum_12_1",
+            "lookback_trading_days": 126,
+            "skip_trading_days": 21,
+            "top_n": 1,
+            "weighting": "equal",
+            "tie_break": "ticker_asc",
+        },
+        "eligibility": {
+            "min_price_usd": 5,
+            "min_adv_usd": 1,
+            "adv_window_days": 20,
+            "require_full_history": True,
+            "min_eligible_count": 2,
+        },
+        "risk": {
+            "trend_filter": {
+                "enabled": True,
+                "benchmark": "SPY",
+                "sma_days": 20,
+                "off_exposure": 0,
+            },
+            "vol_target": {
+                "enabled": True,
+                "window_days": 5,
+                "target_annual_vol": 0.15,
+                "max_exposure": 1,
+            },
+        },
+        "execution": {
+            "fill": "next_open",
+            "fractional_shares_in_backtest": True,
+            "cash_yield_annual": 0,
+        },
+    }
+    universe = {
+        "frozen_on": "2026-09-04",
+        "rule_text": "synthetic fixed paper universe",
+        "exclusions": [],
+        "tickers": ["AAA", "BBB", "CCC"],
+    }
+    costs = {
+        "model": "fixed_bps_on_notional",
+        "per_side_bps": {"default": 10, "stress": 25, "floor": 5},
+    }
+    for name, payload in {
+        "dates.yaml": dates,
+        "params.frozen.yaml": params,
+        "universe.yaml": universe,
+        "costs.yaml": costs,
+    }.items():
+        (config_dir / name).write_text(yaml.safe_dump(payload), encoding="utf-8")
+    bundle = ConfigBundle.model_validate(
+        {"dates": dates, "params": params, "costs": costs}
+    )
+    frozen_eligible = {
+        "version": 1,
+        "source_phase": "P2",
+        "params_hash": compute_params_hash(
+            bundle.params.model_dump(mode="json"), bundle.costs.per_side_bps.default
+        ),
+        "universe_hash": compute_file_hash(config_dir / "universe.yaml"),
+        "eligible_count": 2,
+        "excluded_count": 1,
+        "tickers": ["AAA", "BBB"],
+    }
+    (config_dir / "p2_eligible.frozen.yaml").write_text(
+        yaml.safe_dump(frozen_eligible), encoding="utf-8"
+    )
+
+    schedule = xnys_rebalance_dates(
+        dates["dev_start"],
+        "2026-09-04",
+        warmup_trading_days=dates["warmup_trading_days"],
+        every_trading_days=dates["rebalance_every_trading_days"],
+    )
+    as_of = schedule[-1]
+    sessions = paper_xnys_window(as_of)
+    for ticker, closes in {
+        "AAA": np.linspace(100, 200, len(sessions)),
+        "BBB": np.linspace(100, 130, len(sessions)),
+        "CCC": np.linspace(100, 250, len(sessions)),
+        "SPY": np.linspace(100, 150, len(sessions)),
+    }.items():
+        frame = pd.DataFrame(
+            {
+                "date": sessions,
+                "open": closes,
+                "high": closes,
+                "low": closes,
+                "close": closes,
+                "volume": np.full(len(sessions), 100_000, dtype="int64"),
+                "adjusted": True,
+                "source": "yfinance",
+                "downloaded_at": pd.Timestamp("2026-09-04", tz="UTC"),
+            }
+        )
+        frame.to_parquet(cache_dir / f"{ticker}.parquet", index=False)
+    return tmp_path, as_of
 
 
 def test_paper_account_rejects_live_mode_and_invalid_balances() -> None:
@@ -31,6 +155,27 @@ def test_paper_account_rejects_live_mode_and_invalid_balances() -> None:
         PaperAccount(cash=-0.01)
     with pytest.raises(ValueError, match="integer shares"):
         PaperAccount(cash=1_000, positions={"AAPL": -1})
+
+
+def test_p2_eligible_manifest_matches_the_frozen_strategy_and_universe() -> None:
+    root = Path(__file__).resolve().parents[1]
+    config_dir = root / "config"
+    payload = yaml.safe_load((config_dir / "p2_eligible.frozen.yaml").read_text())
+    bundle = ConfigBundle.model_validate(
+        {
+            "dates": yaml.safe_load((config_dir / "dates.yaml").read_text()),
+            "params": yaml.safe_load((config_dir / "params.frozen.yaml").read_text()),
+            "costs": yaml.safe_load((config_dir / "costs.yaml").read_text()),
+        }
+    )
+
+    assert payload["params_hash"] == "2064365d"
+    assert payload["params_hash"] == compute_params_hash(
+        bundle.params.model_dump(mode="json"), bundle.costs.per_side_bps.default
+    )
+    assert payload["universe_hash"] == compute_file_hash(config_dir / "universe.yaml")
+    assert payload["eligible_count"] == len(payload["tickers"]) == 48
+    assert payload["excluded_count"] == 36
 
 
 def test_integer_ticket_generation_substitutes_expensive_stock_without_negative_cash() -> None:
@@ -247,3 +392,57 @@ def test_monthly_markdown_contains_required_comparison_and_attribution(tmp_path)
     assert "HC-07" in report
     path = write_monthly_report(tmp_path / "monthly.md", inputs)
     assert path.read_text(encoding="utf-8") == report
+
+
+def test_paper_rebalance_reads_frozen_local_window_and_writes_ticket(tmp_path) -> None:
+    repo_root, as_of = _paper_repo(tmp_path)
+
+    result = run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of)
+
+    assert tuple(result.ranking.index) == ("AAA", "BBB")
+    frozen = yaml.safe_load((repo_root / "config/p2_eligible.frozen.yaml").read_text())
+    assert result.params_hash == frozen["params_hash"]
+    assert result.universe_hash == frozen["universe_hash"]
+    assert result.selected == ("AAA",)
+    assert result.exposure == pytest.approx(1.0)
+    assert result.ticket_path == repo_root / "paper/tickets" / f"{as_of.date()}.csv"
+    assert result.ticket_path.exists()
+    assert tuple(pd.read_csv(result.ticket_path).columns) == TICKET_COLUMNS
+    assert all(ticket.qty == int(ticket.qty) for ticket in result.ticket_plan.tickets)
+    assert result.ticket_plan.projected_cash >= 0
+    assert not (repo_root / "paper/fills").exists()
+
+    repeated = run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of)
+    assert repeated.ticket_path == result.ticket_path
+    result.ticket_path.write_text("different\n", encoding="utf-8")
+    with pytest.raises(FileExistsError, match="refusing to overwrite"):
+        run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of)
+
+
+def test_paper_rebalance_rejects_live_mode_and_non_rebalance_dates(tmp_path) -> None:
+    repo_root, as_of = _paper_repo(tmp_path)
+
+    with pytest.raises(PermissionError, match="live endpoints"):
+        run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of, mode="live")
+
+    with pytest.raises(ValueError, match="not an XNYS session"):
+        run_paper_rebalance(PaperAccount(cash=1_000), repo_root, "2026-08-22")
+
+    next_session = paper_xnys_window(as_of)[-2]
+    with pytest.raises(ValueError, match="not a configured 20-session rebalance date"):
+        run_paper_rebalance(PaperAccount(cash=1_000), repo_root, next_session)
+
+
+def test_paper_rebalance_requires_spy_window_and_minimum_eligible_count(tmp_path) -> None:
+    repo_root, as_of = _paper_repo(tmp_path)
+    spy_path = repo_root / "data/raw/prices/SPY.parquet"
+    spy = pd.read_parquet(spy_path).iloc[:-1]
+    spy.to_parquet(spy_path, index=False)
+    with pytest.raises(ValueError, match="SPY is missing close"):
+        run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of)
+
+    repo_root, as_of = _paper_repo(tmp_path / "below-minimum")
+    (repo_root / "data/raw/prices/BBB.parquet").unlink()
+    with pytest.raises(ValueError, match="eligibility below minimum"):
+        run_paper_rebalance(PaperAccount(cash=1_000), repo_root, as_of)
+    assert not (repo_root / "paper/tickets" / f"{as_of.date()}.csv").exists()
