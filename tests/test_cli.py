@@ -1,4 +1,8 @@
+import json
 from pathlib import Path
+from types import SimpleNamespace
+
+import pandas as pd
 
 import shm.cli as cli
 from shm.runner import DataUpdateSummary, RunOutcome
@@ -44,3 +48,68 @@ def test_backtest_forwards_oos_unlock_reason(tmp_path, monkeypatch) -> None:
     )
     assert received["unlock_oos"] is True
     assert received["reason"] == reason
+
+
+def test_paper_rebalance_loads_snapshot_and_stays_offline(tmp_path, monkeypatch) -> None:
+    account_path = tmp_path / "paper-account.json"
+    account_path.write_text(
+        json.dumps({"mode": "paper", "cash": 100_000, "positions": {"HPQ": 50}}),
+        encoding="utf-8",
+    )
+    received: dict[str, object] = {}
+
+    def run(account, repo_root, as_of):
+        received.update(account=account, repo_root=repo_root, as_of=as_of)
+        return SimpleNamespace(
+            as_of=pd.Timestamp("2026-09-17"),
+            params_hash="2064365d",
+            selected=("HPQ",),
+            ticket_plan=SimpleNamespace(tickets=()),
+            ticket_path=tmp_path / "paper/tickets/2026-09-17.csv",
+        )
+
+    monkeypatch.setattr(cli, "run_paper_rebalance", run)
+    assert (
+        cli.main(
+            [
+                "paper",
+                "rebalance",
+                "--repo-root",
+                str(tmp_path),
+                "--account",
+                str(account_path),
+                "--as-of",
+                "2026-09-17",
+            ]
+        )
+        == 0
+    )
+    assert received["repo_root"] == tmp_path.resolve()
+    assert received["as_of"] == "2026-09-17"
+    assert received["account"].cash == 100_000
+    assert received["account"].positions == {"HPQ": 50}
+
+
+def test_paper_rebalance_rejects_live_account_snapshot(tmp_path, capsys) -> None:
+    account_path = tmp_path / "paper-account.json"
+    account_path.write_text(
+        json.dumps({"mode": "live", "cash": 100_000, "positions": {}}),
+        encoding="utf-8",
+    )
+
+    assert (
+        cli.main(
+            [
+                "paper",
+                "rebalance",
+                "--repo-root",
+                str(tmp_path),
+                "--account",
+                str(account_path),
+                "--as-of",
+                "2026-09-17",
+            ]
+        )
+        == 2
+    )
+    assert "live endpoints are forbidden" in capsys.readouterr().err

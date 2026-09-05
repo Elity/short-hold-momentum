@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -8,7 +9,19 @@ from pydantic import ValidationError
 from yaml import YAMLError
 
 from shm.config import load_config_bundle, load_universe_config
+from shm.paper import PaperAccount, run_paper_rebalance
 from shm.runner import run_development_backtest, update_development_data
+
+
+def _load_paper_account(path: Path) -> PaperAccount:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError("paper account snapshot must be a JSON object")
+    return PaperAccount(
+        cash=payload["cash"],
+        positions=payload.get("positions", {}),
+        mode=payload.get("mode", "paper"),
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -44,6 +57,15 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--prereg", type=Path, default=Path("experiments/prereg/V00.md"))
     run.add_argument("--unlock-oos", action="store_true", help="run the selected OOS period")
     run.add_argument("--reason", help="required audit reason when unlocking OOS")
+
+    paper = commands.add_parser("paper", help="Offline paper-trading operations")
+    paper_commands = paper.add_subparsers(dest="paper_command", required=True)
+    rebalance = paper_commands.add_parser(
+        "rebalance", help="Generate a paper-only whole-share ticket"
+    )
+    rebalance.add_argument("--repo-root", type=Path, default=Path("."))
+    rebalance.add_argument("--account", type=Path, required=True)
+    rebalance.add_argument("--as-of", required=True, help="completed XNYS signal date")
     return parser
 
 
@@ -97,6 +119,22 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"backtest complete: run_id={outcome.run_id}, status={outcome.status}, "
             f"report={outcome.report_path}"
+        )
+        return 0
+    if args.command == "paper" and args.paper_command == "rebalance":
+        try:
+            root = args.repo_root.resolve()
+            account_path = args.account if args.account.is_absolute() else root / args.account
+            account = _load_paper_account(account_path)
+            outcome = run_paper_rebalance(account, root, args.as_of)
+        except Exception as exc:
+            print(f"paper rebalance failed: {exc}", file=sys.stderr)
+            return 2
+        print(
+            "paper ticket ready: "
+            f"as_of={outcome.as_of.date()}, params_hash={outcome.params_hash}, "
+            f"selected={len(outcome.selected)}, tickets={len(outcome.ticket_plan.tickets)}, "
+            f"path={outcome.ticket_path}"
         )
         return 0
     return 2
