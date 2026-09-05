@@ -28,3 +28,6 @@ The suggested rebalance-frequency variant is deferred. It changes
 `config/dates.yaml`, requires HC-03, and the current specification's
 `params_hash` excludes that value, so it cannot yet consume the variant budget
 correctly.
+
+The development batch is complete. Frozen hypothesis verdicts and the OOS
+selection are recorded in `docs/p2_development_results.md`.

@@ -6,11 +6,12 @@ infrastructure, not investment advice.
 
 ## Current phase
 
-P2 preregistration. P1 baseline V00 completed on 2026-09-04 for the
-owner-approved 84-symbol universe, including MSFT. The result is
-`INCONCLUSIVE`. The owner waived `docs/why/P1.md` in ADR-001 and instructed the
-project to continue to P2. ADR-002 delegates the remaining checkpoints and
-repository commits to the agent; all closed-set P2 batches are approved.
+P2 out-of-sample preparation. The closed development set V01-V11 is complete;
+V04, V08, and V02 were selected in that order before any OOS data was read.
+All development runs are `INCONCLUSIVE` on data-quality evidence, while their
+separate hypothesis verdicts are recorded in `docs/p2_development_results.md`.
+The owner waived `docs/why/P1.md` in ADR-001, and ADR-002 delegates the
+remaining checkpoints and repository commits to the agent.
 
 ## Bootstrap
 
