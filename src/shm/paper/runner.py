@@ -363,6 +363,16 @@ def run_paper_rebalance(
             "target_exposure": exposure,
             "ticket_count": len(ticket_plan.tickets),
             "projected_cash": ticket_plan.projected_cash,
+            "rounding_residual_usd": ticket_plan.rounding_residual_usd,
+            "target_positions": dict(ticket_plan.target_positions),
+            "skipped_candidates": [
+                {
+                    "ticker": item.ticker,
+                    "reason": item.reason,
+                    "replacement_ticker": item.replacement_ticker,
+                }
+                for item in ticket_plan.skipped
+            ],
         },
         "results_stress": {},
         "benchmark": {},

@@ -13,6 +13,7 @@ from yaml import YAMLError
 from shm.config import load_config_bundle, load_universe_config
 from shm.paper import (
     PaperAccount,
+    generate_monthly_report,
     ingest_fills,
     read_fill_csv,
     read_ticket_csv,
@@ -115,6 +116,11 @@ def build_parser() -> argparse.ArgumentParser:
     simulate.add_argument("--signal-date", required=True)
     simulate.add_argument("--tickets", type=Path)
     simulate.add_argument("--output-account", type=Path, required=True)
+    monthly = paper_commands.add_parser(
+        "monthly-report", help="Generate an observed paper-versus-model monthly report"
+    )
+    monthly.add_argument("--repo-root", type=Path, default=Path("."))
+    monthly.add_argument("--month", required=True, help="completed month in YYYY-MM format")
     return parser
 
 
@@ -238,6 +244,17 @@ def main(argv: list[str] | None = None) -> int:
             f"fills={len(outcome.ingestion.applied_fills)}, "
             f"cash={outcome.ingestion.account.cash:.2f}, fills_path={outcome.fill_path}, "
             f"account={output}"
+        )
+        return 0
+    if args.command == "paper" and args.paper_command == "monthly-report":
+        try:
+            outcome = generate_monthly_report(args.repo_root.resolve(), args.month)
+        except Exception as exc:
+            print(f"paper monthly report failed: {exc}", file=sys.stderr)
+            return 2
+        print(
+            "paper monthly report ready: "
+            f"month={outcome.inputs.month}, path={outcome.report_path}"
         )
         return 0
     return 2

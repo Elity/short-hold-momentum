@@ -206,3 +206,33 @@ def test_local_fill_simulation_writes_next_account_snapshot(tmp_path, monkeypatc
     updated = json.loads(output_path.read_text(encoding="utf-8"))
     assert updated["as_of"] == "2026-09-18"
     assert updated["positions"] == {"AAA": 5}
+
+
+def test_monthly_report_cli_writes_completed_month(tmp_path, monkeypatch, capsys) -> None:
+    received: dict[str, object] = {}
+    report_path = tmp_path / "reports/paper-2026-09.md"
+
+    def generate(repo_root, month):
+        received.update(repo_root=repo_root, month=month)
+        return SimpleNamespace(
+            inputs=SimpleNamespace(month="2026-09"),
+            report_path=report_path,
+        )
+
+    monkeypatch.setattr(cli, "generate_monthly_report", generate)
+
+    assert (
+        cli.main(
+            [
+                "paper",
+                "monthly-report",
+                "--repo-root",
+                str(tmp_path),
+                "--month",
+                "2026-09",
+            ]
+        )
+        == 0
+    )
+    assert received == {"repo_root": tmp_path.resolve(), "month": "2026-09"}
+    assert str(report_path) in capsys.readouterr().out

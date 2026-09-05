@@ -8,9 +8,7 @@ simulator with $100,000 initial cash. Its initial tracked snapshot is
 {
   "mode": "paper",
   "cash": 100000.0,
-  "positions": {
-    "HPQ": 50
-  }
+  "positions": {}
 }
 ```
 
@@ -42,9 +40,8 @@ ticker,qty,fill_price,fill_time,official_open
 ```
 
 An optional trailing `commission` column is supported. Never infer fills from
-an external paper broker's ticket. For local simulated fills, use the Python API
-`simulate_next_open_fills`; for externally confirmed fills, apply them and write
-a new account snapshot with:
+an external paper broker's ticket. For local simulated fills, write the next
+account snapshot with:
 
 ```sh
 uv run shm paper simulate-fills \
@@ -70,8 +67,19 @@ uv run shm paper ingest-fills \
 The command rejects fills without a matching ticket, overfills, uncovered
 sells, and any purchase that would make cash negative. It reports realized
 cost against the official open and updates the next account snapshot only from
-confirmed fills. Use the monthly-report APIs in `shm.paper` for subsequent
-paper-versus-model attribution.
+confirmed fills. After an XNYS calendar month has fully closed, generate the
+forward-only paper-versus-model report with:
+
+```sh
+uv run shm paper monthly-report \
+  --repo-root . \
+  --month YYYY-MM
+```
+
+The report starts from `forward_test_start`, carries positions and model signals
+across month boundaries, and writes `reports/paper-YYYY-MM.md`. It rejects the
+current or a future month until its final XNYS session has closed, and it never
+uses account snapshots, fills, or model signals before 2026-09-05.
 
 The forward-test start is the first real paper-account snapshot. Do not backfill
 it to the P2 OOS period. Three completed rebalance/fill cycles and three observed
