@@ -1,0 +1,2 @@
+ticker,side,qty,order_type,time_in_force,reason
+LRCX260918P00270000,sell,1,limit,day,paper_only cash_secured_put underlying=LRCX expiry=2026-09-18 strike=270 limit_bid=1.8 delta_source=black_scholes
