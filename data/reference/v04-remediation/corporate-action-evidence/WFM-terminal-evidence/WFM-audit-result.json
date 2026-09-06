@@ -1,0 +1,36 @@
+{
+  "generated_at_utc": "2026-09-06T17:48:46.973140+00:00",
+  "checks_passed": [
+    "ordinary dividend arithmetic",
+    "research-to-archive close mapping",
+    "research nominal-to-archive raw mapping",
+    "no post-June-28 dividend adjustment",
+    "ADR-014 calendar mappings",
+    "runtime input hashes unchanged"
+  ],
+  "status": "UNVERIFIED_TERMINAL_SESSION",
+  "manifest_ready": false,
+  "runtime_inputs_modified": false,
+  "input_hashes": {
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/WFM.parquet": "407d315eb303a7ed65f8a5dd44e4790891bd39b89bedf0d1e5abd2bcd9680e7d",
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/WFM.parquet": "a93319ae7a56473299db2d299fc52e66f826e4d5187d03383003bc42d0534123",
+    "/Users/fighting/code/short-hold-momentum/docs/decisions/ADR-014-corporate-actions-and-security-identity.md": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+  },
+  "output_hashes": {
+    "Nasdaq-ECA2017-10.txt": "e6a13cdd450a6995ca3cb3be98e25ff15536e10727b5488c33b5da11218681d2",
+    "SEC-2017-annual.txt": "543cb9106d07b39d0c8b50345d9ff24a0fa4373d2e87f8a1c5d912430b0d1b30",
+    "SEC-closing-8k.txt": "f541b99f2f2f3c2c1bbc2661c2debb1a0b010f585b4e6fb06e21082f7dcc008a",
+    "WFM-action-proposal.json": "ae98a7f4c63a211fb9f278e265022a40f0efe8d8794ecb07a3449015871276ff",
+    "WFM-dividend-audit.json": "edfc0cc536a27a9eda35290326ea2affdbc8dc7e8e4fef235970d90a5769821a",
+    "WFM-exact-source-quotes.json": "6cf8914ec390d5e38fb188e3c82c80018fc228215a14936c3c02b28904a32693",
+    "WFM-findings.md": "ba09eb9e375498e47fa5d9c87d4e6bf7350b6e32e781036126717ca3d4a6d973",
+    "WFM-sources.json": "ec99e90786f187fb2fff100df602fb3b2a0acd276fd31a18984f923b83f4a84a",
+    "WFM-terminal-window.csv": "015a398fc7956638742222a55124705581609ad2c9fe2a62ad36ca25e026ab3a",
+    "audit_wfm_terminal.py": "2f58d0e4ea47829a046a8d439599c8b90217807ec1e3d205a099ea46ff36c0a3",
+    "dividendhistory-terminal-crosscheck.txt": "440e3b522ff93c4927bce60427b703fcd9a58d5f97c96379be6232dbcb38bf16",
+    "dividendmax-terminal-crosscheck.txt": "831f42b51b062c8d90bff972d41b5b24f8a2c8398c46387770f5f52880cdefdf",
+    "search-1.json": "11016de2f10acb7dfc59ce1faadc5880d98eaf1fc2659aa441afa88e5cd7b781",
+    "search-2.json": "60879a7418995f69ae71e6ff734e70a4b13af2e1560fc66f7667ad48822eacae",
+    "search-3.json": "75817f916f0e0344c79abe91bb9282137939b9360b4412afe54b843234ea6ca1"
+  }
+}

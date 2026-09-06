@@ -1,0 +1,138 @@
+[
+  {
+    "cache_ticker": "FRX",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/FRX.parquet",
+    "sha256": "fab65c96f24e37bd3f124d9991346b160b426d425c9f91921286b9ec023f02b9",
+    "basis": "raw OHLC columns, not adj_*; identity qualification in evidence note",
+    "observations": [
+      {
+        "ticker": "FRX",
+        "date": "2014-06-30",
+        "open": 100.16,
+        "high": 100.46,
+        "low": 99.0,
+        "close": 99.0,
+        "volume": 11460490.0,
+        "ex-dividend": 0.0,
+        "split_ratio": 1.0,
+        "adj_open": 100.16,
+        "adj_high": 100.46,
+        "adj_low": 99.0,
+        "adj_close": 99.0,
+        "adj_volume": 11460490.0
+      }
+    ]
+  },
+  {
+    "cache_ticker": "DTV",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/DTV.parquet",
+    "sha256": "a0573937a76dfb6f80d088b43414eabd06c150308cf8df8e380a6f473d382d30",
+    "basis": "raw OHLC columns, not adj_*; identity qualification in evidence note",
+    "observations": [
+      {
+        "ticker": "DTV",
+        "date": "2015-07-23",
+        "open": 92.89,
+        "high": 93.0,
+        "low": 92.16,
+        "close": 92.19,
+        "volume": 5657301.0,
+        "ex-dividend": 0.0,
+        "split_ratio": 1.0,
+        "adj_open": 92.89,
+        "adj_high": 93.0,
+        "adj_low": 92.16,
+        "adj_close": 92.19,
+        "adj_volume": 5657301.0
+      },
+      {
+        "ticker": "DTV",
+        "date": "2015-07-24",
+        "open": 93.91,
+        "high": 94.63,
+        "low": 93.36,
+        "close": 93.55,
+        "volume": 17640148.0,
+        "ex-dividend": 0.0,
+        "split_ratio": 1.0,
+        "adj_open": 93.91,
+        "adj_high": 94.63,
+        "adj_low": 93.36,
+        "adj_close": 93.55,
+        "adj_volume": 17640148.0
+      }
+    ]
+  },
+  {
+    "cache_ticker": "AGN",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/AGN.parquet",
+    "sha256": "15d833ac168254a8417f6cfde0b4f7c6b2276964a46a56cb7578a904c3af1590",
+    "basis": "raw OHLC columns, not adj_*; identity qualification in evidence note",
+    "observations": [
+      {
+        "ticker": "AGN",
+        "date": "2014-06-30",
+        "open": 224.62,
+        "high": 225.32,
+        "low": 221.6,
+        "close": 223.05,
+        "volume": 6323700.0,
+        "ex-dividend": 0.0,
+        "split_ratio": 1.0,
+        "adj_open": 222.42768406705,
+        "adj_high": 223.12085198998,
+        "adj_low": 219.43715959959,
+        "adj_close": 220.87300743993,
+        "adj_volume": 6323700.0
+      },
+      {
+        "ticker": "AGN",
+        "date": "2014-07-01",
+        "open": 226.8,
+        "high": 229.4,
+        "low": 223.62,
+        "close": 224.0,
+        "volume": 5900500.0,
+        "ex-dividend": 0.0,
+        "split_ratio": 1.0,
+        "adj_open": 224.58640702701,
+        "adj_high": 227.16103074073,
+        "adj_low": 221.43744417716,
+        "adj_close": 221.81373533532,
+        "adj_volume": 5900500.0
+      },
+      {
+        "ticker": "AGN",
+        "date": "2015-06-12",
+        "open": 301.27,
+        "high": 301.56,
+        "low": 297.86,
+        "close": 298.98,
+        "volume": 1370772.0,
+        "ex-dividend": 0.0,
+        "split_ratio": 1.0,
+        "adj_open": 298.56271058442,
+        "adj_high": 298.85010457011,
+        "adj_low": 295.18335371817,
+        "adj_close": 296.29328911119,
+        "adj_volume": 1370772.0
+      },
+      {
+        "ticker": "AGN",
+        "date": "2015-06-15",
+        "open": 297.83,
+        "high": 301.98,
+        "low": 295.94,
+        "close": 301.35,
+        "volume": 1079494.0,
+        "ex-dividend": 0.0,
+        "split_ratio": 1.0,
+        "adj_open": 295.15362330586,
+        "adj_high": 299.26633034249,
+        "adj_low": 293.28060733014,
+        "adj_close": 298.64199168392,
+        "adj_volume": 1079494.0
+      }
+    ]
+  }
+]

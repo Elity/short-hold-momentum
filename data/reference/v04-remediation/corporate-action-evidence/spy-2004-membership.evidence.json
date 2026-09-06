@@ -1,0 +1,48 @@
+{
+  "name": "spy-2004-membership",
+  "source_url": "https://www.sec.gov/Archives/edgar/data/884394/000095013505000099/b52997nanv30dza.txt",
+  "bytes": 76197,
+  "sha256": "b7c447d986f0a58f0a6791dd70b2433cbea34d57b703438c43ac4e394b8dd4a0",
+  "excerpts": [
+    {
+      "term": "Watson",
+      "offset": 45478,
+      "excerpt": "500\nWaste Management, Inc. ............         2,543,435              69,537,513\nWaters Corp. *.....................           535,133              23,599,365\nWatson Pharmaceuticals, Inc. *.....           474,209              13,970,197\nWellpoint Health Networks, Inc. *...          684,670              71,951,970\nWells Fargo & Co. .................         7,411,487             441,946,970\nWendy's International, Inc. .......           480,128              16,132,301\nWeyerhaeuser Co. ..................         1,061,120              70,543,258\nWhirlpool "
+    },
+    {
+      "term": "Allergan",
+      "offset": 5112,
+      "excerpt": "816\nAllegheny Energy, Inc. *...........           558,903               8,920,092\nAllegheny Technologies, Inc. ......           378,473               6,907,132\nAllergan, Inc. ....................           572,296              41,520,075\nAllied Waste Industries, Inc. *....         1,413,539              12,509,820\nAllstate Corp. ....................         3,044,583             146,109,538\nALLTEL Corp. ......................         1,353,069              74,297,019\nAltera Corp. *.....................         1,673,051              32,741,608\nAltria Gro"
+    },
+    {
+      "term": "Waters",
+      "offset": 45400,
+      "excerpt": "166\nWashington Mutual, Inc. ...........         3,808,457             148,834,500\nWaste Management, Inc. ............         2,543,435              69,537,513\nWaters Corp. *.....................           535,133              23,599,365\nWatson Pharmaceuticals, Inc. *.....           474,209              13,970,197\nWellpoint Health Networks, Inc. *...          684,670              71,951,970\nWells Fargo & Co. .................         7,411,487             441,946,970\nWendy's International, Inc. .......           480,128              16,132,301\nWeyerhaeus"
+    },
+    {
+      "term": "full replication",
+      "offset": 1285,
+      "excerpt": "t.\n\nPERFORMANCE OVERVIEW:\nThe SPDR Trust, Series 1 (the \"Trust\") seeks to match the total return of the\nS&P 500 Index. To accomplish this, the Trust utilizes a full replication\napproach. With this strategy, all 500 securities of the S&P 500 Index are owned\nby the Trust in their approximate market capitalization weight. A replication\nmanagement approach should result in low expected tracking error of the Trust\nrelative to its benchmark.\n\nThe Trust ended its fiscal year on September 30, 2004 with a 12-month total\nreturn of 13.62% on net asset value as comp"
+    },
+    {
+      "term": "all 500",
+      "offset": 1332,
+      "excerpt": "s 1 (the \"Trust\") seeks to match the total return of the\nS&P 500 Index. To accomplish this, the Trust utilizes a full replication\napproach. With this strategy, all 500 securities of the S&P 500 Index are owned\nby the Trust in their approximate market capitalization weight. A replication\nmanagement approach should result in low expected tracking error of the Trust\nrelative to its benchmark.\n\nThe Trust ended its fiscal year on September 30, 2004 with a 12-month total\nreturn of 13.62% on net asset value as compared to the S&P 500 Index return of\n13.87%.\n\nMo"
+    },
+    {
+      "term": "SEPTEMBER 30",
+      "offset": 366,
+      "excerpt": "       SPDR TRUST SERIES 1\n\n                            A UNIT INVESTMENT TRUST\n\n                                 ANNUAL REPORT\n\n                               SEPTEMBER 30, 2004\n\n\"S&P(R)\", \"S&P 500(R)\", \"STANDARD & POOR'S(R)\", \"STANDARD & POOR'S DEPOSITARY\nRECEIPTS(R)\", AND \"SPDR(R)\" ARE TRADEMARKS OF THE MCGRAW-HILL COMPANIES, INC.\nAND HAVE BEEN LICENSED FOR USE BY PDR SERVICES LLC AND THE AMERICAN STOCK\nEXCHANGE LLC. THE TRUST, HOWEVER, IS NOT SPONSORED BY OR AFFILIATED WITH\nSTANDARD & POOR'S OR THE MCGRAW-HILL COMPANIES, INC.\n<PAGE>\n\nSPDR TRUST SERIE"
+    },
+    {
+      "term": "SEPTEMBER 30",
+      "offset": 1601,
+      "excerpt": "ght. A replication\nmanagement approach should result in low expected tracking error of the Trust\nrelative to its benchmark.\n\nThe Trust ended its fiscal year on September 30, 2004 with a 12-month total\nreturn of 13.62% on net asset value as compared to the S&P 500 Index return of\n13.87%.\n\nMost of the gain in the S&P 500 Index was achieved in the first quarter of the\nfiscal year when the Index rose 12.18%. Since then, the Index has traded in a\nrelatively tight range, usually within plus or minus two percentage points of\nthe level at the end of the 2003 cal"
+    },
+    {
+      "term": "SEPTEMBER 30",
+      "offset": 2385,
+      "excerpt": "l election, the continuing\ninstability in Iraq, rising short term interest rates, and increasing oil\nprices. The price of a barrel of oil was just under $50 on September 30, 2004, a\n70% increase from the price one year earlier. The impact of this price increase,\nalong with the decision of the Federal Reserve to tighten monetary policy by\nraising short term interest rates, caused some concern over the outlook of the\nU.S. economy.\n\nEnergy was the top performing sector during the last year. The Energy Select\nSector Index rose nearly 49% as the increased pri"
+    }
+  ]
+}

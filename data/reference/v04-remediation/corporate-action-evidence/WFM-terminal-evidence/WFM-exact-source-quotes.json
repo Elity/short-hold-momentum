@@ -1,0 +1,32 @@
+{
+  "sec": {
+    "url": "https://www.sec.gov/Archives/edgar/data/865436/000114420417045261/v474128_8k.htm",
+    "source_document_date": "2017-08-28",
+    "search_last_updated_at": null,
+    "search_crawled_at": "2026-08-17T01:49:00.0000000Z",
+    "capture_is_search_extracted_text": true,
+    "exact_excerpt": "In connection with the consummation of the Merger, the Company is requesting that the NASDAQ Global Select Market (the “NASDAQ”) suspend trading of Whole Foods Market Shares prior to market open on August 28, 2017, remove Whole Foods Market Shares from listing and file a Form 25 with the SEC to report the delisting of Whole Foods Market Shares from the NASDAQ. The Company expects that, in accordance with the Company’s request, the NASDAQ will file a Form 25 on August 28, 2017 to provide notification of such delisting and to effect the deregistration of Whole Foods Market Shares under Section 12 (b) of the U.S. Securities Exchange Act of 1934, as amended (the “Exchange Act”). The Company intends to file a Form 15 with the SEC to terminate the registration of Whole Foods Market Shares under the Exchange Act and to suspend the Company’s reporting obligations under the Exchange Act with respect to Whole Foods Market Shares.",
+    "speech_act": "Company request and expectation; not confirmation that Nasdaq executed the requested pre-open halt."
+  },
+  "nasdaq": {
+    "url": "https://www.nasdaqtrader.com/TraderNews.aspx?id=ECA2017-10",
+    "exact_title": "Equity Corporate Actions Alert #2017 - 10 (UPDATED) Information Regarding the Merger of Whole Foods Market, Inc. (WFM)",
+    "displayed_header_date": "Thursday, August 24, 2017",
+    "search_last_updated_at": "2017-08-24T00:00:00.0000000",
+    "search_crawled_at": "2025-02-15T11:12:00.0000000Z",
+    "exact_update_timestamp": null,
+    "update_timestamp_note": "Title says (UPDATED); displayed date and search metadata say August 24, while body says merger became effective today, August 28. No exact revision timestamp is supplied; do not substitute crawler timestamp for event/update date.",
+    "exact_completion_excerpt": "The merger became effective today, August 28, 2017.",
+    "exact_suspension_excerpt": "Marketplace Effective Date for Suspension:  August 29, 2017",
+    "speech_act": "The exchange's dated marketplace suspension field; more direct operational evidence than the issuer's request. Does not itself certify a particular regular-session OHLC bar or exact intraday halt timestamp."
+  },
+  "recommendation": {
+    "evidence_weight": "Prioritize Nasdaq's marketplace effective date over the issuer-requested date for the proposed market cutoff.",
+    "preserve_archive_2017_08_28": true,
+    "recommended_last_trading_session_for_review": "2017-08-28",
+    "recommended_effective_session_for_review": "2017-08-29",
+    "recommended_ADR014_release_session_for_review": "2017-09-06",
+    "recommended_fields_are_verified_for_automatic_loading": false,
+    "reason_not_auto_verified": "Archive volume corroborates activity on August 28, but its identical OHLC does not identify session type or prove an executable strategy open; no precise halt timestamp is captured."
+  }
+}

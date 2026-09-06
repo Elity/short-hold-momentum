@@ -114,7 +114,7 @@ def test_orchestrator_runs_only_ten_pit_paths_and_never_qualifies_missing_histor
         bt = SimpleNamespace(equity=equity, cash=equity * .5, costs=equity * 0,
                              weights=pd.DataFrame({"TIE": .5, "OLD": 0.0}, index=sessions),
                              transactions=pd.DataFrame(), execution_fallbacks=pd.DataFrame())
-        return SimpleNamespace(backtest=bt, warnings=[], decisions=[{
+        return SimpleNamespace(backtest=bt, warnings=[], final_state=SimpleNamespace(corporate_receivables={}), decisions=[{
             "signal_date": str(date.date()), "eligible_count": 2, "diagnostics": {"rebalance": True},
         } for date in schedule])
 

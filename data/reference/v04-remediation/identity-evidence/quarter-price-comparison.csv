@@ -1,0 +1,25 @@
+ticker,year,quarter,comparison_basis,sec_high,archive_high,sec_low,archive_low,high_delta,low_delta,match_to_report_rounding,sec_url
+STR,2014,1,raw daily high max / low min,24.09,24.09,22.07,22.065,0.0,-0.004999999999999005,True,https://www.sec.gov/Archives/edgar/data/68589/000075165216000260/str12311510k.htm
+STR,2014,2,raw daily high max / low min,24.89,24.89,22.83,22.83,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/68589/000075165216000260/str12311510k.htm
+STR,2014,3,raw daily high max / low min,24.85,24.85,21.49,21.49,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/68589/000075165216000260/str12311510k.htm
+STR,2014,4,raw daily high max / low min,26.44,26.44,21.06,21.06,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/68589/000075165216000260/str12311510k.htm
+STR,2015,1,raw daily high max / low min,26.44,26.44,22.47,22.47,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/68589/000075165216000260/str12311510k.htm
+STR,2015,2,raw daily high max / low min,24.33,24.33,20.88,20.88,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/68589/000075165216000260/str12311510k.htm
+STR,2015,3,raw daily high max / low min,22.29,22.2885,18.29,18.29,-0.0015000000000000568,0.0,True,https://www.sec.gov/Archives/edgar/data/68589/000075165216000260/str12311510k.htm
+STR,2015,4,raw daily high max / low min,21.21,21.21,18.02,18.02,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/68589/000075165216000260/str12311510k.htm
+LSI,2012,1,raw daily high max / low min,9.2,50.15,5.99,42.75,40.95,36.76,False,https://www.sec.gov/Archives/edgar/data/703360/000119312514069522/d628854d10k.htm
+LSI,2012,2,raw daily high max / low min,8.91,53.73,5.95,46.93,44.81999999999999,40.98,False,https://www.sec.gov/Archives/edgar/data/703360/000119312514069522/d628854d10k.htm
+LSI,2012,3,raw daily high max / low min,8.1,58.99,5.59,49.92,50.89,44.33,False,https://www.sec.gov/Archives/edgar/data/703360/000119312514069522/d628854d10k.htm
+LSI,2012,4,raw daily high max / low min,7.23,63.32,6.26,55.66,56.09,49.4,False,https://www.sec.gov/Archives/edgar/data/703360/000119312514069522/d628854d10k.htm
+LSI,2013,1,raw daily high max / low min,7.66,67.44,6.51,60.29,59.78,53.78,False,https://www.sec.gov/Archives/edgar/data/703360/000119312514069522/d628854d10k.htm
+LSI,2013,2,raw daily high max / low min,7.6,71.55,5.99,62.11,63.949999999999996,56.12,False,https://www.sec.gov/Archives/edgar/data/703360/000119312514069522/d628854d10k.htm
+LSI,2013,3,raw daily high max / low min,8.08,76.53,7.09,64.69,68.45,57.599999999999994,False,https://www.sec.gov/Archives/edgar/data/703360/000119312514069522/d628854d10k.htm
+LSI,2013,4,raw daily high max / low min,11.04,80.24,7.39,63.07,69.19999999999999,55.68,False,https://www.sec.gov/Archives/edgar/data/703360/000119312514069522/d628854d10k.htm
+ALTR,2013,1,raw close max/min,36.25,36.25,33.27,33.27,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/768251/000076825115000008/altera10k12312014.htm
+ALTR,2013,2,raw close max/min,34.75,34.75,31.07,31.07,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/768251/000076825115000008/altera10k12312014.htm
+ALTR,2013,3,raw close max/min,38.8,38.8,32.96,32.96,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/768251/000076825115000008/altera10k12312014.htm
+ALTR,2013,4,raw close max/min,37.83,37.825,30.83,30.83,-0.0049999999999954525,0.0,True,https://www.sec.gov/Archives/edgar/data/768251/000076825115000008/altera10k12312014.htm
+ALTR,2014,1,raw close max/min,37.04,37.04,31.38,31.38,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/768251/000076825115000008/altera10k12312014.htm
+ALTR,2014,2,raw close max/min,36.43,36.43,32.08,32.08,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/768251/000076825115000008/altera10k12312014.htm
+ALTR,2014,3,raw close max/min,37.07,37.065,32.67,32.67,-0.005000000000002558,0.0,True,https://www.sec.gov/Archives/edgar/data/768251/000076825115000008/altera10k12312014.htm
+ALTR,2014,4,raw close max/min,38.27,38.27,30.83,30.83,0.0,0.0,True,https://www.sec.gov/Archives/edgar/data/768251/000076825115000008/altera10k12312014.htm

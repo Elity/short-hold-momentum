@@ -1,0 +1,95 @@
+{
+  "status": "research_proposal_only_not_applied",
+  "reviewed_at_utc": "2026-09-06T16:50:25Z",
+  "base_sha256": "39a9202c9ef69a74c0ff07e2113ad41fb6da7c8c5b6cd9541f0185fb4391e717",
+  "identities": [
+    {
+      "canonical": "AGN_OLD",
+      "issuer": "Allergan, Inc.",
+      "cik": "0000850693",
+      "historical_symbol": "AGN",
+      "preserve_base_membership_start": "1996-01-02",
+      "membership_end_exclusive": "2015-03-23",
+      "last_trading_session": "2015-03-16",
+      "merger_effective_date": "2015-03-17",
+      "membership_date_source": "S&P 2015-03-16 official index announcement; do not confuse index removal with trading suspension"
+    },
+    {
+      "canonical": "AGN",
+      "lineage": "Watson Pharmaceuticals / Actavis, Inc. / Actavis plc / Allergan plc",
+      "membership_start_inclusive": "1999-04-12",
+      "start_date_evidence": "Contemporaneous TheStreet 1999-04-06 reporting S&P changes after close Friday April 9; original S&P 1999 release not located",
+      "primary_membership_observations": [
+        "2004-09-30 SPDR full-replication annual holdings",
+        "2005-09-30 SPDR full-replication annual holdings",
+        "2015-03-16 S&P expressly identifies ACT as existing S&P500 constituent"
+      ],
+      "symbols": [
+        {
+          "from": "1999-04-12",
+          "to_exclusive": "2013-01-24",
+          "symbol": "WPI",
+          "cik": "0000884629"
+        },
+        {
+          "from": "2013-01-24",
+          "to_exclusive": "2013-10-01",
+          "symbol": "ACT",
+          "cik": "0000884629"
+        },
+        {
+          "from": "2013-10-01",
+          "to_exclusive": "2015-06-15",
+          "symbol": "ACT",
+          "cik": "0001578845",
+          "predecessor_exchange_ratio": 1
+        },
+        {
+          "from": "2015-06-15",
+          "symbol": "AGN",
+          "cik": "0001578845"
+        }
+      ]
+    }
+  ],
+  "minimal_canonical_patch_rules": [
+    {
+      "condition": "date < 2015-03-23 and AGN in source members",
+      "action": "replace AGN token with AGN_OLD",
+      "affected_source_rows": 2134,
+      "first": "1996-01-02",
+      "last": "2015-03-19",
+      "purpose": "preserve the old Allergan member rather than deleting it"
+    },
+    {
+      "condition": "1999-04-12 <= date < 2015-03-23",
+      "action": "add AGN canonical key for the independently identified Watson/Actavis lineage",
+      "affected_source_rows": 1744,
+      "first": "1999-04-12",
+      "last": "2015-03-19",
+      "purpose": "restore the second issuer; historical trading symbols remain WPI/ACT as recorded above"
+    },
+    {
+      "condition": "date >= 2015-03-23",
+      "action": "retain existing AGN canonical key as Actavis/Allergan plc lineage; no AGN_OLD",
+      "purpose": "matches S&P old-AGN removal and AAL addition"
+    }
+  ],
+  "warnings": [
+    "Canonical AGN before 2015-06-15 is an identity key, not the contemporaneous ticker.",
+    "No WPI/ACT root or suffix appears anywhere in base. WAT is Waters Corporation, not Watson.",
+    "Index membership through 2015-03-20 does not make AGN_OLD tradeable after the March 17 merger.",
+    "These local corrections do not certify all other base constituents or all intervening daily official index lists."
+  ],
+  "dtc_availability": {
+    "FRX": {
+      "cash_available_date": null,
+      "successor_stock_available_date": null
+    },
+    "DTV": {
+      "cash_available_date": null,
+      "successor_stock_available_date": null
+    },
+    "reason": "Bounded issuer/SEC/DTC searches found procedures and entitlement dates, not an event-specific DTC distribution allocation timestamp or universal customer-account credit date."
+  }
+}

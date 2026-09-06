@@ -18,6 +18,8 @@
 
 本次修复说明见[ADR-013](decisions/ADR-013-point-in-time-data-remediation.md)。数据修复后的复跑仍是已知历史研究，不新增OOS记录。
 
+并购与代码复用的进一步修复见[ADR-014](decisions/ADR-014-corporate-actions-and-security-identity.md)。模拟账户按已核实的默认条款转换权益，现金先列应收，固定于有效交易日之后第5个XNYS交易日释放。该到账规则为预先固定的模拟假设，不能称实测；缺对价、证券身份或必要价格时仍不能晋级。研究保留小数权益，整股模拟还须明确适用的零股现金规则。
+
 ## 当前成分与新鲜度
 
 通过实际State Street SPY产品页提供的完整每日持仓XLSX，与Wikipedia标普500成分表交叉核验。发行人ETF持仓并非实时授权指数数据；明确保留来源持仓日期、实际抓取时间、核验时间、URL和原始文件哈希，不声称绝对实时。

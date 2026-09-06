@@ -1,0 +1,122 @@
+{
+  "scope": "Primary-source research only. These records are evidence candidates, not a deployed corporate-action manifest.",
+  "observed_at_utc": "2026-09-06T16:43:00Z",
+  "events": [
+    {
+      "event_id": "FRX_ACT_20140701",
+      "old_symbol": "FRX",
+      "old_issuer": "Forest Laboratories, Inc.",
+      "old_cik": "0000038074",
+      "last_trading_session": "2014-06-30",
+      "legal_effective_date": "2014-07-01",
+      "first_untradable_session": "2014-07-01",
+      "effective_phase": "before_open",
+      "election_policy": "no_election_default_standard",
+      "cash_usd_per_old_share": 26.04,
+      "successor_symbol_at_event": "ACT",
+      "successor_issuer": "Actavis plc",
+      "successor_cik": "0001578845",
+      "successor_shares_per_old_share": 0.3306,
+      "fraction_rule": "aggregate all shares for the holder; issue whole ACT shares; pay fractional entitlement in cash",
+      "fraction_cash_price_usd": 219,
+      "fraction_cash_price_status": "confirmed_final_SEC_8K_and_issuer_election_results",
+      "fraction_price_formula": "10-trading-day VWAP from 11th prior trading day through 2nd prior trading day before closing (S-4)",
+      "cash_entitlement_date": "2014-07-01",
+      "cash_available_date": null,
+      "share_delivery_date": null,
+      "payment_rule": "Exchange agent sends transmittal materials promptly after effective time; delivery upon properly completed transmittal and any required documents; no interest; no universal account-credit date identified",
+      "last_raw_close_usd": 99,
+      "last_raw_close_source": "local WIKI archive FRX raw close; see local-raw-price-checks.json",
+      "last_raw_close_status": "archive_observation_independent_market_quote_not_found",
+      "source_files": [
+        "frx-forest-final-8k.source.json",
+        "frx-final-election-results.source.json",
+        "frx-s4-excerpts.json"
+      ],
+      "unresolved": [
+        "actual broker/account cash and stock credit date",
+        "independent primary or contemporaneous market confirmation of FRX raw final close $99.00"
+      ],
+      "successor_identity_chain": [
+        {
+          "date": "2015-06-15",
+          "from_symbol": "ACT",
+          "to_symbol": "AGN",
+          "kind": "same_issuer_name_symbol_change",
+          "issuer_cik": "0001578845",
+          "new_cusip": "G0177J108",
+          "share_ratio": 1,
+          "sources": [
+            "frx-actavis-to-allergan.source.json",
+            "frx-actavis-agn-occ-36885.source.json"
+          ]
+        }
+      ],
+      "identity_warning": "Original Allergan, Inc. AGN (CIK 850693) was acquired 2015-03-17 for $129.22 + 0.3683 ACT; it is a different issuer from the 2015-06-15 renamed Actavis/Allergan plc. Do not splice old AGN into successor ACT."
+    },
+    {
+      "event_id": "DTV_T_20150724",
+      "old_symbol": "DTV",
+      "old_issuer": "DIRECTV",
+      "last_trading_session": "2015-07-24",
+      "legal_effective_date": "2015-07-24",
+      "first_untradable_session": "2015-07-27",
+      "effective_phase": "legal_completion_on_last_trading_date; exact closing clock time not found; process before next session",
+      "election_policy": "fixed_completed_merger_terms",
+      "cash_usd_per_old_share": 28.5,
+      "successor_symbol_at_event": "T",
+      "successor_issuer": "AT&T Inc.",
+      "successor_cik": "0000732717",
+      "successor_cusip": "00206R102",
+      "successor_shares_per_old_share": 1.892,
+      "fraction_rule": "no fractional T shares issued; exchange agent calculates cash based on Average Parent Stock Price per agreement 4.2(e)",
+      "fraction_cash_price_usd": null,
+      "fraction_cash_price_status": "holder-specific equity rate unresolved; issuer illustrative $35.14 and OCC option-clearing $34.916215 must remain separate",
+      "fraction_rate_observations": [
+        {
+          "channel": "issuer_tax_basis_illustration",
+          "price": 35.14,
+          "source": "dtv-att-tax-basis-illustration.source.json"
+        },
+        {
+          "channel": "OCC_adjusted_T1_options",
+          "price": 34.916215,
+          "as_of": "2015-08-19",
+          "fraction_per_contract": 0.2,
+          "cash_in_lieu_per_contract": 6.98,
+          "source": "dtv-occ-cil-37310.source.json"
+        }
+      ],
+      "cash_entitlement_date": "2015-07-24",
+      "cash_available_date": null,
+      "share_delivery_date": null,
+      "payment_rule": "book-entry shares automatically exchange; transaction advice and a combined cash check are sent; certificated shares require surrender. Agreement mails transmittal within 4 business days, not a universal 4-day payout deadline.",
+      "last_raw_close_usd": 93.55,
+      "last_raw_close_status": "local raw archive corroborated by contemporaneous business reporting and independent daily market table",
+      "last_raw_ohlcv": {
+        "open": 93.91,
+        "high": 94.63,
+        "low": 93.36,
+        "close": 93.55,
+        "volume": 17640148
+      },
+      "successor_raw_close_on_effective_date": 34.29,
+      "successor_raw_close_source": "AT&T completed-merger SEC 8-K",
+      "source_files": [
+        "dtv-att-final-8k.source.json",
+        "dtv-book-entry-letter.source.json",
+        "dtv-merger-agreement-excerpts.json",
+        "dtv-occ-cil-37310.source.json",
+        "dtv-last-close-news.source.json",
+        "dtv-last-close-investing.source.json",
+        "local-raw-price-checks.json"
+      ],
+      "unresolved": [
+        "actual broker/account cash and stock credit date",
+        "equity cash-in-lieu exact applicable price versus separate illustrative and option-clearing figures",
+        "intraday legal closing timestamp"
+      ],
+      "successor_identity_warning": "DTV common shares are extinguished; T is consideration stock, not a ticker rename of DTV. Archived rows carrying DTV after 2015-07-24 cannot belong to the extinguished listed security."
+    }
+  ]
+}

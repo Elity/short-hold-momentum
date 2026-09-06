@@ -1,0 +1,128 @@
+{
+  "source": "/Users/fighting/code/short-hold-momentum/data/reference/sp500_history.csv",
+  "source_sha256": "39a9202c9ef69a74c0ff07e2113ad41fb6da7c8c5b6cd9541f0185fb4391e717",
+  "source_rows": 2718,
+  "wpi_substring_symbols": [],
+  "act_substring_symbols": [],
+  "wat_substring_symbols": [
+    "WAT"
+  ],
+  "agn_substring_symbols": [
+    "AGN"
+  ],
+  "old_agn_preserved_rows": {
+    "count": 2134,
+    "first": "1996-01-02",
+    "last": "2015-03-19"
+  },
+  "two_issuer_overlap_source_rows": {
+    "count": 1744,
+    "first": "1999-04-12",
+    "last": "2015-03-19"
+  },
+  "two_issuer_overlap_research_rows_2005_onward": {
+    "count": 1119,
+    "first": "2005-01-06",
+    "last": "2015-03-19"
+  },
+  "boundary_rows": [
+    {
+      "date": "1999-04-05",
+      "member_count": 491,
+      "AGN": true,
+      "ANV": true,
+      "AAL": false
+    },
+    {
+      "date": "1999-04-06",
+      "member_count": 491,
+      "AGN": true,
+      "ANV": true,
+      "AAL": false
+    },
+    {
+      "date": "1999-04-08",
+      "member_count": 491,
+      "AGN": true,
+      "ANV": true,
+      "AAL": false
+    },
+    {
+      "date": "1999-04-12",
+      "member_count": 490,
+      "AGN": true,
+      "ANV": false,
+      "AAL": false
+    },
+    {
+      "date": "1999-04-13",
+      "member_count": 490,
+      "AGN": true,
+      "ANV": false,
+      "AAL": false
+    },
+    {
+      "date": "1999-04-14",
+      "member_count": 490,
+      "AGN": true,
+      "ANV": false,
+      "AAL": false
+    },
+    {
+      "date": "1999-04-15",
+      "member_count": 490,
+      "AGN": true,
+      "ANV": false,
+      "AAL": false
+    },
+    {
+      "date": "1999-04-16",
+      "member_count": 490,
+      "AGN": true,
+      "ANV": false,
+      "AAL": false
+    },
+    {
+      "date": "2015-03-13",
+      "member_count": 499,
+      "AGN": true,
+      "ANV": false,
+      "AAL": false
+    },
+    {
+      "date": "2015-03-17",
+      "member_count": 498,
+      "AGN": true,
+      "ANV": false,
+      "AAL": false
+    },
+    {
+      "date": "2015-03-18",
+      "member_count": 499,
+      "AGN": true,
+      "ANV": false,
+      "AAL": false
+    },
+    {
+      "date": "2015-03-19",
+      "member_count": 499,
+      "AGN": true,
+      "ANV": false,
+      "AAL": false
+    },
+    {
+      "date": "2015-03-23",
+      "member_count": 500,
+      "AGN": true,
+      "ANV": false,
+      "AAL": true
+    },
+    {
+      "date": "2015-03-24",
+      "member_count": 500,
+      "AGN": true,
+      "ANV": false,
+      "AAL": true
+    }
+  ]
+}

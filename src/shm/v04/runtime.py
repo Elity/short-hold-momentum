@@ -5,10 +5,12 @@ import json
 from pathlib import Path
 
 import yaml
+import pandas as pd
 
 from shm.data.market_refresh import refresh_market_cache
 from shm.universe.sp500 import load_sp500_snapshot, refresh_sp500_universe, sp500_status
 from shm.v03.research import write_json
+from shm.v04.history import load_corporate_actions
 
 
 def refresh_constituents(root: Path | str, *, as_of, now=None) -> dict:
@@ -30,6 +32,11 @@ def refresh_sp500_prices(root: Path | str, *, as_of, now=None, **overrides) -> d
     for path in (root / "paper").glob("v0*/*/state.json"):
         for book in json.loads(path.read_text()).get("books", {}).values():
             held.update(book.get("state", {}).get("positions", {}))
+    actions, _, _ = load_corporate_actions(root)
+    for action in actions:
+        if (action.source_ticker in held and action.target_ticker
+                and pd.Timestamp(action.effective_session) <= pd.Timestamp(as_of)):
+            held.add(action.target_ticker)
     # The preserved V04 still needs its frozen candidate set; use this same
     # throttled queue so its old downloader cannot bypass the provider pause.
     legacy = root / "config/p2_eligible.frozen.yaml"

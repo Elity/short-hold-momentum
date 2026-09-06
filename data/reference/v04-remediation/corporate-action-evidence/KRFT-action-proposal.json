@@ -1,0 +1,20 @@
+{
+  "action": {
+    "action_id": "KRFT-2015-07-06",
+    "source_ticker": "KRFT",
+    "target_ticker": "KHC",
+    "announced_date": "2015-03-25",
+    "known_date": "2015-07-02",
+    "last_trading_session": "2015-07-02",
+    "effective_session": "2015-07-06",
+    "cash_per_share": 16.5,
+    "exchange_ratio": 1.0,
+    "cash_in_lieu_price": null,
+    "cash_settlement_session": "2015-07-13",
+    "source_price_treatment": "terminal_before_action",
+    "evidence": "SEC Kraft 2015-07-02 Form 8-K Items 2.01/3.01 and issuer closing release establish 1:1 KHC plus $16.50, KRFT trading termination 2015-07-02 and first KHC session 2015-07-06; WIKI terminal-factor audit excludes duplicate cash. Cash availability uses ADR-014 fifth-subsequent-XNYS-session model, not observed brokerage settlement."
+  },
+  "evidence_file": "KRFT-evidence.md",
+  "price_window": {"ticker": "KRFT", "end": "2015-07-02", "rows_requiring_removal": 0},
+  "implementation_note": "Do not separately credit WIKI KHC first-row ex-dividend=16.50. The current total-return OHLC engine does not separately replay dividend events."
+}

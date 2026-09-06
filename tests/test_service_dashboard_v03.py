@@ -63,3 +63,52 @@ def test_v03_reports_and_unstarted_candidates_do_not_fall_back_to_v04(paper_repo
     assert read_report(paper_repo, "monthly/2026-09")["content"] == "V04 report"
     with pytest.raises(ValueError):
         read_report(paper_repo, "monthly/2026-09", strategy_id="../C3")
+
+
+def test_dashboard_reconciles_cash_stock_and_locked_corporate_receivable(paper_repo):
+    from shm.v03.strategy import PortfolioState, PositionState
+
+    _init(paper_repo)
+    signal = _run(paper_repo, SIGNAL)
+    # Seed an existing holding plus legally owed cash before a real scheduled
+    # rebalance. NAV remains $100k, but the $10k entitlement is not spendable.
+    available_before = {}
+    for cost, book in signal["books"].items():
+        state = PortfolioState.from_dict(book["state"])
+        ticker = next(iter(state.pending.target_weights))
+        frame = pd.read_parquet(paper_repo / f"data/raw/prices/{ticker}.parquet").set_index("date")
+        mark = float(frame.loc[pd.Timestamp(SIGNAL), "close"])
+        state.positions[ticker] = PositionState(100, mark, SIGNAL, mark, mark - 5)
+        state.marks[ticker], state.mark_dates[ticker] = mark, SIGNAL
+        state.corporate_receivables = {"fixture-merger": {
+            "amount": 10000., "effective_session": SIGNAL,
+            "cash_settlement_session": "2026-09-25", "evidence": "synthetic dated entitlement",
+        }}
+        state.cash = 100000 - 100 * mark - 10000
+        available_before[cost] = state.cash
+        book["state"] = state.to_dict()
+    (paper_repo / f"paper/v03/C3/days/{SIGNAL}.json").write_text(json.dumps(signal))
+    filled = _run(paper_repo, FILL)
+    store = ServiceStore(paper_repo / "service.sqlite3")
+    store.initialize()
+    payload = build_dashboard(paper_repo, store, "Asia/Taipei", strategy_id="C3",
+                              now=datetime.fromisoformat(_now(FILL)))
+    account = payload["account"]
+    book = filled["books"]["10"]
+    stock_value = sum(holding["value"] for holding in payload["holdings"])
+    assert account["total"] == pytest.approx(book["valuation"]["equity"])
+    assert account["corporate_receivables"] == 10000.
+    assert account["market"] == pytest.approx(stock_value)
+    assert account["cash"] == pytest.approx(book["state"]["cash"])
+    assert account["total"] == pytest.approx(stock_value + account["cash"] + 10000.)
+    assert sum(holding["weight"] for holding in payload["holdings"]) + (
+        account["cash"] + account["corporate_receivables"]
+    ) / account["total"] * 100 == pytest.approx(100.)
+    assert any("尚未到账，不能用于买入" in warning for warning in payload["warnings"])
+    buys = sum(trade["notional"] + trade["cost"] for trade in book["execution"]["transactions"]
+               if trade["side"] == "buy")
+    sales = sum(trade["notional"] - trade["cost"] for trade in book["execution"]["transactions"]
+                if trade["side"] == "sell")
+    assert buys > available_before["10"] * .90
+    assert buys <= available_before["10"] + sales + 1e-6
+    assert account["cash"] == pytest.approx(available_before["10"] + sales - buys)

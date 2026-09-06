@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 
 from shm.engine.backtest import BacktestResult
+from shm.v03.corporate_actions import AdjustmentBasis, convert_position
 from shm.v03.strategy import (
     Decision, PortfolioState, PositionState, PreparedInputs, evaluate_close,
     mark_equity, positive, prepare_inputs,
@@ -25,29 +26,48 @@ class ExecutionResult:
         return asdict(self)
 
 
-def sync_price_basis(prepared: PreparedInputs, state: PortfolioState) -> list[dict]:
+def sync_price_basis(prepared: PreparedInputs, state: PortfolioState, *, as_of: object | None = None) -> list[dict]:
     """Rebase persisted units when a refreshed adjusted-history cache changes.
 
     Compare the *same historical observation*, never adjacent trading dates.
     Quantity changes inversely so this is a unit correction, not a cashflow.
     """
     events = []
+    asof = pd.Timestamp(as_of if as_of is not None else prepared.sessions[-1]).date().isoformat()
+    previously_unverified = set(state.unverified_price_basis)
+    state.unverified_price_basis = []
+    participants = {ticker for action in prepared.corporate_actions
+                    if action.source_ticker in state.positions
+                    and action.effective_session <= asof
+                    and state.positions[action.source_ticker].entry_date <= action.last_trading_session
+                    and action.action_id not in state.processed_corporate_actions
+                    for ticker in (action.source_ticker, action.target_ticker) if ticker}
+
+    def unverified(ticker: str, reference_date: str | None) -> None:
+        state.unverified_price_basis.append(ticker)
+        events.append({"action": "unverified_price_basis", "ticker": ticker, "reference_date": reference_date})
+
     for ticker, position in state.positions.items():
         reference_date = state.mark_dates.get(ticker)
         if reference_date is None or ticker not in state.marks:
+            if reference_date is not None or ticker in participants or ticker in previously_unverified:
+                unverified(ticker, reference_date)
             continue
         row = prepared.date_index.get(pd.Timestamp(reference_date))
         column = prepared.ticker_index.get(ticker)
         if row is None or column is None:
-            events.append({"action": "unverified_price_basis", "ticker": ticker, "reference_date": reference_date})
+            unverified(ticker, reference_date)
             continue
         old_price, new_price = state.marks[ticker], prepared.closes[row, column]
         if not positive(old_price) or not positive(new_price):
+            unverified(ticker, reference_date)
             continue
         factor = float(new_price / old_price)
         if abs(factor - 1) <= 1e-9:
             continue
         position.quantity /= factor
+        if ticker in state.blocked_exits and "quantity" in state.blocked_exits[ticker]:
+            state.blocked_exits[ticker]["quantity"] /= factor
         position.average_cost *= factor
         position.peak_close *= factor
         if position.trailing_stop is not None:
@@ -55,6 +75,167 @@ def sync_price_basis(prepared: PreparedInputs, state: PortfolioState) -> list[di
         state.marks[ticker] = float(new_price)
         events.append({"action": "adjustment_rescale", "ticker": ticker, "factor": factor, "reference_date": reference_date})
     return events
+
+
+def _settle_corporate_receivables(state: PortfolioState, asof: str, result: ExecutionResult) -> None:
+    for action_id, item in list(state.corporate_receivables.items()):
+        settlement = item.get("cash_settlement_session")
+        if settlement is not None and settlement <= asof:
+            state.cash += float(item["amount"])
+            del state.corporate_receivables[action_id]
+            result.events.append({"action": "corporate_cash_settlement", "event_type": "corporate_action",
+                                  "action_id": action_id, "execution_date": asof,
+                                  "cash_settlement_session": settlement, "amount": item["amount"],
+                                  "evidence": item["evidence"], "model_cost": 0.0, "market_fill": False})
+
+
+def _apply_corporate_actions(prepared: PreparedInputs, date: pd.Timestamp,
+                             state: PortfolioState, result: ExecutionResult, integer_shares: bool) -> None:
+    asof = date.date().isoformat()
+    for action in prepared.corporate_actions:
+        receivable = state.corporate_receivables.get(action.action_id)
+        if receivable is not None and receivable.get("cash_settlement_session") is None and action.cash_settlement_session:
+            receivable["cash_settlement_session"] = action.cash_settlement_session
+            receivable["evidence"] = action.evidence
+    _settle_corporate_receivables(state, asof, result)
+    for action in sorted(prepared.corporate_actions, key=lambda item: (item.effective_session, item.action_id)):
+        if action.effective_session > asof or action.action_id in state.processed_corporate_actions:
+            continue
+        source = action.source_ticker
+        if source not in state.positions:
+            state.processed_corporate_actions.append(action.action_id)
+            continue
+        if state.positions[source].entry_date > action.last_trading_session:
+            # A subsequently reused ticker is not the old issuer's entitlement.
+            state.processed_corporate_actions.append(action.action_id)
+            continue
+        source_row = prepared.date_index.get(pd.Timestamp(action.last_trading_session))
+        source_col = prepared.ticker_index[source]
+        target_row = prepared.date_index.get(pd.Timestamp(action.effective_session))
+        target_col = prepared.ticker_index.get(action.target_ticker)
+        try:
+            if any(ticker in state.unverified_price_basis for ticker in (source, action.target_ticker) if ticker):
+                raise ValueError("persisted source or existing successor price units could not be verified")
+            if source_row is None or prepared.as_traded_closes is None:
+                raise ValueError("missing final source adjustment basis")
+            continuing = (prepared.dates > pd.Timestamp(action.last_trading_session)) & (prepared.dates <= date)
+            if any(np.any(np.isfinite(panel[continuing, source_col]) & (panel[continuing, source_col] > 0))
+                   for panel in (prepared.opens, prepared.closes)):
+                raise ValueError("source quotes continue after the declared final session; conversion could double count")
+            old_adjusted = prepared.closes[source_row, source_col]
+            old_nominal = prepared.as_traded_closes[source_row, source_col]
+            if not positive(old_adjusted) or not positive(old_nominal):
+                raise ValueError("missing final source adjustment basis")
+            source_basis = AdjustmentBasis(float(old_adjusted / old_nominal), action.last_trading_session,
+                                           f"prepared adjusted/as_traded close; {action.evidence}")
+            target_basis, target_mark = None, None
+            if action.target_ticker is not None:
+                if target_row is None or target_col is None:
+                    raise ValueError("missing successor effective-session quotes")
+                new_adjusted = prepared.closes[target_row, target_col]
+                new_nominal = prepared.as_traded_closes[target_row, target_col]
+                target_mark = prepared.opens[target_row, target_col]
+                if not all(positive(value) for value in (new_adjusted, new_nominal, target_mark)):
+                    raise ValueError("missing successor effective-session adjustment basis or observed open")
+                if not positive(prepared.opens[prepared.row(date), target_col]):
+                    raise ValueError("missing successor current observed open")
+                # This ratio is a unit conversion fixed by corporate actions,
+                # including a split on the effective day; it is not a signal.
+                target_basis = AdjustmentBasis(float(new_adjusted / new_nominal), action.effective_session,
+                                               f"prepared adjusted/as_traded close; {action.evidence}")
+            conversion = convert_position(state.positions[source], action, source_basis=source_basis,
+                                          target_basis=target_basis, target_mark=target_mark,
+                                          integer_actual_shares=integer_shares)
+        except ValueError as error:
+            result.events.append({"action": "unresolved_corporate_action", "event_type": "corporate_action",
+                                  "action_id": action.action_id, "ticker": source,
+                                  "effective_session": action.effective_session, "execution_date": asof,
+                                  "reason": str(error)})
+            continue
+
+        old_position = state.positions.pop(source)
+        state.marks.pop(source, None)
+        state.mark_dates.pop(source, None)
+        source_exit = state.blocked_exits.pop(source, None)
+        pending = state.pending
+        if pending is not None:
+            if source in pending.exits:
+                source_exit = {"reason": pending.exits.pop(source), "signal_date": pending.signal_date}
+                source_exit["event_type"] = "rebalance" if source_exit["reason"].startswith("rebalance_") else "risk_exit"
+                source_exit["not_before"] = pending.execution_date
+            if pending.target_weights is not None:
+                pending.target_weights.pop(source, None)
+        received, target = conversion.target_position, action.target_ticker
+        prior_target = asdict(state.positions[target]) if target in state.positions else None
+        if received is not None:
+            if target in state.positions:
+                existing = state.positions[target]
+                existing.average_cost = (existing.quantity * existing.average_cost + conversion.target_cost_basis) / (
+                    existing.quantity + received.quantity)
+                existing.quantity += received.quantity
+                # As with an ordinary add, the established target lot's trend
+                # state survives. Source-lot bounds remain in the action audit.
+            else:
+                state.positions[target] = received
+                state.marks[target] = float(target_mark)
+            if source_exit is not None:
+                exit_quantity = received.quantity
+                if "quantity" in source_exit:
+                    exit_quantity *= min(1.0, float(source_exit["quantity"]) / old_position.quantity)
+                elif source_exit.get("target_weight"):
+                    current_row = prepared.row(date)
+                    current_mark = prepared.opens[current_row, target_col]
+                    current_mark = float(current_mark) if positive(current_mark) else float(target_mark)
+                    nav = state.cash + state.receivables_value + conversion.cash_delta
+                    for ticker, position in state.positions.items():
+                        price = prepared.opens[current_row, prepared.ticker_index[ticker]]
+                        nav += position.quantity * (float(price) if positive(price) else state.marks.get(ticker, position.average_cost))
+                    entitlement_value = conversion.cash_delta + received.quantity * current_mark
+                    remaining_fraction = min(1.0, float(source_exit["target_weight"]) * nav / entitlement_value)
+                    exit_quantity *= 1.0 - remaining_fraction
+                blocked = state.blocked_exits.get(target)
+                if exit_quantity > 1e-9:
+                    if blocked is None:
+                        state.blocked_exits[target] = {key: value for key, value in source_exit.items() if key != "target_weight"}
+                        state.blocked_exits[target]["quantity"] = exit_quantity
+                    elif "quantity" in blocked:
+                        blocked["quantity"] += exit_quantity
+                    elif blocked.get("target_weight"):
+                        blocked["quantity"] = exit_quantity
+                # An existing full target exit takes priority over a transfer.
+        if conversion.cash_delta:
+            state.corporate_receivables[action.action_id] = {
+                "amount": conversion.cash_delta, "effective_session": action.effective_session,
+                "cash_settlement_session": action.cash_settlement_session,
+                "source_ticker": source, "evidence": action.evidence,
+            }
+        state.processed_corporate_actions.append(action.action_id)
+        result.events.append({**conversion.event, "execution_date": asof,
+                              "receivable_added": conversion.cash_delta, "cash_credited": 0.0,
+                              "existing_target_before": prior_target,
+                              "target_after": asdict(state.positions[target]) if target in state.positions else None,
+                              "source_exit": source_exit,
+                              "target_exit_after": state.blocked_exits.get(target)})
+    _settle_corporate_receivables(state, asof, result)
+    for action_id, item in state.corporate_receivables.items():
+        if item.get("cash_settlement_session") is None:
+            result.events.append({"action": "unresolved_corporate_settlement", "event_type": "corporate_action",
+                                  "action_id": action_id, "execution_date": asof, "amount": item["amount"],
+                                  "reason": "cash entitlement is known but its availability date is unverified"})
+
+
+def _exit_maximum(blocked: dict, quantity: float, equity: float, price: float,
+                  integer_shares: bool, asof: str) -> float:
+    if blocked.get("not_before", asof) > asof:
+        return quantity
+    if "quantity" in blocked:
+        maximum = max(0.0, quantity - float(blocked["quantity"]))
+        if blocked.get("target_weight"):
+            target = equity * float(blocked["target_weight"]) / price
+            maximum = min(maximum, float(np.floor(target)) if integer_shares else target)
+        return maximum
+    maximum = equity * float(blocked.get("target_weight", 0.0)) / price
+    return float(np.floor(maximum)) if integer_shares else maximum
 
 
 def advance_open(
@@ -75,14 +256,15 @@ def advance_open(
     if state.last_open is not None and asof < state.last_open:
         raise ValueError("cannot execute an open before the last processed open")
     row = prepared.row(date)
-    result = ExecutionResult(events=sync_price_basis(prepared, state))
+    result = ExecutionResult(events=sync_price_basis(prepared, state, as_of=date))
+    _apply_corporate_actions(prepared, date, state, result, integer_shares)
     pending = state.pending
     targets = None
     if pending is not None and pending.execution_date <= asof:
         for ticker, reason in pending.exits.items():
             if ticker in state.positions:
                 previous = state.blocked_exits.get(ticker)
-                if previous is None or (previous.get("target_weight") and reason != previous["reason"]):
+                if previous is None or "quantity" in previous or (previous.get("target_weight") and reason != previous["reason"]):
                     state.blocked_exits[ticker] = {"signal_date": pending.signal_date, "reason": reason,
                                                   "event_type": "rebalance" if reason.startswith("rebalance_") else "risk_exit"}
         if pending.execution_date == asof:
@@ -97,9 +279,13 @@ def advance_open(
     quantity = np.array([state.positions[t].quantity if t in state.positions else 0.0 for t in names])
     raw_prices = np.array([prepared.opens[row, prepared.ticker_index[t]] if t in prepared.ticker_index else np.nan for t in names])
     valid = np.isfinite(raw_prices) & (raw_prices > 0)
+    unresolved_tickers = {event["ticker"] for event in result.events
+                          if event["action"] == "unresolved_corporate_action"}
+    unresolved_tickers.update(state.unverified_price_basis)
+    valid &= np.array([ticker not in unresolved_tickers for ticker in names], dtype=bool)
     marks = np.array([state.marks.get(t, state.positions[t].average_cost if t in state.positions else 0.0) for t in names])
     valuation_prices = np.where(valid, raw_prices, marks)
-    equity_open = float(state.cash + np.dot(quantity, valuation_prices))
+    equity_open = float(state.cash + state.receivables_value + np.dot(quantity, valuation_prices))
     result.equity = equity_open
     unpriced_holding = bool(np.any((quantity > 0) & ~valid))
     missing_benchmark = not positive(prepared.opens[row, prepared.ticker_index["SPY"]])
@@ -116,7 +302,8 @@ def advance_open(
         safe_prices = np.where(valid, raw_prices, 1.0)
         weights[~valid] = 0
         can_buy = bool(pending and pending.allow_new_risk and not unpriced_holding and not missing_benchmark
-                       and not any(e["action"] == "unverified_price_basis" for e in result.events))
+                       and not any(e["action"] in {"unverified_price_basis", "unresolved_corporate_action",
+                                                     "unresolved_corporate_settlement"} for e in result.events))
         for i, ticker in enumerate(names):
             if quantity[i] > 0 and not valid[i] and ticker not in state.blocked_exits:
                 weight = float(targets.get(ticker, 0.0))
@@ -126,7 +313,13 @@ def advance_open(
                 }
         # Solve post-fee target equity; floors are part of the same calculation.
         def funded_quantities(net_equity: float) -> np.ndarray:
-            values = net_equity * weights / safe_prices
+            target_equity = net_equity
+            if weights.sum() > 0:
+                # An entitlement contributes to NAV but cannot fund purchases.
+                # Scale the entire basket before trading so a locked cash leg
+                # cannot favor whichever ticker happens to execute first.
+                target_equity = min(net_equity, max(0.0, net_equity - state.receivables_value) / weights.sum())
+            values = target_equity * weights / safe_prices
             if integer_shares:
                 values = np.floor(values + 1e-12)
             if not can_buy:
@@ -134,10 +327,8 @@ def advance_open(
             values[~valid] = quantity[~valid]
             for i, ticker in enumerate(names):
                 if ticker in state.blocked_exits and valid[i]:
-                    limit = float(state.blocked_exits[ticker].get("target_weight", 0.0))
-                    maximum = equity_open * limit / raw_prices[i]
-                    if integer_shares:
-                        maximum = float(np.floor(maximum))
+                    maximum = _exit_maximum(state.blocked_exits[ticker], quantity[i], equity_open,
+                                            raw_prices[i], integer_shares, asof)
                     values[i] = min(values[i], maximum)
             return values
         low, high = 0.0, equity_open
@@ -155,14 +346,13 @@ def advance_open(
                 result.events.append({"action": "unfilled_entry", "ticker": ticker,
                                       "signal_date": pending.signal_date, "execution_date": asof, "reason": "missing_open"})
     for i, ticker in enumerate(names):
-        if ticker in state.blocked_exits and quantity[i] > 0:
+        if (ticker in state.blocked_exits and quantity[i] > 0
+                and state.blocked_exits[ticker].get("not_before", asof) <= asof):
             if valid[i]:
-                limit = float(state.blocked_exits[ticker].get("target_weight", 0.0))
-                maximum = equity_open * limit / raw_prices[i]
-                if integer_shares:
-                    maximum = float(np.floor(maximum))
+                blocked = state.blocked_exits[ticker]
+                maximum = _exit_maximum(blocked, quantity[i], equity_open, raw_prices[i], integer_shares, asof)
                 desired[i] = min(desired[i], maximum)
-                if limit and desired[i] >= quantity[i] - 1e-9:
+                if blocked.get("target_weight") and desired[i] >= quantity[i] - 1e-9:
                     state.blocked_exits.pop(ticker)
             else:
                 result.events.append({"action": "pending_exit", "ticker": ticker,
@@ -197,7 +387,7 @@ def advance_open(
                     state.marks.pop(ticker, None)
                     state.mark_dates.pop(ticker, None)
                     state.blocked_exits.pop(ticker, None)
-                elif blocked and blocked.get("target_weight"):
+                elif blocked and (blocked.get("target_weight") or "quantity" in blocked):
                     state.blocked_exits.pop(ticker, None)
             else:
                 state.cash -= amount * price + fee
@@ -262,10 +452,12 @@ def run_simulation(
         decisions.append(decision.to_dict())
         warnings.extend({"date": date.date().isoformat(), "warning": warning} for warning in decision.warnings)
         for event in execution.events:
-            if event["action"] not in {"adjustment_rescale", "already_processed"}:
+            if event["action"] not in {"adjustment_rescale", "already_processed", "corporate_action_conversion",
+                                        "corporate_cash_settlement"}:
                 warnings.append({"date": date.date().isoformat(), "warning": event["action"], **event})
         # Compact state audit; full serializable state is saved by paper callers.
         state_log.append({"date": date.date().isoformat(), "equity": equity[i], "cash": cash[i],
+                          "corporate_receivables": state.receivables_value,
                           "drawdown": decision.diagnostics["drawdown"],
                           "positions": {t: {"quantity": p.quantity, "peak_close": p.peak_close, "trailing_stop": p.trailing_stop}
                                         for t, p in state.positions.items()}})

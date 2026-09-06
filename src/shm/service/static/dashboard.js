@@ -111,7 +111,7 @@ function chartPanel(account){
 }
 function allocationPanel(account){
   const weight=account.total?account.market/account.total*100:null;
-  return '<section class="panel allocation-panel"><div class="panel-head"><h2>资产分布</h2><span class="small muted">'+account.holdings.length+' 只股票</span></div><div class="allocation"><div class="donut" style="--angle:'+(weight||0)*3.6+'deg"><div class="donut-hole"><small>股票仓位</small><strong class="num">'+(weight!=null?fmt(weight,1)+'<span style="font-size:14px">%</span>':'—')+'</strong></div></div></div><div class="alloc-rows"><div class="alloc-row"><i class="swatch"></i>股票市值<strong class="num">'+money(account.market)+'</strong><span>'+(weight!=null?fmt(weight,1)+'%':'—')+'</span></div><div class="alloc-row"><i class="swatch cash"></i>可用现金<strong class="num">'+money(account.cash)+'</strong><span>'+(weight!=null?fmt(100-weight,1)+'%':'—')+'</span></div></div></section>';
+  return '<section class="panel allocation-panel"><div class="panel-head"><h2>资产分布</h2><span class="small muted">'+account.holdings.length+' 只股票</span></div><div class="allocation"><div class="donut" style="--angle:'+(weight||0)*3.6+'deg"><div class="donut-hole"><small>股票仓位</small><strong class="num">'+(weight!=null?fmt(weight,1)+'<span style="font-size:14px">%</span>':'—')+'</strong></div></div></div><div class="alloc-rows"><div class="alloc-row"><i class="swatch"></i>股票市值<strong class="num">'+money(account.market)+'</strong><span>'+(weight!=null?fmt(weight,1)+'%':'—')+'</span></div><div class="alloc-row"><i class="swatch cash"></i>可用现金<strong class="num">'+money(account.cash)+'</strong><span>'+(account.total?fmt(account.cash/account.total*100,1)+'%':'—')+'</span></div>'+(account.corporate_receivables?'<div class="alloc-row"><i class="swatch cash"></i>并购现金应收<strong class="num">'+money(account.corporate_receivables)+'</strong><span>'+fmt(account.corporate_receivables/account.total*100,1)+'%</span></div>':'')+'</div></section>';
 }
 function schedulePanel(account){
   const last=data.runs[0],progress=data.progress;
@@ -265,7 +265,7 @@ function showSchedule(){
 }
 function showMethod(){
   openDialog('资产与盈亏口径','USD · 模拟账户',
-    detailRow('总资产','可用现金 + 股票市值')+detailRow('股票市值','持仓股数 × 已完成交易日收盘价')+detailRow('持仓浮动盈亏','股票市值 − 剩余持仓成本')+detailRow('已实现盈亏','卖出收入 − 对应平均成本 − 卖出费用')+detailRow('累计盈亏','总资产 − 初始资金')+
+    detailRow('总资产','可用现金 + 股票市值 + 并购现金应收')+detailRow('股票市值','持仓股数 × 已完成交易日收盘价')+detailRow('持仓浮动盈亏','股票市值 − 剩余持仓成本')+detailRow('已实现盈亏','卖出收入 − 对应平均成本 − 卖出费用，加并购现金权益损益')+detailRow('累计盈亏','总资产 − 初始资金')+
     '<p class="field-help">成本采用含买入佣金的加权平均法。当前账户模型无外部入出金；缺少价格或成本依据时显示 —，不估造收益。</p>');
 }
 function renderChart(){

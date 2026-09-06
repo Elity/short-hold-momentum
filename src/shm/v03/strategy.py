@@ -6,13 +6,16 @@ once; evaluation only reads the row at the decision date and earlier rows.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
-from typing import Iterable, Mapping, Sequence
+from typing import TYPE_CHECKING, Iterable, Mapping, Sequence
 
 import exchange_calendars as xcals
 import numpy as np
 import pandas as pd
 
 from shm.universe.core import indexed_prices
+
+if TYPE_CHECKING:
+    from shm.v03.corporate_actions import CorporateAction
 
 
 @dataclass(frozen=True)
@@ -99,6 +102,9 @@ class PortfolioState:
     last_close: str | None = None
     latest_decision: dict | None = None
     drawdown_alert_active: bool = False
+    processed_corporate_actions: list[str] = field(default_factory=list)
+    corporate_receivables: dict[str, dict] = field(default_factory=dict)
+    unverified_price_basis: list[str] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         if not self.equity_high_water:
@@ -107,6 +113,10 @@ class PortfolioState:
     @property
     def shares(self) -> dict[str, float]:
         return {ticker: position.quantity for ticker, position in self.positions.items()}
+
+    @property
+    def receivables_value(self) -> float:
+        return sum(float(item["amount"]) for item in self.corporate_receivables.values())
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -146,6 +156,8 @@ class PreparedInputs:
     next_dates: dict[pd.Timestamp, str] = field(default_factory=dict)
     eligibility_data_known: np.ndarray | None = None
     require_point_in_time_eligibility: bool = False
+    as_traded_closes: np.ndarray | None = None
+    corporate_actions: tuple[CorporateAction, ...] = ()
 
     def __post_init__(self) -> None:
         self.ticker_index = {ticker: i for i, ticker in enumerate(self.tickers)}
@@ -163,6 +175,7 @@ def prepare_inputs(
     *,
     membership_by_session: Mapping[object, Sequence[str]] | None = None,
     require_point_in_time_eligibility: bool = False,
+    corporate_actions: Sequence[CorporateAction] = (),
 ) -> PreparedInputs:
     """Precompute finite trailing windows, including pre-evaluation warmup.
 
@@ -175,10 +188,15 @@ def prepare_inputs(
     if sessions.empty or not sessions.is_monotonic_increasing or sessions.has_duplicates:
         raise ValueError("sessions must be nonempty, ascending and unique")
     universe = tuple(sorted(set(universe)))
+    corporate_actions = tuple(corporate_actions)
+    if len({action.action_id for action in corporate_actions}) != len(corporate_actions):
+        raise ValueError("corporate action identifiers must be unique")
     # The caller also supplies held securities that have left the selection
     # universe. Keep their quotes for valuation/exits; ranking still uses only
     # ``universe`` below, so retaining quotes cannot make a removed name a buy.
-    tickers = tuple(sorted(set(universe) | set(prices) | {"SPY"}))
+    action_tickers = {ticker for action in corporate_actions
+                      for ticker in (action.source_ticker, action.target_ticker) if ticker}
+    tickers = tuple(sorted(set(universe) | set(prices) | {"SPY"} | action_tickers))
     frames = {t: indexed_prices(f) for t, f in prices.items() if t in tickers and not f.empty}
     first = min([sessions[0], *[f.index.min() for f in frames.values()]])
     last = sessions[-1]
@@ -241,6 +259,8 @@ def prepare_inputs(
         eligible=eligible.to_numpy(), membership_by_session=membership, next_dates=next_dates,
         eligibility_data_known=eligibility_known.to_numpy(),
         require_point_in_time_eligibility=require_point_in_time_eligibility,
+        as_traded_closes=panels["as_traded_close"].to_numpy(),
+        corporate_actions=corporate_actions,
     )
 
 
@@ -251,10 +271,16 @@ def positive(value: float) -> bool:
 def mark_equity(prepared: PreparedInputs, session: object, state: PortfolioState) -> tuple[float, list[str]]:
     row = prepared.row(session)
     missing = []
-    equity = state.cash
+    equity = state.cash + state.receivables_value
+    terminated = {action.source_ticker for action in prepared.corporate_actions
+                  if action.effective_session <= _date(session)
+                  and action.source_ticker in state.positions
+                  and state.positions[action.source_ticker].entry_date <= action.last_trading_session}
     for ticker, position in state.positions.items():
         column = prepared.ticker_index.get(ticker)
-        price = prepared.closes[row, column] if column is not None else np.nan
+        price = (prepared.closes[row, column]
+                 if column is not None and ticker not in terminated and ticker not in state.unverified_price_basis
+                 else np.nan)
         if positive(price):
             state.marks[ticker] = float(price)
             state.mark_dates[ticker] = _date(session)
@@ -282,10 +308,19 @@ def evaluate_close(
     risk_off = market_known and spy_close <= spy_sma
     equity, missing = mark_equity(prepared, date, state)
     warnings = [f"MISSING_HOLDING_CLOSE:{ticker}" for ticker in missing]
+    unresolved_actions = [action.action_id for action in prepared.corporate_actions
+                          if action.effective_session <= asof
+                          and action.action_id not in state.processed_corporate_actions
+                          and action.source_ticker in state.positions
+                          and state.positions[action.source_ticker].entry_date <= action.last_trading_session]
+    unresolved_settlements = [key for key, item in state.corporate_receivables.items()
+                              if item.get("cash_settlement_session") is None]
+    warnings.extend(f"MISSING_CORPORATE_ACTION:{key}" for key in unresolved_actions)
+    warnings.extend(f"MISSING_CORPORATE_SETTLEMENT:{key}" for key in unresolved_settlements)
     if not market_known:
         warnings.append("MISSING_SPY_HISTORY")
     exits = {t: str(v["reason"]) for t, v in state.blocked_exits.items()
-             if t in state.positions and not v.get("target_weight", 0.0)}
+             if t in state.positions and not v.get("target_weight", 0.0) and "quantity" not in v}
     if candidate.daily_market_exit and risk_off:
         exits.update({t: "market_trend_exit" for t in state.positions})
     for ticker, position in state.positions.items():
@@ -329,7 +364,8 @@ def evaluate_close(
     selected: list[str] = []
     exposure = 0.0
     realized_vol = 0.0
-    allow_new_risk = rebalance and len(eligible) >= 30 and market_known and not risk_off and not missing
+    allow_new_risk = (rebalance and len(eligible) >= 30 and market_known and not risk_off and not missing
+                      and not unresolved_actions and not unresolved_settlements)
     if rebalance and len(eligible) < 30:
         warnings.append("INSUFFICIENT_ELIGIBLE_UNIVERSE")
     if rebalance and market_known and risk_off:
@@ -363,6 +399,9 @@ def evaluate_close(
         "eligibility_pool_count": len(pool), "eligibility_data_known_count": eligibility_known_count,
         "eligibility_data_unknown_count": len(pool) - eligibility_known_count,
         "equity": equity, "drawdown": float(drawdown), "valuation_complete": not missing,
+        "corporate_receivables": state.receivables_value,
+        "unresolved_corporate_actions": unresolved_actions,
+        "unresolved_corporate_settlements": unresolved_settlements,
         "atr_by_ticker": {t: float(prepared.atr20[row, prepared.ticker_index[t]]) for t in selected
                           if np.isfinite(prepared.atr20[row, prepared.ticker_index[t]]) and prepared.atr20[row, prepared.ticker_index[t]] >= 0},
         "candidate_id": candidate_id,

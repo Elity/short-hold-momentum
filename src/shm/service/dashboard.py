@@ -327,11 +327,15 @@ def _build_v03_portfolio(root: Path, strategy_id: str, cost_bps: int, now: datet
     start = status["forward_start"] or manifest["initialized_after_session"]
     rows = [json.loads(path.read_text()) for path in sorted((directory / "days").glob("????-??-??.json"))]
     trades, plans, chart = [], [], []
+    corporate_cash_pnl = 0.0
     for row in rows:
         if not row.get("forward_start"):
             continue
         day = row["last_session"]
         book = row["books"][str(cost_bps)]
+        corporate_cash_pnl += sum(float(event.get("realized_cash_pnl", 0.0))
+                                  for event in book.get("execution", {}).get("events", [])
+                                  if event.get("action") == "corporate_action_conversion")
         for index, trade in enumerate(book.get("execution", {}).get("transactions", [])):
             realized = trade.get("realized_pnl")
             quantity = trade["quantity"]
@@ -390,11 +394,15 @@ def _build_v03_portfolio(root: Path, strategy_id: str, cost_bps: int, now: datet
     if status["missed_sessions"]:
         warnings.append("存在错过的前向交易日：" + ", ".join(status["missed_sessions"]))
     unrealized = [holding["pnl"] for holding in holdings]
+    receivables = float(current.get("corporate_receivables", 0.0))
+    if receivables:
+        warnings.append(f"并购现金应收 ${receivables:,.2f} 已计入资产，尚未到账，不能用于买入。")
     return {
         "account": {
-            "cash": current["cash"], "market": total - current["cash"], "total": total,
+            "cash": current["cash"], "market": total - current["cash"] - receivables, "total": total,
+            "corporate_receivables": receivables,
             "unrealized": sum(unrealized) if all(value is not None for value in unrealized) else None,
-            "realized": sum(trade["realized_pnl"] or 0 for trade in trades),
+            "realized": sum(trade["realized_pnl"] or 0 for trade in trades) + corporate_cash_pnl,
             "gain": total - initial, "gain_percent": (total / initial - 1) * 100,
             "day": chart[-1]["equity"] - chart[-2]["equity"] if len(chart) > 1 else None,
             "initial": initial, "start": start, "asof": status["last_session"],

@@ -15,6 +15,37 @@
         "evidence_path": "data/reference/v04-remediation/membership-evidence/kors-cpri-evidence.md",
         "evidence_sha256": "d575adafc79605c59bcfb2d976212002099c8d21c800e245b025d8deb7e4052f"
       }
+    ],
+    "identity_edits": [
+      {
+        "start": "1996-01-02",
+        "end": "2015-03-20",
+        "required": [
+          "AGN"
+        ],
+        "remove": [
+          "AGN"
+        ],
+        "add": [
+          "AGN_OLD"
+        ],
+        "expected_rows": 2134,
+        "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/agn-watson-membership-findings.md",
+        "evidence_sha256": "4ec59c5ae40dfc2bc69557c64b37e7d3c9dcdea70cdeb6460c32aa1e301e05f7"
+      },
+      {
+        "start": "1999-04-12",
+        "end": "2015-03-20",
+        "required": [
+          "AGN_OLD"
+        ],
+        "add": [
+          "AGN"
+        ],
+        "expected_rows": 1744,
+        "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/agn-watson-membership-findings.md",
+        "evidence_sha256": "4ec59c5ae40dfc2bc69557c64b37e7d3c9dcdea70cdeb6460c32aa1e301e05f7"
+      }
     ]
   },
   "aliases": {
@@ -576,7 +607,13 @@
       "last": "2018-03-07",
       "invalid_rows": 0,
       "source_archive_sha256": "331e6325302f2c04d7d2283404a2e1eed50a1b5bf4dd295fd1d7ff341f1e8778",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation",
+      "identity_validation": {
+        "status": "verified_by_SEC_quarterly_price_ranges",
+        "matches": "8/8 quarters 2013-2014 through verified terminal date",
+        "evidence_path": "data/reference/v04-remediation/identity-evidence/identity-action-segments.json",
+        "evidence_sha256": "0e6bb37dfed28269341ea736159796f58a6af86719ae44944188d8050a862ec1"
+      }
     },
     "ALXN": {
       "path": "data/research/v04/prices/ALXN.parquet",
@@ -623,15 +660,17 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "ARG": {
-      "path": "data/research/v04/prices/ARG.parquet",
-      "sha256": "3c317d32e5043f25524dbb4bc7f61742a4f813a8ab3a63356f4e5e3aba507806",
+      "path": "data/research/v04/prices/ARG-dividend-repaired.parquet",
+      "sha256": "81e44001f60d02f0e3ca60dc6b44f6c17b0b2acc65580adc9fdd50580a3dd78d",
       "source_ticker": "ARG",
       "source_name": "Airgas Inc.",
       "first": "2003-10-01",
       "last": "2016-05-20",
       "invalid_rows": 0,
       "source_archive_sha256": "cd7f6c2b0234adcc3551d87ef1192f955de15a57518eff6db74652d0994d10f2",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "Multiply adjusted OHLC strictly before ex-date by ex_day_close / (ex_day_close + dividend), the exact existing WIKI total-return convention confirmed against the 2015-12-10 recorded ARG dividend; ex-day return equals (P_ex + D) / P_previous - 1. Nominal fields and volumes unchanged; no separate cash credit and no change to $143 merger entitlement.",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/arg-dividend-repair-audit.json",
+      "evidence_sha256": "6791b59708ec718f06a972c734ce86325b8b76f13adf1d4aa6ecbbcadcd6dd4b"
     },
     "ARNC": {
       "path": "data/research/v04/prices/ARNC.parquet",
@@ -656,15 +695,41 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "ATVI": {
-      "path": "data/research/v04/prices/ATVI.parquet",
-      "sha256": "b0002c6708b01e70ea888d52dda4bfd2c49c4a1e24a9fde010262793478c5084",
+      "path": "data/research/v04/prices/ATVI-single-day-repaired.parquet",
+      "sha256": "b058ed6c5af2a230ff7f66e635030af353969e71bb192cf8d0837db1a811ecd1",
       "source_ticker": "ATVI",
       "source_name": "Activision Blizzard Inc.",
       "first": "2003-10-01",
       "last": "2018-03-27",
       "invalid_rows": 0,
       "source_archive_sha256": "5739988ed3062b923f7834ca89e5e4b8bcc18f02c89f79fd2d6c9159fcc9151c",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation; insert 2017-08-07 whole IEX row from Cam Nugent Kaggle sandp500 v4; all existing rows unchanged",
+      "single_day_repairs": [
+        {
+          "date": "2017-08-07",
+          "source": {
+            "dataset": "camnugent/sandp500",
+            "version": 4,
+            "dataset_last_updated": "2018-02-10T03:15:53.777Z",
+            "publisher": "Cam Nugent",
+            "upstream": "IEX API, confirmed by dataset metadata and included getSandP.py",
+            "download_url": "https://www.kaggle.com/api/v1/datasets/download/camnugent/sandp500",
+            "member": "individual_stocks_5yr/individual_stocks_5yr/ATVI_data.csv",
+            "zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+            "member_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6"
+          },
+          "volume_basis": "Dataset describes volume as number of shares traded. Preserve the reported integer share count; exact venue/consolidation scope is not independently established and differs from WIKI.",
+          "OHLCV": {
+            "open": 62.14,
+            "high": 62.85,
+            "low": 61.8,
+            "close": 62.51,
+            "volume": 7287073
+          }
+        }
+      ],
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/ATVI-single-day-audit.json",
+      "evidence_sha256": "d18cc1213f9dd3bb9451ea7fc2f0f371ead507d96e0881423b4ebbcb4cccdbe2"
     },
     "AVP": {
       "path": "data/research/v04/prices/AVP.parquet",
@@ -678,15 +743,17 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "BCR": {
-      "path": "data/research/v04/prices/BCR.parquet",
-      "sha256": "6e395b0dd5b79bfbafb41d62d6132853f33944072767c940d95724c84a214151",
+      "path": "data/research/v04/prices/BCR-single-day-dividend-repaired.parquet",
+      "sha256": "41e03afabd1e998bf4de3eff0e6e05a7664a8f504da193cf572b8560047afb02",
       "source_ticker": "BCR",
       "source_name": "Bard",
       "first": "2003-10-01",
       "last": "2017-12-28",
       "invalid_rows": 0,
       "source_archive_sha256": "0cee4fee9cb184e0b95e032abe62df79edb739fca8cef241bc40c2c5bd14ca96",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "WIKI source + one source-rounded public quote + one separately evidenced missing ordinary dividend",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/BCR-evidence.md",
+      "evidence_sha256": "408d3093316f8d0a6ad7661ad6d23b2c9b274f1d2d8df330d3635c61f91dc8ed"
     },
     "BHGE": {
       "path": "data/research/v04/prices/BHGE.parquet",
@@ -1979,12 +2046,18 @@
       "path": "data/research/v04/prices/STR.parquet",
       "sha256": "82de22bbe5b326b6c54b5dfe057a64ffd33cbff657744e3b9e3da158bd7ee226",
       "source_ticker": "STR",
-      "source_name": "SPDR MSCI Europe Consumer Discretionary UCITS ETF",
+      "source_name": "Questar Corporation (archive name label was incorrect)",
       "first": "2003-10-01",
       "last": "2016-09-16",
       "invalid_rows": 0,
       "source_archive_sha256": "4b6dee790e430b33c08099e47405b64a1c87e974394e6a777fdffc61e34bf986",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation",
+      "identity_validation": {
+        "status": "verified_by_SEC_quarterly_price_ranges",
+        "matches": "8/8 quarters 2014-2015",
+        "evidence_path": "data/reference/v04-remediation/identity-evidence/identity-action-segments.json",
+        "evidence_sha256": "0e6bb37dfed28269341ea736159796f58a6af86719ae44944188d8050a862ec1"
+      }
     },
     "SWN": {
       "path": "data/research/v04/prices/SWN.parquet",
@@ -2242,20 +2315,33 @@
   },
   "quarantined": {
     "TIE": {
-      "reason": "NYSE Titanium Metals 的缓存混入其他证券价格；免费替代日线缺日、缺量且复权未验证，尚无可信完整替代。",
+      "reason": "NYSE Titanium Metals缓存混入其他证券；免费候选仍有2个整行缺口、6个季度报价冲突及早期成交量口径疑点，未应用。",
       "evidence": "data/reference/v04-remediation/price-evidence/investigation-report.md",
-      "raw_sha256": "da52cb6ec82e80528b27b9d9a43d0d67b69474a9c0dc463303c817e21eae44c1"
+      "raw_sha256": "da52cb6ec82e80528b27b9d9a43d0d67b69474a9c0dc463303c817e21eae44c1",
+      "diagnostic_status": "UNVERIFIED_GAPS_NOT_APPLIED",
+      "diagnostic_evidence_path": "data/reference/v04-remediation/tie-diagnostic/gap-report.json",
+      "diagnostic_evidence_sha256": "9f569ba70e20fb3a8a44332b54411daed31e4db756f63fd2a80f0da7835a5f37"
     },
     "MIL": {
       "reason": "历史成员是 Millipore，但 WIKI 的 MIL 元数据为 MFC Industrial，2010年报价约7至16美元，与Millipore每股107美元收购事件不符。",
       "evidence_url": "https://www.sec.gov/Archives/edgar/data/66479/000095015710000333/ex99-1.htm",
       "archive_sha256": "8f69528f8e03fe537a5fda0669126c6eb96c64e0081e047e0334a0ff4d32000c"
+    },
+    "AGN_OLD": {
+      "reason": "原Allergan Inc与Watson/Actavis为独立发行人；WIKI AGN为后者的历史，原Allergan价格尚未取得可信完整替代。",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/agn-watson-membership-findings.md",
+      "evidence_sha256": "4ec59c5ae40dfc2bc69557c64b37e7d3c9dcdea70cdeb6460c32aa1e301e05f7"
+    },
+    "LSI": {
+      "reason": "WIKI LSI不对应历史LSI Corporation：2012/13八季报价与SEC均不符，不能作为原半导体公司的行情。",
+      "evidence_path": "data/reference/v04-remediation/identity-evidence/identity-action-segments.json",
+      "evidence_sha256": "0e6bb37dfed28269341ea736159796f58a6af86719ae44944188d8050a862ec1"
     }
   },
   "unresolved": [
     {
       "id": "TIE_NO_VERIFIED_REPLACEMENT",
-      "reason": "NYSE Titanium Metals 的缓存混入其他证券价格；免费替代日线缺日、缺量且复权未验证，尚无可信完整替代。"
+      "reason": "NYSE Titanium Metals缓存混入其他证券；免费候选仍有2个整行缺口、6个季度报价冲突及早期成交量口径疑点，未应用。"
     },
     {
       "id": "MIL_SECURITY_IDENTITY_MISMATCH",
@@ -2264,6 +2350,14 @@
     {
       "id": "ARCHIVE_DELISTING_AND_LATER_GAPS",
       "reason": "2018年停止更新的归档不能补齐之后的退市公司行情、换股和现金收购结算；新增序列仍需逐项核验身份与终止事件，不能作为合格收益证据。"
+    },
+    {
+      "id": "AGN_OLD_MISSING_DISTINCT_SECURITY",
+      "reason": "原Allergan Inc与Watson/Actavis为独立发行人；WIKI AGN为后者的历史，原Allergan价格尚未取得可信完整替代。"
+    },
+    {
+      "id": "LSI_SECURITY_IDENTITY_MISMATCH",
+      "reason": "WIKI LSI不对应历史LSI Corporation：2012/13八季报价与SEC均不符，不能作为原半导体公司的行情。"
     }
   ],
   "source_archive": {
@@ -2278,5 +2372,284 @@
     "extracted_start": "2003-10-01",
     "definition": "Quandl WIKI frozen 2018 archive; raw and adjusted OHLCV, dividends, splits; not applied to runtime caches"
   },
-  "interpretation": "data remediation and diagnostic research only until unresolved evidence is cleared; original raw files and membership base are retained"
+  "interpretation": "data remediation and diagnostic research only until unresolved evidence is cleared; original raw files and membership base are retained",
+  "price_windows": {
+    "DTV": {
+      "end": "2015-07-24",
+      "reason": "Original DIRECTV shares extinguished; later DTV rows are not this security",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/frx-dtv-findings.md",
+      "evidence_sha256": "3bb59c0296197772d54c4cb7736b8a86f82abb1e865b89fa6ca69468206050ac"
+    },
+    "ALTR": {
+      "end": "2015-12-24",
+      "reason": "旧Altera并购终止前历史；2018尾部不能属于旧股",
+      "evidence_path": "data/reference/v04-remediation/identity-evidence/identity-action-segments.json",
+      "evidence_sha256": "0e6bb37dfed28269341ea736159796f58a6af86719ae44944188d8050a862ec1"
+    },
+    "KRFT": {
+      "end": "2015-07-02",
+      "reason": "Original Kraft shares terminated; no post-action source quotes permitted",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/KRFT-evidence.md",
+      "evidence_sha256": "1f224b8c078a368d403073ee32c42e6c3995f450a11d5cbcd3e22a506525dccd"
+    },
+    "CFN": {
+      "end": "2015-03-16",
+      "reason": "Verified original-security terminal window",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md",
+      "evidence_sha256": "527580a59cf2cbf6037ba2da37cc0ed6e12f1902fb8378976fde03f37300e4fa"
+    },
+    "ARG": {
+      "end": "2016-05-20",
+      "reason": "Verified original-security terminal window",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md",
+      "evidence_sha256": "527580a59cf2cbf6037ba2da37cc0ed6e12f1902fb8378976fde03f37300e4fa"
+    },
+    "WFM": {
+      "end": "2017-08-28",
+      "reason": "Nasdaq marketplace suspension starts 2017-08-29",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/WFM-terminal-evidence/WFM-review-decision.md",
+      "evidence_sha256": "0e4177fa3230e97499075238486e0e1304e2807f82c555d463093ebfcf0711a1"
+    },
+    "BCR": {
+      "end": "2017-12-28",
+      "reason": "Original Bard shares suspended and converted 2017-12-29",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/BCR-evidence.md",
+      "evidence_sha256": "408d3093316f8d0a6ad7661ad6d23b2c9b274f1d2d8df330d3635c61f91dc8ed"
+    }
+  },
+  "corporate_actions": [
+    {
+      "action": {
+        "action_id": "FRX_AGN_2014-07-01",
+        "source_ticker": "FRX",
+        "target_ticker": "AGN",
+        "announced_date": "2014-02-18",
+        "known_date": "2014-07-01",
+        "last_trading_session": "2014-06-30",
+        "effective_session": "2014-07-01",
+        "cash_per_share": 26.04,
+        "exchange_ratio": 0.3306,
+        "cash_in_lieu_price": 219.0,
+        "cash_settlement_session": "2014-07-09",
+        "evidence": "data/reference/v04-remediation/corporate-action-evidence/frx-dtv-findings.md; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "source_price_treatment": "terminal_before_action"
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/frx-dtv-findings.md",
+      "evidence_sha256": "3bb59c0296197772d54c4cb7736b8a86f82abb1e865b89fa6ca69468206050ac",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "successor_label": "canonical identity; FRX receives ACT (later renamed AGN), never original Allergan",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      }
+    },
+    {
+      "action": {
+        "action_id": "DTV_T_2015-07-27",
+        "source_ticker": "DTV",
+        "target_ticker": "T",
+        "announced_date": "2014-05-18",
+        "known_date": "2015-07-24",
+        "last_trading_session": "2015-07-24",
+        "effective_session": "2015-07-27",
+        "cash_per_share": 28.5,
+        "exchange_ratio": 1.892,
+        "cash_in_lieu_price": null,
+        "cash_settlement_session": "2015-08-03",
+        "evidence": "data/reference/v04-remediation/corporate-action-evidence/frx-dtv-findings.md; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "source_price_treatment": "terminal_before_action"
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/frx-dtv-findings.md",
+      "evidence_sha256": "3bb59c0296197772d54c4cb7736b8a86f82abb1e865b89fa6ca69468206050ac",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "successor_label": "AT&T common shares from original DIRECTV merger",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      }
+    },
+    {
+      "action": {
+        "action_id": "STR_CASH_2016-09-19",
+        "source_ticker": "STR",
+        "announced_date": "2016-09-14",
+        "known_date": "2016-09-16",
+        "last_trading_session": "2016-09-16",
+        "effective_session": "2016-09-19",
+        "cash_per_share": 25.07018,
+        "evidence": "data/reference/v04-remediation/identity-evidence/identity-action-segments.json; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "source_price_treatment": "terminal_before_action",
+        "cash_settlement_session": "2016-09-26"
+      },
+      "evidence_path": "data/reference/v04-remediation/identity-evidence/identity-action-segments.json",
+      "evidence_sha256": "0e6bb37dfed28269341ea736159796f58a6af86719ae44944188d8050a862ec1",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      }
+    },
+    {
+      "action": {
+        "action_id": "ALTR_CASH_2015-12-28",
+        "source_ticker": "ALTR",
+        "announced_date": "2015-06-01",
+        "known_date": "2015-12-24",
+        "last_trading_session": "2015-12-24",
+        "effective_session": "2015-12-28",
+        "cash_per_share": 54.0,
+        "evidence": "data/reference/v04-remediation/identity-evidence/identity-action-segments.json; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "source_price_treatment": "terminal_before_action",
+        "cash_settlement_session": "2016-01-05"
+      },
+      "evidence_path": "data/reference/v04-remediation/identity-evidence/identity-action-segments.json",
+      "evidence_sha256": "0e6bb37dfed28269341ea736159796f58a6af86719ae44944188d8050a862ec1",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      }
+    },
+    {
+      "action": {
+        "action_id": "KRFT-2015-07-06",
+        "source_ticker": "KRFT",
+        "target_ticker": "KHC",
+        "announced_date": "2015-03-25",
+        "known_date": "2015-07-02",
+        "last_trading_session": "2015-07-02",
+        "effective_session": "2015-07-06",
+        "cash_per_share": 16.5,
+        "exchange_ratio": 1.0,
+        "cash_in_lieu_price": null,
+        "cash_settlement_session": "2015-07-13",
+        "source_price_treatment": "terminal_before_action",
+        "evidence": "SEC Kraft 2015-07-02 Form 8-K Items 2.01/3.01 and issuer closing release establish 1:1 KHC plus $16.50, KRFT trading termination 2015-07-02 and first KHC session 2015-07-06; WIKI terminal-factor audit excludes duplicate cash. Cash availability uses ADR-014 fifth-subsequent-XNYS-session model, not observed brokerage settlement."
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/KRFT-evidence.md",
+      "evidence_sha256": "1f224b8c078a368d403073ee32c42e6c3995f450a11d5cbcd3e22a506525dccd",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      }
+    },
+    {
+      "action": {
+        "action_id": "CFN_BDX_2015-03-17",
+        "source_ticker": "CFN",
+        "announced_date": "2014-10-05",
+        "known_date": "2015-03-17",
+        "last_trading_session": "2015-03-16",
+        "effective_session": "2015-03-17",
+        "cash_per_share": 49.0,
+        "cash_settlement_session": "2015-03-24",
+        "evidence": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "source_price_treatment": "terminal_before_action",
+        "target_ticker": "BDX",
+        "exchange_ratio": 0.0777,
+        "cash_in_lieu_price": null
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md",
+      "evidence_sha256": "527580a59cf2cbf6037ba2da37cc0ed6e12f1902fb8378976fde03f37300e4fa",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      },
+      "terms_status": "PRIMARY_SOURCE_CONFIRMED",
+      "source_quality_note": "Research fractional economic shares follow ADR014; actual whole-share cash-in-lieu VWAP not supplied."
+    },
+    {
+      "action": {
+        "action_id": "ARG_CASH_2016-05-23",
+        "source_ticker": "ARG",
+        "announced_date": "2015-11-17",
+        "known_date": "2016-05-23",
+        "last_trading_session": "2016-05-20",
+        "effective_session": "2016-05-23",
+        "cash_per_share": 143.0,
+        "cash_settlement_session": "2016-05-31",
+        "evidence": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "source_price_treatment": "terminal_before_action"
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md",
+      "evidence_sha256": "527580a59cf2cbf6037ba2da37cc0ed6e12f1902fb8378976fde03f37300e4fa",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      },
+      "terms_status": "PRIMARY_SOURCE_CONFIRMED",
+      "source_quality_note": "ARG archive misses fiscal-2016 Q4 ordinary dividend; terminal cash does not cure that earlier total-return defect."
+    },
+    {
+      "action": {
+        "action_id": "WFM_CASH_2017-08-29",
+        "source_ticker": "WFM",
+        "announced_date": "2017-06-16",
+        "known_date": "2017-08-28",
+        "last_trading_session": "2017-08-28",
+        "effective_session": "2017-08-29",
+        "cash_per_share": 42.0,
+        "cash_settlement_session": "2017-09-06",
+        "evidence": "data/reference/v04-remediation/corporate-action-evidence/WFM-terminal-evidence/WFM-review-decision.md",
+        "source_price_treatment": "terminal_before_action"
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/WFM-terminal-evidence/WFM-review-decision.md",
+      "evidence_sha256": "0e4177fa3230e97499075238486e0e1304e2807f82c555d463093ebfcf0711a1",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      },
+      "legal_completion_date": "2017-08-28",
+      "operational_boundary": "Nasdaq ECA2017-10 marketplace suspension effective date; exact intraday halt unverified"
+    },
+    {
+      "action": {
+        "action_id": "BCR-2017-12-29",
+        "source_ticker": "BCR",
+        "target_ticker": "BDX",
+        "announced_date": "2017-04-24",
+        "known_date": "2017-12-29",
+        "last_trading_session": "2017-12-28",
+        "effective_session": "2017-12-29",
+        "cash_per_share": 222.93,
+        "exchange_ratio": 0.5077,
+        "cash_in_lieu_price": null,
+        "cash_settlement_session": "2018-01-08",
+        "source_price_treatment": "terminal_before_action",
+        "evidence": "Original Bard SEC 8-K and NYSE removal notification confirm $222.93 plus 0.5077 BDX per BCR and suspension 2017-12-29. The separate $0.26 ordinary dividend is corrected in adjusted history, not appended to merger cash. Cash release uses ADR-014 fifth-subsequent-XNYS-session model, not observed broker settlement."
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/BCR-evidence.md",
+      "evidence_sha256": "408d3093316f8d0a6ad7661ad6d23b2c9b274f1d2d8df330d3635c61f91dc8ed",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      }
+    }
+  ],
+  "model_assumptions": {
+    "corporate_cash_settlement": "Fixed effective XNYS session + 5 sessions; not actual broker timing; research fractional entitlements permitted; integer paper requires verified cash-in-lieu price"
+  }
 }

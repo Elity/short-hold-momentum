@@ -58,6 +58,22 @@ def load_membership(root: Path | str) -> tuple[pd.DataFrame, dict, dict]:
 
     aliases = manifest.get("aliases", {})
     canonical = {old: entry["ticker"] for old, entry in aliases.items()}
+    identity_edits = membership.get("identity_edits", [])
+    for edit in identity_edits:
+        path = root / edit["evidence_path"]
+        hashes[str(path.relative_to(root))] = _checked_hash(path, edit["evidence_sha256"])
+        mask = history["date"].between(edit["start"], edit["end"])
+        if int(mask.sum()) != edit["expected_rows"]:
+            raise ValueError("identity correction row count mismatch")
+        for index in history.index[mask]:
+            row = history.at[index, "members"]
+            if any(row.count(ticker) != 1 for ticker in edit.get("required", [])):
+                raise ValueError("identity correction original membership mismatch")
+            values = [ticker for ticker in row if ticker not in edit.get("remove", [])]
+            values.extend(edit.get("add", []))
+            if len(values) != len(set(values)):
+                raise ValueError("identity correction would duplicate a security")
+            history.at[index, "members"] = tuple(values)
     corrections = membership.get("duplicate_member_corrections", [])
     for correction in corrections:
         path = root / correction["evidence_path"]
@@ -90,6 +106,7 @@ def load_membership(root: Path | str) -> tuple[pd.DataFrame, dict, dict]:
         "alias_count": len(aliases), "alias_member_changes": changed, "aliases": aliases,
         "extension_dates": extension_dates,
         "duplicate_member_corrections": corrections,
+        "identity_edits": identity_edits,
     }
     return history, hashes, evidence
 
@@ -110,6 +127,10 @@ def apply_price_repairs(root: Path | str, prices: dict, hashes: dict, missing: l
             continue
         path = root / detail["path"]
         repaired_hashes[str(path.relative_to(root))] = _checked_hash(path, detail["sha256"])
+        if detail.get("evidence_path"):
+            evidence_path = root / detail["evidence_path"]
+            repaired_hashes[str(evidence_path.relative_to(root))] = _checked_hash(
+                evidence_path, detail["evidence_sha256"])
         frame = pd.read_parquet(path)
         if "adjusted" not in frame or not frame["adjusted"].eq(True).all():
             raise ValueError(f"{ticker}: adjusted total-return OHLC override is required")
@@ -129,11 +150,59 @@ def apply_price_repairs(root: Path | str, prices: dict, hashes: dict, missing: l
     for ticker in quarantined:
         repaired.pop(ticker, None)
         missing_set.add(ticker)
+    windows = {}
+    for ticker, detail in manifest.get("price_windows", {}).items():
+        if ticker not in repaired:
+            continue
+        path = root / detail["evidence_path"]
+        repaired_hashes[str(path.relative_to(root))] = _checked_hash(path, detail["evidence_sha256"])
+        frame = repaired[ticker]
+        keep = frame["date"].between(detail.get("start", start), detail.get("end", end))
+        windows[ticker] = {**detail, "discarded_rows": int((~keep).sum())}
+        repaired[ticker] = frame.loc[keep].copy()
+        if repaired[ticker].empty:
+            repaired.pop(ticker)
+            missing_set.add(ticker)
     unresolved = manifest.get("unresolved", [])
     evidence = {
         "status": "INCONCLUSIVE" if unresolved else "PASS",
         "unresolved": unresolved,
         "price_override_count": len(applied), "price_overrides": applied,
         "quarantined_count": len(quarantined), "quarantined": quarantined,
+        "price_windows": windows,
     }
     return repaired, repaired_hashes, sorted(missing_set), evidence
+
+
+def load_corporate_actions(root: Path | str) -> tuple[tuple, dict, dict]:
+    """Load dated, evidence-pinned entitlements; never infer a cash-out price."""
+    from shm.v03.corporate_actions import CorporateAction
+
+    root = Path(root)
+    manifest, hashes = _manifest(root)
+    entries = manifest.get("corporate_actions", [])
+    actions = []
+    for entry in entries:
+        path = root / entry["evidence_path"]
+        hashes[str(path.relative_to(root))] = _checked_hash(path, entry["evidence_sha256"])
+        action = CorporateAction(**entry["action"])
+        policy = entry.get("settlement_policy")
+        if policy:
+            import exchange_calendars as xcals
+
+            path = root / policy["path"]
+            hashes[str(path.relative_to(root))] = _checked_hash(path, policy["sha256"])
+            if policy["rule"] != "fifth_XNYS_session_after_effective" or policy.get("model_only") is not True:
+                raise ValueError("unrecognized corporate cash settlement model")
+            effective = pd.Timestamp(action.effective_session)
+            calendar = xcals.get_calendar("XNYS", start=effective - pd.Timedelta(days=10),
+                                         end=effective + pd.Timedelta(days=30))
+            expected = str(calendar.sessions[calendar.sessions.get_loc(effective) + 5].date())
+            if action.cash_settlement_session != expected:
+                raise ValueError("cash settlement date does not match the frozen model")
+        actions.append(action)
+    if len({action.action_id for action in actions}) != len(actions):
+        raise ValueError("duplicate corporate action ids")
+    return tuple(sorted(actions, key=lambda action: (action.effective_session, action.action_id))), hashes, {
+        "count": len(actions), "entries": entries,
+    }

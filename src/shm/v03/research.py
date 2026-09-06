@@ -243,7 +243,10 @@ def _correctness(result, evaluation: pd.DatetimeIndex, *, holding_price_jumps=No
     if not events.empty and "execution_date" in events:
         event_dates = pd.to_datetime(events["execution_date"], errors="coerce")
         events = events.loc[event_dates.isna() | event_dates.ge(evaluation[0])]
-    complete = events.empty or bool(events["action"].isin(["adjustment_rescale", "already_processed"]).all())
+    complete = events.empty or bool(events["action"].isin([
+        "adjustment_rescale", "already_processed", "corporate_action_conversion",
+        "corporate_cash_settlement",
+    ]).all())
     prior_sessions = bt.equity.index[bt.equity.index < evaluation[0]]
     first_signal = prior_sessions[-1] if len(prior_sessions) else evaluation[0]
     missing_decisions = [item for item in result.warnings

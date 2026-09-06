@@ -1,0 +1,107 @@
+{
+  "status": "UNVERIFIED_TERMINAL_SESSION",
+  "manifest_ready": false,
+  "eligible_for_freeze": false,
+  "runtime_inputs_modified": false,
+  "reason": "Nasdaq ECA2017-10 is more direct operational evidence than the issuer SEC 8-K request and supports retaining the nonzero-volume 2017-08-28 archive row. Recommend 2017-08-29 effective-session mapping for review; exact intraday cutoff and executability of the disputed daily bar remain unverified.",
+  "confirmed_terms": {
+    "source_ticker": "WFM",
+    "source_issuer": "Whole Foods Market, Inc.",
+    "source_CIK": "0000865436",
+    "source_CUSIP": "966837106",
+    "acquirer": "Amazon.com, Inc.",
+    "cash_per_actual_common_share_usd": 42.0,
+    "legal_completion_date": "2017-08-28",
+    "merger_agreement_date": "2017-06-15",
+    "ordinary_share_default": "Cash without interest; excludes company/acquirer-owned shares and dissenting owners described in the 8-K.",
+    "last_confirmed_pre_dispute_observed_session": "2017-08-25",
+    "last_trading_session": null,
+    "exact_halt_timestamp": null,
+    "issuer_requested_halt": "prior to market open on 2017-08-28",
+    "nasdaq_marketplace_suspension_effective_date": "2017-08-29"
+  },
+  "proposed_action_incomplete_do_not_load": {
+    "action_id": "WFM_CASH_2017-08-28",
+    "source_ticker": "WFM",
+    "known_date": "2017-08-28",
+    "last_trading_session": null,
+    "effective_session": null,
+    "cash_per_share": 42.0,
+    "cash_settlement_session": null,
+    "evidence": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/WFM-terminal-evidence/WFM-findings.md",
+    "source_price_treatment": "terminal_before_action_pending_cutoff_verification"
+  },
+  "cash_settlement_status": "MODEL_SELECTED_BUT_EFFECTIVE_SESSION_UNRESOLVED",
+  "settlement_policy": {
+    "rule": "fifth_XNYS_session_after_effective",
+    "model_only": true,
+    "policy_path": "/Users/fighting/code/short-hold-momentum/docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+    "policy_sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a",
+    "cash_entitlement_legal_date": "2017-08-28",
+    "cash_available_before_model_release": false,
+    "actual_broker_posting_date": null,
+    "apply_by_default": false
+  },
+  "conditional_alternatives_not_candidates": [
+    {
+      "apply": false,
+      "premise_required": "Only if the issuer-requested pre-open halt is confirmed and the 2017-08-28 archive row is not an executable strategy daily bar.",
+      "last_trading_session": "2017-08-25",
+      "effective_session": "2017-08-28",
+      "cash_settlement_session": "2017-09-05",
+      "counted_XNYS_sessions_after_effective": [
+        "2017-08-29",
+        "2017-08-30",
+        "2017-08-31",
+        "2017-09-01",
+        "2017-09-05"
+      ],
+      "legal_completion_date_unchanged": "2017-08-28",
+      "settlement_is_model_not_observed": true
+    },
+    {
+      "apply": false,
+      "premise_required": "Only if a genuine executable 2017-08-28 session is confirmed; Nasdaq lists marketplace suspension effective 2017-08-29.",
+      "last_trading_session": "2017-08-28",
+      "effective_session": "2017-08-29",
+      "cash_settlement_session": "2017-09-06",
+      "counted_XNYS_sessions_after_effective": [
+        "2017-08-30",
+        "2017-08-31",
+        "2017-09-01",
+        "2017-09-05",
+        "2017-09-06"
+      ],
+      "legal_completion_date_unchanged": "2017-08-28",
+      "settlement_is_model_not_observed": true
+    }
+  ],
+  "recommended_alternative_for_review": {
+    "last_trading_session": "2017-08-28",
+    "effective_session": "2017-08-29",
+    "cash_settlement_session": "2017-09-06",
+    "automatic_application_authorized_by_packet": false,
+    "reason": "The exchange directly lists August 29 as marketplace suspension effective date; issuer August 28 wording is only a request. The archive records nonzero August 28 volume. Prefer preservation pending regular-session/intraday cutoff verification.",
+    "exact_quote_and_timestamp_evidence": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/WFM-terminal-evidence/WFM-exact-source-quotes.json"
+  },
+  "price_window_proposal": {
+    "trim_applied": false,
+    "last_valid_session": null,
+    "disputed_row": "2017-08-28",
+    "treatment_pending_review": "Keep original immutable; flag disputed tail so it cannot silently supply an assumed executable open. Do not fabricate replacement OHLC or auto-trim on legal date alone."
+  },
+  "ordinary_dividend_treatment": "Do not add 0.18 to the 42.00 merger consideration or pay it again on top of adjusted-price P&L.",
+  "equity_unit_conversion": "At the event actual_shares = adjusted_quantity * (last_valid_adjusted_close / last_valid_as_traded_close). Both possible terminal rows have factor 1. Cash receivable = actual_shares * 42.00; do not record a sale and a cash merger payment for the same shares.",
+  "additional_unknowns": [
+    "Whether the 2017-08-28 archive volume consists of executable regular-session trades, pre-market prints, corrections, or a vendor terminal artifact.",
+    "The exact intraday legal effective time and exact trading halt timestamp.",
+    "Actual broker cash posting date."
+  ],
+  "external_queries_used": 3,
+  "external_query_limit": 3,
+  "input_hashes": {
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/WFM.parquet": "407d315eb303a7ed65f8a5dd44e4790891bd39b89bedf0d1e5abd2bcd9680e7d",
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/WFM.parquet": "a93319ae7a56473299db2d299fc52e66f826e4d5187d03383003bc42d0534123",
+    "/Users/fighting/code/short-hold-momentum/docs/decisions/ADR-014-corporate-actions-and-security-identity.md": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+  }
+}

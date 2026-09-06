@@ -99,6 +99,58 @@ def test_alias_collision_is_rejected(tmp_path):
         history.load_membership(tmp_path)
 
 
+def test_dated_identity_edit_keeps_distinct_predecessors(tmp_path):
+    base = _base(tmp_path, "AGN")
+    content = base.read_bytes()
+    evidence = tmp_path / "identity.md"
+    evidence.write_text("The two independent issuers were both members before the acquisition")
+    edit = {"start": "2026-06-29", "end": "2026-06-29", "required": ["AGN"],
+            "add": ["AGN_OLD"], "expected_rows": 1, "evidence_path": "identity.md",
+            "evidence_sha256": _sha(evidence)}
+    _manifest(tmp_path, membership={"base_sha256": _sha(base), "identity_edits": [edit]})
+    loaded, hashes, _ = history.load_membership(tmp_path)
+    assert loaded.members.tolist() == [("AGN", "AGN_OLD"), ("AGN",)]
+    assert base.read_bytes() == content and hashes["identity.md"] == _sha(evidence)
+    evidence.write_text("changed evidence")
+    with pytest.raises(ValueError, match="SHA256 mismatch"):
+        history.load_membership(tmp_path)
+
+
+def test_verified_security_window_cuts_reused_ticker_tail(tmp_path):
+    override = _override(tmp_path)
+    evidence = tmp_path / "delisting.md"
+    evidence.write_text("Old shares were extinguished after June 30")
+    _manifest(tmp_path, price_overrides={"NEW": override}, price_windows={"NEW": {
+        "end": "2026-06-30", "evidence_path": "delisting.md", "evidence_sha256": _sha(evidence)}})
+    repaired, _, _, details = history.apply_price_repairs(
+        tmp_path, {}, {}, ["NEW"], pd.Timestamp("2026-06-29"), pd.Timestamp("2026-07-01"))
+    assert repaired["NEW"].date.max() == pd.Timestamp("2026-06-30")
+    assert details["price_windows"]["NEW"]["discarded_rows"] == 1
+
+
+def test_corporate_settlement_model_is_hash_pinned_and_uses_five_exchange_sessions(tmp_path):
+    evidence = tmp_path / "event.md"
+    policy = tmp_path / "settlement.md"
+    evidence.write_text("Verified cash entitlement")
+    policy.write_text("Cash becomes available five XNYS sessions after effective")
+    action = {"action_id": "OLD_CASH", "source_ticker": "OLD", "announced_date": "2026-06-01",
+              "known_date": "2026-06-26", "last_trading_session": "2026-06-26",
+              "effective_session": "2026-06-29", "cash_per_share": 10.,
+              "source_price_treatment": "terminal_before_action", "evidence": "event.md",
+              "cash_settlement_session": "2026-07-07"}
+    entry = {"action": action, "evidence_path": "event.md", "evidence_sha256": _sha(evidence),
+             "settlement_policy": {"path": "settlement.md", "sha256": _sha(policy),
+                "model_only": True, "rule": "fifth_XNYS_session_after_effective"}}
+    _manifest(tmp_path, corporate_actions=[entry])
+    actions, hashes, _ = history.load_corporate_actions(tmp_path)
+    assert actions[0].cash_settlement_session == "2026-07-07"
+    assert hashes["settlement.md"] == _sha(policy)
+    action["cash_settlement_session"] = "2026-07-06"
+    _manifest(tmp_path, corporate_actions=[entry])
+    with pytest.raises(ValueError, match="frozen model"):
+        history.load_corporate_actions(tmp_path)
+
+
 def test_explicit_duplicate_correction_checks_identity_rows_and_keeps_original(tmp_path):
     base = _base(tmp_path, "OLD,NEW")
     content = base.read_bytes()

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/WFM-terminal-evidence/Nasdaq-ECA2017-10.txt",
+      "sha256": "e6a13cdd450a6995ca3cb3be98e25ff15536e10727b5488c33b5da11218681d2",
+      "source_url": "https://www.nasdaqtrader.com/TraderNews.aspx?id=ECA2017-10",
+      "capture": "Search_MCP extracted content; see corresponding saved search JSON, not original raw HTML."
+    },
+    {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/WFM-terminal-evidence/SEC-2017-annual.txt",
+      "sha256": "543cb9106d07b39d0c8b50345d9ff24a0fa4373d2e87f8a1c5d912430b0d1b30",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/865436/000086543617000238/wfm10k2017.htm",
+      "capture": "Search_MCP extracted content; see corresponding saved search JSON, not original raw HTML."
+    },
+    {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/WFM-terminal-evidence/SEC-closing-8k.txt",
+      "sha256": "f541b99f2f2f3c2c1bbc2661c2debb1a0b010f585b4e6fb06e21082f7dcc008a",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/865436/000114420417045261/v474128_8k.htm",
+      "capture": "Search_MCP extracted content; see corresponding saved search JSON, not original raw HTML."
+    },
+    {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/WFM-terminal-evidence/dividendhistory-terminal-crosscheck.txt",
+      "sha256": "440e3b522ff93c4927bce60427b703fcd9a58d5f97c96379be6232dbcb38bf16",
+      "source_url": "https://dividendhistory.org/payout/WFM/",
+      "capture": "Search_MCP extracted content; see corresponding saved search JSON, not original raw HTML."
+    },
+    {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/WFM-terminal-evidence/dividendmax-terminal-crosscheck.txt",
+      "sha256": "831f42b51b062c8d90bff972d41b5b24f8a2c8398c46387770f5f52880cdefdf",
+      "source_url": "https://www.dividendmax.com/united-states/nasdaq/food-and-drug-retailers/whole-foods-market-inc/dividends",
+      "capture": "Search_MCP extracted content; see corresponding saved search JSON, not original raw HTML."
+    }
+  ],
+  "search_json_hashes": {
+    "search-1.json": "11016de2f10acb7dfc59ce1faadc5880d98eaf1fc2659aa441afa88e5cd7b781",
+    "search-2.json": "60879a7418995f69ae71e6ff734e70a4b13af2e1560fc66f7667ad48822eacae",
+    "search-3.json": "75817f916f0e0344c79abe91bb9282137939b9360b4412afe54b843234ea6ca1"
+  },
+  "external_queries_used": 3
+}

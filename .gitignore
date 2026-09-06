@@ -25,3 +25,5 @@ data/snapshots/backups/
 reports/v0*/*/*.daily.parquet
 reports/v0*/*/*.decisions.json
 reports/v0*/*/*.warnings.json
+reports/v0*/*/*.execution-events.csv
+reports/v0*/*/*.transactions.csv

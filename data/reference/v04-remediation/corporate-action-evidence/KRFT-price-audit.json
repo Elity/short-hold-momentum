@@ -1,0 +1,98 @@
+{
+  "source_files": {
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/KRFT.parquet": "e8671263936744852c8d6edde23ae28d9c3a337647cf2611f0f0bf04cd82b741",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/KHC.parquet": "827eeac139408e6fcb40c2668daaada5161d39c304b05de4c8ffa5bcc2c0fe60",
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/KRFT.parquet": "7c4a0fc1b95fbd3238d117764f08929fcfb5758408a29c0c4a4606525aad9c48",
+    "/Users/fighting/code/short-hold-momentum/data/raw/prices/KHC.parquet": "04f38672cceadd6bfc8a4bf5285dc20195614fa8b4194f96da8a86ec2218a53c"
+  },
+  "krft_rows": 702,
+  "krft_first": "2012-09-17",
+  "krft_last": "2015-07-02",
+  "post_final_session_rows": 0,
+  "krft_dividends": [
+    {
+      "date": "2012-12-27",
+      "ex-dividend": 0.5,
+      "factor": 0.9216787721488064
+    },
+    {
+      "date": "2013-03-26",
+      "ex-dividend": 0.5,
+      "factor": 0.9306515016284481
+    },
+    {
+      "date": "2013-06-26",
+      "ex-dividend": 0.5,
+      "factor": 0.9392147285481064
+    },
+    {
+      "date": "2013-10-09",
+      "ex-dividend": 0.525,
+      "factor": 0.9487191181488727
+    },
+    {
+      "date": "2013-12-24",
+      "ex-dividend": 0.525,
+      "factor": 0.9580604072904361
+    },
+    {
+      "date": "2014-04-09",
+      "ex-dividend": 0.525,
+      "factor": 0.967008667632501
+    },
+    {
+      "date": "2014-07-09",
+      "ex-dividend": 0.525,
+      "factor": 0.9755096647943742
+    },
+    {
+      "date": "2014-10-15",
+      "ex-dividend": 0.55,
+      "factor": 0.9853488416811687
+    },
+    {
+      "date": "2014-12-23",
+      "ex-dividend": 0.55,
+      "factor": 0.993815360395817
+    },
+    {
+      "date": "2015-04-08",
+      "ex-dividend": 0.55,
+      "factor": 1.0
+    }
+  ],
+  "terminal_window": {
+    "first": "2015-04-08",
+    "last": "2015-07-02",
+    "rows": 61,
+    "min_factor": 1.0,
+    "max_factor": 1.0,
+    "all_ohlc_unadjusted": true,
+    "special_dividend_16_50_rows": 0
+  },
+  "khc_first_archive_bar": {
+    "ticker": "KHC",
+    "date": "2015-07-06",
+    "open": "71.0",
+    "high": "74.29",
+    "low": "71.0",
+    "close": "72.96",
+    "volume": "3809713.0",
+    "ex-dividend": "16.5",
+    "split_ratio": "1.0",
+    "adj_open": "66.077632550479",
+    "adj_high": "69.139539748945",
+    "adj_low": "66.077632550479",
+    "adj_close": "67.901747477225",
+    "adj_volume": "3809713.0",
+    "factor": "0.9306708809926673"
+  },
+  "khc_first_archive_dividend": 16.5,
+  "khc_first_cache_factor": 0.5989472146487723,
+  "khc_first_cache_nominal_open": 71.0,
+  "old_last_nominal_close": 88.19,
+  "first_open_entitlement_value_per_old_share": 87.5,
+  "first_open_change_vs_final_source_close": -0.007824016328381922,
+  "conclusion": "The terminal KRFT series has not capitalized the $16.50 merger-linked dividend. KHC records that event on its first row, but this is not a return already realized by a KRFT holding. Convert the terminating source once to one nominal KHC share plus $16.50 receivable; do not separately replay KHC first-row dividend cash.",
+  "limits": "This is a terminal-action double-counting audit, not full certification of every ordinary historical dividend in WIKI."
+}

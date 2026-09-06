@@ -1,0 +1,28 @@
+{
+  "action": {
+    "action_id": "BCR-2017-12-29",
+    "source_ticker": "BCR",
+    "target_ticker": "BDX",
+    "announced_date": "2017-04-24",
+    "known_date": "2017-12-29",
+    "last_trading_session": "2017-12-28",
+    "effective_session": "2017-12-29",
+    "cash_per_share": 222.93,
+    "exchange_ratio": 0.5077,
+    "cash_in_lieu_price": null,
+    "cash_settlement_session": "2018-01-08",
+    "source_price_treatment": "terminal_before_action",
+    "evidence": "Original Bard SEC 8-K and NYSE removal notification confirm $222.93 plus 0.5077 BDX per BCR and suspension 2017-12-29. The separate $0.26 ordinary dividend is corrected in adjusted history, not appended to merger cash. Cash release uses ADR-014 fifth-subsequent-XNYS-session model, not observed broker settlement."
+  },
+  "evidence_file": "BCR-evidence.md",
+  "price_override": {
+    "candidate_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/BCR.repaired-candidate.parquet",
+    "sha256": "41e03afabd1e998bf4de3eff0e6e05a7664a8f504da193cf572b8560047afb02",
+    "method": "WIKI source + one source-rounded public quote + one separately evidenced missing ordinary dividend"
+  },
+  "price_window": {
+    "ticker": "BCR",
+    "end": "2017-12-28",
+    "rows_requiring_removal": 0
+  }
+}

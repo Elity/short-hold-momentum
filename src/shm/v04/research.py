@@ -22,7 +22,7 @@ from shm.v03.research import (
     qualifies, select_winner, write_json,
 )
 from shm.v04.profiles import SP500_IDS, base_candidate, candidate_config
-from shm.v04.history import load_membership, apply_price_repairs
+from shm.v04.history import load_membership, apply_price_repairs, load_corporate_actions
 
 
 def historical_membership(history: pd.DataFrame, schedule: pd.DatetimeIndex,
@@ -96,7 +96,7 @@ def render_research_v04(payload: dict) -> str:
     lines = ["# SHM v0.4 历史时点标普500研究", "",
              f"状态：**{payload['status']}**；胜者：**{payload['winner'] or '无'}**。", "",
              f"共同评价区间：{payload['period']['start']} → {payload['period']['end']}。",
-             "本轮只更换股票池，C0–C4规则与10/25bps模型成本保持。全部属于已知历史，不是新样本外。", "",
+             "使用历史时点股票池，修复数据与公司行动记账；C0–C4规则与10/25bps模型成本保持。全部属于已知历史，不是新样本外。", "",
              f"历史成分来源覆盖至 {membership['source_last_date']}；所需截止 {membership['required_end']}；"
              f"成分覆盖检查：{membership['status']}；已知成分日价格覆盖：{coverage['coverage']:.1%}。",
              "当前503证券名单未用于回填历史。成分未知区间仍保留原评价日期，暂停新增排名买入；这些区间的结果不能作为有效策略成绩。", "",
@@ -109,7 +109,7 @@ def render_research_v04(payload: dict) -> str:
         else:
             lines.append(f"| {row['strategy_id']} | 数据检查未通过，指标无效 | 数据检查未通过，指标无效 | 否 |")
     lines.extend(["", "原始数字及逐日路径只保留作数据审计，不以异常CAGR宣称扩池有效。",
-                  "10%为预警目标，不是本轮淘汰线。官方开盘价与模型成本不构成券商执行证据。"])
+                  "10%为预警目标，不是本轮淘汰线。历史行情中的开盘价与模型成本不构成券商执行证据。"])
     if "eligibility_basis" in payload:
         lines.extend(["", f"当时报价与成交额的资格数据覆盖：{payload['eligibility_basis']['coverage']:.1%}。"
                       "5美元门槛使用当时实际报价，ADV60使用当时成交额；动量和收益仍用含分红复权价。"])
@@ -118,6 +118,9 @@ def render_research_v04(payload: dict) -> str:
         lines.append(f"\n补入 {repairs.get('price_override_count', 0)} 只归档价格序列（不代表已通过质量验收），隔离 {repairs.get('quarantined_count', 0)} 只；隔离证券仍保留在历史成分和覆盖率分母中。")
         for issue in repairs.get("unresolved", []):
             lines.append(f"- 未解决：{issue.get('reason', issue)}")
+    if payload.get("corporate_actions", {}).get("count"):
+        lines.extend(["", f"已登记 {payload['corporate_actions']['count']} 项有来源的公司行动。换股和现金权益单独记账，不伪装为市场成交、不重复计入复权收益。",
+                      "现金权益先记应收，本轮按预先固定的有效日后第5个XNYS交易日释放；这是模拟假设，不是实测券商到账。未配置结算规则的未知应收仍阻止晋级。"])
     for row in payload["candidates"]:
         lines.extend(["", f"## {row['strategy_id']}", "",
                       "检查：" + json.dumps(row["checks"], ensure_ascii=False),
@@ -211,17 +214,20 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
     sessions = calendar.sessions[first - 260:]
     evaluation = sessions[sessions > schedule[0]]
     history, membership_hashes, membership_repairs = load_membership(root)
+    corporate_actions, action_hashes, action_evidence = load_corporate_actions(root)
     membership, history_evidence = historical_membership(history, schedule, evaluation)
     universe = sorted({ticker for members in membership.values() for ticker in members})
     if not universe:
         raise ValueError("historical PIT membership contains no securities for the fixed evaluation period")
-    prices, hashes, missing = _load_prices(root, universe + ["SPY"], sessions[0], end)
+    price_symbols = sorted(set(universe) | {"SPY"} | {
+        action.target_ticker for action in corporate_actions if action.target_ticker})
+    prices, hashes, missing = _load_prices(root, price_symbols, sessions[0], end)
     prices, hashes, missing, data_repairs = apply_price_repairs(root, prices, hashes, missing, sessions[0], end)
     if "SPY" not in prices:
         raise ValueError("SPY cache is required")
     current_path = root / "data/reference/sp500/current.json"
     current = json.loads(current_path.read_text()) if current_path.exists() else None
-    all_hashes = {**hashes, **prereg_hashes, **membership_hashes,
+    all_hashes = {**hashes, **prereg_hashes, **membership_hashes, **action_hashes,
                   str(config_path.relative_to(root)): file_hash(config_path)}
     if current is not None:
         all_hashes[str(current_path.relative_to(root))] = file_hash(current_path)
@@ -239,7 +245,7 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
                                              "membership_history": history_evidence})
     progress(f"Preparing historical PIT universe ({len(universe)} securities); membership through {history_evidence['source_last_date']}")
     prepared = prepare_inputs(prices, universe, sessions, schedule, membership_by_session=membership,
-                              require_point_in_time_eligibility=True)
+                              require_point_in_time_eligibility=True, corporate_actions=corporate_actions)
     coverage = price_coverage(prices, membership)
     basis_coverage = eligibility_basis_coverage(prepared, membership)
     benchmarks = {bps: _spy_buy_hold(prices["SPY"], evaluation, bps) for bps in (10, 25)}
@@ -261,6 +267,7 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
             result = run_simulation(prices, universe, candidate, sessions, schedule,
                                     cost_bps=bps, prepared=prepared)
             row[f"metrics_{bps}"] = _save_result(directory, strategy_id, bps, result, evaluation)
+            row[f"corporate_receivables_{bps}"] = result.final_state.corporate_receivables
             row[f"benchmark_{bps}"] = benchmark_metrics[bps]
             jumps = _holding_price_jumps(prepared, result.backtest, evaluation)
             row[f"holding_price_jumps_{bps}"] = jumps
@@ -308,6 +315,7 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
                "period": {"start": str(evaluation[0].date()), "end": CUTOFF},
                "winner": winner, "status": status, "candidates": rows,
                "data_repairs": data_repairs, "membership_repairs": membership_repairs,
+               "corporate_actions": action_evidence,
                "eligibility_basis": basis_coverage,
                "benchmark_10": benchmark_metrics[10], "benchmark_25": benchmark_metrics[25],
                "benchmark_price_jumps": benchmark_jumps, "membership_history": history_evidence,

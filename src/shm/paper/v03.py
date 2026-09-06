@@ -37,6 +37,7 @@ INITIAL_CASH = 100_000.0
 INCOMPLETE_EXECUTION = {
     "unfilled_entry", "pending_exit", "incomplete_open_valuation",
     "missed_execution", "unverified_price_basis", "new_risk_blocked",
+    "unresolved_corporate_action", "unresolved_corporate_settlement",
 }
 
 
@@ -225,8 +226,11 @@ def _prepare_day(root: Path, as_of: pd.Timestamp, states: list[PortfolioState], 
     owner = yaml.safe_load((root / "config/universe.yaml").read_text(encoding="utf-8"))
     excluded = set(owner.get("exclusions", []))
     universe = tuple(t for t in owner["tickers"] if t not in excluded)
+    corporate_actions = ()
     if version(strategy_id) == "0.4":
         from shm.universe.sp500 import load_sp500_snapshot
+        from shm.v04.history import load_corporate_actions
+        corporate_actions, _, _ = load_corporate_actions(root)
         snapshot = load_sp500_snapshot(root)
         if snapshot is None:
             universe = ()
@@ -236,6 +240,22 @@ def _prepare_day(root: Path, as_of: pd.Timestamp, states: list[PortfolioState], 
     for state in states:
         tickers.update(state.positions)
     window = paper_xnys_window(as_of)
+    references: dict[str, set[str]] = {}
+    for state in states:
+        for ticker in state.positions:
+            reference = state.mark_dates.get(ticker)
+            if reference is not None and pd.Timestamp(reference) <= as_of:
+                references.setdefault(ticker, set()).add(reference)
+    for action in corporate_actions:
+        if action.effective_session > str(as_of.date()):
+            continue
+        if any(action.source_ticker in state.positions
+               and state.positions[action.source_ticker].entry_date <= action.last_trading_session
+               and action.action_id not in state.processed_corporate_actions for state in states):
+            references.setdefault(action.source_ticker, set()).add(action.last_trading_session)
+            if action.target_ticker:
+                tickers.add(action.target_ticker)
+                references.setdefault(action.target_ticker, set()).add(action.effective_session)
     prices = {}
     for ticker in sorted(tickers):
         path = root / "data/raw/prices" / f"{ticker}.parquet"
@@ -244,8 +264,17 @@ def _prepare_day(root: Path, as_of: pd.Timestamp, states: list[PortfolioState], 
                 path, ticker=ticker, start=window[0], end=as_of,
                 mode="paper", paper_sessions=260,
             )
+            # Keep dated basis/conversion observations outside the normal signal
+            # window. They reconcile persisted units; no missing historical
+            # signals or trades are reconstructed from these reference bars.
+            for reference in references.get(ticker, ()):
+                if pd.Timestamp(reference) < window[0]:
+                    extra = read_price_cache(path, ticker=ticker, start=reference, end=reference,
+                                             mode="paper", paper_sessions=1)
+                    prices[ticker] = pd.concat([extra, prices[ticker]], ignore_index=True)
     prepared = prepare_inputs(prices, universe, window, _schedule(root, as_of),
-                              require_point_in_time_eligibility=version(strategy_id) == "0.4")
+                              require_point_in_time_eligibility=version(strategy_id) == "0.4",
+                              corporate_actions=corporate_actions)
     return prepared, prices
 
 
@@ -325,7 +354,8 @@ def _decision_incomplete(decision: dict) -> bool:
 def _valuation(state: PortfolioState) -> dict:
     payload = state.to_dict()
     marks = payload.get("marks", {})
-    equity = float(payload["cash"])
+    receivables = state.receivables_value
+    equity = float(payload["cash"]) + receivables
     holdings = []
     for ticker, position in payload["positions"].items():
         mark = marks.get(ticker, position["average_cost"])
@@ -339,10 +369,11 @@ def _valuation(state: PortfolioState) -> dict:
                          market_value - quantity * float(position["average_cost"])})
     high_water = float(payload.get("equity_high_water") or INITIAL_CASH)
     return {"cash": float(payload["cash"]), "equity": equity,
+            "corporate_receivables": receivables,
             "positions": holdings, "drawdown": equity / high_water - 1,
             "equity_high_water": high_water,
             "drawdown_warning": equity / high_water <= 0.90,
-            "stock_exposure": (equity - float(payload["cash"])) / equity if equity else 0.0}
+            "stock_exposure": (equity - float(payload["cash"]) - receivables) / equity if equity else 0.0}
 
 
 def _run_paper_day(

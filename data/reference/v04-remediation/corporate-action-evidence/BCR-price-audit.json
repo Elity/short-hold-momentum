@@ -1,0 +1,60 @@
+{
+  "input_sha256": "0cee4fee9cb184e0b95e032abe62df79edb739fca8cef241bc40c2c5bd14ca96",
+  "candidate_sha256": "41e03afabd1e998bf4de3eff0e6e05a7664a8f504da193cf572b8560047afb02",
+  "source_rows": 3586,
+  "candidate_rows": 3587,
+  "source_first": "2003-10-01",
+  "source_last": "2017-12-28",
+  "post_terminal_rows": 0,
+  "normalization": "As-traded close and dollar volume stay on nominal basis; only adjusted OHLC before ex-date receive the cash-dividend multiplier.",
+  "missing_bar": {
+    "date": "2017-11-08",
+    "open": 334.05,
+    "high": 334.21,
+    "low": 333.08,
+    "close": 334.08,
+    "volume": 635560,
+    "volume_precision": "635.56K, rounded to source display resolution of 10 shares",
+    "dollar_volume": 212327884.79999998
+  },
+  "neighbor_overlap_checks": {
+    "close_max_abs_diff": 0.0,
+    "open_max_abs_diff": 0.0,
+    "high_max_abs_diff": 9.999999997489795e-05,
+    "low_max_abs_diff": 0.0049999999999954525,
+    "volume_max_relative_difference": 0.04360483121709513
+  },
+  "convention_checks": [
+    {
+      "date": "2017-04-27",
+      "dividend": 0.26,
+      "observed_factor_transition": 0.999149882291385,
+      "total_return_factor": 0.9991498822913942,
+      "absolute_difference": 9.2148511043888e-15
+    },
+    {
+      "date": "2017-07-20",
+      "dividend": 0.26,
+      "observed_factor_transition": 0.9991929476036765,
+      "total_return_factor": 0.9991929476036753,
+      "absolute_difference": 1.2212453270876722e-15
+    }
+  ],
+  "missing_dividend": {
+    "ex_date": "2017-12-07",
+    "record_date": "2017-12-08",
+    "pay_date": "2017-12-29",
+    "amount": 0.26,
+    "nominal_ex_close": 332.07,
+    "old_factor_transition": 1.0,
+    "repair_multiplier": 0.9992176451117865,
+    "formula": "P_ex / (P_ex + D)",
+    "corrected_ex_day_return": 0.0005720479315951543,
+    "expected_total_return": 0.0005720479315951543,
+    "evidence_level": "Contemporaneous Nasdaq/BNK Invest report plus StreetInsider, DividendHistory and Investing AU date crosschecks; original issuer declaration not recovered in bounded search."
+  },
+  "source_limits": [
+    "Volume is source-rounded and vendors differ on neighboring volumes.",
+    "This audit addresses identity at termination, missing 2017-11-08, the final ordinary dividend and merger; it does not certify all historical WIKI data."
+  ]
+}
