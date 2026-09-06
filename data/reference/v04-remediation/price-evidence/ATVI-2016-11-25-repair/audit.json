@@ -1,0 +1,170 @@
+{
+  "status": "VERIFIED_SINGLE_ROW_REPAIR_PROPOSAL_NOT_APPLIED",
+  "ticker": "ATVI",
+  "date": "2016-11-25",
+  "problem": "Old WIKI nominal open 36.52 is below its low 37.20; preserved current adjusted open 36.301143... is below low 36.977068.... This predates the 2020 extension.",
+  "source_choice": "Entire IEX OHLCV row; no provider mixing. IEX is the selected vendor. JacksonCrow and SheepB are two archived Yahoo/yfinance snapshots, not two independent vendors.",
+  "nominal_ohlcv": {
+    "open": 37.45,
+    "high": 37.58,
+    "low": 37.2,
+    "close": 37.22,
+    "volume": 3206319.0
+  },
+  "canonical_factor": 0.9940071913703556,
+  "canonical_factor_range_in_21_sessions": [
+    0.9940071913703555,
+    0.9940071913703558
+  ],
+  "normalization": "Multiply every selected IEX nominal OHLC field by old canonical close / old as_traded_close. Preserve IEX share volume and nominal close*volume. Never import either newer Yahoo Adj Close scale.",
+  "neighbor_window": [
+    "2016-11-10",
+    "2016-12-09"
+  ],
+  "neighbor_definition": "10 XNYS sessions before + target + 10 XNYS sessions after",
+  "source_comparisons": {
+    "IEX": {
+      "target": {
+        "open": 37.45,
+        "high": 37.58,
+        "low": 37.2,
+        "close": 37.22,
+        "volume": 3206319.0
+      },
+      "target_max_abs_OHLC_delta_vs_IEX": 0.0,
+      "target_volume_delta_vs_IEX": 0.0,
+      "neighbor_sessions": 20,
+      "neighbor_all_OHLC_within_0_011": 20,
+      "neighbor_price_conflict_dates": [],
+      "neighbor_max_abs_OHLC_delta": {
+        "open": 0.0,
+        "high": 0.0,
+        "low": 0.0,
+        "close": 0.0
+      },
+      "neighbor_max_abs_relative_volume_delta": 0.0
+    },
+    "JacksonCrow": {
+      "target": {
+        "open": 37.45000076293945,
+        "high": 37.58000183105469,
+        "low": 37.20000076293945,
+        "close": 37.220001220703125,
+        "volume": 3206300.0
+      },
+      "target_max_abs_OHLC_delta_vs_IEX": 1.8310546892053026e-06,
+      "target_volume_delta_vs_IEX": -19.0,
+      "neighbor_sessions": 20,
+      "neighbor_all_OHLC_within_0_011": 20,
+      "neighbor_price_conflict_dates": [],
+      "neighbor_max_abs_OHLC_delta": {
+        "open": 1.8310546892053026e-06,
+        "high": 0.00499923706054517,
+        "low": 0.004998321533200567,
+        "close": 1.8310546892053026e-06
+      },
+      "neighbor_max_abs_relative_volume_delta": 9.170779029427335e-05
+    },
+    "SheepB": {
+      "target": {
+        "open": 37.45000076293945,
+        "high": 37.58000183105469,
+        "low": 37.20000076293945,
+        "close": 37.220001220703125,
+        "volume": 3206300.0
+      },
+      "target_max_abs_OHLC_delta_vs_IEX": 1.8310546892053026e-06,
+      "target_volume_delta_vs_IEX": -19.0,
+      "neighbor_sessions": 20,
+      "neighbor_all_OHLC_within_0_011": 20,
+      "neighbor_price_conflict_dates": [],
+      "neighbor_max_abs_OHLC_delta": {
+        "open": 1.8310546892053026e-06,
+        "high": 0.00499923706054517,
+        "low": 0.004998321533200567,
+        "close": 1.8310546892053026e-06
+      },
+      "neighbor_max_abs_relative_volume_delta": 9.170779029427335e-05
+    },
+    "WIKI": {
+      "target": {
+        "open": 36.52,
+        "high": 37.58,
+        "low": 37.2,
+        "close": 37.22,
+        "volume": 3206319.0
+      },
+      "target_max_abs_OHLC_delta_vs_IEX": 0.9299999999999997,
+      "target_volume_delta_vs_IEX": 0.0,
+      "neighbor_sessions": 20,
+      "neighbor_all_OHLC_within_0_011": 19,
+      "neighbor_price_conflict_dates": [
+        "2016-11-30"
+      ],
+      "neighbor_max_abs_OHLC_delta": {
+        "open": 0.04999999999999716,
+        "high": 0.0,
+        "low": 0.0,
+        "close": 0.0
+      },
+      "neighbor_max_abs_relative_volume_delta": 0.0
+    }
+  },
+  "unchanged_existing_numerics": [
+    "close",
+    "volume",
+    "as_traded_close",
+    "dollar_volume"
+  ],
+  "material_numeric_change": {
+    "open_before": 36.30114262884539,
+    "open_after": 37.22556931681982
+  },
+  "source_limits": [
+    "IEX volume is a reported integer share count; exact consolidation scope is not independently established.",
+    "Yahoo-derived target volume is 19 shares lower than IEX, a 0.000593% difference. Use all IEX fields together.",
+    "Old WIKI 2016-11-30 open differs from IEX/Yahoo by 0.05 while remaining internally consistent; record it without widening this repair."
+  ],
+  "input_hashes": {
+    "IEX": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-extracted.source.csv",
+      "sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6"
+    },
+    "JacksonCrow": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/ATVI-jackson-source.csv",
+      "sha256": "c41833dacfb9871e8c217b90cd16637dd4ee2b5ffedc0107f1f7343875ccd2ef"
+    },
+    "SheepB": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ATVI.parquet",
+      "sha256": "7b77347e5ecada0deb3675257f34b09b39119dc5b5e250043ea91fd623d67395"
+    },
+    "WIKI": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ATVI.parquet",
+      "sha256": "5739988ed3062b923f7834ca89e5e4b8bcc18f02c89f79fd2d6c9159fcc9151c"
+    },
+    "current_2020": {
+      "path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ATVI-through-2020-04-01.parquet",
+      "sha256": "c6beda01fad277fa3c202d419180163c816f3daaf54978600fed94eb10d46d7b"
+    },
+    "IEX_metadata": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-kaggle-metadata.source.json",
+      "sha256": "f178d81c5312e7388336f5a9f666858acc974caff5b2940b52b4b2966ba55d1c"
+    },
+    "JacksonCrow_metadata": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/03-jacksoncrow-metadata.body",
+      "sha256": "64ca3186e4815fb891a7524dcd5704f8feb5b50d4cf6c227dd66dc2fed31b55f"
+    },
+    "SheepB_metadata": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/04-sheepb-metadata.body",
+      "sha256": "d763dcf15eebed98f3a80bfc65d2269c47905825b77e3417fca6498141bbbc3e"
+    }
+  },
+  "network_requests": 0,
+  "main_manifest_modified": false,
+  "current_or_2021_candidate_modified": false,
+  "application_preconditions": [
+    "Locate the 2016-11-25 row in the final 2021 candidate; require its preserved original fields and canonical factor to match this audit.",
+    "Replace this entire one row only, preserving the final candidate schema and timestamp dtype.",
+    "Update candidate and evidence hashes in a new manifest entry; do not retain a claim that every preexisting row is unchanged after this explicit repair."
+  ]
+}

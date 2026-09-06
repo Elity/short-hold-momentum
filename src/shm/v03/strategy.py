@@ -344,8 +344,8 @@ def evaluate_close(
             else:
                 line = position.peak_close - 3 * float(atr)
                 position.trailing_stop = max(position.trailing_stop if position.trailing_stop is not None else line, line)
-                if close < position.trailing_stop:
-                    exits.setdefault(ticker, "atr_trailing_exit")
+            if position.trailing_stop is not None and close < position.trailing_stop:
+                exits.setdefault(ticker, "atr_trailing_exit")
     if not missing:
         state.equity_high_water = max(state.equity_high_water, equity)
     drawdown = equity / state.equity_high_water - 1 if state.equity_high_water > 0 else 0.0

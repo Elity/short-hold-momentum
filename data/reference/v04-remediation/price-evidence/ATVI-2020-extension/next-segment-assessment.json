@@ -1,0 +1,50 @@
+{
+  "status": "NEXT_SEGMENT_DIAGNOSTIC_ONLY_NOT_GENERATED",
+  "source_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ATVI.parquet",
+  "source_sha256": "7b77347e5ecada0deb3675257f34b09b39119dc5b5e250043ea91fd623d67395",
+  "source_rows": 5444,
+  "source_last": "2021-08-19",
+  "proposed_new_start": "2020-04-02",
+  "proposed_new_rows": 349,
+  "missing_new_xnys_sessions": [],
+  "canonical_start_factor": 1.0133240449687022,
+  "overlap_rows": 507,
+  "all_overlapping_raw_OHLC_identical": true,
+  "volume_differences": [
+    {
+      "Date": "2019-07-18",
+      "Volume_s": 8157700.0,
+      "Volume_j": 8158500
+    },
+    {
+      "Date": "2019-10-25",
+      "Volume_s": 6320200.0,
+      "Volume_j": 6319800
+    }
+  ],
+  "provider_adjustment_change_dates": [
+    "2020-04-14",
+    "2021-04-14"
+  ],
+  "additional_evidence_required": [
+    {
+      "ex_date_observed": "2020-04-14",
+      "cash_amount": 0.41,
+      "status": "PRIMARY_AMOUNT_RECORD_PAY_DATES_ALREADY_AVAILABLE",
+      "primary": "ATVI-2020-Q1.html; record 2020-04-15, payable 2020-05-06",
+      "remaining": "Crosscheck ex-date with provider factor change and XNYS schedule before applying."
+    },
+    {
+      "ex_date_observed": "2021-04-14",
+      "cash_amount": null,
+      "status": "NEEDS_ISSUER_OR_SEC_AMOUNT_RECORD_PAY_DATES",
+      "remaining": "Do not infer the dividend amount from rounded Adj Close factors; retrieve the declared 2021 ordinary dividend."
+    },
+    {
+      "status": "NEEDS_UPDATED_SHARE_ROLLFORWARD",
+      "remaining": "2020 annual and 2021 interim share changes should extend the no-split evidence through 2021-08-19; exact OHLC overlap already rules out a net later split rescaling of the retained source."
+    }
+  ],
+  "implementation_if_verified": "Start from the completed 2020 candidate unchanged; append only SheepB whole rows, carry its existing canonical factor and update it on independently established ex-dates using (P_ex+D)/P_ex. Preserve Close and Volume as separate nominal fields once the no-split interval is validated. Do not include separate dividend cash events.",
+  "remaining_gap_if_applied": "2021-08-20 onward, including the eventual terminal merger, would still be missing; all existing research gates remain."
+}

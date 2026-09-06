@@ -1,0 +1,49 @@
+{
+  "additional_requests_used": 4,
+  "additional_requests_limit": 4,
+  "source_price_downloads": 0,
+  "main_repo_modifications": 0,
+  "candidate_parquet_modifications": 0,
+  "requests": [
+    {
+      "request_number": 1,
+      "request_limit": 4,
+      "tool": "sonic",
+      "query": "site:sec.gov/Archives/edgar/data/1418091 Twitter \"October 27, 2022\" \"54.20\" \"October 28\"",
+      "file": "01-closing-search.json",
+      "bytes": 145896,
+      "sha256": "7428022628e78158edcbe52c35765e0387978d2892fe4c4cd76deff75eb222fb"
+    },
+    {
+      "request_number": 2,
+      "request_limit": 4,
+      "tool": "sonic",
+      "query": "site:sec.gov/Archives/edgar/data/1418091 Twitter \"November 7, 2013\" \"never declared\" \"2021\"",
+      "file": "02-ipo-dividend-search.json",
+      "bytes": 128471,
+      "sha256": "eb570201372da6a7651c9e510cf698e4817561b90b4ecfdf2cb50eab038c4d19"
+    },
+    {
+      "request_number": 3,
+      "request_limit": 4,
+      "tool": "sonic",
+      "query": "site:sec.gov/Archives/edgar/data/1418091/ \"2022\" \"We have never declared or paid\" \"dividends\"",
+      "file": "03-dividend-latest-search.json",
+      "bytes": 141665,
+      "sha256": "ded3419352ec89b239b0f4bc66451a1fdcb62d7160b0dd756beed93cb3a269e6"
+    },
+    {
+      "request_number": 4,
+      "request_limit": 4,
+      "tool": "sonic",
+      "query": "Twitter Inc TWTR 2021 Form 10-K \"dividend\" site:sec.gov",
+      "file": "04-annual-dividend-search.json",
+      "bytes": 53742,
+      "sha256": "b66a2bef96c6a400bb1aa4a17f812c2f049a2828e3aaa3d0dcd67f6335efb66b"
+    }
+  ],
+  "derived_files": {
+    "primary-excerpts-and-terms.json": "5d7b27b2c33e83b1b5cd3312efa9b07b2fd5422856a14541bf7790039e6d4df1",
+    "findings.md": "baaced818e65bd563bd1a951383e855a85b14272409c82feedb4ac8b7450237b"
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/718877/000162828021002828/atvi-20201231.htm",
+    "file": "ATVI-2020-10K.html",
+    "expected_sha256": "079fa346fae873ef3d050841c7254cfe7fd91f6073d2dc909d7c22019f4571fd",
+    "scope": "2020 full-year share roll-forward and 2020/2021 dividend declaration, record and payment dates"
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/data/718877/000162828021021200/atvi-20210930.htm",
+    "file": "ATVI-2021-Q3.html",
+    "expected_sha256": "e99b107be442d5dc77d9e371bad448984562fbece84817e3192e194d83395195",
+    "scope": "Quarterly 2020/2021 share roll-forwards through September 2021; confirmation of actual 2021 dividend payment"
+  }
+]

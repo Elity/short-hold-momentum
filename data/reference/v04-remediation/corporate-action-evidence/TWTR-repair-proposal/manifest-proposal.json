@@ -1,0 +1,49 @@
+{
+  "apply_ready": true,
+  "review_blockers": [],
+  "price_override": {
+    "path": "data/research/v04/prices/TWTR-history-repaired.parquet",
+    "sha256": "82f441e0b680ecb153c110caf2bae516e38a89e2fa2480dad983ec7c39eebe4e",
+    "source_ticker": "TWTR",
+    "source_name": "Twitter Inc",
+    "first": "2013-11-07",
+    "last": "2022-10-27",
+    "invalid_rows": 0,
+    "source_archive_sha256": "0c276c3d6cf8a70483f9e30edc496161d9d0af43cb78984190c6b6ca2a6aacc1",
+    "method": "Preserve 1102 existing WIKI rows exactly; append missing public Twitter Stocks Dataset v1 rows; use the complete independent SheepB v1 row on 2021-05-05. Full 2259-session history, numerically supported nominal unit scale, primary dividend-policy/interim-accounting evidence and disclosed inference conditions.",
+    "missing_sessions": [],
+    "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/TWTR-repair-proposal/evidence.md",
+    "evidence_sha256": "518fd6b70078611b8766df77756f10177278028988c89733bd9bb762c9546d95"
+  },
+  "corporate_action": {
+    "action": {
+      "action_id": "TWTR_CASH_2022-10-28",
+      "source_ticker": "TWTR",
+      "announced_date": "2022-04-25",
+      "known_date": "2022-10-27",
+      "last_trading_session": "2022-10-27",
+      "effective_session": "2022-10-28",
+      "cash_per_share": 54.2,
+      "cash_settlement_session": "2022-11-04",
+      "evidence": "data/reference/v04-remediation/corporate-action-evidence/TWTR-repair-proposal/evidence.md; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+      "source_price_treatment": "terminal_before_action"
+    },
+    "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/TWTR-repair-proposal/evidence.md",
+    "evidence_sha256": "518fd6b70078611b8766df77756f10177278028988c89733bd9bb762c9546d95",
+    "terms_status": "DEFAULT_CASH_CONFIRMED_BY_PRIMARY_SEC;_LAST_BAR_PLUS_SUSPENSION_BOUNDARY_SUPPORTED",
+    "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+    "settlement_policy": {
+      "rule": "fifth_XNYS_session_after_effective",
+      "model_only": true,
+      "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+      "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+    }
+  },
+  "review_limitations": [
+    "No official exhaustive split ledger; numerical unit evidence is stated with its conditions.",
+    "July-October ordinary dividend conclusion combines primary restriction and observed adjustment history, not a full closing-date dividend ledger.",
+    "Vendor venue/consolidation scope for volume is not independently established."
+  ],
+  "independent_row_audit": "2021-05-05-independent-row-audit.json",
+  "dividend_and_unit_supplement": "../TWTR-primary-evidence/dividend-and-unit-supplement.json"
+}

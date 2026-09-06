@@ -1,0 +1,69 @@
+{
+  "ticker": "ATVI",
+  "replace_only_price_override_entry": {
+    "path": "data/research/v04/prices/ATVI-through-2020-04-01.parquet",
+    "sha256": "c6beda01fad277fa3c202d419180163c816f3daaf54978600fed94eb10d46d7b",
+    "source_ticker": "ATVI",
+    "source_name": "Activision Blizzard Inc.",
+    "first": "2003-10-01",
+    "last": "2020-04-01",
+    "invalid_rows": 0,
+    "source_archive_sha256": "5739988ed3062b923f7834ca89e5e4b8bcc18f02c89f79fd2d6c9159fcc9151c",
+    "method": "Preserve prior WIKI and both IEX patches exactly; append 507 frozen Jackson Crow v2 whole OHLCV rows, verified nominal split basis, and canonical WIKI dividend total-return factors.",
+    "single_day_repairs": [
+      {
+        "date": "2017-08-07",
+        "source": {
+          "dataset": "camnugent/sandp500",
+          "version": 4,
+          "dataset_last_updated": "2018-02-10T03:15:53.777Z",
+          "publisher": "Cam Nugent",
+          "upstream": "IEX API, confirmed by dataset metadata and included getSandP.py",
+          "download_url": "https://www.kaggle.com/api/v1/datasets/download/camnugent/sandp500",
+          "member": "individual_stocks_5yr/individual_stocks_5yr/ATVI_data.csv",
+          "zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+          "member_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6"
+        },
+        "volume_basis": "Dataset describes volume as number of shares traded. Preserve the reported integer share count; exact venue/consolidation scope is not independently established and differs from WIKI.",
+        "OHLCV": {
+          "open": 62.14,
+          "high": 62.85,
+          "low": 61.8,
+          "close": 62.51,
+          "volume": 7287073
+        }
+      },
+      {
+        "date": "2017-11-08",
+        "source": {
+          "dataset": "camnugent/sandp500",
+          "version": 4,
+          "last_updated": "2018-02-10T03:15:53.777Z",
+          "provider": "IEX, confirmed by existing metadata and included acquisition script",
+          "zip_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-sp500.source.zip",
+          "zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+          "member": "individual_stocks_5yr/individual_stocks_5yr/ATVI_data.csv",
+          "member_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6",
+          "network_requests": 0
+        },
+        "OHLCV": {
+          "open": 62.5,
+          "high": 64.9,
+          "low": 62.15,
+          "close": 64.55,
+          "volume": 12604699
+        }
+      }
+    ],
+    "evidence_path": "data/reference/v04-remediation/price-evidence/ATVI-2017-11-08.audit.json",
+    "evidence_sha256": "692b8218feebe320a5b666e5d3095c2f9a21f0db2a8442ed8a84060918530dbb",
+    "prefix_sha256": "d4abb821c9f86a8c13959218098438762c3db85f0c3f042b9aa242c4dba5f9fd",
+    "extension_source_sha256": "c41833dacfb9871e8c217b90cd16637dd4ee2b5ffedc0107f1f7343875ccd2ef",
+    "audit_path_to_copy": "audit.json",
+    "evidence_path_to_copy": "report.md"
+  },
+  "candidate_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/ATVI-2020-extension/ATVI-through-2020-04-01.candidate.parquet",
+  "keep_existing_unresolved_gates": true,
+  "remaining_ATVI_gap_starts": "2020-04-02",
+  "new_corporate_actions": []
+}

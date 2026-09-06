@@ -1,0 +1,2 @@
+date,open,high,low,close,volume,as_traded_close,dollar_volume,adjusted,source,downloaded_at
+2016-11-25,37.22556931681982,37.35479025169796,36.977067518977236,36.99694766280464,3206319.0,37.22,119339193.17999999,True,"IEX via Cam Nugent Kaggle sandp500 v4 (2018-02-10); whole 2016-11-25 OHLCV row, existing WIKI canonical adjustment factor preserved",2026-09-06T19:07:55.266425+00:00

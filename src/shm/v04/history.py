@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from pathlib import Path
 
 import pandas as pd
@@ -206,3 +207,52 @@ def load_corporate_actions(root: Path | str) -> tuple[tuple, dict, dict]:
     return tuple(sorted(actions, key=lambda action: (action.effective_session, action.action_id))), hashes, {
         "count": len(actions), "entries": entries,
     }
+
+
+def load_verified_price_moves(root: Path | str, prices: dict, price_hashes: dict,
+                              price_repairs: dict) -> tuple[tuple, dict, dict]:
+    """Accept reviews only for the effective loaded price file and pinned evidence.
+
+    A stale review remains visible as rejected; it never approves changed data.
+    The manifest review binds one ticker/date/quote window and expected return.
+    """
+    root = Path(root)
+    manifest, hashes = _manifest(root)
+    accepted, rejected = [], []
+    required = {"id", "ticker", "date", "quote_window", "expected_return",
+                "input_path", "input_sha256", "evidence_path", "evidence_sha256"}
+    for entry in manifest.get("verified_price_moves", []):
+        reason = None
+        if not required.issubset(entry):
+            reason = "missing_required_fields"
+        elif (entry["quote_window"] not in {"close_to_close", "fill_to_close", "close_to_fill"}
+              or not isinstance(entry["expected_return"], (int, float))
+              or not math.isfinite(entry["expected_return"])):
+            reason = "invalid_quote_window_or_return"
+        else:
+            ticker = entry["ticker"]
+            effective_path = price_repairs.get("price_overrides", {}).get(ticker, {}).get(
+                "path", f"data/raw/prices/{ticker}.parquet")
+            if ticker not in prices or entry["input_path"] != effective_path:
+                reason = "input_not_current_price_source"
+            elif price_hashes.get(effective_path) != entry["input_sha256"]:
+                reason = "input_sha256_mismatch"
+            else:
+                try:
+                    if _checked_hash(root / effective_path) != entry["input_sha256"]:
+                        reason = "input_sha256_mismatch"
+                except OSError:
+                    reason = "input_unavailable"
+            try:
+                evidence_hash = _checked_hash(root / entry["evidence_path"])
+                hashes[entry["evidence_path"]] = evidence_hash
+                if reason is None and evidence_hash != entry["evidence_sha256"]:
+                    reason = "evidence_sha256_mismatch"
+            except OSError:
+                if reason is None:
+                    reason = "evidence_unavailable"
+        if reason is None:
+            accepted.append(dict(entry))
+        else:
+            rejected.append({"entry": entry, "reason": reason})
+    return tuple(accepted), hashes, {"accepted": accepted, "rejected": rejected}

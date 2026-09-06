@@ -156,6 +156,28 @@ def test_atr_is_simple_mean_monotone_and_keeps_state_on_rebalance(market):
     assert state.pending.exits[ticker] == "atr_trailing_exit"
 
 
+def test_existing_atr_stop_exits_during_successor_warmup_and_keeps_new_risk_blocked(market):
+    prices, names, dates = market
+    ticker = names[0]
+    prices[ticker] = prices[ticker].loc[dates[250]:].copy()
+    prices[ticker].loc[dates[260], ["open", "high", "low", "close"]] = [40.0, 41.0, 39.0, 40.0]
+    data = prepared(market)
+    close = float(prices[ticker].loc[dates[259], "close"])
+    state = held(ticker, dates, price=close + 3, quantity=5, stop=close + 1)
+    state.cash = 100_000
+
+    decision = evaluate_close(data, dates[259], "C3", state)
+    assert f"MISSING_ATR20:{ticker}" in decision.warnings
+    assert not decision.allow_new_risk and decision.target_weights is None
+    assert decision.exits[ticker] == "atr_trailing_exit"
+    assert state.positions[ticker].trailing_stop == close + 1
+    execution = advance_open(data, dates[260], state, cost_bps=10)
+    assert ticker not in state.positions
+    assert len(execution.transactions) == 1
+    assert execution.transactions[0]["price"] == 40.0
+    assert execution.transactions[0]["reason"] == "atr_trailing_exit"
+
+
 def test_missing_open_keeps_exit_pending_without_fictional_fill(market):
     prices, names, dates = market
     ticker = names[0]

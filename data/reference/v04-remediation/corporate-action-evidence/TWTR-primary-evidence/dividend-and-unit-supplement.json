@@ -1,0 +1,77 @@
+{
+  "status": "NO_ORDINARY_CASH_DIVIDEND_ADJUSTMENT_SUPPORTED_FOR_RESEARCH_THROUGH_2022_10_27",
+  "conclusion": "Primary historical policy plus the 2022 H1 cash-flow/equity rollforward, pending-merger restriction, and the unchanged full-period provider adjustment series support zero ordinary cash-dividend adjustment through 2022-10-27. This is a combined inference for July-October, not a claim that the issuer published a complete through-close dividend ledger.",
+  "new_direct_file_requests": 4,
+  "additional_search_requests": 0,
+  "period_evidence": [
+    {
+      "period": "Public history through 2021 (2022-02-16 filing)",
+      "grade": "EXPLICIT_ISSUER_STATEMENT",
+      "quote": " unable to estimate the total number of stockholders represented by these record holders. Dividend Policy We have never declared or paid any cash dividends on our capital stock. We intend to retain any future earnings and do not expect to pay any dividends in the foreseeable future. Any future determination to declare cash dividends will be made at the discretion of our board of directors, subject to applicable laws, and will depend on a number of factors, including our financial condition, results of operations, capital requirements, contractual restrictions, general business conditions and other factors that our board of directors may deem relevant. In addition, the credit facility contains restrictions on payments including cash payments of dividends. Purchases of Equity Securities by the Issuer and Affiliated Purchasers The following table summarizes the share repurchase activity for the three months ended December 31, 2021:                                                       Period   Total Number of Shares Purchased (in thousands) (1)   Average Price Paid Per Share (2)   Total Number of Shares Purchased as Part of P",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1418091/000141809122000029/twtr-20211231.htm"
+    },
+    {
+      "period": "2022-01-01 through 2022-06-30",
+      "grade": "PRIMARY_FINANCIAL_STATEMENTS_AND_RECONCILIATION",
+      "cash_flow_quote": "ivities —     (8,385)   Net cash provided by investing activities 1,402,205     470,577   Cash flows from financing activities       Proceeds from issuance of convertible notes —     1,437,500   Proceeds from issuance of senior notes 1,000,000     —   Purchases of convertible note hedges —     (213,469)   Proceeds from issuance of warrants concurrent with note hedges —     161,144   Debt issuance costs (11,270)     (16,769)           Repurchases of common stock (2,077,759)     (495,364)   Taxes paid related to net share settlement of equity awards (13,141)     (15,497)   Payments of finance lease obligations —     (565)   Proceeds from exercise of stock options 320     1,986   Proceeds from issuances of common stock under employee stock purchase plan 49,404     39,531   Net cash provided by (used in) financing activities (1,052,446)     898,497   Net increase in cash, cash equivalents and restricted cash 505,546     2,141,225   Foreign exchange effect on cash, cash equivalents and restricted cash (11,652)     (3,999)   Cash, cash equivalents and restricted cash at beginning of period 2,210,685     2,011,276   Cash, cash equivalents and restricted cash at end of period $ 2,704,579     $ 4,148,502   Supplemental disclosures of non-cash investing and financing activities                       Changes in accrued property and equipment purchases $ 49,632     $ 138,257   Reconciliation of cash, cash equivalents and restricted cash as shown in the consolidated statements of cash flows       Cash and cash equivalents $ 2,680,596     $ 4,125,595   Restricted cash included in prepaid expenses and other current assets 7,943     3,286   Restricted cash included in other assets 16,040     19,621   Total cash, cash equivalen",
+      "equity_quote": "120 shares —     (5,295)   Accumulated other comprehensive loss (200,456)     (117,320)   Accumulated deficit (963,666)     (1,002,302)   Total stockholders' equity 5,932,481     7,307,199   Total liabilities and stockholders' equity $ 13,579,287     $ 14,059,516   The accompanying notes are an integral part of these consolidated financial statements. 6 TWITTER, INC. CONSOLIDATED STATEMENTS OF OPERATIONS (In thousands, except per share data) (Unaudited)                                                   Three Months Ended June 30,   Six Months Ended June 30,   2022   2021   2022   2021 Revenue $ 1,176,660     $ 1,190,427     $ 2,377,644     $ 2,226,445   Costs and expenses               Cost of revenue 540,676     416,932     1,048,126     797,940   Research and development 454,859     299,859     826,554     550,568   Sales and marketing 308,301     301,902     608,110     536,494   General and administrative 216,586     141,482     366,449     259,009                   Total costs and expenses 1,520,422     1,160,175     2,849,239     2,144,011   Income (loss) from operations (343,762)     30,252     (471,595)     82,434   Interest expense (23,342)     (13,893)     (38,786)     (27,078)   Interest income 13,595     9,202     21,557     20,203   Other income, net 17,616",
+      "cash_flow_financing_usd_thousands": {
+        "senior_note_proceeds": 1000000,
+        "debt_issuance_costs": -11270,
+        "common_stock_repurchases": -2077759,
+        "equity_award_tax_withholding": -13141,
+        "option_exercise_proceeds": 320,
+        "employee_stock_purchase_proceeds": 49404,
+        "reported_total": -1052446,
+        "sum_matches_reported_total": true
+      },
+      "accumulated_deficit_usd_thousands": {
+        "opening": -1002302,
+        "repurchase_charge": -204643,
+        "net_income": 243279,
+        "closing": -963666,
+        "other_dividend_debit": 0
+      },
+      "note": "Q2 six-month statements cover both Q1 and Q2; no separate Q1 request was necessary. No ordinary cash dividend appears in the financing or equity movements, and the listed movements reconcile exactly.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1418091/000141809122000147/twtr-20220630.htm"
+    },
+    {
+      "period": "Pending merger through 2022-10-27",
+      "grade": "PRIMARY_RESTRICTION_PLUS_OBSERVED_ADJUSTMENT_SERIES",
+      "quote": "ompletion of the Merger, and other restrictions on our ability to conduct our business; • our inability to freely issue securities, incur indebtedness (subject to certain exceptions), or declare or authorize any dividend or distribution without Parent's approval; • our inability to solicit other acquisition proposals during the pendency of the Merger; • the amount of the costs, fees, expenses and charges related to the Merger Agreement and the Merger, which may materially and adversely affect our financial condition and cash flows; • negative impacts arising from global and domestic economic and geopolitical trends and events, including the e",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1418091/000141809122000147/twtr-20220630.htm",
+      "limitation": "The issuer says Parent approval is required. It is not an absolute legal ban, nor proof that consent could never be given; through-close zero adjustment also relies on actual vendor history and existing closing terms."
+    }
+  ],
+  "rights_distribution": {
+    "ordinary_cash_dividend": false,
+    "declaration_date": "2022-04-15",
+    "record_date": "2022-04-25",
+    "quote": "scal year, or (iii) such number of shares determined by the Company’s Board of Directors. Rights Plan On April 15, 2022, the Company’s Board of Directors authorized and declared a dividend distribution of one right (each, a “Right”) for each outstanding share of the Company’s common stock to stockholders of record as of the close of business on April 25, 2022, as set forth in a Preferred Stock Rights Agreement dated as of April 15, 2022 (the Rights Agreement). Each Right entitles the registered holder to purchase from the Company one one-thousandth of a share of Series A Participating Preferred Stock, par value $ 0.000005 per share, of the Company at an exercise price of $ 210.00, subject to adjustment. The Rights expire on the earliest of (1) April 14, 2023, unless such date is extended, or (2) the redemption or exchange of the Rights as described above. On April 25, 2022, in connection with the execution of the Merger Agreement, the Board approved Amendment No. 1 to the Rights Agreement (Amendment No. 1). Amendment No. 1 exempts the approval, execution, delivery or performance of the Merger Agreement, or the consummation prior to the termination of the Merger Agreement, of the Merger or any of the other transactions contemplated by the Merger Agreement in accordance with its terms, from, among other things, (i) resulting in a Distribution Date (as defined by the Rights Agreement) or permitting the Rights (as defined by the Rights Agreement) to be exercised or exchanged, and (ii) causing Parent, Acquisition Sub or their respective affiliates to be deemed an Acquiring Person (as defined by the Rights Agreement) for any purpose under the Rights Agreement. As a result of Amendment No. 1, the completion of the Merger in accordance with the terms of the Merger Agreement will not trigger the terms of the Rights Plan. 26 Share Repurchases In March 2020, the Compan",
+    "interpretation": "One preferred purchase right per common share is a rights-plan distribution, not cash. The April 25 amendment exempts this merger and the Q2 report explicitly says completion will not trigger the rights plan. Do not credit $210 or a fabricated ordinary dividend."
+  },
+  "unit_evidence_ref": "nominal-unit-reasoning.md",
+  "unit_inference_conditions": [
+    "The dated source is genuinely Twitter common stock, as independently identified by SEC CIK/CUSIP and IPO/closing boundaries.",
+    "The source applies any subsequent split to its full historical OHLC as its field description states; on that condition a later non-unit split adjustment would rescale the overlapping pre-2018 nominal bars.",
+    "The complete 2259-row source has Adj Close == Close and all 1102 old-WIKI overlap medians are 1, including yearly Close/Adj Close medians for 2013-2018. There is no observed non-unit later split scale.",
+    "This numerical unit-scale evidence is not an official exhaustive split list. Cash-dividend conclusion is separately grounded in the primary material above."
+  ],
+  "proxy_request_limit": {
+    "source_url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522202163/d283119ddefm14a.htm",
+    "returned_chars": 325360,
+    "annex_contract_covenant_not_read": true,
+    "note": "The returned proxy content truncates before its conduct-of-business section/annex. No invented exact covenant text is quoted; the independently read Q2 issuer summary supplies the restriction."
+  },
+  "source_files": {
+    "05-2021-10k-direct.json": "234d824b8a2ffeb95455794decc6454095ee1417567edbd1d17032cd4cf1ec06",
+    "05-2021-10k-direct.txt": "41b9f70d2206458f9c9ffc715224490541ce141dddfad1a9387a5e8d09f83e39",
+    "06-submissions.body.json": "dc3a049042821da59e68c7354e8e769f17c71087f56d47160d4854486ad8f815",
+    "06-submissions.meta.json": "08e995d73728bd41461c3d551cec7904953f38254fa3e743f22d3ebe2be6e79f",
+    "07-2022-q2-direct.json": "176db58f76f3594044eb3200b16c90adbd1108062d0c77dd1396adf3a723d587",
+    "07-2022-q2-direct.txt": "5c62c43481db6139f0f21bac57ab3bfe2365535954c5bf267454c211e444f627",
+    "08-merger-proxy-direct.json": "5bf503292bf63da79b4c64f4d02a523468bb101d99347b4a222ed282f498dc7c",
+    "08-merger-proxy-direct.txt": "9bc9472707407803e4d3667b4b6463ae982ef3ee41acd689ef988c64972ee248",
+    "nominal-unit-reasoning.md": "36a00d06135ccb15aa0bceebb1608c1c63f7f68032a0002c4063eaea86bc907b"
+  }
+}

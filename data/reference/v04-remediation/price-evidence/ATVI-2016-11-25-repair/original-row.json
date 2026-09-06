@@ -1,0 +1,13 @@
+{
+  "open": 36.30114262884539,
+  "high": 37.35479025169796,
+  "low": 36.97706751897723,
+  "close": 36.99694766280464,
+  "volume": 3206319.0,
+  "as_traded_close": 37.22,
+  "dollar_volume": 119339193.17999999,
+  "adjusted": true,
+  "source": "Quandl WIKI frozen 2018 archive via Kaggle",
+  "downloaded_at": "2026-09-06 16:05:56.112758+00:00",
+  "date": "2016-11-25"
+}

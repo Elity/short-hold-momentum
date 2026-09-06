@@ -1,0 +1,70 @@
+{
+  "date": "2021-05-05",
+  "source_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/TWTR.parquet",
+  "source_sha256": "5a43db13ec025e32d061091894b3eba30a987ed503ec6cd6d93330405e1ae37f",
+  "archive": {
+    "status": "COMPLETE",
+    "url": "https://www.kaggle.com/api/v1/datasets/download/sheepb/stock-market-dataset-20002021?datasetVersionNumber=1",
+    "bytes": 353571060,
+    "sha256": "22f61a91843c579577a1757bd31653fd998ba8054723da3d4b41d994cda46373",
+    "elapsed_seconds": 10.918993949890137,
+    "members": [
+      {
+        "name": "full_stock_df.csv",
+        "bytes": 2047295793
+      },
+      {
+        "name": "symbol_company.csv",
+        "bytes": 314513
+      }
+    ],
+    "provider_history_calls": 0
+  },
+  "row": {
+    "Date": "2021-05-05",
+    "Open": 54.95000076293945,
+    "High": 54.970001220703125,
+    "Low": 53.31999969482422,
+    "Close": 53.560001373291016,
+    "Adj Close": 53.560001373291016,
+    "Volume": 19111100.0,
+    "Name": "TWTR",
+    "Company Name": "Twitter"
+  },
+  "candidate_adjustment_factor": 1.0,
+  "dollar_volume": 1023590542.2451019,
+  "comparison_window": "2021-04-28 through 2021-05-12, excluding replaced date",
+  "neighbor_count": 10,
+  "neighbor_price_comparison": {
+    "Open": {
+      "max_abs_difference": 4.5776366874861196e-07,
+      "max_relative_difference": 9.244015842428056e-09,
+      "all_within_1bp": true
+    },
+    "High": {
+      "max_abs_difference": 0.003497626708984569,
+      "max_relative_difference": 6.575722502892227e-05,
+      "all_within_1bp": true
+    },
+    "Low": {
+      "max_abs_difference": 0.005000678466799968,
+      "max_relative_difference": 7.814780958948999e-05,
+      "all_within_1bp": true
+    },
+    "Close": {
+      "max_abs_difference": 4.741210943848273e-07,
+      "max_relative_difference": 8.715461049376638e-09,
+      "all_within_1bp": true
+    },
+    "Adj Close": {
+      "max_abs_difference": 4.741210943848273e-07,
+      "max_relative_difference": 8.715461049376638e-09,
+      "all_within_1bp": true
+    }
+  },
+  "neighbor_volume_median_relative_difference": 6.338749983981768e-07,
+  "neighbor_volume_max_relative_difference": 2.925390599346862e-06,
+  "whole_row_replaced": true,
+  "not_cherry_picking_fields": true,
+  "earlier_candidate_rows_preserved": 2258
+}

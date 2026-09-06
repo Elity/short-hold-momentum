@@ -22,7 +22,9 @@ from shm.v03.research import (
     qualifies, select_winner, write_json,
 )
 from shm.v04.profiles import SP500_IDS, base_candidate, candidate_config
-from shm.v04.history import load_membership, apply_price_repairs, load_corporate_actions
+from shm.v04.history import (
+    load_membership, apply_price_repairs, load_corporate_actions, load_verified_price_moves,
+)
 
 
 def historical_membership(history: pd.DataFrame, schedule: pd.DatetimeIndex,
@@ -90,6 +92,25 @@ def eligibility_basis_coverage(prepared, membership: dict) -> dict:
             "rebalance_dates": rows, "basis": "as_traded_close_and_unadjusted_dollar_volume"}
 
 
+def review_holding_price_jumps(jumps: list[dict], reviews: tuple) -> tuple[list, list]:
+    """Partition the unchanged raw alerts; only an exact reviewed event is exempt."""
+    unverified, verified = [], []
+    for jump in jumps:
+        window = jump.get("quote_window", "close_to_close")
+        matching = [entry for entry in reviews
+                    if (entry["ticker"], entry["date"], entry["quote_window"]) ==
+                    (jump["ticker"], jump["date"], window)]
+        review = next((entry for entry in matching
+                       if np.isclose(jump["return"], entry["expected_return"], rtol=0, atol=1e-10)), None)
+        if review is None:
+            reason = ("expected_return_mismatch" if matching else
+                      "event_identity_mismatch" if reviews else "no_accepted_review")
+            unverified.append({**jump, "verification_rejection": reason})
+        else:
+            verified.append({**jump, "quote_window": window, "verification": review})
+    return unverified, verified
+
+
 def render_research_v04(payload: dict) -> str:
     membership = payload["membership_history"]
     coverage = payload["price_coverage"]
@@ -127,8 +148,12 @@ def render_research_v04(payload: dict) -> str:
                       "警告：" + (", ".join(row["warnings"]) or "无")])
         jumps = row["holding_price_jumps_10"] + row["holding_price_jumps_25"]
         if jumps:
-            lines.extend(["", "持仓发生超过50%的缓存价格跳变，需要核实证券身份、单位及公司行为；不删除该证券来改善结果。"])
+            lines.extend(["", "持仓超过50%的原始价格跳变全部保留。仅精确匹配核验记录的真实市场波动不作为坏数据；其余仍待核验，亏损不删除。"])
             lines.extend(_jump_examples(jumps))
+        verified = row.get("verified_holding_price_jumps_10", []) + row.get("verified_holding_price_jumps_25", [])
+        for item in {item["verification"]["id"]: item for item in verified}.values():
+            lines.append(f"\nVERIFIED_LARGE_MARKET_MOVE：{item['ticker']} {item['date']} "
+                         f"{item['quote_window']} {item['return']:.6%}；证据 `{item['verification']['evidence_path']}`。")
         if row["metrics_valid"]:
             for bps in (10, 25):
                 views = row[f"views_{bps}"]
@@ -223,11 +248,12 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
         action.target_ticker for action in corporate_actions if action.target_ticker})
     prices, hashes, missing = _load_prices(root, price_symbols, sessions[0], end)
     prices, hashes, missing, data_repairs = apply_price_repairs(root, prices, hashes, missing, sessions[0], end)
+    move_reviews, move_hashes, move_evidence = load_verified_price_moves(root, prices, hashes, data_repairs)
     if "SPY" not in prices:
         raise ValueError("SPY cache is required")
     current_path = root / "data/reference/sp500/current.json"
     current = json.loads(current_path.read_text()) if current_path.exists() else None
-    all_hashes = {**hashes, **prereg_hashes, **membership_hashes, **action_hashes,
+    all_hashes = {**hashes, **prereg_hashes, **membership_hashes, **action_hashes, **move_hashes,
                   str(config_path.relative_to(root)): file_hash(config_path)}
     if current is not None:
         all_hashes[str(current_path.relative_to(root))] = file_hash(current_path)
@@ -266,13 +292,18 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
         for bps in (10, 25):
             result = run_simulation(prices, universe, candidate, sessions, schedule,
                                     cost_bps=bps, prepared=prepared)
+            jumps = _holding_price_jumps(prepared, result.backtest, evaluation)
+            unverified, verified = review_holding_price_jumps(jumps, move_reviews)
+            result.warnings.extend({"date": item["date"], "warning": "VERIFIED_LARGE_MARKET_MOVE", **item}
+                                   for item in verified)
             row[f"metrics_{bps}"] = _save_result(directory, strategy_id, bps, result, evaluation)
             row[f"corporate_receivables_{bps}"] = result.final_state.corporate_receivables
             row[f"benchmark_{bps}"] = benchmark_metrics[bps]
-            jumps = _holding_price_jumps(prepared, result.backtest, evaluation)
             row[f"holding_price_jumps_{bps}"] = jumps
+            row[f"unverified_holding_price_jumps_{bps}"] = unverified
+            row[f"verified_holding_price_jumps_{bps}"] = verified
             row["checks"].update({f"{key}_{bps}": value for key, value in _correctness(
-                result, evaluation, holding_price_jumps=jumps, benchmark_price_jumps=benchmark_jumps).items()})
+                result, evaluation, holding_price_jumps=unverified, benchmark_price_jumps=benchmark_jumps).items()})
             row[f"views_{bps}"] = _return_views(result.backtest.equity.reindex(evaluation), benchmarks[bps])
             row[f"risk_matched_spy_{bps}"] = _matched_spy(prices, schedule, evaluation, bps, candidate)
             row[f"sector_concentration_{bps}"] = sector_concentration(result.backtest.weights.reindex(evaluation), current)
@@ -292,8 +323,10 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
             row["warnings"].append("WARN_POINT_IN_TIME_ELIGIBILITY_COVERAGE")
         if data_repairs["status"] != "PASS":
             row["warnings"].append("WARN_UNRESOLVED_HISTORICAL_PRICE_EVIDENCE")
-        if row["holding_price_jumps_10"] or row["holding_price_jumps_25"]:
+        if row["unverified_holding_price_jumps_10"] or row["unverified_holding_price_jumps_25"]:
             row["warnings"].append("WARN_HOLDING_PRICE_JUMPS_RAW_METRICS_INVALID")
+        if row["verified_holding_price_jumps_10"] or row["verified_holding_price_jumps_25"]:
+            row["warnings"].append("VERIFIED_LARGE_MARKET_MOVE")
         if benchmark_jumps:
             row["warnings"].append("WARN_BENCHMARK_PRICE_JUMPS")
         ex = row["views"]["excluding_best_year"]
@@ -316,6 +349,7 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
                "winner": winner, "status": status, "candidates": rows,
                "data_repairs": data_repairs, "membership_repairs": membership_repairs,
                "corporate_actions": action_evidence,
+               "price_move_verifications": move_evidence,
                "eligibility_basis": basis_coverage,
                "benchmark_10": benchmark_metrics[10], "benchmark_25": benchmark_metrics[25],
                "benchmark_price_jumps": benchmark_jumps, "membership_history": history_evidence,

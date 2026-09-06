@@ -695,15 +695,15 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "ATVI": {
-      "path": "data/research/v04/prices/ATVI-single-day-repaired.parquet",
-      "sha256": "b058ed6c5af2a230ff7f66e635030af353969e71bb192cf8d0837db1a811ecd1",
+      "path": "data/research/v04/prices/ATVI-through-2021-08-19-repaired.parquet",
+      "sha256": "60325363742c97f38dcc96f88d7b11b69651bd53b5609f4cec50682b8d0fac41",
       "source_ticker": "ATVI",
       "source_name": "Activision Blizzard Inc.",
       "first": "2003-10-01",
-      "last": "2018-03-27",
+      "last": "2021-08-19",
       "invalid_rows": 0,
       "source_archive_sha256": "5739988ed3062b923f7834ca89e5e4b8bcc18f02c89f79fd2d6c9159fcc9151c",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation; insert 2017-08-07 whole IEX row from Cam Nugent Kaggle sandp500 v4; all existing rows unchanged",
+      "method": "Append 349 verified whole-source rows through 2021-08-19 using the fixed WIKI total-return convention; explicitly repair the inherited 2016-11-25 whole row from IEX with the existing canonical factor. Preserve every other prefix row.",
       "single_day_repairs": [
         {
           "date": "2017-08-07",
@@ -726,10 +726,44 @@
             "close": 62.51,
             "volume": 7287073
           }
+        },
+        {
+          "date": "2017-11-08",
+          "source": {
+            "dataset": "camnugent/sandp500",
+            "version": 4,
+            "last_updated": "2018-02-10T03:15:53.777Z",
+            "provider": "IEX, confirmed by existing metadata and included acquisition script",
+            "zip_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-sp500.source.zip",
+            "zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+            "member": "individual_stocks_5yr/individual_stocks_5yr/ATVI_data.csv",
+            "member_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6",
+            "network_requests": 0
+          },
+          "OHLCV": {
+            "open": 62.5,
+            "high": 64.9,
+            "low": 62.15,
+            "close": 64.55,
+            "volume": 12604699
+          }
+        },
+        {
+          "date": "2016-11-25",
+          "source": "IEX via Cam Nugent sandp500 v4",
+          "evidence_path": "data/reference/v04-remediation/price-evidence/ATVI-2016-11-25-repair/audit.json",
+          "evidence_sha256": "bc14d05cf8e42a820aa946ca9a6dc35a5ab777fe990a05d0d66df8f32c38eb22",
+          "whole_row": true,
+          "canonical_factor": 0.9940071913703556
         }
       ],
-      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/ATVI-single-day-audit.json",
-      "evidence_sha256": "d18cc1213f9dd3bb9451ea7fc2f0f371ead507d96e0881423b4ebbcb4cccdbe2"
+      "evidence_path": "data/reference/v04-remediation/price-evidence/ATVI-2021-extension/application-review.md",
+      "evidence_sha256": "8dc1d0f2549f00be7a52c2db0eccc6695788f1231858e3be57099b6cd185ae15",
+      "prefix_sha256": "c6beda01fad277fa3c202d419180163c816f3daaf54978600fed94eb10d46d7b",
+      "extension_source_sha256": "7b77347e5ecada0deb3675257f34b09b39119dc5b5e250043ea91fd623d67395",
+      "extension_zip_sha256": "22f61a91843c579577a1757bd31653fd998ba8054723da3d4b41d994cda46373",
+      "upstream_provider": "Yahoo Finance via yfinance",
+      "independent_price_vendor": false
     },
     "AVP": {
       "path": "data/research/v04/prices/AVP.parquet",
@@ -2137,15 +2171,18 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "TWTR": {
-      "path": "data/research/v04/prices/TWTR.parquet",
-      "sha256": "bb765a9fa4587292625ceb4efdf376e67c3d40b1ac2cd85a93fbfa37f952710c",
+      "path": "data/research/v04/prices/TWTR-history-repaired.parquet",
+      "sha256": "82f441e0b680ecb153c110caf2bae516e38a89e2fa2480dad983ec7c39eebe4e",
       "source_ticker": "TWTR",
       "source_name": "Twitter Inc",
       "first": "2013-11-07",
-      "last": "2018-03-27",
+      "last": "2022-10-27",
       "invalid_rows": 0,
       "source_archive_sha256": "0c276c3d6cf8a70483f9e30edc496161d9d0af43cb78984190c6b6ca2a6aacc1",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "Preserve 1102 existing WIKI rows exactly; append missing public Twitter Stocks Dataset v1 rows; use the complete separately dated SheepB v1 row on 2021-05-05. Full 2259-session history, numerically supported nominal unit scale, primary dividend-policy/interim-accounting evidence and disclosed inference conditions.",
+      "missing_sessions": [],
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/TWTR-repair-proposal/application-review.md",
+      "evidence_sha256": "75b7077ea0221fd2b47c1d4cae3430f57ba2831a96c668c6dcd3c320f4208f00"
     },
     "UTX": {
       "path": "data/research/v04/prices/UTX.parquet",
@@ -2415,6 +2452,12 @@
       "reason": "Original Bard shares suspended and converted 2017-12-29",
       "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/BCR-evidence.md",
       "evidence_sha256": "408d3093316f8d0a6ad7661ad6d23b2c9b274f1d2d8df330d3635c61f91dc8ed"
+    },
+    "TWTR": {
+      "end": "2022-10-27",
+      "reason": "Twitter cash merger and trading suspension before 2022-10-28 open",
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/TWTR-repair-proposal/evidence.md",
+      "evidence_sha256": "518fd6b70078611b8766df77756f10177278028988c89733bd9bb762c9546d95"
     }
   },
   "corporate_actions": [
@@ -2647,9 +2690,46 @@
         "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
         "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
       }
+    },
+    {
+      "action": {
+        "action_id": "TWTR_CASH_2022-10-28",
+        "source_ticker": "TWTR",
+        "announced_date": "2022-04-25",
+        "known_date": "2022-10-27",
+        "last_trading_session": "2022-10-27",
+        "effective_session": "2022-10-28",
+        "cash_per_share": 54.2,
+        "cash_settlement_session": "2022-11-04",
+        "evidence": "data/reference/v04-remediation/corporate-action-evidence/TWTR-repair-proposal/evidence.md; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "source_price_treatment": "terminal_before_action"
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/TWTR-repair-proposal/application-review.md",
+      "evidence_sha256": "75b7077ea0221fd2b47c1d4cae3430f57ba2831a96c668c6dcd3c320f4208f00",
+      "terms_status": "DEFAULT_CASH_CONFIRMED_BY_PRIMARY_SEC;_LAST_BAR_PLUS_SUSPENSION_BOUNDARY_SUPPORTED",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      }
     }
   ],
   "model_assumptions": {
     "corporate_cash_settlement": "Fixed effective XNYS session + 5 sessions; not actual broker timing; research fractional entitlements permitted; integer paper requires verified cash-in-lieu price"
-  }
+  },
+  "verified_price_moves": [
+    {
+      "id": "APA_OIL_CRASH_2020-03-09",
+      "ticker": "APA",
+      "date": "2020-03-09",
+      "quote_window": "close_to_close",
+      "expected_return": -0.5386473411611574,
+      "input_path": "data/raw/prices/APA.parquet",
+      "input_sha256": "1036439f6901350d93828680c6623dec06df0efb3ff2f7f8bcd26bfee67a02b1",
+      "evidence_path": "data/reference/v04-remediation/price-evidence/APA-2020-03-09/review.md",
+      "evidence_sha256": "e6d55c98c53e491e86d49da2f88dde7b249193f8789b908498635e9ea09a3fb8"
+    }
+  ]
 }
