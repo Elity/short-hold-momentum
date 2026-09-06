@@ -39,7 +39,7 @@ COPY --chown=1000:100 reports/ /opt/shm/seed/reports/
 COPY --chmod=0755 docker/entrypoint.sh /usr/local/bin/shm-entrypoint
 
 USER 1000:100
-WORKDIR /var/lib/shm/repository
+WORKDIR /opt/shm
 
 VOLUME ["/var/lib/shm"]
 EXPOSE 8000
