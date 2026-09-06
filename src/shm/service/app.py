@@ -1,0 +1,357 @@
+from __future__ import annotations
+
+import argparse
+import html
+import os
+import re
+import threading
+from datetime import datetime
+from http import HTTPStatus
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import parse_qs, quote, urlparse
+from zoneinfo import ZoneInfo
+
+from shm.paper.status import build_paper_progress
+from shm.service.store import ServiceStore
+from shm.service.workflow import MissedForwardWindow, latest_completed_session, run_daily_workflow
+
+
+_TIME = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d$")
+
+
+class RunService:
+    def __init__(
+        self,
+        store: ServiceStore,
+        repo_root: Path,
+        *,
+        timezone_name: str,
+        retry_attempts: int,
+        retry_delay_seconds: int,
+        poll_seconds: int = 20,
+    ) -> None:
+        self.store = store
+        self.repo_root = repo_root
+        self.timezone_name = timezone_name
+        self.retry_attempts = max(1, retry_attempts)
+        self.retry_delay_seconds = max(0, retry_delay_seconds)
+        self.poll_seconds = max(5, poll_seconds)
+        self._guard = threading.Lock()
+        self._active_run_id: int | None = None
+        self._stop = threading.Event()
+
+    def start(self) -> None:
+        self.store.mark_interrupted_runs()
+        threading.Thread(target=self._scheduler_loop, name="shm-scheduler", daemon=True).start()
+
+    def stop(self) -> None:
+        self._stop.set()
+
+    def trigger(
+        self,
+        trigger: str,
+        *,
+        scheduled_for: str | None = None,
+        parent_run_id: int | None = None,
+    ) -> int:
+        with self._guard:
+            if self._active_run_id is not None:
+                raise RuntimeError(f"run {self._active_run_id} is already active")
+            if trigger == "scheduled" and scheduled_for:
+                existing = self.store.find_scheduled_run(scheduled_for)
+                if existing is not None:
+                    return existing.id
+            market_session = str(latest_completed_session().date())
+            run_id = self.store.create_run(
+                trigger=trigger,
+                scheduled_for=scheduled_for,
+                market_session=market_session,
+                parent_run_id=parent_run_id,
+            )
+            self._active_run_id = run_id
+            threading.Thread(
+                target=self._execute,
+                args=(run_id,),
+                name=f"shm-run-{run_id}",
+                daemon=True,
+            ).start()
+            return run_id
+
+    def retry_failed(self, run_id: int) -> int:
+        original = self.store.get_run(run_id)
+        if original is None:
+            raise ValueError("run not found")
+        if original.status != "failed":
+            raise ValueError("only failed runs can be retried")
+        current_session = str(latest_completed_session().date())
+        if original.market_session != current_session:
+            raise ValueError(
+                "this run is stale after a newer market close; use Run now for the current session"
+            )
+        return self.trigger("manual-retry", parent_run_id=run_id)
+
+    def _execute(self, run_id: int) -> None:
+        self.store.mark_running(run_id)
+        last_error = ""
+        try:
+            for _ in range(self.retry_attempts):
+                attempt = self.store.increment_attempt(run_id)
+
+                def report(name, status, output, started_at, finished_at) -> None:
+                    self.store.add_step(
+                        run_id=run_id,
+                        attempt=attempt,
+                        name=name,
+                        status=status,
+                        started_at=started_at,
+                        finished_at=finished_at,
+                        output=output,
+                    )
+
+                try:
+                    result = run_daily_workflow(self.repo_root, reporter=report)
+                except MissedForwardWindow as exc:
+                    self.store.finish_run(run_id, "failed", error=str(exc))
+                    return
+                except Exception as exc:
+                    last_error = str(exc)
+                    if attempt >= self.retry_attempts:
+                        break
+                    if self._stop.wait(self.retry_delay_seconds):
+                        last_error = "service stopped during retry delay"
+                        break
+                else:
+                    self.store.finish_run(run_id, "success", summary=result.summary)
+                    return
+            self.store.finish_run(run_id, "failed", error=last_error or "workflow failed")
+        finally:
+            with self._guard:
+                self._active_run_id = None
+
+    def _scheduler_loop(self) -> None:
+        timezone = ZoneInfo(self.timezone_name)
+        while not self._stop.is_set():
+            now = datetime.now(timezone)
+            daily_time = self.store.get_setting("daily_time", "05:30") or "05:30"
+            if _TIME.fullmatch(daily_time):
+                hour, minute = (int(value) for value in daily_time.split(":"))
+                if (now.hour, now.minute) >= (hour, minute):
+                    scheduled_for = str(now.date())
+                    if self.store.find_scheduled_run(scheduled_for) is None:
+                        try:
+                            self.trigger("scheduled", scheduled_for=scheduled_for)
+                        except RuntimeError:
+                            pass
+            self._stop.wait(self.poll_seconds)
+
+
+def _page(title: str, body: str) -> bytes:
+    return f"""<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{html.escape(title)}</title>
+  <style>
+    :root {{ color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }}
+    body {{ margin: 0; background: #f4f6f8; color: #17202a; }}
+    main {{ max-width: 1100px; margin: 0 auto; padding: 28px 18px 48px; }}
+    h1 {{ margin: 0 0 20px; }} h2 {{ margin-top: 0; font-size: 18px; }}
+    .grid {{ display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 16px; }}
+    .card {{ background: white; border-radius: 12px; padding: 18px; box-shadow: 0 2px 12px #17202a12; }}
+    table {{ width: 100%; border-collapse: collapse; font-size: 14px; }}
+    th,td {{ text-align: left; padding: 10px 8px; border-bottom: 1px solid #e6e9ed; vertical-align: top; }}
+    .success {{ color: #0a7a3d; }} .failed {{ color: #b42318; }} .running,.queued {{ color: #9a6700; }}
+    .muted {{ color: #667085; }} .error {{ color: #b42318; white-space: pre-wrap; }}
+    code,pre {{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }}
+    pre {{ white-space: pre-wrap; overflow-wrap: anywhere; background: #101828; color: #f2f4f7; padding: 14px; border-radius: 8px; }}
+    input,button {{ font: inherit; padding: 8px 10px; }} button {{ cursor: pointer; }}
+    form.inline {{ display: inline-block; margin-right: 8px; }}
+    a {{ color: #175cd3; text-decoration: none; }}
+  </style>
+</head>
+<body><main><h1>{html.escape(title)}</h1>{body}</main></body></html>""".encode()
+
+
+def _handler(service: RunService):
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, format: str, *args) -> None:
+            return
+
+        def _send(self, status: HTTPStatus, body: bytes, content_type: str = "text/html") -> None:
+            self.send_response(status)
+            self.send_header("Content-Type", f"{content_type}; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        def _redirect(self, message: str) -> None:
+            self.send_response(HTTPStatus.SEE_OTHER)
+            self.send_header("Location", "/?message=" + quote(message))
+            self.end_headers()
+
+        def _form(self) -> dict[str, str]:
+            length = int(self.headers.get("Content-Length", "0"))
+            values = parse_qs(self.rfile.read(length).decode("utf-8"), keep_blank_values=True)
+            return {key: items[-1] for key, items in values.items()}
+
+        def do_GET(self) -> None:
+            parsed = urlparse(self.path)
+            if parsed.path == "/healthz":
+                self._send(HTTPStatus.OK, b"ok\n", "text/plain")
+                return
+            if parsed.path == "/":
+                self._send(HTTPStatus.OK, self._dashboard(parse_qs(parsed.query).get("message", [""])[-1]))
+                return
+            match = re.fullmatch(r"/runs/(\d+)", parsed.path)
+            if match:
+                self._send(HTTPStatus.OK, self._run_detail(int(match.group(1))))
+                return
+            self._send(HTTPStatus.NOT_FOUND, _page("Not found", "<p>页面不存在。</p>"))
+
+        def do_POST(self) -> None:
+            if self.path == "/settings":
+                daily_time = self._form().get("daily_time", "")
+                if not _TIME.fullmatch(daily_time):
+                    self._redirect("执行时间格式必须是 HH:MM")
+                    return
+                service.store.set_setting("daily_time", daily_time)
+                self._redirect(f"每日执行时间已改为 {daily_time}")
+                return
+            if self.path == "/run-now":
+                try:
+                    run_id = service.trigger("manual")
+                except Exception as exc:
+                    self._redirect(str(exc))
+                else:
+                    self._redirect(f"已启动运行 #{run_id}")
+                return
+            match = re.fullmatch(r"/runs/(\d+)/rerun", self.path)
+            if match:
+                try:
+                    run_id = service.retry_failed(int(match.group(1)))
+                except Exception as exc:
+                    self._redirect(str(exc))
+                else:
+                    self._redirect(f"已启动重跑 #{run_id}")
+                return
+            self._send(HTTPStatus.NOT_FOUND, _page("Not found", "<p>页面不存在。</p>"))
+
+        def _dashboard(self, message: str) -> bytes:
+            runs = service.store.list_runs(50)
+            daily_time = service.store.get_setting("daily_time", "05:30") or "05:30"
+            try:
+                progress = build_paper_progress(service.repo_root)
+                progress_html = (
+                    f"<p><b>周期</b> {len(progress.completed_cycles)}/3 · "
+                    f"<b>月报</b> {len(progress.monthly_reports)}/3 · "
+                    f"<b>错过窗口</b> {len(progress.missed_cycles)}</p>"
+                    f"<p><b>下次调仓日</b> {progress.next_rebalance_date.date()}</p>"
+                    f"<p class='muted'>{html.escape('; '.join(progress.gate_blockers) or '无阻塞项')}</p>"
+                )
+            except Exception as exc:
+                progress_html = f"<p class='error'>{html.escape(str(exc))}</p>"
+            message_html = f"<div class='card'><b>{html.escape(message)}</b></div><br>" if message else ""
+            rows = "".join(
+                f"<tr><td><a href='/runs/{run.id}'>#{run.id}</a></td>"
+                f"<td>{html.escape(run.trigger)}</td>"
+                f"<td>{html.escape(run.market_session or '-')}</td>"
+                f"<td class='{html.escape(run.status)}'>{html.escape(run.status)}</td>"
+                f"<td>{run.attempts}</td><td>{html.escape(run.started_at or '-')}</td>"
+                f"<td>{html.escape(run.summary or run.error or '-')}</td></tr>"
+                for run in runs
+            ) or "<tr><td colspan='7' class='muted'>尚无运行记录</td></tr>"
+            body = f"""
+{message_html}
+<div class="grid">
+  <section class="card"><h2>计划</h2>
+    <form action="/settings" method="post">
+      <label>每日运行时间（{html.escape(service.timezone_name)}）</label><br><br>
+      <input name="daily_time" type="time" value="{html.escape(daily_time)}" required>
+      <button type="submit">保存</button>
+    </form>
+  </section>
+  <section class="card"><h2>P4 状态</h2>{progress_html}</section>
+  <section class="card"><h2>手工执行</h2>
+    <p class="muted">按当前最新已完成交易日对账，不回填过期前向事件。</p>
+    <form action="/run-now" method="post"><button type="submit">立即运行</button></form>
+  </section>
+</div>
+<section class="card" style="margin-top:16px"><h2>运行记录</h2>
+<table><thead><tr><th>ID</th><th>触发</th><th>市场日</th><th>状态</th><th>尝试</th><th>开始</th><th>摘要</th></tr></thead>
+<tbody>{rows}</tbody></table></section>"""
+            return _page("Short Hold Momentum", body)
+
+        def _run_detail(self, run_id: int) -> bytes:
+            run = service.store.get_run(run_id)
+            if run is None:
+                return _page("运行不存在", "<p><a href='/'>返回</a></p>")
+            steps = service.store.list_steps(run_id)
+            step_rows = "".join(
+                f"<tr><td>{step.attempt}</td><td>{html.escape(step.name)}</td>"
+                f"<td class='{html.escape(step.status)}'>{html.escape(step.status)}</td>"
+                f"<td>{html.escape(step.started_at)}</td><td><pre>{html.escape(step.output or '')}</pre></td></tr>"
+                for step in steps
+            ) or "<tr><td colspan='5' class='muted'>尚无步骤记录</td></tr>"
+            rerun = ""
+            if run.status == "failed":
+                rerun = (
+                    f"<form class='inline' action='/runs/{run.id}/rerun' method='post'>"
+                    "<button type='submit'>重跑此失败任务</button></form>"
+                )
+            body = f"""
+<p><a href="/">← 返回</a></p>
+<section class="card">
+  <p><b>状态：</b><span class="{html.escape(run.status)}">{html.escape(run.status)}</span></p>
+  <p><b>触发：</b>{html.escape(run.trigger)} · <b>市场日：</b>{html.escape(run.market_session or '-')}</p>
+  <p><b>摘要：</b>{html.escape(run.summary or '-')}</p>
+  <p class="error">{html.escape(run.error or '')}</p>{rerun}
+</section>
+<section class="card" style="margin-top:16px"><h2>步骤</h2>
+<table><thead><tr><th>尝试</th><th>步骤</th><th>状态</th><th>开始</th><th>输出</th></tr></thead>
+<tbody>{step_rows}</tbody></table></section>"""
+            return _page(f"运行 #{run.id}", body)
+
+    return Handler
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog="shm-service")
+    parser.add_argument("--host", default="0.0.0.0")
+    parser.add_argument("--port", type=int, default=8000)
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    repo_root = Path(os.environ.get("SHM_REPO_ROOT", "/var/lib/shm/repository")).resolve()
+    db_path = Path(os.environ.get("SHM_DB_PATH", "/var/lib/shm/service.sqlite3")).resolve()
+    new_database = not db_path.exists()
+    store = ServiceStore(db_path)
+    store.initialize()
+    default_time = os.environ.get("SHM_DAILY_TIME", "05:30")
+    if new_database and _TIME.fullmatch(default_time):
+        store.set_setting("daily_time", default_time)
+    service = RunService(
+        store,
+        repo_root,
+        timezone_name=os.environ.get("TZ", "Asia/Shanghai"),
+        retry_attempts=int(os.environ.get("SHM_RETRY_ATTEMPTS", "3")),
+        retry_delay_seconds=int(os.environ.get("SHM_RETRY_DELAY_SECONDS", "300")),
+        poll_seconds=int(os.environ.get("SHM_SCHEDULER_POLL_SECONDS", "20")),
+    )
+    service.start()
+    server = ThreadingHTTPServer((args.host, args.port), _handler(service))
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        service.stop()
+        server.server_close()
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

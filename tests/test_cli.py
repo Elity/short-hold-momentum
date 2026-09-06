@@ -3,10 +3,22 @@ from pathlib import Path
 from types import SimpleNamespace
 
 import pandas as pd
+import pytest
 
 import shm.cli as cli
-from shm.paper import Fill, OrderTicket, write_fill_csv, write_ticket_csv
+from shm.paper import Fill, OrderTicket, PaperAccount, write_fill_csv, write_ticket_csv
 from shm.runner import DataUpdateSummary, RunOutcome
+
+
+def test_paper_account_write_is_idempotent_but_never_overwrites(tmp_path) -> None:
+    path = tmp_path / "account.json"
+    account = PaperAccount(cash=1000, positions={"AAA": 2})
+
+    cli._write_paper_account(path, account, as_of="2026-09-18")
+    cli._write_paper_account(path, account, as_of="2026-09-18")
+
+    with pytest.raises(FileExistsError, match="refusing to overwrite"):
+        cli._write_paper_account(path, PaperAccount(cash=900), as_of="2026-09-18")
 
 
 def test_data_update_forwards_through_oos(monkeypatch) -> None:

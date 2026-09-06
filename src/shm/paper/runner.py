@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import subprocess
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -34,6 +33,7 @@ from shm.paper.core import (
 )
 from shm.risk import build_risk_adjusted_target
 from shm.signals import equal_weights, momentum_scores, rank_momentum
+from shm.source import source_revision as _git_sha
 from shm.universe import (
     EligibilityResult,
     FrozenUniverse,
@@ -183,19 +183,6 @@ def _write_idempotent_ticket(path: Path, plan: TicketPlan) -> Path:
             raise FileExistsError(f"refusing to overwrite different paper ticket: {path}")
         return path
     return write_ticket_csv(path, plan)
-
-
-def _git_sha(repo_root: Path) -> str:
-    result = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
-        cwd=repo_root,
-        text=True,
-        capture_output=True,
-        check=False,
-    )
-    if result.returncode != 0:
-        raise RuntimeError("paper runs require a git commit so git_sha is reproducible")
-    return result.stdout.strip()
 
 
 def _account_hash(account: PaperAccount) -> str:

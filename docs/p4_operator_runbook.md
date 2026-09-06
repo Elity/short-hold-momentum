@@ -65,7 +65,8 @@ contains ticket diagnostics only—never a 2019-to-date performance metric.
 The ticket is a draft. For the ADR-010 local simulator, wait until the next XNYS
 session is complete, then fill stock MOO/OPG tickets at that session's official
 open using the local cache. These fills have zero commission and are simulated,
-not observed broker execution. The resulting file uses:
+not observed broker execution. The fill file is named for the **next-session
+execution date** (`paper/fills/NEXT-SESSION.csv`), not the signal date, and uses:
 
 ```text
 ticker,qty,fill_price,fill_time,official_open

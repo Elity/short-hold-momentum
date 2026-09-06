@@ -400,6 +400,10 @@ def test_monthly_markdown_contains_required_comparison_and_attribution(tmp_path)
     assert "HC-07" in report
     path = write_monthly_report(tmp_path / "monthly.md", inputs)
     assert path.read_text(encoding="utf-8") == report
+    assert write_monthly_report(path, inputs) == path
+    path.write_text("partial", encoding="utf-8")
+    with pytest.raises(FileExistsError, match="refusing to overwrite"):
+        write_monthly_report(path, inputs)
 
 
 def test_paper_rebalance_reads_frozen_local_window_and_writes_ticket(
@@ -683,3 +687,56 @@ def test_paper_status_counts_only_complete_cycles(tmp_path) -> None:
     assert "paper cycles 1/3" in progress.gate_blockers
     assert "monthly reports 1/3" in progress.gate_blockers
     assert len(progress.missing_owner_notes) == 4
+
+
+def test_paper_status_advances_past_recorded_missed_cycle(tmp_path) -> None:
+    repo_root, _ = _paper_repo(tmp_path)
+    (repo_root / "paper").mkdir(exist_ok=True)
+    (repo_root / "paper/p4.yaml").write_text(
+        yaml.safe_dump(
+            {
+                "mode": "paper",
+                "provider": "local_offline_simulator",
+                "forward_test_start": "2026-09-05",
+            }
+        ),
+        encoding="utf-8",
+    )
+    initial = build_paper_progress(repo_root)
+    marker = repo_root / "paper/missed" / f"{initial.next_rebalance_date.date()}.json"
+    marker.parent.mkdir(parents=True)
+    marker.write_text("{}\n", encoding="utf-8")
+
+    progress = build_paper_progress(repo_root)
+
+    assert progress.missed_cycles == (str(initial.next_rebalance_date.date()),)
+    assert progress.next_rebalance_date > initial.next_rebalance_date
+
+
+def test_paper_status_does_not_leave_a_missed_fill_pending(tmp_path) -> None:
+    repo_root, _ = _paper_repo(tmp_path)
+    (repo_root / "paper").mkdir(exist_ok=True)
+    (repo_root / "paper/p4.yaml").write_text(
+        yaml.safe_dump(
+            {
+                "mode": "paper",
+                "provider": "local_offline_simulator",
+                "forward_test_start": "2026-09-05",
+            }
+        ),
+        encoding="utf-8",
+    )
+    initial = build_paper_progress(repo_root)
+    signal = initial.next_rebalance_date
+    write_ticket_csv(
+        repo_root / "paper/tickets" / f"{signal.date()}.csv",
+        [OrderTicket("AAA", "buy", 1)],
+    )
+    marker = repo_root / "paper/missed" / f"{signal.date()}-fill.json"
+    marker.parent.mkdir(parents=True)
+    marker.write_text("{}\n", encoding="utf-8")
+
+    progress = build_paper_progress(repo_root)
+
+    assert progress.pending_cycles == ()
+    assert progress.missed_cycles == (str(signal.date()),)

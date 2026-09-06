@@ -716,5 +716,12 @@ def render_monthly_report(inputs: MonthlyComparisonInputs) -> str:
 def write_monthly_report(path: Path | str, inputs: MonthlyComparisonInputs) -> Path:
     destination = Path(path)
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(render_monthly_report(inputs), encoding="utf-8")
+    rendered = render_monthly_report(inputs)
+    if destination.exists():
+        if destination.read_text(encoding="utf-8") == rendered:
+            return destination
+        raise FileExistsError(f"refusing to overwrite a different monthly report: {destination}")
+    temporary = destination.with_suffix(destination.suffix + ".tmp")
+    temporary.write_text(rendered, encoding="utf-8")
+    temporary.replace(destination)
     return destination

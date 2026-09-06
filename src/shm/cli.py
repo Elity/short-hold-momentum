@@ -54,8 +54,13 @@ def _write_paper_account(
     if as_of is not None:
         payload["as_of"] = str(pd.Timestamp(as_of).date())
     path.parent.mkdir(parents=True, exist_ok=True)
+    rendered = json.dumps(payload, indent=2, sort_keys=True) + "\n"
+    if path.exists():
+        if path.read_text(encoding="utf-8") == rendered:
+            return path
+        raise FileExistsError(f"refusing to overwrite a different paper account: {path}")
     temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    temporary.write_text(rendered, encoding="utf-8")
     temporary.replace(path)
     return path
 
@@ -301,6 +306,7 @@ def main(argv: list[str] | None = None) -> int:
             "paper status: "
             f"cycles={len(progress.completed_cycles)}/3, "
             f"pending={len(progress.pending_cycles)}, "
+            f"missed={len(getattr(progress, 'missed_cycles', ()))}, "
             f"monthly_reports={len(progress.monthly_reports)}/3, "
             f"next_rebalance={progress.next_rebalance_date.date()}, "
             f"p4_evidence_complete={str(progress.p4_evidence_complete).lower()}, "

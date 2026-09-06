@@ -37,6 +37,36 @@ uv run pytest
 The project is pinned to Python 3.12 because the open-source vectorbt/numba
 stack does not yet support every Python 3.13 combination consistently.
 
+## Container service
+
+The published image is `ghcr.io/elity/short-hold-momentum:latest`. It runs a
+small dashboard and a persistent scheduler around the existing P4 commands.
+All mutable repository artifacts and the SQLite run database live under
+`/var/lib/shm`, so replacing the container does not discard paper evidence or
+run history.
+
+```bash
+mkdir -p runtime
+docker compose up -d
+```
+
+The dashboard is exposed on port `9022` by default. Override deployment values
+without editing the compose file:
+
+```bash
+SHM_WEB_PORT=9081 SHM_DATA_DIR=/srv/short-hold-momentum docker compose up -d
+```
+
+The page shows P4 counters, successful and failed runs, per-step output, and
+the next daily schedule. The daily time can be changed in the page and is
+stored in SQLite. Automatic and manual runs retry transient failures three
+times with a five-minute delay.
+
+Forward evidence remains date-safe: a failed run can be retried only while its
+recorded XNYS session is still the latest completed session. After a newer
+market close, use **Run now** to reconcile the current session; the service
+will not backfill a missed ticket, fill, or option overlay with later data.
+
 ## Owner checkpoint
 
 The frozen universe came directly from the owner. Changes to

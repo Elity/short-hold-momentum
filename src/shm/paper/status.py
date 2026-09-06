@@ -16,6 +16,7 @@ from shm.universe import xnys_rebalance_dates
 
 
 _STOCK_TICKET = re.compile(r"^(\d{4}-\d{2}-\d{2})\.csv$")
+_MISSED_CYCLE = re.compile(r"^(\d{4}-\d{2}-\d{2})(?:-fill)?\.json$")
 _MONTHLY_REPORT = re.compile(r"^paper-(\d{4}-\d{2})\.md$")
 
 
@@ -24,6 +25,7 @@ class PaperProgress:
     forward_start: pd.Timestamp
     completed_cycles: tuple[str, ...]
     pending_cycles: tuple[str, ...]
+    missed_cycles: tuple[str, ...]
     monthly_reports: tuple[str, ...]
     next_rebalance_date: pd.Timestamp
     missing_owner_notes: tuple[str, ...]
@@ -71,8 +73,10 @@ def _cycle_status(
                 positions=payload.get("positions", {}),
                 mode=payload.get("mode", "paper"),
             )
-        target = completed if cycle_complete else pending
-        target.append(str(signal_date.date()))
+        if cycle_complete:
+            completed.append(str(signal_date.date()))
+        elif not (repo_root / "paper/missed" / f"{signal_date.date()}-fill.json").exists():
+            pending.append(str(signal_date.date()))
     return tuple(completed), tuple(pending)
 
 
@@ -89,14 +93,27 @@ def _monthly_reports(repo_root: Path, forward_start: pd.Timestamp) -> tuple[str,
     return tuple(months)
 
 
+def _missed_cycles(repo_root: Path, forward_start: pd.Timestamp) -> tuple[str, ...]:
+    missed: set[str] = set()
+    for path in sorted((repo_root / "paper/missed").glob("*.json")):
+        match = _MISSED_CYCLE.fullmatch(path.name)
+        if match is None:
+            continue
+        signal_date = pd.Timestamp(match.group(1)).normalize()
+        if signal_date >= forward_start:
+            missed.add(str(signal_date.date()))
+    return tuple(sorted(missed))
+
+
 def _next_rebalance(
     repo_root: Path,
     forward_start: pd.Timestamp,
     completed: tuple[str, ...],
     pending: tuple[str, ...],
+    missed: tuple[str, ...],
 ) -> pd.Timestamp:
     config = _load_paper_config(repo_root)
-    observed = [pd.Timestamp(value) for value in (*completed, *pending)]
+    observed = [pd.Timestamp(value) for value in (*completed, *pending, *missed)]
     after = max(observed, default=forward_start - pd.Timedelta("1D"))
     schedule = xnys_rebalance_dates(
         config.dates.dev_start,
@@ -118,6 +135,7 @@ def build_paper_progress(repo_root: Path | str) -> PaperProgress:
         raise PermissionError("P4 status requires mode: paper")
     forward_start = pd.Timestamp(paper_config["forward_test_start"]).normalize()
     completed, pending = _cycle_status(root, forward_start)
+    missed = _missed_cycles(root, forward_start)
     monthly_reports = _monthly_reports(root, forward_start)
     missing_notes = tuple(
         f"docs/why/P{phase}.md"
@@ -140,8 +158,9 @@ def build_paper_progress(repo_root: Path | str) -> PaperProgress:
         forward_start=forward_start,
         completed_cycles=completed,
         pending_cycles=pending,
+        missed_cycles=missed,
         monthly_reports=monthly_reports,
-        next_rebalance_date=_next_rebalance(root, forward_start, completed, pending),
+        next_rebalance_date=_next_rebalance(root, forward_start, completed, pending, missed),
         missing_owner_notes=missing_notes,
         p4_evidence_complete=evidence_complete,
         gate_ready=evidence_complete and not blockers,

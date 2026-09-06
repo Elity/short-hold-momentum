@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import shlex
-import subprocess
 from dataclasses import dataclass
 from datetime import date, datetime
 from pathlib import Path
@@ -51,6 +50,7 @@ from shm.pipeline import (
     run_cost_scenarios,
 )
 from shm.report import calculate_metrics, render_report, write_report, yearly_returns
+from shm.source import source_revision as _git_sha
 from shm.universe import load_frozen_universe, trailing_xnys_sessions, xnys_rebalance_dates
 
 
@@ -68,19 +68,6 @@ class DataUpdateSummary:
     core_failures: int
     pit_total: int
     pit_failures: int
-
-
-def _git_sha(repo_root: Path) -> str:
-    result = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
-        cwd=repo_root,
-        text=True,
-        capture_output=True,
-        check=False,
-    )
-    if result.returncode != 0:
-        raise RuntimeError("backtests require a git commit so git_sha is reproducible")
-    return result.stdout.strip()
 
 
 def _warmup_start(config: ConfigBundle) -> pd.Timestamp:

@@ -1,0 +1,24 @@
+name: short-hold-momentum
+
+services:
+  app:
+    image: ghcr.io/elity/short-hold-momentum:latest
+    container_name: short-hold-momentum
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+      SHM_REPO_ROOT: /var/lib/shm/repository
+      SHM_DB_PATH: /var/lib/shm/service.sqlite3
+      SHM_DAILY_TIME: ${SHM_DAILY_TIME:-05:30}
+      SHM_RETRY_ATTEMPTS: ${SHM_RETRY_ATTEMPTS:-3}
+      SHM_RETRY_DELAY_SECONDS: ${SHM_RETRY_DELAY_SECONDS:-300}
+    ports:
+      - "${SHM_WEB_PORT:-9022}:8000"
+    volumes:
+      - "${SHM_DATA_DIR:-./runtime}:/var/lib/shm"
+    networks:
+      - default
+
+networks:
+  default:
+    name: short-hold-momentum_net

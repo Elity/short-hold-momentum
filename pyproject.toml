@@ -22,6 +22,7 @@ dependencies = [
 
 [project.scripts]
 shm = "shm.cli:main"
+shm-service = "shm.service.app:main"
 
 [dependency-groups]
 dev = [
