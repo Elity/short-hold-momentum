@@ -1,0 +1,84 @@
+{
+  "status": "IDENTITY_RESOLVED_PRECHANGE_QUOTES_RECOVERED_POSTCHANGE_QUOTES_MISSING",
+  "entity": {
+    "cik": "0001011006",
+    "jurisdiction": "Delaware",
+    "prior_name": "Yahoo! Inc.",
+    "new_name": "Altaba Inc.",
+    "old_ticker": "YHOO",
+    "old_ticker_last_trade_date": "2017-06-16",
+    "new_ticker": "AABA",
+    "new_ticker_first_trade_date": "2017-06-19",
+    "old_cusip": "984332106",
+    "new_cusip": "021346101",
+    "holder_treatment": "same shareholder ownership continues; no action required; no automatic cash or Verizon-share payout",
+    "bookkeeping_interpretation": "identity rename with unchanged held units, not a priced acquisition liquidation"
+  },
+  "recoverable_alias_interval": {
+    "member_key": "AABA",
+    "price_source_ticker": "YHOO",
+    "from": "1996-04-12",
+    "through": "2017-06-16",
+    "research_slice_from": "2003-10-01",
+    "member_window_from": "1999-12-08",
+    "status": "identity mapping supported; partial price input only, not deployment-ready held-position history"
+  },
+  "exit_boundary": "No legal share termination in June 2017. Existing holdings need AABA quotes until actual strategy exit. A June 16 signal can require a June 19 next-open price; the eligibility-to-fill rule must be evaluated explicitly, not guessed.",
+  "remaining_evidence": [
+    "Actual AABA nominal OHLCV from 2017-06-19 through the latest actual exit needed by the existing strategy schedule.",
+    "A quote/adjustment overlap check around June 16/19 before joining any new source; do not infer opening price from old close or scale across a fake cash payout.",
+    "If a tested position reaches 2019 liquidation, obtain actual distribution dates/amounts, residual rights and available marks; neither last quote nor liquidation announcement is full settlement.",
+    "Historic WIKI split observations still inherit existing source evidence limits; do not claim a newly primary-verified full action ledger."
+  ],
+  "forbidden_inferences": [
+    "2017 operating-asset sale equals holder cash merger",
+    "2017-06-16 source tail equals mandatory sale date",
+    "index removal equals security extinguishment",
+    "optional preliminary tender price is universal execution price",
+    "AABA is Alibaba BABA or Yahoo Japan"
+  ],
+  "primary_sources": [
+    {
+      "id": "2017-06-19-name-ticker-continuity-8k",
+      "url": "https://www.sec.gov/Archives/edgar/data/1011006/000119312517206955/d389206d8k.htm",
+      "capture_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/2017-06-19-name-ticker-continuity-8k.txt",
+      "retrieval_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/request-01-sec-continuity.json",
+      "chars": 4367
+    },
+    {
+      "id": "2017-06-16-investment-company-registration-N2",
+      "url": "https://www.sec.gov/Archives/edgar/data/1011006/000119312517206130/d408809dn2.htm",
+      "capture_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/2017-06-16-investment-company-registration-N2.txt",
+      "retrieval_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/request-01-sec-continuity.json",
+      "chars": 28053
+    },
+    {
+      "id": "2017-06-08-optional-tender-extension",
+      "url": "https://www.sec.gov/Archives/edgar/data/1011006/000119312517198146/d409905dex99a5b.htm",
+      "capture_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/2017-06-08-optional-tender-extension.txt",
+      "retrieval_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/request-01-sec-continuity.json",
+      "chars": 8666
+    },
+    {
+      "id": "2017-06-19-optional-tender-preliminary-results",
+      "url": "https://www.sec.gov/Archives/edgar/data/1011006/000119312517206538/d389202dex99a5d.htm",
+      "capture_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/2017-06-19-optional-tender-preliminary-results.txt",
+      "retrieval_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/request-01-sec-continuity.json",
+      "chars": 5171
+    },
+    {
+      "id": "2017-06-09-SP-index-removal-announcement",
+      "url": "https://www.prnewswire.com/news-releases/hilton-worldwide-align-technology-ansys-set-to-join-sp-500-teradata-and-ryder-system-to-join-sp-midcap-400-300471904.html",
+      "capture_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/2017-06-09-SP-index-removal-announcement.txt",
+      "retrieval_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/request-03-sp-index-release.json",
+      "chars": 4733
+    },
+    {
+      "id": "2019-10-04-actual-halt-and-dissolution-8k",
+      "url": "https://www.sec.gov/Archives/edgar/data/1011006/000119312519262790/d794671d8k.htm",
+      "capture_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/2019-10-04-actual-halt-and-dissolution-8k.txt",
+      "retrieval_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/primary-evidence/request-04-later-liquidation-boundary.json",
+      "chars": 7655
+    }
+  ]
+}

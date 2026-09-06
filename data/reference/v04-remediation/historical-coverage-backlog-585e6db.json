@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at_utc": "2026-09-06T20:36:29.332847+00:00",
+  "generated_at_utc": "2026-09-06T19:50:12.666753+00:00",
   "scope": {
     "study_start": "2005-01-03",
     "cutoff": "2026-09-04",
@@ -12,7 +12,7 @@
       "MBGL"
     ]
   },
-  "manifest_sha256": "a3abfe1ef5fdb8d141e914dc9a232326adb50fdc32fdad3cbf06a63c65c0bb14",
+  "manifest_sha256": "636f04fab9721fb80b8609fff59c316e88fca02b5e210a2064570a947bd28e11",
   "registered_actions": [
     "ALTR",
     "ARG",
@@ -27,10 +27,10 @@
   ],
   "counts": {
     "last_price_reaches_cutoff": 627,
-    "terminal_candidate_later_than_membership_end": 25,
+    "whole_series_missing": 107,
     "series_present_but_no_member_period_overlap": 57,
-    "whole_series_missing": 106,
     "archive_2018_tail_gap_while_member": 64,
+    "terminal_candidate_later_than_membership_end": 24,
     "terminal_candidate_at_membership_end": 32,
     "quarantined_no_usable_series": 4,
     "archive_boundary_after_membership_ended": 31,
@@ -40388,6 +40388,47 @@
     "other_early_tail_gap_while_member": [],
     "whole_series_missing": [
       {
+        "ticker": "AABA",
+        "first_member_session": "2005-01-03",
+        "last_member_session": "2017-06-16",
+        "first_nonmember_after_final_period": "2017-06-19",
+        "member_at_cutoff": false,
+        "membership_periods": [
+          {
+            "start": "2005-01-03",
+            "last_member_session": "2017-06-16",
+            "first_nonmember_session": "2017-06-19"
+          }
+        ],
+        "member_sessions": 3136,
+        "required_preterminal_member_sessions": 3136,
+        "member_rebalance_observations": 157,
+        "event_explained_member_sessions": 0,
+        "event_explained_member_rebalances": 0,
+        "source_path": null,
+        "source_kind": "raw_cache",
+        "source_name": null,
+        "source_sha256": null,
+        "is_wiki_derived": false,
+        "manifest_declared_price_end": null,
+        "quarantined": false,
+        "corporate_action_in_manifest": null,
+        "price_window_in_manifest": null,
+        "raw_cache_exists": false,
+        "raw_cache_sha256": null,
+        "raw_first_valid_session": null,
+        "raw_last_valid_session": null,
+        "loaded_rows": 0,
+        "valid_rows": 0,
+        "first_price_session": null,
+        "last_price_session": null,
+        "missing_member_rebalances": 157,
+        "missing_required_member_rebalances": 157,
+        "diagnostic_category": "whole_series_missing",
+        "archive_label_unverified": null,
+        "in_previously_upgraded_list": false
+      },
+      {
         "ticker": "ABKFQ",
         "first_member_session": "2005-01-03",
         "last_member_session": "2008-06-10",
@@ -50089,64 +50130,6 @@
     ],
     "terminal_candidate_later_than_membership_end": [
       {
-        "ticker": "AABA",
-        "first_member_session": "2005-01-03",
-        "last_member_session": "2017-06-16",
-        "first_nonmember_after_final_period": "2017-06-19",
-        "member_at_cutoff": false,
-        "membership_periods": [
-          {
-            "start": "2005-01-03",
-            "last_member_session": "2017-06-16",
-            "first_nonmember_session": "2017-06-19"
-          }
-        ],
-        "member_sessions": 3136,
-        "required_preterminal_member_sessions": 3136,
-        "member_rebalance_observations": 157,
-        "event_explained_member_sessions": 0,
-        "event_explained_member_rebalances": 0,
-        "source_path": "data/research/v04/prices/AABA-YHOO-through-2017-12-29.parquet",
-        "source_kind": "research_override",
-        "source_name": "Yahoo! Inc. renamed Altaba Inc.; CIK 1011006",
-        "source_sha256": "0a14dfe1ee49fdf90c7f96c99d08af86f4f1acbf95fe4840b0b3867212d52328",
-        "is_wiki_derived": false,
-        "manifest_declared_price_end": "2017-12-29",
-        "quarantined": false,
-        "corporate_action_in_manifest": null,
-        "price_window_in_manifest": null,
-        "raw_cache_exists": false,
-        "raw_cache_sha256": null,
-        "raw_first_valid_session": null,
-        "raw_last_valid_session": null,
-        "loaded_rows": 3532,
-        "valid_rows": 3532,
-        "first_price_session": "2003-12-19",
-        "last_price_session": "2017-12-29",
-        "missing_member_rebalances": 0,
-        "missing_required_member_rebalances": 0,
-        "invalid_basic_ohlcv_rows": 0,
-        "physical_range_conflict_rows": 0,
-        "member_price_overlap_sessions": 3136,
-        "missing_member_sessions_before_first": 0,
-        "missing_member_sessions_internal": 0,
-        "missing_member_sessions_after_last": 0,
-        "missing_required_member_sessions_after_last": 0,
-        "missing_rebalances_after_last": 0,
-        "missing_required_rebalances_after_last": 0,
-        "first_missing_member_session_after_last": null,
-        "first_missing_rebalance_after_last": null,
-        "requested_missing_quote_start": "2018-01-02",
-        "action_preterminal_missing_sessions": 0,
-        "price_rows_after_registered_last_trade": 0,
-        "newer_raw_candidate_shadowed": false,
-        "raw_later_member_quote_sessions": 0,
-        "observed_end_matches_manifest": true,
-        "diagnostic_category": "terminal_candidate_later_than_membership_end",
-        "archive_label_unverified": "Yahoo! Inc. renamed Altaba Inc.; CIK 1011006",
-        "in_previously_upgraded_list": false
-      },
-      {
         "ticker": "ACAS",
         "first_member_session": "2007-07-09",
         "last_member_session": "2009-03-03",
@@ -54331,8 +54314,8 @@
   "procurement_requests": [
     {
       "ticker": "AABA",
-      "category": "terminal_candidate_later_than_membership_end",
-      "source_label_not_verified_identity": "Yahoo! Inc. renamed Altaba Inc.; CIK 1011006",
+      "category": "whole_series_missing",
+      "source_label_not_verified_identity": null,
       "membership_periods": [
         {
           "start": "2005-01-03",
@@ -54340,7 +54323,7 @@
           "first_nonmember_session": "2017-06-19"
         }
       ],
-      "existing_last_quote": "2017-12-29",
+      "existing_last_quote": null,
       "complete_history_start": "2003-12-19",
       "minimum_member_coverage_end": "2017-06-16",
       "first_nonmember_session": "2017-06-19",
@@ -79516,7 +79499,7 @@
       }
     ],
     "accurate_global_scope": {
-      "whole_missing": 106,
+      "whole_missing": 107,
       "quarantined": 4,
       "zero_member_overlap": 57,
       "member_tail_gaps": 65,
@@ -79579,7 +79562,7 @@
           "in_previously_upgraded_list_count": 0
         }
       },
-      "unregistered_terminal_candidates": 57
+      "unregistered_terminal_candidates": 56
     },
     "do_not_erase": [
       "TIE_NO_VERIFIED_REPLACEMENT: current candidate still has documented whole-row holes, quarterly price conflicts and early volume-basis uncertainty.",
@@ -79606,7 +79589,7 @@
     }
   ],
   "input_hashes": {
-    "data/reference/v04-remediation/manifest.json": "a3abfe1ef5fdb8d141e914dc9a232326adb50fdc32fdad3cbf06a63c65c0bb14",
+    "data/reference/v04-remediation/manifest.json": "636f04fab9721fb80b8609fff59c316e88fca02b5e210a2064570a947bd28e11",
     "data/reference/sp500_history.csv": "39a9202c9ef69a74c0ff07e2113ad41fb6da7c8c5b6cd9541f0185fb4391e717",
     "data/reference/v04-remediation/membership-extension.csv": "fa1141a4359c016d9e2d30a22ad51845a5705db1a3b4214acc7249895507d016",
     "data/reference/v04-remediation/corporate-action-evidence/agn-watson-membership-findings.md": "4ec59c5ae40dfc2bc69557c64b37e7d3c9dcdea70cdeb6460c32aa1e301e05f7",
@@ -80470,8 +80453,6 @@
     "data/research/v04/prices/XEC.parquet": "c793f0947e1e82051776936a2b68b26ccb64608d711c7acf50bfab66ef508e77",
     "data/research/v04/prices/XL.parquet": "925abb3618f5404eb059b4f6770778d10248f192306f6ad3784accc284a51245",
     "data/research/v04/prices/XLNX.parquet": "701953ef53019055ae1f1db10f163d3dc3f790b37dddceaff2047c1585c31523",
-    "data/research/v04/prices/AABA-YHOO-through-2017-12-29.parquet": "0a14dfe1ee49fdf90c7f96c99d08af86f4f1acbf95fe4840b0b3867212d52328",
-    "data/reference/v04-remediation/price-evidence/AABA-YHOO-continuity/application-review.md": "1661ef4e52677dfd69a4e256eb52bbf3b8f42f6dbfab6c0f3cced0b5484e87c9",
     "data/reference/v04-remediation/corporate-action-evidence/frx-dtv-findings.md": "3bb59c0296197772d54c4cb7736b8a86f82abb1e865b89fa6ca69468206050ac",
     "data/reference/v04-remediation/identity-evidence/identity-action-segments.json": "0e6bb37dfed28269341ea736159796f58a6af86719ae44944188d8050a862ec1",
     "data/reference/v04-remediation/corporate-action-evidence/KRFT-evidence.md": "1f224b8c078a368d403073ee32c42e6c3995f450a11d5cbcd3e22a506525dccd",

@@ -1,0 +1,10 @@
+{
+  "url": "https://api.github.com/repos/szrlee/Stock-Time-Series-Analysis/commits?path=data/AABA_2006-01-01_to_2018-01-01.csv&per_page=1",
+  "status": 200,
+  "retrieved_at": "2026-09-06T20:10:22.081564+00:00",
+  "bytes": 3046,
+  "sha256": "ccd606a9f926683166369c81c9c67fcd364671f9cb49b07c4ee365ff1b745d29",
+  "new_network_requests": 1,
+  "redirects_followed": 0,
+  "provider_price_calls": 0
+}

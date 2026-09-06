@@ -2363,6 +2363,18 @@
       "invalid_rows": 0,
       "source_archive_sha256": "cafc3f9e60e495010d81d03cb5ba0de8579c443666eba8ffce6df4101863f918",
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+    },
+    "AABA": {
+      "path": "data/research/v04/prices/AABA-YHOO-through-2017-12-29.parquet",
+      "sha256": "0a14dfe1ee49fdf90c7f96c99d08af86f4f1acbf95fe4840b0b3867212d52328",
+      "source_ticker": "YHOO/AABA",
+      "source_name": "Yahoo! Inc. renamed Altaba Inc.; CIK 1011006",
+      "first": "2003-10-01",
+      "last": "2017-12-29",
+      "invalid_rows": 0,
+      "method": "Recover complete historical WIKI YHOO adjusted series under AABA canonical member identity; append audited same-unit 2017 Google Finance tail; retain nominal eligibility fields.",
+      "evidence_path": "data/reference/v04-remediation/price-evidence/AABA-YHOO-continuity/application-review.md",
+      "evidence_sha256": "1661ef4e52677dfd69a4e256eb52bbf3b8f42f6dbfab6c0f3cced0b5484e87c9"
     }
   },
   "quarantined": {

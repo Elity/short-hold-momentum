@@ -1,0 +1,10 @@
+{
+  "preserve_WIKI_adjusted_prefix": true,
+  "prefix_last_date": "2017-06-16",
+  "prefix_last_adjustment_factor": 1.0,
+  "append_Google_whole_nominal_OHLCV_from": "2017-06-19",
+  "tail_adjustment_factor": 1.0,
+  "additional_cash_return": 0.0,
+  "terminal_cash_event": false,
+  "nominal_price_and_dollar_volume": "Use source Close and source Volume for tail dollar volume. Preserve WIKI raw dollar-volume values and adjusted OHLCV for prefix."
+}
