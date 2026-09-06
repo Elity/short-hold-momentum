@@ -1,15 +1,15 @@
 # 当前历史数据缺口（动态统计）
 
-生成时间：2026-09-06T21:57:04.897519+00:00。manifest `a224148f0d7958f52c2519591b05a2a8a8c6328c33eda61e239b69357fbdc2be`。研究证券 **961** 个，调仓日 **273** 个。旧 backlog.md/json 保持原样；本报告只写 work/backlog-current。
+生成时间：2026-09-06T21:20:31.827250+00:00。manifest `f72f790593308936868f0435511943648743047b116c54042e6c5b202a148389`。研究证券 **961** 个，调仓日 **273** 个。旧 backlog.md/json 保持原样；本报告只写 work/backlog-current。
 
 当前仍有 **64 个未完成的成员期尾段**，缺 **2807 个应有报价的成员调仓观测**。其中共同 2018 断点 63 个，2018 以后已延伸但仍缺尾段 1 个，其他早期尾段 0 个。
 
 |分类|证券数|
 |---|---:|
 |末日到研究截止（不代表全部数据已合格）|627|
-|退池较晚之后的未登记报价断点|27|
+|退池较晚之后的未登记报价断点|26|
 |有价格，但与历史成员期零重叠|57|
-|整条可加载序列缺失|105|
+|整条可加载序列缺失|106|
 |2018 共同归档断点，仍有后续成员期缺口|63|
 |退池附近的未登记报价断点|32|
 |隔离，无可信可用序列|4|
@@ -155,14 +155,13 @@
 |NBR|2018-12-31|2015-03-20|退池较晚之后的未登记报价断点|
 |PMCS|2016-01-14|2007-06-29|退池较晚之后的未登记报价断点|
 |QLGC|2016-08-16|2011-01-14|退池较晚之后的未登记报价断点|
-|RSHCQ|2011-07-11|2011-06-30|退池较晚之后的未登记报价断点|
 |SVU|2018-10-22|2012-04-30|退池较晚之后的未登记报价断点|
 |SWY|2015-01-29|2015-01-26|退池较晚之后的未登记报价断点|
 |TLAB|2013-12-03|2011-12-20|退池较晚之后的未登记报价断点|
 |UVN|2018-01-30|2007-03-28|退池较晚之后的未登记报价断点|
 |XEC|2020-03-10|2020-03-02|退池较晚之后的未登记报价断点|
 
-**整条可加载序列缺失（105）**：ABKFQ, ABS, ACS, ANDW, ANRZQ, APCC, ASN, ATGE, AW, AYE, BDK, BJS, BLS, BMC, BMET, BNI, BOL, BRL, BSC, BTUUQ, CBE, CBH, CBSS, CCTYQ, CDAY, CEPH, CFC, CIN, CITGQ, CMVT, CMX, CPNLQ, CTLT, CTRA, CTX, CVH, DALRQ, DAY, DCNAQ, DJ, DPHIQ, EDS, EKDKQ, EOP, FDC, FSH, GDW, GLK, GR, GTW, HCR, HET, HMA, HNZ, HPC, IAC, JP, KATE, KRB, KRI, KSE, LEHMQ, MAY, MEE, MEL, MERQ, MFE, MOLX, MTLQQ, MYG, NCC, NFB, NOVL, NVLS, NXTL, NYX, OMX, PBG, PEAK, PGL, PGN, PTV, PVN, RBK, ROH, RX, SBL, SEBL, SFA, SLR, SOV, SUNEQ, TIN, TOY, TRB, TSG, TXU, VIAC, VSTNQ, WAMUQ, WFT, WWY, WYE, WYND, XTO。
+**整条可加载序列缺失（106）**：ABKFQ, ABS, ACS, ANDW, ANRZQ, APCC, ASN, ATGE, AW, AYE, BDK, BJS, BLS, BMC, BMET, BNI, BOL, BRL, BSC, BTUUQ, CBE, CBH, CBSS, CCTYQ, CDAY, CEPH, CFC, CIN, CITGQ, CMVT, CMX, CPNLQ, CTLT, CTRA, CTX, CVH, DALRQ, DAY, DCNAQ, DJ, DPHIQ, EDS, EKDKQ, EOP, FDC, FSH, GDW, GLK, GR, GTW, HCR, HET, HMA, HNZ, HPC, IAC, JP, KATE, KRB, KRI, KSE, LEHMQ, MAY, MEE, MEL, MERQ, MFE, MOLX, MTLQQ, MYG, NCC, NFB, NOVL, NVLS, NXTL, NYX, OMX, PBG, PEAK, PGL, PGN, PTV, PVN, RBK, ROH, RSHCQ, RX, SBL, SEBL, SFA, SLR, SOV, SUNEQ, TIN, TOY, TRB, TSG, TXU, VIAC, VSTNQ, WAMUQ, WFT, WWY, WYE, WYND, XTO。
 
 **隔离，无可信可用序列（4）**：AGN_OLD, LSI, MIL, TIE。
 
@@ -184,7 +183,7 @@
 - **AGN_OLD_MISSING_DISTINCT_SECURITY**：原Allergan Inc与Watson/Actavis为独立发行人；WIKI AGN为后者的历史，原Allergan价格尚未取得可信完整替代。
 - **LSI_SECURITY_IDENTITY_MISMATCH**：WIKI LSI不对应历史LSI Corporation：2012/13八季报价与SEC均不符，不能作为原半导体公司的行情。
 
-ARCHIVE_DELISTING_AND_LATER_GAPS 的叙述应随数据更新：当前是 64 个成员期尾段，另有 105 条整系列缺失、4 条隔离和 57 条成员期零重叠。不能继续笼统声称全部仍止于 2018；也不能因 TWTR 或 ATVI 的进展删除整个全局证据项。TIE 的具体缺行/价格冲突、MIL/AGN_OLD/LSI 的独立身份问题不可合并掉。
+ARCHIVE_DELISTING_AND_LATER_GAPS 的叙述应随数据更新：当前是 64 个成员期尾段，另有 106 条整系列缺失、4 条隔离和 57 条成员期零重叠。不能继续笼统声称全部仍止于 2018；也不能因 TWTR 或 ATVI 的进展删除整个全局证据项。TIE 的具体缺行/价格冲突、MIL/AGN_OLD/LSI 的独立身份问题不可合并掉。
 
 ## 可验证的数据路线与尚未取得的证据
 

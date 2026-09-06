@@ -1,0 +1,86 @@
+[
+  {
+    "date": "2004-11-29",
+    "source_cash": 0.25,
+    "issuer_document_amount": 0.25,
+    "issuer_document_grade": "ISSUER_ANNUAL_PAYMENT_IN_SEC_INDEXED_TEXT",
+    "secondary_date_and_amount_match": true,
+    "candidate_factor_step": 1.0074671445639187,
+    "raw_cash_expected_factor_step": 1.0074671445639187,
+    "factor_step_abs_error": 0.0,
+    "daily_gross_return_abs_error": 0.0,
+    "primary_ex_date_explicitly_verified": false
+  },
+  {
+    "date": "2005-11-29",
+    "source_cash": 0.25,
+    "issuer_document_amount": 0.25,
+    "issuer_document_grade": "ISSUER_ANNUAL_PAYMENT_IN_THIRD_PARTY_FILING_MIRROR",
+    "secondary_date_and_amount_match": true,
+    "candidate_factor_step": 1.0109457092819614,
+    "raw_cash_expected_factor_step": 1.0109457092819614,
+    "factor_step_abs_error": 0.0,
+    "daily_gross_return_abs_error": 0.0,
+    "primary_ex_date_explicitly_verified": false
+  },
+  {
+    "date": "2006-11-29",
+    "source_cash": 0.25,
+    "issuer_document_amount": 0.25,
+    "issuer_document_grade": "ISSUER_ANNUAL_DECLARED_TOTAL_ONLY_IN_SEC_INDEXED_TEXT",
+    "secondary_date_and_amount_match": true,
+    "candidate_factor_step": 1.0145011600928076,
+    "raw_cash_expected_factor_step": 1.0145011600928073,
+    "factor_step_abs_error": 2.220446049250313e-16,
+    "daily_gross_return_abs_error": 2.220446049250313e-16,
+    "primary_ex_date_explicitly_verified": false
+  },
+  {
+    "date": "2007-11-27",
+    "source_cash": 0.25,
+    "issuer_document_amount": 0.25,
+    "issuer_document_grade": "ISSUER_ANNUAL_DECLARED_TOTAL_ONLY_IN_SEC_INDEXED_TEXT",
+    "secondary_date_and_amount_match": true,
+    "candidate_factor_step": 1.013904338153504,
+    "raw_cash_expected_factor_step": 1.013904338153504,
+    "factor_step_abs_error": 0.0,
+    "daily_gross_return_abs_error": 0.0,
+    "primary_ex_date_explicitly_verified": false
+  },
+  {
+    "date": "2008-11-25",
+    "source_cash": 0.25,
+    "issuer_document_amount": 0.25,
+    "issuer_document_grade": "ISSUER_ANNUAL_DECLARED_TOTAL_ONLY_IN_SEC_INDEXED_TEXT",
+    "secondary_date_and_amount_match": true,
+    "candidate_factor_step": 1.0267952840300107,
+    "raw_cash_expected_factor_step": 1.0267952840300107,
+    "factor_step_abs_error": 0.0,
+    "daily_gross_return_abs_error": 0.0,
+    "primary_ex_date_explicitly_verified": false
+  },
+  {
+    "date": "2009-11-24",
+    "source_cash": 0.25,
+    "issuer_document_amount": 0.25,
+    "issuer_document_grade": "ISSUER_ANNUAL_DECLARED_TOTAL_ONLY_IN_SEC_INDEXED_TEXT",
+    "secondary_date_and_amount_match": true,
+    "candidate_factor_step": 1.0136314067611778,
+    "raw_cash_expected_factor_step": 1.0136314067611778,
+    "factor_step_abs_error": 0.0,
+    "daily_gross_return_abs_error": 0.0,
+    "primary_ex_date_explicitly_verified": false
+  },
+  {
+    "date": "2010-11-23",
+    "source_cash": 0.25,
+    "issuer_document_amount": 0.25,
+    "issuer_document_grade": "ISSUER_ANNUAL_PAYMENT_IN_SEC_INDEXED_TEXT",
+    "secondary_date_and_amount_match": true,
+    "candidate_factor_step": 1.013144058885384,
+    "raw_cash_expected_factor_step": 1.0131440588853837,
+    "factor_step_abs_error": 2.220446049250313e-16,
+    "daily_gross_return_abs_error": 0.0,
+    "primary_ex_date_explicitly_verified": false
+  }
+]

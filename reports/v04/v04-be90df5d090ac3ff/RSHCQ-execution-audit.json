@@ -1,0 +1,284 @@
+{
+  "run_id": "v04-be90df5d090ac3ff",
+  "status": "INCONCLUSIVE",
+  "winner": null,
+  "price_coverage": 0.8981968425541402,
+  "basis_coverage": 0.8645127098461508,
+  "missing_tickers_including_quarantine": 109,
+  "items": [
+    {
+      "strategy": "S500-C0",
+      "bps": 10,
+      "transactions": 5,
+      "last_holding_date": "2007-08-17",
+      "last_transaction": [
+        {
+          "signal_date": "2007-08-17",
+          "execution_date": "2007-08-20",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 260.63359332230925,
+          "price": 19.897780613487026,
+          "notional": 5186.030060432106,
+          "cost": 5.186030060432106,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -1030.7273462446017
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C0",
+      "bps": 25,
+      "transactions": 5,
+      "last_holding_date": "2007-08-17",
+      "last_transaction": [
+        {
+          "signal_date": "2007-08-17",
+          "execution_date": "2007-08-20",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 249.2971257901027,
+          "price": 19.897780613487026,
+          "notional": 4960.4595165443425,
+          "cost": 12.401148791360855,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -1001.7054891122378
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 10,
+      "transactions": 5,
+      "last_holding_date": "2007-08-03",
+      "last_transaction": [
+        {
+          "signal_date": "2007-08-03",
+          "execution_date": "2007-08-06",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 265.0874003190921,
+          "price": 20.77738207408323,
+          "notional": 5507.8221994552305,
+          "cost": 5.507822199455231,
+          "reason": "market_trend_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -815.4027179746707
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 25,
+      "transactions": 5,
+      "last_holding_date": "2007-08-03",
+      "last_transaction": [
+        {
+          "signal_date": "2007-08-03",
+          "execution_date": "2007-08-06",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 253.1329726431672,
+          "price": 20.77738207408323,
+          "notional": 5259.440488155543,
+          "cost": 13.148601220388857,
+          "reason": "market_trend_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -795.0188856616514
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 10,
+      "transactions": 4,
+      "last_holding_date": "2007-07-11",
+      "last_transaction": [
+        {
+          "signal_date": "2007-07-11",
+          "execution_date": "2007-07-12",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 238.23174971589725,
+          "price": 28.36928205922914,
+          "notional": 6758.4637031539705,
+          "cost": 6.7584637031539705,
+          "reason": "sma50_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": 1171.7206707607147
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 25,
+      "transactions": 4,
+      "last_holding_date": "2007-07-11",
+      "last_transaction": [
+        {
+          "signal_date": "2007-07-11",
+          "execution_date": "2007-07-12",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 229.36488634054928,
+          "price": 28.36928205922914,
+          "notional": 6506.917155078075,
+          "cost": 16.267292887695188,
+          "reason": "sma50_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": 1110.299053211991
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 10,
+      "transactions": 6,
+      "last_holding_date": "2007-07-30",
+      "last_transaction": [
+        {
+          "signal_date": "2007-07-30",
+          "execution_date": "2007-07-31",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 274.89667696359044,
+          "price": 21.15313415433792,
+          "notional": 5814.926286392523,
+          "cost": 5.814926286392524,
+          "reason": "atr_trailing_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -1315.833071400721
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 25,
+      "transactions": 6,
+      "last_holding_date": "2007-07-30",
+      "last_transaction": [
+        {
+          "signal_date": "2007-07-30",
+          "execution_date": "2007-07-31",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 259.86803329226535,
+          "price": 21.15313415433792,
+          "notional": 5497.023370655242,
+          "cost": 13.742558426638103,
+          "reason": "atr_trailing_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -1262.2348506604808
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 10,
+      "transactions": 5,
+      "last_holding_date": "2007-08-03",
+      "last_transaction": [
+        {
+          "signal_date": "2007-08-03",
+          "execution_date": "2007-08-06",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 328.347003815629,
+          "price": 20.77738207408323,
+          "notional": 6822.191151157789,
+          "cost": 6.8221911511577895,
+          "reason": "market_trend_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -965.8163078150476
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 25,
+      "transactions": 5,
+      "last_holding_date": "2007-08-03",
+      "last_transaction": [
+        {
+          "signal_date": "2007-08-03",
+          "execution_date": "2007-08-06",
+          "ticker": "RSHCQ",
+          "side": "sell",
+          "quantity": 312.19165427498956,
+          "price": 20.77738207408323,
+          "notional": 6486.525281211558,
+          "cost": 16.216313203028896,
+          "reason": "market_trend_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -936.5178066147824
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "RSHCQ_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    }
+  ]
+}

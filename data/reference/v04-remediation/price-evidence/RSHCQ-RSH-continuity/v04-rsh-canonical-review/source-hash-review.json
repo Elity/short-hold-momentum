@@ -1,0 +1,180 @@
+[
+  {
+    "reference_directory": "v04-rsh-primary-identity",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/SEC-2015-delisting.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628915000007/form8k020615.htm",
+    "source_grade": "SEC primary filing text retrieved through search index",
+    "expected_sha256": "5cd3924236d91e41bdf826aac09c55b719de0c79fd80e65abe996395c3da35ba",
+    "actual_sha256": "5cd3924236d91e41bdf826aac09c55b719de0c79fd80e65abe996395c3da35ba",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-primary-identity",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/NYSE-2015-RSH-delisting.indexed.txt",
+    "url": "https://ir.theice.com/press/news-details/2015/NYSE-to-Suspend-Trading-Immediately-in-RadioShack-Corporation-and-Commence-Delisting-Proceedings/default.aspx",
+    "source_grade": "Exchange primary announcement text retrieved through search index",
+    "expected_sha256": "111f0e017879c8f99f25f6eaf7243d9fbe30e0b67ca0f37ff87d373a1a89c29e",
+    "actual_sha256": "111f0e017879c8f99f25f6eaf7243d9fbe30e0b67ca0f37ff87d373a1a89c29e",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-primary-identity",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/OCC-RSH-to-RSHC-36153.indexed.txt",
+    "url": "https://www.miaxglobal.com/sites/default/files/alert-files/RSH_Symbol_Change_36153.pdf",
+    "source_grade": "OCC memo hosted by MIAX, indexed text; underlying identity only, not a settlement price",
+    "expected_sha256": "f81517bf983292935aaa3dae41c84bc523371e5f4f05dff0243cb2c8e971921d",
+    "actual_sha256": "f81517bf983292935aaa3dae41c84bc523371e5f4f05dff0243cb2c8e971921d",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-primary-identity",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/2010-SEC-10K.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628911000010/form10k123110.htm",
+    "source_grade": "SEC 2010 annual filing indexed excerpt capped at130000 chars; not full original HTML download",
+    "expected_sha256": "dc027ba18bd3c8e249a56b11d6d2bad61d3dcee679d9ec0b6be500bbaf3adbec",
+    "actual_sha256": "dc027ba18bd3c8e249a56b11d6d2bad61d3dcee679d9ec0b6be500bbaf3adbec",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-primary-identity",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/2010-issuer-dividend.indexed.txt",
+    "url": "https://www.prnewswire.com/news-releases/radioshack-corporation-declares-dividend-106915723.html",
+    "source_grade": "Issuer release via PRNewswire indexed text",
+    "expected_sha256": "8962255694e57aaeb8bb0ffbbd95321d2131ec03b3a65efae8e34bb793c1d775",
+    "actual_sha256": "8962255694e57aaeb8bb0ffbbd95321d2131ec03b3a65efae8e34bb793c1d775",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-primary-identity",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/Hilco-RSHCQ-sale.indexed.txt",
+    "url": "https://www.marketscreener.com/news/latest/RadioShack-Intellectual-Property-Sells-For-Over-26MM-20582529/",
+    "source_grade": "Contemporaneous liquidator GlobeNewswire release republished by MarketScreener",
+    "expected_sha256": "f5c07fed7eb3552c23d30cee1bccd1a7170a2f96992f347ab783478315b5d322",
+    "actual_sha256": "f5c07fed7eb3552c23d30cee1bccd1a7170a2f96992f347ab783478315b5d322",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-primary-identity",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/GeneralWireless-brand-purchase.indexed.txt",
+    "url": "https://www.prnewswire.com/news-releases/general-wireless-acquires-the-radioshack-brand-300107296.html",
+    "source_grade": "Buyer-issued PRNewswire release indexed text",
+    "expected_sha256": "a381ad7758c1d9c78cacba8d7985c3b5a4a260c17c00eafd33d1229b511f27f8",
+    "actual_sha256": "a381ad7758c1d9c78cacba8d7985c3b5a4a260c17c00eafd33d1229b511f27f8",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-primary-identity",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/MarketBeat-RSHCQ-profile.indexed.txt",
+    "url": "https://www.marketbeat.com/stocks/OTCMKTS/RSHCQ/",
+    "source_grade": "Secondary current profile; only historical-symbol and CIK fields used",
+    "expected_sha256": "577f3808e82fa15dda687dee8790795a0d7b91603253fb6b08d0396f787922b3",
+    "actual_sha256": "577f3808e82fa15dda687dee8790795a0d7b91603253fb6b08d0396f787922b3",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-primary-identity",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/GeneralWireless-asset-contract.mirror.txt",
+    "url": "https://contracts.justia.com/companies/radioshack-corp-28376/contract/455134/",
+    "source_grade": "Asset purchase agreement exhibit mirrored by Justia; site summary not used",
+    "expected_sha256": "05b61104861945ef12f398e52b12f399e48fde08cb1b874b0df1a58327cc36df",
+    "actual_sha256": "05b61104861945ef12f398e52b12f399e48fde08cb1b874b0df1a58327cc36df",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-dividend-followup",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-dividend-followup/2004-SEC-10K.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628905000016/k123104.txt",
+    "source_grade": "Issuer SEC filing text obtained through search index; original TXT not downloaded independently",
+    "expected_sha256": "13a5241f270ac77496ab5b3135f7312e8c92be3e82f8036559164fb1e373f489",
+    "actual_sha256": "13a5241f270ac77496ab5b3135f7312e8c92be3e82f8036559164fb1e373f489",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-dividend-followup",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-dividend-followup/2005-SEC-10K.header.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628906000013/k123105.htm",
+    "source_grade": "SEC indexed partial filing; issuer identity and filing provenance only; returned text has no dividend amount",
+    "expected_sha256": "c1a37fd5380f56b9af62f7a5d7890facae70eed33592930381a0e3d85d886cf5",
+    "actual_sha256": "c1a37fd5380f56b9af62f7a5d7890facae70eed33592930381a0e3d85d886cf5",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-dividend-followup",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-dividend-followup/2005-10K.companiesmarketcap.indexed.txt",
+    "url": "https://companiesmarketcap.com/radioshack/sec-reports-10k/0000096289-06-000013/",
+    "source_grade": "Issuer SEC filing mirrored by a third party, obtained through search index; dividend passage not independently returned from SEC endpoint",
+    "expected_sha256": "d2d7362ea62d423b8832734596b9f8315ce31c6d5ac2abb804cc58b4fc4d5cc1",
+    "actual_sha256": "d2d7362ea62d423b8832734596b9f8315ce31c6d5ac2abb804cc58b4fc4d5cc1",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-dividend-followup",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-dividend-followup/DividendChannel-RSH.indexed.txt",
+    "url": "https://www.dividendchannel.com/symbol/rsh/",
+    "source_grade": "Secondary dividend history; table column is Date, not an explicit Ex-dividend date label",
+    "expected_sha256": "1a34a3501a0a565663f06a524a6d15f301bd8997782b9da4e1f67f8a3470b05a",
+    "actual_sha256": "1a34a3501a0a565663f06a524a6d15f301bd8997782b9da4e1f67f8a3470b05a",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-dividend-followup",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/2010-SEC-10K.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628911000010/form10k123110.htm",
+    "source_grade": "SEC 2010 annual filing indexed excerpt capped at130000 chars; not full original HTML download",
+    "expected_sha256": "dc027ba18bd3c8e249a56b11d6d2bad61d3dcee679d9ec0b6be500bbaf3adbec",
+    "actual_sha256": "dc027ba18bd3c8e249a56b11d6d2bad61d3dcee679d9ec0b6be500bbaf3adbec",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-dividend-followup",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-primary-identity/2010-issuer-dividend.indexed.txt",
+    "url": "https://www.prnewswire.com/news-releases/radioshack-corporation-declares-dividend-106915723.html",
+    "source_grade": "Issuer release via PRNewswire indexed text",
+    "expected_sha256": "8962255694e57aaeb8bb0ffbbd95321d2131ec03b3a65efae8e34bb793c1d775",
+    "actual_sha256": "8962255694e57aaeb8bb0ffbbd95321d2131ec03b3a65efae8e34bb793c1d775",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-dividend-followup",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-identity-preflight/required-window-vendor-cash-actions.csv",
+    "url": null,
+    "source_grade": "Existing vendor event fields, not issuer evidence",
+    "expected_sha256": "89ea437f636e2003aac024aa264f5d46691606ee308179f0b12a47971d9ea0ae",
+    "actual_sha256": "89ea437f636e2003aac024aa264f5d46691606ee308179f0b12a47971d9ea0ae",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-identity-preflight",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-identity-preflight/RSH-WIKI-source.csv",
+    "source_grade": "Vendor WIKI observations",
+    "expected_sha256": "e6d0126db3e0bc7d0ccfd97137e52d1d08cc3a154b514712dc050bace5418396",
+    "actual_sha256": "e6d0126db3e0bc7d0ccfd97137e52d1d08cc3a154b514712dc050bace5418396",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-identity-preflight",
+    "file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-identity-preflight/RSH-WIKI-source.parquet",
+    "source_grade": "Vendor WIKI observations",
+    "expected_sha256": "36c70a34e8e1b1fef2f923202f01424473bb4f9d20af2612fa26ec41d832007f",
+    "actual_sha256": "36c70a34e8e1b1fef2f923202f01424473bb4f9d20af2612fa26ec41d832007f",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-identity-preflight",
+    "file": "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/corporate-action-evidence/spy-2004-membership.primary.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/884394/000095013505000099/b52997nanv30dza.txt",
+    "source_grade": "Fund SEC filing, independent holdings valuation; not issuer corporate-action notice",
+    "expected_sha256": "b7c447d986f0a58f0a6791dd70b2433cbea34d57b703438c43ac4e394b8dd4a0",
+    "actual_sha256": "b7c447d986f0a58f0a6791dd70b2433cbea34d57b703438c43ac4e394b8dd4a0",
+    "match": true
+  },
+  {
+    "reference_directory": "v04-rsh-identity-preflight",
+    "file": "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/corporate-action-evidence/spy-2005-membership.primary.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/884394/000095013505006765/b57342mfnv30d.txt",
+    "source_grade": "Fund SEC filing, independent holdings valuation; not issuer corporate-action notice",
+    "expected_sha256": "0b15a59d6d3ac20d7c00effd3596664f73b3e2258a765cb53f81e348a47c5788",
+    "actual_sha256": "0b15a59d6d3ac20d7c00effd3596664f73b3e2258a765cb53f81e348a47c5788",
+    "match": true
+  }
+]

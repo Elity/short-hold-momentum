@@ -1,0 +1,50 @@
+[
+  {
+    "source_id": "S2004",
+    "quote": "On September 24, 2004, our Board of Directors declared an annual dividend of $0.25 per common share. The dividend was paid on December 20, 2004, to stockholders of record on December 1, 2004.",
+    "claim": "2004 annual dividend amount, declaration date, record date and actual payment date",
+    "excerpt_whitespace_normalized": true
+  },
+  {
+    "source_id": "S2005_MIRROR",
+    "quote": "On September 29, 2005, our Board of Directors declared an annual dividend of $0.25 per share. The dividend was paid on December 19, 2005, to stockholders of record on December 1, 2005.",
+    "claim": "2005 annual dividend amount, declaration date, record date and actual payment date; underlying issuer filing carried by third-party mirror",
+    "excerpt_whitespace_normalized": true
+  },
+  {
+    "source_id": "S2004",
+    "quote": "The dividend payment of $39.7 million was funded from cash on hand.",
+    "claim": "2004 financing discussion confirms cash payment; aggregate not used to infer per-share amount",
+    "excerpt_whitespace_normalized": true
+  },
+  {
+    "source_id": "S2005_MIRROR",
+    "quote": "The dividend payment of $33.7 million was funded from cash on hand.",
+    "claim": "2005 financing discussion confirms cash payment; aggregate not used to infer per-share amount",
+    "excerpt_whitespace_normalized": true
+  },
+  {
+    "source_id": "S2010",
+    "quote": "2010 2009 2008 2007 2006 (4)",
+    "claim": "Column order in Item 6 selected financial data (unaudited)",
+    "excerpt_whitespace_normalized": true
+  },
+  {
+    "source_id": "S2010",
+    "quote": "Dividends declared per share $ 0.25 $ 0.25 $ 0.25 $ 0.25 $ 0.25",
+    "claim": "Annual declared per-share totals for 2006 through 2010; not primary proof of every event date",
+    "excerpt_whitespace_normalized": true
+  },
+  {
+    "source_id": "S2010",
+    "quote": "On November 4, 2010, our Board of Directors declared an annual dividend of $0.25 per share. The dividend was paid on December 16, 2010, to stockholders of record on November 26, 2010.",
+    "claim": "2010 annual payment amount and declaration/record/actual payment dates",
+    "excerpt_whitespace_normalized": true
+  },
+  {
+    "source_id": "SDC",
+    "quote": "11/23/10 0.250 11/24/09 0.250 11/25/08 0.250 11/27/07 0.250 11/29/06 0.250 11/29/05 0.250 11/29/04 0.250",
+    "claim": "All seven secondary Date/Div pairs match WIKI event fields; header does not explicitly identify date semantics",
+    "excerpt_whitespace_normalized": true
+  }
+]

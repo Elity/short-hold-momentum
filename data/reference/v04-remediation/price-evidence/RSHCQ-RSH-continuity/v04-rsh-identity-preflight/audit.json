@@ -1,0 +1,142 @@
+{
+  "status": "STRUCTURALLY_COMPLETE_BOUNDED_SOURCE_IDENTITY_NOT_APPROVED",
+  "network_requests": 0,
+  "repo_modified": false,
+  "applicable_candidate_generated": false,
+  "raw_archive_rows_extracted_for_inspection_only": true,
+  "membership": {
+    "key": "RSHCQ",
+    "full_local_history_first": "1996-01-02",
+    "last_member_session": "2011-06-30",
+    "first_nonmember_session": "2011-07-01",
+    "research_first_signal": "2005-01-03",
+    "study_period": {
+      "start": "2005-01-04",
+      "end": "2026-09-04"
+    },
+    "research_member_sessions": 1636,
+    "member_rebalance_dates": 82,
+    "RSH_separate_membership_label_present": false,
+    "source_membership_date_evidence_only": true
+  },
+  "minimal_window": {
+    "warmup_definition": "260 complete XNYS sessions strictly before first 2005-01-03 signal, plus signal date and subsequent holding/exit observations",
+    "first": "2003-12-19",
+    "last": "2011-07-11",
+    "rows": 1902,
+    "last_member_signal": "2011-06-09",
+    "last_member_signal_next_open": "2011-06-10",
+    "first_post_removal_signal": "2011-07-08",
+    "first_post_removal_next_open": "2011-07-11",
+    "schedule_reference": "/Users/fighting/code/short-hold-momentum/reports/v04/v04-cf5a0714087194e8/selection.json",
+    "schedule_reference_run": "v04-cf5a0714087194e8",
+    "actual_counterfactual_exit_not_yet_proven": true
+  },
+  "source": {
+    "ticker": "RSH",
+    "archive_company_label": "RadioShack Corp.",
+    "raw_first": "1982-01-04",
+    "raw_last": "2015-02-02",
+    "raw_rows": 8344,
+    "archive_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/wiki-prices.zip",
+    "csv_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-identity-preflight/RSH-WIKI-source.csv",
+    "csv_sha256": "e6d0126db3e0bc7d0ccfd97137e52d1d08cc3a154b514712dc050bace5418396",
+    "parquet_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-identity-preflight/RSH-WIKI-source.parquet",
+    "parquet_sha256": "36c70a34e8e1b1fef2f923202f01424473bb4f9d20af2612fa26ec41d832007f",
+    "is_only_raw_source": true
+  },
+  "structural_checks_in_minimal_window": {
+    "expected_XNYS_sessions": 1902,
+    "missing_sessions": [],
+    "duplicates": 0,
+    "invalid_OHLCV_rows": 0,
+    "all_82_member_signal_prior260_windows_complete": true,
+    "cash_events": 7,
+    "cash_sum_vendor_observed_only": 1.75,
+    "nonunit_splits": 0,
+    "max_factor_formula_residual": 4.440892098500626e-16,
+    "max_OHLC_common_factor_residual": {
+      "open": 7.105427357601002e-15,
+      "high": 7.105427357601002e-15,
+      "low": 1.0658141036401503e-14,
+      "close": 3.552713678800501e-15
+    },
+    "adj_volume_equals_raw_volume": true
+  },
+  "adjustment_anchor": {
+    "at_minimal_start": 0.8264896968110506,
+    "at_minimal_end": 0.9130211209933915,
+    "later_source_cash_observations_outside_scope": [
+      {
+        "date": "2011-11-22 00:00:00",
+        "ex-dividend": 0.5
+      },
+      {
+        "date": "2012-03-14 00:00:00",
+        "ex-dividend": 0.13
+      },
+      {
+        "date": "2012-05-30 00:00:00",
+        "ex-dividend": 0.13
+      }
+    ],
+    "interpretation": "Archive adjusted levels retain later cash adjustments as a common scale factor across the bounded window. Do not treat adjusted levels as nominal prices or apply these later cash events inside the 2003-2011 window. No source row is changed here."
+  },
+  "vendor_action_dates": [
+    "2004-11-29",
+    "2005-11-29",
+    "2006-11-29",
+    "2007-11-27",
+    "2008-11-25",
+    "2009-11-24",
+    "2010-11-23"
+  ],
+  "existing_primary_nominal_anchors": [
+    {
+      "date": "2004-09-30",
+      "issuer_label": "RadioShack Corp.",
+      "fund_common_shares": 722842,
+      "fund_reported_value_usd": 20702195,
+      "implied_nominal_price": 28.640000166011383,
+      "WIKI_raw_close": 28.64,
+      "WIKI_adjusted_close_not_nominal": 23.67066491666849,
+      "rounding_difference_total_usd": -0.12000000104308128,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/884394/000095013505000099/b52997nanv30dza.txt",
+      "source_path": "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/corporate-action-evidence/spy-2004-membership.primary.txt",
+      "source_sha256": "b7c447d986f0a58f0a6791dd70b2433cbea34d57b703438c43ac4e394b8dd4a0",
+      "quote": "RadioShack Corp. ..................           722,842              20,702,195",
+      "limit": "Dated fund common-stock name and valuation support old issuer/nominal price scale; do not establish the RSHCQ identifier bridge."
+    },
+    {
+      "date": "2005-09-30",
+      "issuer_label": "RadioShack Corp.",
+      "fund_common_shares": 565742,
+      "fund_reported_value_usd": 14030402,
+      "implied_nominal_price": 24.80000070703607,
+      "WIKI_raw_close": 24.8,
+      "WIKI_adjusted_close_not_nominal": 20.649998128471655,
+      "rounding_difference_total_usd": -0.40000000037252903,
+      "source_url": "https://www.sec.gov/Archives/edgar/data/884394/000095013505006765/b57342mfnv30d.txt",
+      "source_path": "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/corporate-action-evidence/spy-2005-membership.primary.txt",
+      "source_sha256": "0b15a59d6d3ac20d7c00effd3596664f73b3e2258a765cb53f81e348a47c5788",
+      "quote": "RadioShack Corp. ...............     565,742        14,030,402",
+      "limit": "Dated fund common-stock name and valuation support old issuer/nominal price scale; do not establish the RSHCQ identifier bridge."
+    }
+  ],
+  "identity_status": "Local name and price anchors support historical RadioShack common stock, but no primary dated RSH-to-RSHCQ legal/common-share identifier bridge is present in inspected local evidence.",
+  "current_manifest_alias_RSHCQ": null,
+  "current_manifest_override_RSHCQ": null,
+  "2015_bankruptcy_or_OTC_economic_event_needed_for_minimal_window": false,
+  "2015_scope_reason": "The first scheduled post-membership exit is July11 2011. A bounded research window and verified actual exits can end years before the 2015 source tail. A later OTC record may be useful solely to prove the historical identifier bridge, not to value a simulated 2015 liquidation.",
+  "minimum_remaining_evidence": [
+    "A primary issuer/SEC/exchange record identifies old RadioShack RSH ordinary common shares and the RSHCQ historical label as the same legacy security, with dated legal issuer/CIK and share-class/CUSIP context. Do not substitute a later RadioShack-branded reorganized security.",
+    "Primary dividend/stock-capital disclosures covering the seven observed USD0.25 annual events and confirming the ordinary share units in the bounded period; exact ex-dates may remain separately graded if supported by dated historical records.",
+    "After any approved bounded construction, actual fixed strategy paths must show that held marks and sales do not require prices beyond the chosen endpoint; this is a local path check, not another external data request."
+  ],
+  "not_required_now": [
+    "Full 2015 bankruptcy settlement valuation",
+    "OTC price reconstruction to equity cancellation",
+    "Successor-company prices",
+    "A terminal-cash assumption at 2015-02-02"
+  ]
+}

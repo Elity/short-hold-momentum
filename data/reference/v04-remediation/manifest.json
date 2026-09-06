@@ -2379,6 +2379,18 @@
       "method": "Recover complete historical WIKI YHOO adjusted series under AABA canonical member identity; append audited same-unit 2017 Google Finance tail; retain nominal eligibility fields.",
       "evidence_path": "data/reference/v04-remediation/price-evidence/AABA-YHOO-continuity/application-review.md",
       "evidence_sha256": "1661ef4e52677dfd69a4e256eb52bbf3b8f42f6dbfab6c0f3cced0b5484e87c9"
+    },
+    "RSHCQ": {
+      "path": "data/research/v04/prices/RSHCQ-RSH-through-2011-07-11.parquet",
+      "sha256": "b8d65ca36760dad36635389f7ab2bb89c8a096978cc52e353f0fc682052ef5a5",
+      "source_ticker": "RSH",
+      "source_name": "Old RadioShack Corporation common stock; CIK 96289",
+      "first": "2003-12-19",
+      "last": "2011-07-11",
+      "invalid_rows": 0,
+      "method": "Recover complete bounded WIKI RSH adjusted OHLCV under existing RSHCQ historical identity; preserve raw nominal eligibility fields; no extra cash or terminal event.",
+      "evidence_path": "data/reference/v04-remediation/price-evidence/RSHCQ-RSH-continuity/application-review.md",
+      "evidence_sha256": "1f8f1189aeddbf1b057df54b5e0617e021ebccc0e64a6c8a165b51542f789b0c"
     }
   },
   "quarantined": {

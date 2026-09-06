@@ -1,0 +1,37 @@
+{
+  "status": "WORK_ONLY_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "network_requests": 0,
+  "repo_modified": false,
+  "source": {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-identity-preflight/RSH-WIKI-source.parquet",
+    "sha256": "36c70a34e8e1b1fef2f923202f01424473bb4f9d20af2612fa26ec41d832007f",
+    "ticker": "RSH"
+  },
+  "candidate": {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-rsh-canonical/RSHCQ-RSH-through-2011-07-11.candidate.parquet",
+    "sha256": "b8d65ca36760dad36635389f7ab2bb89c8a096978cc52e353f0fc682052ef5a5",
+    "research_key": "RSHCQ",
+    "first": "2003-12-19",
+    "last": "2011-07-11",
+    "rows": 1902
+  },
+  "baseline_manifest_sha256": "f72f790593308936868f0435511943648743047b116c54042e6c5b202a148389",
+  "adjusted_ohlcv_exactly_preserved": true,
+  "nominal_close_and_dollar_volume_preserved": true,
+  "maximum_total_return_identity_error": 4.440892098500626e-16,
+  "ordinary_dividends": {
+    "events": 7,
+    "amount_each": 0.25,
+    "total": 1.75,
+    "extra_cash_events_created": 0,
+    "primary_ex_dates_explicitly_verified": false
+  },
+  "factor_at_start": 0.8264896968110506,
+  "factor_at_end": 0.9130211209933915,
+  "limits": [
+    "The source adjusted-level anchor includes later ordinary dividends as a common scale; later payments are not credited inside this bounded window.",
+    "Amounts have issuer annual-filing support; 2005 cash passage uses a disclosed third-party filing mirror; exact ex-dates retain vendor grade with secondary Date/Div corroboration.",
+    "No live global alias, successor-company prices, bankruptcy terminal cash, synthetic fill, or membership modification.",
+    "2011-07-11 is a fixed schedule/quote boundary, not a legal stock termination; actual ten fixed strategy paths must be checked after research."
+  ]
+}
