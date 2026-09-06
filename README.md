@@ -57,10 +57,30 @@ without editing the compose file:
 SHM_WEB_PORT=9081 SHM_DATA_DIR=/srv/short-hold-momentum docker compose up -d
 ```
 
-The page shows P4 counters, successful and failed runs, per-step output, and
-the next daily schedule. The daily time can be changed in the page and is
-stored in SQLite. Automatic and manual runs retry transient failures three
-times with a five-minute delay.
+The dashboard shows total assets, cash, current positions, weighted cost,
+unrealized and realized P&L, an equity curve with an equal-start SPY reference,
+trade history, saved monthly/option reports, and the next rebalance date.
+It reads the existing paper ledger; there are no demo balances in the service.
+Missing prices or cost evidence are shown as unavailable instead of zero.
+
+Run history shows the last 90 days of successful, failed and active runs,
+with the actual step output and retry attempts. New runs also record steps
+skipped because they are not due. Older database history is retained.
+The daily check time can be changed in the page and is stored in SQLite.
+Each run makes up to three attempts with a five-minute delay.
+The stock strategy still makes decisions only on its 20-session rebalance
+dates and simulates execution at the next session's open after that session
+has closed. The page refreshes its read-only data every 30 seconds.
+
+Dashboard test cases and browser acceptance commands are documented in
+`docs/dashboard_acceptance.md`. Browser tests use a temporary isolated account
+and never start its scheduler:
+
+```bash
+npm ci
+npx playwright install chromium
+npm run test:browser
+```
 
 Forward evidence remains date-safe: a failed run can be retried only while its
 recorded XNYS session is still the latest completed session. After a newer

@@ -128,11 +128,18 @@ class ServiceStore:
             row = connection.execute("SELECT * FROM runs WHERE id = ?", (run_id,)).fetchone()
         return None if row is None else RunRecord(**dict(row))
 
-    def list_runs(self, limit: int = 50) -> list[RunRecord]:
+    def list_runs(self, limit: int | None = 50, *, since: str | None = None) -> list[RunRecord]:
+        query = "SELECT * FROM runs"
+        parameters: list[str | int] = []
+        if since is not None:
+            query += " WHERE created_at >= ?"
+            parameters.append(since)
+        query += " ORDER BY id DESC"
+        if limit is not None:
+            query += " LIMIT ?"
+            parameters.append(limit)
         with self._connect() as connection:
-            rows = connection.execute(
-                "SELECT * FROM runs ORDER BY id DESC LIMIT ?", (limit,)
-            ).fetchall()
+            rows = connection.execute(query, parameters).fetchall()
         return [RunRecord(**dict(row)) for row in rows]
 
     def find_scheduled_run(self, scheduled_for: str) -> RunRecord | None:

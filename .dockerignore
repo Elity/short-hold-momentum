@@ -19,3 +19,5 @@ data/raw
 htmlcov
 
 tests
+node_modules
+.browser-artifacts

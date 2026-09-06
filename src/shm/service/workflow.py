@@ -169,6 +169,11 @@ def run_daily_workflow(
     market_session = latest_completed_session(now)
     actions: list[str] = []
 
+    def skip_step(name: str, reason: str) -> None:
+        if reporter:
+            stamp = datetime.now(UTC)
+            reporter(name, "skipped", reason, stamp, stamp)
+
     def run_step(name: str, args: Sequence[str]) -> str:
         started = datetime.now(UTC)
         try:
@@ -272,8 +277,11 @@ def run_daily_workflow(
             ],
         )
         actions.append(f"ticket {next_rebalance.date()}")
+    else:
+        skip_step("rebalance", f"本次无需新增调仓单；下一信号日 {next_rebalance.date()}")
 
     progress = build_paper_progress(root)
+    filled = False
     for signal_text in progress.pending_cycles:
         signal = pd.Timestamp(signal_text).normalize()
         execution = next_session(signal)
@@ -316,7 +324,11 @@ def run_daily_workflow(
         )
         action = "recovered account" if recover_account else "fills"
         actions.append(f"{action} {execution.date()}")
+        filled = True
+    if not filled:
+        skip_step("simulate-fills", "本次没有到期且尚未记账的模拟成交")
 
+    option_created = False
     for ticket in sorted((root / "paper/tickets").glob("????-??-??.csv")):
         signal = pd.Timestamp(ticket.stem).normalize()
         if signal < forward_start:
@@ -361,7 +373,11 @@ def run_daily_workflow(
             ],
         )
         actions.append(f"option overlay {execution.date()}")
+        option_created = True
+    if not option_created:
+        skip_step("option-overlay", "本次无需生成新的期权覆盖方案")
 
+    report_created = False
     for month in _completed_report_months(root, market_session):
         report = root / "reports" / f"paper-{month}.md"
         if report.exists():
@@ -371,6 +387,9 @@ def run_daily_workflow(
             ["paper", "monthly-report", "--repo-root", str(root), "--month", month],
         )
         actions.append(f"monthly report {month}")
+        report_created = True
+    if not report_created:
+        skip_step("monthly-report", "本月尚未结束，或已完成月份的报告已生成")
 
     status = run_step("paper-status", ["paper", "status", "--repo-root", str(root)])
     if status:

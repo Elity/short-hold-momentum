@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHM · 投资仪表盘</title>
+<link rel="stylesheet" href="/static/dashboard.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" aria-label="主导航">
+    <div class="brand"><div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></div><div><div class="brand-name">SHM</div><div class="brand-sub">MOMENTUM INVESTING</div></div></div>
+    <div class="nav-label">WORKSPACE</div>
+    <nav class="nav" id="main-nav">
+      <button data-page="overview" class="active" aria-label="账户总览"><span data-icon="grid"></span><span class="nav-text" data-short="总览">账户总览</span></button>
+      <button data-page="holdings" aria-label="当前持仓"><span data-icon="layers"></span><span class="nav-text" data-short="持仓">当前持仓</span></button>
+      <button data-page="trades" aria-label="交易记录"><span data-icon="arrows"></span><span class="nav-text" data-short="交易">交易记录</span></button>
+      <button data-page="logs" aria-label="运行日志"><span data-icon="activity"></span><span class="nav-text" data-short="日志">运行日志</span></button>
+      <button data-page="reports" aria-label="策略报告"><span data-icon="file"></span><span class="nav-text" data-short="报告">策略报告</span></button>
+    </nav>
+    <div class="side-bottom"><div class="nav"><button data-action="schedule" aria-label="调度设置"><span data-icon="settings"></span><span class="nav-text">调度设置</span></button></div><div class="side-account"><div class="avatar">P</div><div><strong>本地模拟账户</strong><span>Paper trading · USD</span></div></div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumb"><span class="muted">投资账户</span><span class="muted">/</span><strong id="crumb-name">总览</strong></div><div class="top-actions"><span class="pill gray">PAPER · 模拟盘</span><button class="text-button" data-action="refresh">刷新数据</button></div></header>
+    <div class="content">
+      <div class="page-heading"><div><h1 id="page-title">账户总览</h1><p class="heading-sub" id="heading-sub"></p></div><div class="page-actions" id="page-actions"></div></div>
+      <div class="notice" id="data-notice"></div>
+      <section id="page-content" aria-live="polite"><div class="panel empty"><h3>正在读取账户与运行记录…</h3></div></section>
+      <footer class="footer"><span><strong>SHM</strong> &nbsp; Short-Hold Momentum &nbsp;·&nbsp; 模拟盘验证</span><span id="footer-note">账目来自 SHM 本地模拟账户</span></footer>
+    </div>
+  </main>
+</div>
+<div class="overlay" id="overlay" hidden><section class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"></section></div>
+<div class="toast" id="toast" role="status" hidden></div>
+<script src="/static/dashboard.js"></script>
+</body>
+</html>

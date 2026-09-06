@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import argparse
 import html
+import json
 import os
 import re
 import threading
+from dataclasses import asdict
 from datetime import datetime
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -12,12 +14,13 @@ from pathlib import Path
 from urllib.parse import parse_qs, quote, urlparse
 from zoneinfo import ZoneInfo
 
-from shm.paper.status import build_paper_progress
+from shm.service.dashboard import build_dashboard, read_report
 from shm.service.store import ServiceStore
 from shm.service.workflow import MissedForwardWindow, latest_completed_session, run_daily_workflow
 
 
 _TIME = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d$")
+_STATIC = Path(__file__).with_name("static")
 
 
 class RunService:
@@ -183,8 +186,18 @@ def _handler(service: RunService):
             self.send_response(status)
             self.send_header("Content-Type", f"{content_type}; charset=utf-8")
             self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-store")
             self.end_headers()
-            self.wfile.write(body)
+            try:
+                self.wfile.write(body)
+            except (BrokenPipeError, ConnectionResetError):
+                return  # A page reload can cancel an in-flight dashboard read.
+
+        def _json(self, status: HTTPStatus, value) -> None:
+            self._send(
+                status, json.dumps(value, ensure_ascii=False, allow_nan=False).encode(),
+                "application/json",
+            )
 
         def _redirect(self, message: str) -> None:
             self.send_response(HTTPStatus.SEE_OTHER)
@@ -198,6 +211,46 @@ def _handler(service: RunService):
 
         def do_GET(self) -> None:
             parsed = urlparse(self.path)
+            if parsed.path == "/api/dashboard":
+                try:
+                    data = build_dashboard(service.repo_root, service.store, service.timezone_name)
+                except (OSError, ValueError, KeyError) as exc:
+                    self._json(HTTPStatus.SERVICE_UNAVAILABLE, {"error": str(exc)})
+                else:
+                    self._json(HTTPStatus.OK, data)
+                return
+            match = re.fullmatch(r"/api/runs/(\d+)", parsed.path)
+            if match:
+                run = service.store.get_run(int(match[1]))
+                if run is None:
+                    self._json(HTTPStatus.NOT_FOUND, {"error": "运行记录不存在"})
+                else:
+                    self._json(HTTPStatus.OK, {
+                        "run": asdict(run),
+                        "steps": [asdict(step) for step in service.store.list_steps(run.id)],
+                    })
+                return
+            if parsed.path.startswith("/api/reports/"):
+                try:
+                    report = read_report(service.repo_root, parsed.path.removeprefix("/api/reports/"))
+                except FileNotFoundError:
+                    self._json(HTTPStatus.NOT_FOUND, {"error": "报告不存在"})
+                else:
+                    self._json(HTTPStatus.OK, report)
+                return
+            assets = {
+                "/static/dashboard.js": "text/javascript",
+                "/static/dashboard.css": "text/css",
+            }
+            if parsed.path in assets:
+                self._send(
+                    HTTPStatus.OK, (_STATIC / Path(parsed.path).name).read_bytes(),
+                    assets[parsed.path],
+                )
+                return
+            if parsed.path == "/favicon.ico":
+                self._send(HTTPStatus.NO_CONTENT, b"", "image/x-icon")
+                return
             if parsed.path == "/healthz":
                 self._send(HTTPStatus.OK, b"ok\n", "text/plain")
                 return
@@ -211,6 +264,25 @@ def _handler(service: RunService):
             self._send(HTTPStatus.NOT_FOUND, _page("Not found", "<p>页面不存在。</p>"))
 
         def do_POST(self) -> None:
+            origin = self.headers.get("Origin")
+            if origin and urlparse(origin).netloc != self.headers.get("Host"):
+                self._json(HTTPStatus.FORBIDDEN, {"error": "请在当前仪表盘页面修改设置"})
+                return
+            if self.path == "/api/settings":
+                try:
+                    length = int(self.headers.get("Content-Length", "0"))
+                    if not 0 < length <= 4096 or self.headers.get_content_type() != "application/json":
+                        raise ValueError("请提交 JSON 格式的时间设置")
+                    payload = json.loads(self.rfile.read(length))
+                    daily_time = payload["daily_time"]
+                    if not isinstance(daily_time, str) or not _TIME.fullmatch(daily_time):
+                        raise ValueError("执行时间格式必须是 HH:MM")
+                except (ValueError, KeyError, TypeError) as exc:
+                    self._json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+                    return
+                service.store.set_setting("daily_time", daily_time)
+                self._json(HTTPStatus.OK, {"daily_time": daily_time, "timezone": service.timezone_name})
+                return
             if self.path == "/settings":
                 daily_time = self._form().get("daily_time", "")
                 if not _TIME.fullmatch(daily_time):
@@ -239,49 +311,7 @@ def _handler(service: RunService):
             self._send(HTTPStatus.NOT_FOUND, _page("Not found", "<p>页面不存在。</p>"))
 
         def _dashboard(self, message: str) -> bytes:
-            runs = service.store.list_runs(50)
-            daily_time = service.store.get_setting("daily_time", "05:30") or "05:30"
-            try:
-                progress = build_paper_progress(service.repo_root)
-                progress_html = (
-                    f"<p><b>周期</b> {len(progress.completed_cycles)}/3 · "
-                    f"<b>月报</b> {len(progress.monthly_reports)}/3 · "
-                    f"<b>错过窗口</b> {len(progress.missed_cycles)}</p>"
-                    f"<p><b>下次调仓日</b> {progress.next_rebalance_date.date()}</p>"
-                    f"<p class='muted'>{html.escape('; '.join(progress.gate_blockers) or '无阻塞项')}</p>"
-                )
-            except Exception as exc:
-                progress_html = f"<p class='error'>{html.escape(str(exc))}</p>"
-            message_html = f"<div class='card'><b>{html.escape(message)}</b></div><br>" if message else ""
-            rows = "".join(
-                f"<tr><td><a href='/runs/{run.id}'>#{run.id}</a></td>"
-                f"<td>{html.escape(run.trigger)}</td>"
-                f"<td>{html.escape(run.market_session or '-')}</td>"
-                f"<td class='{html.escape(run.status)}'>{html.escape(run.status)}</td>"
-                f"<td>{run.attempts}</td><td>{html.escape(run.started_at or '-')}</td>"
-                f"<td>{html.escape(run.summary or run.error or '-')}</td></tr>"
-                for run in runs
-            ) or "<tr><td colspan='7' class='muted'>尚无运行记录</td></tr>"
-            body = f"""
-{message_html}
-<div class="grid">
-  <section class="card"><h2>计划</h2>
-    <form action="/settings" method="post">
-      <label>每日运行时间（{html.escape(service.timezone_name)}）</label><br><br>
-      <input name="daily_time" type="time" value="{html.escape(daily_time)}" required>
-      <button type="submit">保存</button>
-    </form>
-  </section>
-  <section class="card"><h2>P4 状态</h2>{progress_html}</section>
-  <section class="card"><h2>手工执行</h2>
-    <p class="muted">按当前最新已完成交易日对账，不回填过期前向事件。</p>
-    <form action="/run-now" method="post"><button type="submit">立即运行</button></form>
-  </section>
-</div>
-<section class="card" style="margin-top:16px"><h2>运行记录</h2>
-<table><thead><tr><th>ID</th><th>触发</th><th>市场日</th><th>状态</th><th>尝试</th><th>开始</th><th>摘要</th></tr></thead>
-<tbody>{rows}</tbody></table></section>"""
-            return _page("Short Hold Momentum", body)
+            return (_STATIC / "index.html").read_bytes()
 
         def _run_detail(self, run_id: int) -> bytes:
             run = service.store.get_run(run_id)

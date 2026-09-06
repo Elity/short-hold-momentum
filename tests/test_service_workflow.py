@@ -44,10 +44,17 @@ def test_daily_workflow_runs_update_and_status_when_nothing_is_due(
         commands.append(list(command))
         return "paper status: cycles=0/3"
 
-    result = workflow.run_daily_workflow(tmp_path, command_runner=run)
+    steps = []
+    result = workflow.run_daily_workflow(
+        tmp_path, command_runner=run,
+        reporter=lambda name, status, *_: steps.append((name, status)),
+    )
 
     assert result.market_session == "2026-09-04"
     assert [command[3:5] for command in commands] == [["data", "update"], ["paper", "status"]]
+    assert [name for name, status in steps if status == "skipped"] == [
+        "rebalance", "simulate-fills", "option-overlay", "monthly-report",
+    ]
 
 
 def test_daily_workflow_records_a_missed_rebalance_and_moves_forward(

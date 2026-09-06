@@ -16,3 +16,9 @@ jobs:
       - run: uv sync --locked
       - run: uv run shm config validate --config-dir config --require-universe
       - run: uv run pytest
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
