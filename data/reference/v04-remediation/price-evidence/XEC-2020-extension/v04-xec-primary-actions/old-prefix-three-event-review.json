@@ -1,0 +1,74 @@
+{
+  "status": "THREE_PREFIX_CASH_EVENT_REPAIRS_SUPPORTED",
+  "new_network_requests": 0,
+  "repo_or_manifest_modified": false,
+  "supersedes_only": "The three old-prefix event dispositions in the earlier four-request partial audit; other tail items retain their prior levels unless separately supplemented by the parent.",
+  "evidence_files": [
+    {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-xec-source-tables/01-2017-mirror.json",
+      "sha256": "c0f1316a0c8ce31343e9978d0b9caace2a3168549c9bee676a57fc15d548e9d1"
+    },
+    {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-xec-source-tables/2017-capital-stock-excerpt.txt",
+      "sha256": "95fab3f84676ba635b5fd1968a04aba2d172d8dd9623b48eec595cc2809d553f"
+    },
+    {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-xec-note-followup/04-issuer-dividend-passages.json",
+      "sha256": "2658ac8da29a345e5f6eb7fcc7bc0c751f2cfb1eede6db1cf759df9539011635"
+    }
+  ],
+  "primary_basis": {
+    "2017_quarterly_declared_per_share": [
+      0.08,
+      0.08,
+      0.08,
+      0.08
+    ],
+    "2017_paid_dividend_description": "USD30.5 million, consisting of four quarterly USD0.08 per share dividends",
+    "2017_paid_per_share_total": 0.32,
+    "2018_02_23_issuer_release": "USD0.16 is a 100 percent quarterly increase; record 2018-05-15; payable 2018-06-01",
+    "declaration_payment_lag": "Annual report explicitly says normally declared in one quarter and paid in the next."
+  },
+  "events": [
+    {
+      "date": "2017-09-14",
+      "operation": "remove_spurious_WIKI_cash_dividend",
+      "old_cash": 0.16,
+      "corrected_cash": 0.0,
+      "evidence_level": "Annual reported four USD0.08 payments plus quarterly declared totals and later issuer increase rule out the extra WIKI USD0.16; supported by no secondary entry and no SheepB cash step.",
+      "primary_explicit_day_specific_zero": false,
+      "nominal_WIKI_ex_date_close": 106.71,
+      "apply_to_adjusted_OHLC_before_date_factor": 1.001499390872458
+    },
+    {
+      "date": "2017-11-14",
+      "operation": "add_omitted_cash_dividend",
+      "old_cash": 0.0,
+      "corrected_cash": 0.08,
+      "amount_basis": "2017 annual declaration/payment schedule",
+      "exact_ex_date_basis": "A2/Marketlog secondary histories plus SheepB factor step",
+      "record_date": "2017-11-15",
+      "pay_date": "2017-12-01",
+      "record_pay_date_basis": "secondary histories",
+      "primary_explicit_ex_date": false,
+      "nominal_WIKI_ex_date_close": 117.52,
+      "apply_to_adjusted_OHLC_before_date_factor": 0.9993197278911565
+    },
+    {
+      "date": "2018-02-14",
+      "operation": "add_omitted_cash_dividend",
+      "old_cash": 0.0,
+      "corrected_cash": 0.08,
+      "amount_basis": "2017Q4 annual declared USD0.08 with next-quarter payment convention, confirmed by 2018-02-23 issuer increase from USD0.08 to USD0.16 only for the May/June cycle",
+      "exact_ex_date_basis": "A2/Marketlog secondary histories plus SheepB factor step",
+      "record_date": "2018-02-15",
+      "pay_date": "2018-03-01",
+      "record_pay_date_basis": "secondary histories",
+      "primary_explicit_ex_date": false,
+      "nominal_WIKI_ex_date_close": 102.19,
+      "apply_to_adjusted_OHLC_before_date_factor": 0.9992177569179622
+    }
+  ],
+  "normalization": "Keep the original terminal anchor. Undo the bogus factor on rows strictly before 2017-09-14; add each omitted dividend by multiplying rows strictly before its ex-date by P/(P+D). Keep nominal prices, volume and dollar turnover unchanged; do not credit embedded dividends again.",
+  "scope_limit": "This closes only the three old-prefix cash events. It does not independently approve all later 2018-2020 actions or a final canonical candidate."
+}

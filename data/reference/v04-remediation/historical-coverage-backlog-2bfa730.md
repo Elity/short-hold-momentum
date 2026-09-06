@@ -1,16 +1,16 @@
 # 当前历史数据缺口（动态统计）
 
-生成时间：2026-09-06T21:20:31.827250+00:00。manifest `f72f790593308936868f0435511943648743047b116c54042e6c5b202a148389`。研究证券 **961** 个，调仓日 **273** 个。旧 backlog.md/json 保持原样；本报告只写 work/backlog-current。
+生成时间：2026-09-06T20:36:29.332847+00:00。manifest `a3abfe1ef5fdb8d141e914dc9a232326adb50fdc32fdad3cbf06a63c65c0bb14`。研究证券 **961** 个，调仓日 **273** 个。旧 backlog.md/json 保持原样；本报告只写 work/backlog-current。
 
-当前仍有 **64 个未完成的成员期尾段**，缺 **2807 个应有报价的成员调仓观测**。其中共同 2018 断点 63 个，2018 以后已延伸但仍缺尾段 1 个，其他早期尾段 0 个。
+当前仍有 **65 个未完成的成员期尾段**，缺 **2831 个应有报价的成员调仓观测**。其中共同 2018 断点 64 个，2018 以后已延伸但仍缺尾段 1 个，其他早期尾段 0 个。
 
 |分类|证券数|
 |---|---:|
 |末日到研究截止（不代表全部数据已合格）|627|
-|退池较晚之后的未登记报价断点|26|
+|退池较晚之后的未登记报价断点|25|
 |有价格，但与历史成员期零重叠|57|
 |整条可加载序列缺失|106|
-|2018 共同归档断点，仍有后续成员期缺口|63|
+|2018 共同归档断点，仍有后续成员期缺口|64|
 |退池附近的未登记报价断点|32|
 |隔离，无可信可用序列|4|
 |已退池后才到共同归档边界|31|
@@ -86,6 +86,7 @@
 |WBA|Walgreens Boots Alliance Inc|2018-03-27|2018-03-28|2025-08-27|1865|93|2018 共同归档断点，仍有后续成员期缺口|
 |WCG|WellCare Health Plans Inc.|2018-03-27|2018-03-28|2020-01-27|342|17|2018 共同归档断点，仍有后续成员期缺口|
 |WRK|WestRock Co|2018-03-27|2018-03-28|2024-07-05|1578|79|2018 共同归档断点，仍有后续成员期缺口|
+|XEC|Cimarex Energy Co|2018-03-27|2018-03-28|2020-03-02|485|24|2018 共同归档断点，仍有后续成员期缺口|
 |XL|XL Group Plc|2018-03-27|2018-03-28|2018-09-11|116|6|2018 共同归档断点，仍有后续成员期缺口|
 |XLNX|Xilinx Inc.|2018-03-27|2018-03-28|2022-02-14|979|49|2018 共同归档断点，仍有后续成员期缺口|
 
@@ -159,7 +160,6 @@
 |SWY|2015-01-29|2015-01-26|退池较晚之后的未登记报价断点|
 |TLAB|2013-12-03|2011-12-20|退池较晚之后的未登记报价断点|
 |UVN|2018-01-30|2007-03-28|退池较晚之后的未登记报价断点|
-|XEC|2020-03-10|2020-03-02|退池较晚之后的未登记报价断点|
 
 **整条可加载序列缺失（106）**：ABKFQ, ABS, ACS, ANDW, ANRZQ, APCC, ASN, ATGE, AW, AYE, BDK, BJS, BLS, BMC, BMET, BNI, BOL, BRL, BSC, BTUUQ, CBE, CBH, CBSS, CCTYQ, CDAY, CEPH, CFC, CIN, CITGQ, CMVT, CMX, CPNLQ, CTLT, CTRA, CTX, CVH, DALRQ, DAY, DCNAQ, DJ, DPHIQ, EDS, EKDKQ, EOP, FDC, FSH, GDW, GLK, GR, GTW, HCR, HET, HMA, HNZ, HPC, IAC, JP, KATE, KRB, KRI, KSE, LEHMQ, MAY, MEE, MEL, MERQ, MFE, MOLX, MTLQQ, MYG, NCC, NFB, NOVL, NVLS, NXTL, NYX, OMX, PBG, PEAK, PGL, PGN, PTV, PVN, RBK, ROH, RSHCQ, RX, SBL, SEBL, SFA, SLR, SOV, SUNEQ, TIN, TOY, TRB, TSG, TXU, VIAC, VSTNQ, WAMUQ, WFT, WWY, WYE, WYND, XTO。
 
@@ -183,11 +183,11 @@
 - **AGN_OLD_MISSING_DISTINCT_SECURITY**：原Allergan Inc与Watson/Actavis为独立发行人；WIKI AGN为后者的历史，原Allergan价格尚未取得可信完整替代。
 - **LSI_SECURITY_IDENTITY_MISMATCH**：WIKI LSI不对应历史LSI Corporation：2012/13八季报价与SEC均不符，不能作为原半导体公司的行情。
 
-ARCHIVE_DELISTING_AND_LATER_GAPS 的叙述应随数据更新：当前是 64 个成员期尾段，另有 106 条整系列缺失、4 条隔离和 57 条成员期零重叠。不能继续笼统声称全部仍止于 2018；也不能因 TWTR 或 ATVI 的进展删除整个全局证据项。TIE 的具体缺行/价格冲突、MIL/AGN_OLD/LSI 的独立身份问题不可合并掉。
+ARCHIVE_DELISTING_AND_LATER_GAPS 的叙述应随数据更新：当前是 65 个成员期尾段，另有 106 条整系列缺失、4 条隔离和 57 条成员期零重叠。不能继续笼统声称全部仍止于 2018；也不能因 TWTR 或 ATVI 的进展删除整个全局证据项。TIE 的具体缺行/价格冲突、MIL/AGN_OLD/LSI 的独立身份问题不可合并掉。
 
 ## 可验证的数据路线与尚未取得的证据
 
-本地 SheepB 解出文件中，当前尾段证券有 **38** 个实际文件，其中 **37** 个含有效源末日之后的日期记录。逐文件范围/名称/hash 在 local_date_range_candidates；这里只检查文件和日期，没有批准其价量、复权或身份。
+本地 SheepB 解出文件中，当前尾段证券有 **39** 个实际文件，其中 **38** 个含有效源末日之后的日期记录。逐文件范围/名称/hash 在 local_date_range_candidates；这里只检查文件和日期，没有批准其价量、复权或身份。
 
 |Ticker|本地源末日|当前末日后源行数|来源公司标签（待核实）|
 |---|---|---:|---|
@@ -227,6 +227,7 @@ ARCHIVE_DELISTING_AND_LATER_GAPS 的叙述应随数据更新：当前是 64 个�
 |SRCL|2021-08-19|856|Stericycle|
 |WBA|2021-08-19|856|Walgreens Boots Alliance|
 |WRK|2021-08-19|856|WestRock|
+|XEC|2021-08-19|856|Cimarex Energy|
 |XL|2021-08-19|440|XL Fleet|
 |XLNX|2021-08-19|856|Xilinx|
 
@@ -237,6 +238,7 @@ ARCHIVE_DELISTING_AND_LATER_GAPS 的叙述应随数据更新：当前是 64 个�
 |Ticker|可补成员调仓观测|应覆盖到|本地源到|基础异常行|OHLC区间冲突行|
 |---|---:|---|---|---:|---:|
 |ADS|28|2020-06-19|2021-08-19|0|0|
+|XEC|24|2020-03-02|2021-08-19|0|0|
 |SRCL|9|2018-11-30|2021-08-19|0|0|
 
 可执行路线：先按永久证券身份匹配已有静态归档，核对名义 OHLCV、成交量单位、完整 XNYS 会话和邻日整行；再用 SEC/发行人/交易所证据补分红拆股、真实终止与默认换股/现金，并核对是否已嵌入回报。仅有 2020/2021 快照的部分延伸必须保留更晚缺口；同 ticker 有文件不等于同一历史证券。

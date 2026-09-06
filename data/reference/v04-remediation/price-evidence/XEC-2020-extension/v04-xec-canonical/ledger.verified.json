@@ -1,0 +1,134 @@
+{
+  "status": "VERIFIED_FOR_WORK_BUILD",
+  "ticker": "XEC",
+  "snapshot_time": "2026-09-06T21:17:02.760050+00:00",
+  "issuer_cik": "0001168054",
+  "identity_and_units_evidence": [
+    "../v04-xec-primary-actions/report.md: SEC cover XEC common par .01; 2019-01-31 official75.34 matches whole-source SheepB",
+    "../v04-xec-source-tables/01-2017-mirror.json: whole 2017 common share statements",
+    "../v04-xec-announcement-evidence/08-2019-q3-capital-stock.json: publicly indexed SECInfo transcript of 2019 R36, ordinary common units distinct from preferred; no direct-original-R10 claim"
+  ],
+  "normal_exit_quote_evidence": [
+    "../v04-xec-extension-preflight/tail-required-key-rows.csv: real SheepB 2020-03-10 Open",
+    "../v04-xec-extension-preflight/audit.json: complete 491 observed XNYS rows; not a terminal event; actual post-repair holding horizon must still be checked"
+  ],
+  "events": [
+    {
+      "ex_date": "2017-09-14",
+      "cash": 0,
+      "status": "confirmed",
+      "evidence": "../v04-xec-primary-actions/old-prefix-three-event-review.json: annual four actual0.08 payments and no extra0.16, supported by absence in other histories and no vendor step",
+      "record_date": null,
+      "pay_date": null,
+      "exact_ex_date_evidence": "Not an actual ex-date; removal of unsupported WIKI record based on complete reported 2017 payments",
+      "record_pay_evidence_level": "not applicable"
+    },
+    {
+      "ex_date": "2017-11-14",
+      "cash": 0.08,
+      "status": "confirmed",
+      "evidence": "../v04-xec-primary-actions/old-prefix-three-event-review.json: annual primary amount; secondary dates",
+      "record_date": "2017-11-15",
+      "pay_date": "2017-12-01",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "secondary history"
+    },
+    {
+      "ex_date": "2018-02-14",
+      "cash": 0.08,
+      "status": "confirmed",
+      "evidence": "../v04-xec-primary-actions/old-prefix-three-event-review.json: 2017Q4 declared primary amount, next-quarter payout; secondary dates",
+      "record_date": "2018-02-15",
+      "pay_date": "2018-03-01",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "secondary history"
+    },
+    {
+      "ex_date": "2018-05-14",
+      "cash": 0.16,
+      "status": "confirmed",
+      "evidence": "../v04-xec-note-followup/04-issuer-dividend-passages.json: issuerPRNewswire2018-02-23 URL300603191",
+      "record_date": "2018-05-15",
+      "pay_date": "2018-06-01",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "issuer announcement / SEC note"
+    },
+    {
+      "ex_date": "2018-08-14",
+      "cash": 0.16,
+      "status": "confirmed",
+      "evidence": "../v04-xec-announcement-evidence/04-2018-may-declaration.json: issuerPRNewswire URL300646842",
+      "record_date": "2018-08-15",
+      "pay_date": "2018-08-31",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "issuer announcement / SEC note"
+    },
+    {
+      "ex_date": "2018-11-14",
+      "cash": 0.18,
+      "status": "confirmed",
+      "evidence": "../v04-xec-announcement-evidence/01-2018-aug-increase.json: issuerPRNewswire URL300705223",
+      "record_date": "2018-11-15",
+      "pay_date": "2018-11-30",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "issuer announcement / SEC note"
+    },
+    {
+      "ex_date": "2019-02-14",
+      "cash": 0.18,
+      "status": "confirmed",
+      "evidence": "../v04-xec-announcement-evidence/02-2018-dec-declaration.json: issuerPRNewswire URL300761703",
+      "record_date": "2019-02-15",
+      "pay_date": "2019-03-01",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "issuer announcement / SEC note"
+    },
+    {
+      "ex_date": "2019-05-14",
+      "cash": 0.2,
+      "status": "confirmed",
+      "evidence": "../v04-xec-announcement-evidence/03-2019-feb-increase.json: issuerPRNewswire URL300799170",
+      "record_date": "2019-05-15",
+      "pay_date": "2019-05-31",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "issuer announcement / SEC note"
+    },
+    {
+      "ex_date": "2019-08-14",
+      "cash": 0.2,
+      "status": "confirmed",
+      "evidence": "../v04-xec-announcement-evidence/05-2019-aug-declaration.json: actual retrieved issuer release is May9 URL300846846, also SEC2019Q2R13; filename is query intent",
+      "record_date": "2019-08-15",
+      "pay_date": "2019-08-30",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "issuer announcement / SEC note"
+    },
+    {
+      "ex_date": "2019-11-14",
+      "cash": 0.2,
+      "status": "confirmed",
+      "evidence": "../v04-xec-announcement-evidence/08-2019-q3-capital-stock.json: SECInfo public transcript of 2019annualR36 explicitly declares .20 in2019Q3; exact record/pay from Marketlog and other secondary histories",
+      "record_date": "2019-11-15",
+      "pay_date": "2019-11-29",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "secondary history"
+    },
+    {
+      "ex_date": "2020-02-13",
+      "cash": 0.2,
+      "status": "confirmed",
+      "evidence": "../v04-xec-announcement-evidence/06-2019-dec-declaration.json: issuerPRNewswire URL300970419",
+      "record_date": "2020-02-14",
+      "pay_date": "2020-02-28",
+      "exact_ex_date_evidence": "Secondary complete Marketlog/A2 history and matching dated SheepB adjustment observation; issuer releases do not directly publish ex-date",
+      "record_pay_evidence_level": "issuer announcement / SEC note"
+    }
+  ],
+  "source_limitations": [
+    "2019 R36 used as a public SECInfo index transcript, not a downloaded original SEC HTML",
+    "Primary nominal amounts and record/payment dates are distinguished from secondary ex-dates",
+    "2017 and 2019 financial filing figures, stable source overlap and one official tail price support nominal scale; no claim of independent venue certification of every quote",
+    "No ordinary dividends are posted again as account cash; original WIKI retained outside explicit repairs"
+  ],
+  "snapshot_time_meaning": "Processing time of this work candidate, not the original archive collection time."
+}

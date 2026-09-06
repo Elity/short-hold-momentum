@@ -1,0 +1,76 @@
+{
+  "status": "PENDING_NOT_A_VERIFIED_LEDGER",
+  "ticker": "XEC",
+  "snapshot_time": null,
+  "issuer_cik": null,
+  "identity_and_units_evidence": null,
+  "normal_exit_quote_evidence": null,
+  "events": [
+    {
+      "ex_date": "2017-09-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2017-11-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2018-02-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2018-05-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2018-08-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2018-11-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2019-02-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2019-05-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2019-08-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2019-11-14",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    },
+    {
+      "ex_date": "2020-02-13",
+      "cash": null,
+      "status": "pending",
+      "evidence": null
+    }
+  ]
+}

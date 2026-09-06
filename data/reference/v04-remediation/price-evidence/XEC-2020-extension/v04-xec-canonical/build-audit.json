@@ -1,0 +1,58 @@
+{
+  "status": "WORK_CANDIDATE_REQUIRES_ROOT_REVIEW",
+  "approved_for_application": false,
+  "candidate": {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-xec-canonical/XEC-repaired-through-2020-03-10.candidate.parquet",
+    "sha256": "a0593a53521087bc2c255a1706ace68aceef0c1e1fd39391fc347dd7e22e0fc5",
+    "rows": 4138,
+    "tail_rows": 491
+  },
+  "ledger_sha256": "3fae386926c4cab0ab920065c3aa551f48cf0705a6e16d647c3d4b53eff05857",
+  "preflight_sha256": "e7703ff3022d09cb5b9d64666b4adadc425dc06f2b050f320fda1f24278dc85b",
+  "source_cash_table_sha256": "3624a5580682cee7830c574cc53e1aa4c63d976e7e4eb66f52899078ab7715a8",
+  "source_inputs": {
+    "canonical": {
+      "path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/XEC.parquet",
+      "sha256": "c793f0947e1e82051776936a2b68b26ccb64608d711c7acf50bfab66ef508e77"
+    },
+    "wiki": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/XEC.parquet",
+      "sha256": "0c5531b61913909e788561ba5b37d1f146e926416bff1ea10a119c52836ef342"
+    },
+    "sheepb": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/XEC.parquet",
+      "sha256": "d435d3385d66572e31eb22d9fb3831a0afb566eac42792762825c4107406fb1b"
+    }
+  },
+  "iex_sha256": "925dd82d168b5db014e908d3a70bb6cfd05e93cb0a0b1565324707dd86d466bb",
+  "prefix_corrections": [
+    {
+      "ex_date": "2017-09-14",
+      "source_recorded_cash": 0.16,
+      "verified_cash": 0,
+      "pre_ex_multiplier": 1.001499390872458
+    },
+    {
+      "ex_date": "2017-11-14",
+      "source_recorded_cash": 0.0,
+      "verified_cash": 0.08,
+      "pre_ex_multiplier": 0.9993197278911565
+    },
+    {
+      "ex_date": "2018-02-14",
+      "source_recorded_cash": 0.0,
+      "verified_cash": 0.08,
+      "pre_ex_multiplier": 0.9992177569179622
+    }
+  ],
+  "old_nominal_fields_unchanged": true,
+  "anchor_unchanged": true,
+  "maximum_return_identity_error": 9.43689570931383e-14,
+  "first_normal_post_removal_open": 16.559999465942383,
+  "no_ordinary_cash_actions": true,
+  "aliases_changed": false,
+  "repo_changed": false,
+  "network_requests": 0,
+  "source_end_is_not_terminal": true,
+  "post_repair_path_exit_still_requires_research_review": true
+}

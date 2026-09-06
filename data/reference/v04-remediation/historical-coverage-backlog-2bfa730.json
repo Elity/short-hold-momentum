@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at_utc": "2026-09-06T21:20:31.827250+00:00",
+  "generated_at_utc": "2026-09-06T20:36:29.332847+00:00",
   "scope": {
     "study_start": "2005-01-03",
     "cutoff": "2026-09-04",
@@ -12,7 +12,7 @@
       "MBGL"
     ]
   },
-  "manifest_sha256": "f72f790593308936868f0435511943648743047b116c54042e6c5b202a148389",
+  "manifest_sha256": "a3abfe1ef5fdb8d141e914dc9a232326adb50fdc32fdad3cbf06a63c65c0bb14",
   "registered_actions": [
     "ALTR",
     "ARG",
@@ -27,10 +27,10 @@
   ],
   "counts": {
     "last_price_reaches_cutoff": 627,
-    "terminal_candidate_later_than_membership_end": 26,
+    "terminal_candidate_later_than_membership_end": 25,
     "series_present_but_no_member_period_overlap": 57,
     "whole_series_missing": 106,
-    "archive_2018_tail_gap_while_member": 63,
+    "archive_2018_tail_gap_while_member": 64,
     "terminal_candidate_at_membership_end": 32,
     "quarantined_no_usable_series": 4,
     "archive_boundary_after_membership_ended": 31,
@@ -40,12 +40,12 @@
   },
   "tail_summaries": {
     "archive_2018_tail_gap_while_member": {
-      "tickers": 63,
+      "tickers": 64,
       "end_date_counts": {
-        "2018-03-27": 63
+        "2018-03-27": 64
       },
-      "missing_required_member_sessions": 55591,
-      "missing_required_member_rebalance_observations": 2780,
+      "missing_required_member_sessions": 56076,
+      "missing_required_member_rebalance_observations": 2804,
       "zero_member_overlap_tickers": [
         "ABMD",
         "FRC",
@@ -79,13 +79,13 @@
       "in_previously_upgraded_list_count": 0
     },
     "all_unregistered_member_tail_gaps": {
-      "tickers": 64,
+      "tickers": 65,
       "end_date_counts": {
-        "2018-03-27": 63,
+        "2018-03-27": 64,
         "2021-08-19": 1
       },
-      "missing_required_member_sessions": 56134,
-      "missing_required_member_rebalance_observations": 2807,
+      "missing_required_member_sessions": 56619,
+      "missing_required_member_rebalance_observations": 2831,
       "zero_member_overlap_tickers": [
         "ABMD",
         "FRC",
@@ -40151,6 +40151,64 @@
         "in_previously_upgraded_list": false
       },
       {
+        "ticker": "XEC",
+        "first_member_session": "2014-06-20",
+        "last_member_session": "2020-03-02",
+        "first_nonmember_after_final_period": "2020-03-03",
+        "member_at_cutoff": false,
+        "membership_periods": [
+          {
+            "start": "2014-06-20",
+            "last_member_session": "2020-03-02",
+            "first_nonmember_session": "2020-03-03"
+          }
+        ],
+        "member_sessions": 1434,
+        "required_preterminal_member_sessions": 1434,
+        "member_rebalance_observations": 71,
+        "event_explained_member_sessions": 0,
+        "event_explained_member_rebalances": 0,
+        "source_path": "data/research/v04/prices/XEC.parquet",
+        "source_kind": "research_override",
+        "source_name": "Cimarex Energy Co",
+        "source_sha256": "c793f0947e1e82051776936a2b68b26ccb64608d711c7acf50bfab66ef508e77",
+        "is_wiki_derived": true,
+        "manifest_declared_price_end": "2018-03-27",
+        "quarantined": false,
+        "corporate_action_in_manifest": null,
+        "price_window_in_manifest": null,
+        "raw_cache_exists": false,
+        "raw_cache_sha256": null,
+        "raw_first_valid_session": null,
+        "raw_last_valid_session": null,
+        "loaded_rows": 3590,
+        "valid_rows": 3590,
+        "first_price_session": "2003-12-19",
+        "last_price_session": "2018-03-27",
+        "missing_member_rebalances": 24,
+        "missing_required_member_rebalances": 24,
+        "invalid_basic_ohlcv_rows": 0,
+        "physical_range_conflict_rows": 1,
+        "member_price_overlap_sessions": 948,
+        "missing_member_sessions_before_first": 0,
+        "missing_member_sessions_internal": 1,
+        "missing_member_sessions_after_last": 485,
+        "missing_required_member_sessions_after_last": 485,
+        "missing_rebalances_after_last": 24,
+        "missing_required_rebalances_after_last": 24,
+        "first_missing_member_session_after_last": "2018-03-28",
+        "first_missing_rebalance_after_last": "2018-04-11",
+        "requested_missing_quote_start": "2018-03-28",
+        "action_preterminal_missing_sessions": 0,
+        "price_rows_after_registered_last_trade": 0,
+        "newer_raw_candidate_shadowed": false,
+        "raw_later_member_quote_sessions": 0,
+        "observed_end_matches_manifest": true,
+        "diagnostic_category": "archive_2018_tail_gap_while_member",
+        "archive_label_unverified": "Cimarex Energy Co",
+        "in_previously_upgraded_list": false
+      },
+      {
         "ticker": "XL",
         "first_member_session": "2005-01-03",
         "last_member_session": "2018-09-11",
@@ -51479,64 +51537,6 @@
         "diagnostic_category": "terminal_candidate_later_than_membership_end",
         "archive_label_unverified": null,
         "in_previously_upgraded_list": false
-      },
-      {
-        "ticker": "XEC",
-        "first_member_session": "2014-06-20",
-        "last_member_session": "2020-03-02",
-        "first_nonmember_after_final_period": "2020-03-03",
-        "member_at_cutoff": false,
-        "membership_periods": [
-          {
-            "start": "2014-06-20",
-            "last_member_session": "2020-03-02",
-            "first_nonmember_session": "2020-03-03"
-          }
-        ],
-        "member_sessions": 1434,
-        "required_preterminal_member_sessions": 1434,
-        "member_rebalance_observations": 71,
-        "event_explained_member_sessions": 0,
-        "event_explained_member_rebalances": 0,
-        "source_path": "data/research/v04/prices/XEC-repaired-through-2020-03-10.parquet",
-        "source_kind": "research_override",
-        "source_name": "Cimarex Energy Co",
-        "source_sha256": "a0593a53521087bc2c255a1706ace68aceef0c1e1fd39391fc347dd7e22e0fc5",
-        "is_wiki_derived": true,
-        "manifest_declared_price_end": "2020-03-10",
-        "quarantined": false,
-        "corporate_action_in_manifest": null,
-        "price_window_in_manifest": null,
-        "raw_cache_exists": false,
-        "raw_cache_sha256": null,
-        "raw_first_valid_session": null,
-        "raw_last_valid_session": null,
-        "loaded_rows": 4082,
-        "valid_rows": 4082,
-        "first_price_session": "2003-12-19",
-        "last_price_session": "2020-03-10",
-        "missing_member_rebalances": 0,
-        "missing_required_member_rebalances": 0,
-        "invalid_basic_ohlcv_rows": 0,
-        "physical_range_conflict_rows": 0,
-        "member_price_overlap_sessions": 1434,
-        "missing_member_sessions_before_first": 0,
-        "missing_member_sessions_internal": 0,
-        "missing_member_sessions_after_last": 0,
-        "missing_required_member_sessions_after_last": 0,
-        "missing_rebalances_after_last": 0,
-        "missing_required_rebalances_after_last": 0,
-        "first_missing_member_session_after_last": null,
-        "first_missing_rebalance_after_last": null,
-        "requested_missing_quote_start": "2020-03-11",
-        "action_preterminal_missing_sessions": 0,
-        "price_rows_after_registered_last_trade": 0,
-        "newer_raw_candidate_shadowed": false,
-        "raw_later_member_quote_sessions": 0,
-        "observed_end_matches_manifest": true,
-        "diagnostic_category": "terminal_candidate_later_than_membership_end",
-        "archive_label_unverified": "Cimarex Energy Co",
-        "in_previously_upgraded_list": false
       }
     ],
     "archive_boundary_after_membership_ended": [
@@ -61486,7 +61486,7 @@
     },
     {
       "ticker": "XEC",
-      "category": "terminal_candidate_later_than_membership_end",
+      "category": "archive_2018_tail_gap_while_member",
       "source_label_not_verified_identity": "Cimarex Energy Co",
       "membership_periods": [
         {
@@ -61495,11 +61495,11 @@
           "first_nonmember_session": "2020-03-03"
         }
       ],
-      "existing_last_quote": "2020-03-10",
+      "existing_last_quote": "2018-03-27",
       "complete_history_start": "2013-06-10",
       "minimum_member_coverage_end": "2020-03-02",
       "first_nonmember_session": "2020-03-03",
-      "next_missing_quote_start": null,
+      "next_missing_quote_start": "2018-03-28",
       "identity_requirement": "Permanent security ID and dated issuer/CIK; never assume the current ticker is the historic security.",
       "fields": [
         "nominal OHLCV and coverage flags",
@@ -79058,6 +79058,43 @@
       "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event."
     },
     {
+      "ticker": "XEC",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/XEC.parquet",
+      "sha256": "d435d3385d66572e31eb22d9fb3831a0afb566eac42792762825c4107406fb1b",
+      "rows": 4759,
+      "first": "2002-09-25",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "Cimarex Energy"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 485,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 24,
+      "minimum_member_coverage_end": "2020-03-02",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 485,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
+    },
+    {
       "ticker": "XL",
       "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/XL.parquet",
       "sha256": "179f3b36023dff23906c6db8a6aa70fbee3da32c668ccfa880ca2a02c9b9a385",
@@ -79378,6 +79415,43 @@
       }
     },
     {
+      "ticker": "XEC",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/XEC.parquet",
+      "sha256": "d435d3385d66572e31eb22d9fb3831a0afb566eac42792762825c4107406fb1b",
+      "rows": 4759,
+      "first": "2002-09-25",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "Cimarex Energy"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 485,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 24,
+      "minimum_member_coverage_end": "2020-03-02",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 485,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
+    },
+    {
       "ticker": "SRCL",
       "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/SRCL.parquet",
       "sha256": "1ebe95eb2bc86a6a2070fd09e782fbdcfca54e3fb26cefa3735d87a9be52c487",
@@ -79445,15 +79519,15 @@
       "whole_missing": 106,
       "quarantined": 4,
       "zero_member_overlap": 57,
-      "member_tail_gaps": 64,
+      "member_tail_gaps": 65,
       "by_tail_type": {
         "archive_2018_tail_gap_while_member": {
-          "tickers": 63,
+          "tickers": 64,
           "end_date_counts": {
-            "2018-03-27": 63
+            "2018-03-27": 64
           },
-          "missing_required_member_sessions": 55591,
-          "missing_required_member_rebalance_observations": 2780,
+          "missing_required_member_sessions": 56076,
+          "missing_required_member_rebalance_observations": 2804,
           "zero_member_overlap_tickers": [
             "ABMD",
             "FRC",
@@ -79487,13 +79561,13 @@
           "in_previously_upgraded_list_count": 0
         },
         "all_unregistered_member_tail_gaps": {
-          "tickers": 64,
+          "tickers": 65,
           "end_date_counts": {
-            "2018-03-27": 63,
+            "2018-03-27": 64,
             "2021-08-19": 1
           },
-          "missing_required_member_sessions": 56134,
-          "missing_required_member_rebalance_observations": 2807,
+          "missing_required_member_sessions": 56619,
+          "missing_required_member_rebalance_observations": 2831,
           "zero_member_overlap_tickers": [
             "ABMD",
             "FRC",
@@ -79505,7 +79579,7 @@
           "in_previously_upgraded_list_count": 0
         }
       },
-      "unregistered_terminal_candidates": 58
+      "unregistered_terminal_candidates": 57
     },
     "do_not_erase": [
       "TIE_NO_VERIFIED_REPLACEMENT: current candidate still has documented whole-row holes, quarterly price conflicts and early volume-basis uncertainty.",
@@ -79532,7 +79606,7 @@
     }
   ],
   "input_hashes": {
-    "data/reference/v04-remediation/manifest.json": "f72f790593308936868f0435511943648743047b116c54042e6c5b202a148389",
+    "data/reference/v04-remediation/manifest.json": "a3abfe1ef5fdb8d141e914dc9a232326adb50fdc32fdad3cbf06a63c65c0bb14",
     "data/reference/sp500_history.csv": "39a9202c9ef69a74c0ff07e2113ad41fb6da7c8c5b6cd9541f0185fb4391e717",
     "data/reference/v04-remediation/membership-extension.csv": "fa1141a4359c016d9e2d30a22ad51845a5705db1a3b4214acc7249895507d016",
     "data/reference/v04-remediation/corporate-action-evidence/agn-watson-membership-findings.md": "4ec59c5ae40dfc2bc69557c64b37e7d3c9dcdea70cdeb6460c32aa1e301e05f7",
@@ -80393,8 +80467,7 @@
     "data/research/v04/prices/WPX.parquet": "ac7a25bdd4aeb310ad2c98cdac279750310a4698edac0dcd38892fef110b6b3c",
     "data/research/v04/prices/WRK.parquet": "241f71a5eed842caeadc76f1907603e70a0f453bfe4bcc7fd7f7f59fdd8c4cae",
     "data/research/v04/prices/X.parquet": "0e844e482b74956fe7af4a818f94e4ae7247cc7fe9a045c1d936c5d90ba8a2c2",
-    "data/research/v04/prices/XEC-repaired-through-2020-03-10.parquet": "a0593a53521087bc2c255a1706ace68aceef0c1e1fd39391fc347dd7e22e0fc5",
-    "data/reference/v04-remediation/price-evidence/XEC-2020-extension/application-review.md": "bfa59d253d7271500d70c472aec0c66ca4d01947a70abc5a3de4ff1ee8704098",
+    "data/research/v04/prices/XEC.parquet": "c793f0947e1e82051776936a2b68b26ccb64608d711c7acf50bfab66ef508e77",
     "data/research/v04/prices/XL.parquet": "925abb3618f5404eb059b4f6770778d10248f192306f6ad3784accc284a51245",
     "data/research/v04/prices/XLNX.parquet": "701953ef53019055ae1f1db10f163d3dc3f790b37dddceaff2047c1585c31523",
     "data/research/v04/prices/AABA-YHOO-through-2017-12-29.parquet": "0a14dfe1ee49fdf90c7f96c99d08af86f4f1acbf95fe4840b0b3867212d52328",
