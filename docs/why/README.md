@@ -27,3 +27,20 @@ all four owner-authored notes.
 Each file should be roughly one page in the owner's own words. It may link to
 repository evidence, but copying an agent-generated summary does not satisfy
 the learning checkpoint.
+
+## Agent-prepared review drafts
+
+At the owner's request, review drafts are available under `docs/why/drafts/`:
+
+- `P1.md`: system design, design rationale, and the V00 baseline.
+- `P2.md`: the closed V01-V11 experiment set, frozen V04 decision, and OOS
+  evidence boundaries.
+- `P3.md`: option-overlay feasibility, optionality, risks, and accepted
+  engineering approximations.
+
+These drafts deliberately live outside the final `docs/why/P1.md` through
+`P3.md` paths, so the automated Gate audit cannot mistake them for completed
+owner checkpoints. The owner must review the cited evidence, rewrite or add
+their own reasoning, and then save the final versions at those required paths.
+`P4.md` is not drafted before three genuine forward cycles and three monthly
+reports exist.
