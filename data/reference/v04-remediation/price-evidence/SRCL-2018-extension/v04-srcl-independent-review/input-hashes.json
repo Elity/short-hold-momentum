@@ -1,0 +1,35 @@
+{
+  "before": {
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-through-2018-12-28.candidate.parquet": "f3c6c3325c4d582a89905183ec0f16c14f84c511928c68c2e0afe8492d2102bd",
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/SRCL.parquet": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/2018-10K.edgar-online.indexed.txt": "377889eb0fcbc8a5b55a06bb0b3e13034f9c64101d69cb230ed795f3be0d8757",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/2018-annual-cover.eproxymaterials.indexed.txt": "190a2093c9b459c48d0eea8ed9c42e501fdc689768f22b85ce034f5f10a69e4f",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/2017-10K-cover.getfilings.indexed.txt": "d6a6c483d6fb2d04abc286367dcc07a4d2e34489d700260f712ff04add136a37",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/01-sec-submissions.body.json": "ecc28aa742e805b2028368cc0981dd61064b74b091e39d145915b8bddf3cb5b3",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-current-override.original.parquet": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-WIKI.raw-source.parquet": "d2b47aa0fc2c4eff7d3992c3a9cdf8e0a3d9fdb75c90e638506cd36f25bf94b1",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-SheepB.raw-source.parquet": "1ebe95eb2bc86a6a2070fd09e782fbdcfca54e3fb26cefa3735d87a9be52c487",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SheepB-dataset-metadata.original.json": "d763dcf15eebed98f3a80bfc65d2269c47905825b77e3417fca6498141bbbc3e",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SheepB-download.original.json": "ca52947426ff0ddd9e673a10e63ccca8cd5aa338dfe616b1262b994347ce8c95",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-IEX.source.csv": "b57e00a2a0521cc3b6464a8817e3eee5f01e9948187925383cdf32d062f62d43",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/IEX-getSandP.source.py": "4ef5828dcadd8b4085d655a1a2d9b660da5eec7a4661b824560cc55b707a08dd",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-IEX-missing-day-evidence.json": "261ef25fe463b135a148c17cb63b48fd83d08122c58ea9b77a1c516ffe1dc5f7"
+  },
+  "after": {
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-through-2018-12-28.candidate.parquet": "f3c6c3325c4d582a89905183ec0f16c14f84c511928c68c2e0afe8492d2102bd",
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/SRCL.parquet": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/2018-10K.edgar-online.indexed.txt": "377889eb0fcbc8a5b55a06bb0b3e13034f9c64101d69cb230ed795f3be0d8757",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/2018-annual-cover.eproxymaterials.indexed.txt": "190a2093c9b459c48d0eea8ed9c42e501fdc689768f22b85ce034f5f10a69e4f",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/2017-10K-cover.getfilings.indexed.txt": "d6a6c483d6fb2d04abc286367dcc07a4d2e34489d700260f712ff04add136a37",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/01-sec-submissions.body.json": "ecc28aa742e805b2028368cc0981dd61064b74b091e39d145915b8bddf3cb5b3",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-current-override.original.parquet": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-WIKI.raw-source.parquet": "d2b47aa0fc2c4eff7d3992c3a9cdf8e0a3d9fdb75c90e638506cd36f25bf94b1",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-SheepB.raw-source.parquet": "1ebe95eb2bc86a6a2070fd09e782fbdcfca54e3fb26cefa3735d87a9be52c487",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SheepB-dataset-metadata.original.json": "d763dcf15eebed98f3a80bfc65d2269c47905825b77e3417fca6498141bbbc3e",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SheepB-download.original.json": "ca52947426ff0ddd9e673a10e63ccca8cd5aa338dfe616b1262b994347ce8c95",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-IEX.source.csv": "b57e00a2a0521cc3b6464a8817e3eee5f01e9948187925383cdf32d062f62d43",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/IEX-getSandP.source.py": "4ef5828dcadd8b4085d655a1a2d9b660da5eec7a4661b824560cc55b707a08dd",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-IEX-missing-day-evidence.json": "261ef25fe463b135a148c17cb63b48fd83d08122c58ea9b77a1c516ffe1dc5f7"
+  },
+  "unchanged": true
+}

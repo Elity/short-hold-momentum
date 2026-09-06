@@ -1,0 +1,46 @@
+[
+  {
+    "source": "wiki",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/SRCL.parquet",
+    "sha256": "d2b47aa0fc2c4eff7d3992c3a9cdf8e0a3d9fdb75c90e638506cd36f25bf94b1",
+    "matches_expected": true
+  },
+  {
+    "source": "canonical",
+    "path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/SRCL.parquet",
+    "sha256": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
+    "matches_expected": true
+  },
+  {
+    "source": "sheepb",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/SRCL.parquet",
+    "sha256": "1ebe95eb2bc86a6a2070fd09e782fbdcfca54e3fb26cefa3735d87a9be52c487",
+    "matches_expected": true
+  },
+  {
+    "source": "iex",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-IEX.source.csv",
+    "sha256": "b57e00a2a0521cc3b6464a8817e3eee5f01e9948187925383cdf32d062f62d43",
+    "matches_expected": true
+  },
+  {
+    "source": "existing_provenance",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-2021-download.json",
+    "sha256": "ca52947426ff0ddd9e673a10e63ccca8cd5aa338dfe616b1262b994347ce8c95"
+  },
+  {
+    "source": "existing_provenance",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extraction.json",
+    "sha256": "44c194569727c7d875e0bf34859b503410958283e34a16a6f1fdafca4dcc5316"
+  },
+  {
+    "source": "existing_provenance",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-IEX-missing-day-evidence.json",
+    "sha256": "261ef25fe463b135a148c17cb63b48fd83d08122c58ea9b77a1c516ffe1dc5f7"
+  },
+  {
+    "source": "existing_provenance",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-archive-closure-plan/next-minimum-scope.json",
+    "sha256": "096615f14645d081ef7f6005cf3ed3c3dde5d12996d8483699b27340cf35fd5d"
+  }
+]

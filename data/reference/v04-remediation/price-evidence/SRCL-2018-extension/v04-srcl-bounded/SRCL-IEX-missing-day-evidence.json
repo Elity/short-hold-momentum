@@ -1,0 +1,54 @@
+{
+  "source_zip_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-sp500.source.zip",
+  "source_zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+  "member": "individual_stocks_5yr/individual_stocks_5yr/SRCL_data.csv",
+  "member_sha256": "b57e00a2a0521cc3b6464a8817e3eee5f01e9948187925383cdf32d062f62d43",
+  "source_grade": "Existing Cam Nugent sandp500 v4 CSV, documented IEX upstream in retained dataset metadata; not a new web request",
+  "observations": [
+    {
+      "date": "2017-11-06",
+      "open": "67.27",
+      "high": "67.36",
+      "low": "66.27",
+      "close": "67.26",
+      "volume": "832921",
+      "Name": "SRCL"
+    },
+    {
+      "date": "2017-11-07",
+      "open": "67.1",
+      "high": "67.37",
+      "low": "66.65",
+      "close": "67.16",
+      "volume": "696193",
+      "Name": "SRCL"
+    },
+    {
+      "date": "2017-11-08",
+      "open": "66.98",
+      "high": "67.37",
+      "low": "66.6804",
+      "close": "67.1",
+      "volume": "922226",
+      "Name": "SRCL"
+    },
+    {
+      "date": "2017-11-09",
+      "open": "62.3",
+      "high": "64.76",
+      "low": "61.62",
+      "close": "64.06",
+      "volume": "4637105",
+      "Name": "SRCL"
+    },
+    {
+      "date": "2017-11-10",
+      "open": "63.72",
+      "high": "65.24",
+      "low": "63.66",
+      "close": "64.02",
+      "volume": "1738017",
+      "Name": "SRCL"
+    }
+  ]
+}

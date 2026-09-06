@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at_utc": "2026-09-06T22:38:56.023862+00:00",
+  "generated_at_utc": "2026-09-06T21:57:04.897519+00:00",
   "scope": {
     "study_start": "2005-01-03",
     "cutoff": "2026-09-04",
@@ -12,7 +12,7 @@
       "MBGL"
     ]
   },
-  "manifest_sha256": "e3efbd678b2b3db96e808268c6228ec1724613b98e705f6572a89b0d66ab1c70",
+  "manifest_sha256": "a224148f0d7958f52c2519591b05a2a8a8c6328c33eda61e239b69357fbdc2be",
   "registered_actions": [
     "ALTR",
     "ARG",
@@ -27,10 +27,10 @@
   ],
   "counts": {
     "last_price_reaches_cutoff": 627,
-    "terminal_candidate_later_than_membership_end": 28,
+    "terminal_candidate_later_than_membership_end": 27,
     "series_present_but_no_member_period_overlap": 57,
     "whole_series_missing": 105,
-    "archive_2018_tail_gap_while_member": 62,
+    "archive_2018_tail_gap_while_member": 63,
     "terminal_candidate_at_membership_end": 32,
     "quarantined_no_usable_series": 4,
     "archive_boundary_after_membership_ended": 31,
@@ -40,12 +40,12 @@
   },
   "tail_summaries": {
     "archive_2018_tail_gap_while_member": {
-      "tickers": 62,
+      "tickers": 63,
       "end_date_counts": {
-        "2018-03-27": 62
+        "2018-03-27": 63
       },
-      "missing_required_member_sessions": 55418,
-      "missing_required_member_rebalance_observations": 2771,
+      "missing_required_member_sessions": 55591,
+      "missing_required_member_rebalance_observations": 2780,
       "zero_member_overlap_tickers": [
         "ABMD",
         "FRC",
@@ -79,13 +79,13 @@
       "in_previously_upgraded_list_count": 0
     },
     "all_unregistered_member_tail_gaps": {
-      "tickers": 63,
+      "tickers": 64,
       "end_date_counts": {
-        "2018-03-27": 62,
+        "2018-03-27": 63,
         "2021-08-19": 1
       },
-      "missing_required_member_sessions": 55961,
-      "missing_required_member_rebalance_observations": 2798,
+      "missing_required_member_sessions": 56134,
+      "missing_required_member_rebalance_observations": 2807,
       "zero_member_overlap_tickers": [
         "ABMD",
         "FRC",
@@ -39629,6 +39629,64 @@
         "in_previously_upgraded_list": false
       },
       {
+        "ticker": "SRCL",
+        "first_member_session": "2008-11-19",
+        "last_member_session": "2018-11-30",
+        "first_nonmember_after_final_period": "2018-12-03",
+        "member_at_cutoff": false,
+        "membership_periods": [
+          {
+            "start": "2008-11-19",
+            "last_member_session": "2018-11-30",
+            "first_nonmember_session": "2018-12-03"
+          }
+        ],
+        "member_sessions": 2526,
+        "required_preterminal_member_sessions": 2526,
+        "member_rebalance_observations": 127,
+        "event_explained_member_sessions": 0,
+        "event_explained_member_rebalances": 0,
+        "source_path": "data/research/v04/prices/SRCL.parquet",
+        "source_kind": "research_override",
+        "source_name": "Stericycle Inc.",
+        "source_sha256": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
+        "is_wiki_derived": true,
+        "manifest_declared_price_end": "2018-03-27",
+        "quarantined": false,
+        "corporate_action_in_manifest": null,
+        "price_window_in_manifest": null,
+        "raw_cache_exists": false,
+        "raw_cache_sha256": null,
+        "raw_first_valid_session": null,
+        "raw_last_valid_session": null,
+        "loaded_rows": 3590,
+        "valid_rows": 3590,
+        "first_price_session": "2003-12-19",
+        "last_price_session": "2018-03-27",
+        "missing_member_rebalances": 9,
+        "missing_required_member_rebalances": 9,
+        "invalid_basic_ohlcv_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "member_price_overlap_sessions": 2352,
+        "missing_member_sessions_before_first": 0,
+        "missing_member_sessions_internal": 1,
+        "missing_member_sessions_after_last": 173,
+        "missing_required_member_sessions_after_last": 173,
+        "missing_rebalances_after_last": 9,
+        "missing_required_rebalances_after_last": 9,
+        "first_missing_member_session_after_last": "2018-03-28",
+        "first_missing_rebalance_after_last": "2018-04-11",
+        "requested_missing_quote_start": "2018-03-28",
+        "action_preterminal_missing_sessions": 0,
+        "price_rows_after_registered_last_trade": 0,
+        "newer_raw_candidate_shadowed": false,
+        "raw_later_member_quote_sessions": 0,
+        "observed_end_matches_manifest": true,
+        "diagnostic_category": "archive_2018_tail_gap_while_member",
+        "archive_label_unverified": "Stericycle Inc.",
+        "in_previously_upgraded_list": false
+      },
+      {
         "ticker": "TIF",
         "first_member_session": "2005-01-03",
         "last_member_session": "2021-01-06",
@@ -51208,64 +51266,6 @@
         "in_previously_upgraded_list": false
       },
       {
-        "ticker": "SRCL",
-        "first_member_session": "2008-11-19",
-        "last_member_session": "2018-11-30",
-        "first_nonmember_after_final_period": "2018-12-03",
-        "member_at_cutoff": false,
-        "membership_periods": [
-          {
-            "start": "2008-11-19",
-            "last_member_session": "2018-11-30",
-            "first_nonmember_session": "2018-12-03"
-          }
-        ],
-        "member_sessions": 2526,
-        "required_preterminal_member_sessions": 2526,
-        "member_rebalance_observations": 127,
-        "event_explained_member_sessions": 0,
-        "event_explained_member_rebalances": 0,
-        "source_path": "data/research/v04/prices/SRCL-through-2018-12-28.parquet",
-        "source_kind": "research_override",
-        "source_name": "Stericycle Inc.",
-        "source_sha256": "f3c6c3325c4d582a89905183ec0f16c14f84c511928c68c2e0afe8492d2102bd",
-        "is_wiki_derived": true,
-        "manifest_declared_price_end": "2018-12-28",
-        "quarantined": false,
-        "corporate_action_in_manifest": null,
-        "price_window_in_manifest": null,
-        "raw_cache_exists": false,
-        "raw_cache_sha256": null,
-        "raw_first_valid_session": null,
-        "raw_last_valid_session": null,
-        "loaded_rows": 3782,
-        "valid_rows": 3782,
-        "first_price_session": "2003-12-19",
-        "last_price_session": "2018-12-28",
-        "missing_member_rebalances": 0,
-        "missing_required_member_rebalances": 0,
-        "invalid_basic_ohlcv_rows": 0,
-        "physical_range_conflict_rows": 0,
-        "member_price_overlap_sessions": 2526,
-        "missing_member_sessions_before_first": 0,
-        "missing_member_sessions_internal": 0,
-        "missing_member_sessions_after_last": 0,
-        "missing_required_member_sessions_after_last": 0,
-        "missing_rebalances_after_last": 0,
-        "missing_required_rebalances_after_last": 0,
-        "first_missing_member_session_after_last": null,
-        "first_missing_rebalance_after_last": null,
-        "requested_missing_quote_start": "2018-12-31",
-        "action_preterminal_missing_sessions": 0,
-        "price_rows_after_registered_last_trade": 0,
-        "newer_raw_candidate_shadowed": false,
-        "raw_later_member_quote_sessions": 0,
-        "observed_end_matches_manifest": true,
-        "diagnostic_category": "terminal_candidate_later_than_membership_end",
-        "archive_label_unverified": "Stericycle Inc.",
-        "in_previously_upgraded_list": false
-      },
-      {
         "ticker": "SVU",
         "first_member_session": "2005-01-03",
         "last_member_session": "2012-04-30",
@@ -60553,7 +60553,7 @@
     },
     {
       "ticker": "SRCL",
-      "category": "terminal_candidate_later_than_membership_end",
+      "category": "archive_2018_tail_gap_while_member",
       "source_label_not_verified_identity": "Stericycle Inc.",
       "membership_periods": [
         {
@@ -60562,11 +60562,11 @@
           "first_nonmember_session": "2018-12-03"
         }
       ],
-      "existing_last_quote": "2018-12-28",
+      "existing_last_quote": "2018-03-27",
       "complete_history_start": "2007-11-08",
       "minimum_member_coverage_end": "2018-11-30",
       "first_nonmember_session": "2018-12-03",
-      "next_missing_quote_start": null,
+      "next_missing_quote_start": "2018-03-28",
       "identity_requirement": "Permanent security ID and dated issuer/CIK; never assume the current ticker is the historic security.",
       "fields": [
         "nominal OHLCV and coverage flags",
@@ -77265,6 +77265,43 @@
       "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event."
     },
     {
+      "ticker": "SRCL",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/SRCL.parquet",
+      "sha256": "1ebe95eb2bc86a6a2070fd09e782fbdcfca54e3fb26cefa3735d87a9be52c487",
+      "rows": 5444,
+      "first": "1999-12-31",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "Stericycle"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 173,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 9,
+      "minimum_member_coverage_end": "2018-11-30",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 173,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
+    },
+    {
       "ticker": "WBA",
       "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/WBA.parquet",
       "sha256": "5d2e6cef1a8321a0ea765af9b62a4dd39d713429f42c1d639cdc812b5764853f",
@@ -79356,6 +79393,43 @@
         ],
         "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
       }
+    },
+    {
+      "ticker": "SRCL",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/SRCL.parquet",
+      "sha256": "1ebe95eb2bc86a6a2070fd09e782fbdcfca54e3fb26cefa3735d87a9be52c487",
+      "rows": 5444,
+      "first": "1999-12-31",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "Stericycle"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 173,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 9,
+      "minimum_member_coverage_end": "2018-11-30",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 173,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
     }
   ],
   "price_repair_evidence": {
@@ -79388,15 +79462,15 @@
       "whole_missing": 105,
       "quarantined": 4,
       "zero_member_overlap": 57,
-      "member_tail_gaps": 63,
+      "member_tail_gaps": 64,
       "by_tail_type": {
         "archive_2018_tail_gap_while_member": {
-          "tickers": 62,
+          "tickers": 63,
           "end_date_counts": {
-            "2018-03-27": 62
+            "2018-03-27": 63
           },
-          "missing_required_member_sessions": 55418,
-          "missing_required_member_rebalance_observations": 2771,
+          "missing_required_member_sessions": 55591,
+          "missing_required_member_rebalance_observations": 2780,
           "zero_member_overlap_tickers": [
             "ABMD",
             "FRC",
@@ -79430,13 +79504,13 @@
           "in_previously_upgraded_list_count": 0
         },
         "all_unregistered_member_tail_gaps": {
-          "tickers": 63,
+          "tickers": 64,
           "end_date_counts": {
-            "2018-03-27": 62,
+            "2018-03-27": 63,
             "2021-08-19": 1
           },
-          "missing_required_member_sessions": 55961,
-          "missing_required_member_rebalance_observations": 2798,
+          "missing_required_member_sessions": 56134,
+          "missing_required_member_rebalance_observations": 2807,
           "zero_member_overlap_tickers": [
             "ABMD",
             "FRC",
@@ -79448,7 +79522,7 @@
           "in_previously_upgraded_list_count": 0
         }
       },
-      "unregistered_terminal_candidates": 60
+      "unregistered_terminal_candidates": 59
     },
     "do_not_erase": [
       "TIE_NO_VERIFIED_REPLACEMENT: current candidate still has documented whole-row holes, quarterly price conflicts and early volume-basis uncertainty.",
@@ -79475,7 +79549,7 @@
     }
   ],
   "input_hashes": {
-    "data/reference/v04-remediation/manifest.json": "e3efbd678b2b3db96e808268c6228ec1724613b98e705f6572a89b0d66ab1c70",
+    "data/reference/v04-remediation/manifest.json": "a224148f0d7958f52c2519591b05a2a8a8c6328c33eda61e239b69357fbdc2be",
     "data/reference/sp500_history.csv": "39a9202c9ef69a74c0ff07e2113ad41fb6da7c8c5b6cd9541f0185fb4391e717",
     "data/reference/v04-remediation/membership-extension.csv": "fa1141a4359c016d9e2d30a22ad51845a5705db1a3b4214acc7249895507d016",
     "data/reference/v04-remediation/corporate-action-evidence/agn-watson-membership-findings.md": "4ec59c5ae40dfc2bc69557c64b37e7d3c9dcdea70cdeb6460c32aa1e301e05f7",
@@ -80315,8 +80389,7 @@
     "data/research/v04/prices/SIVB.parquet": "b812e745bed1c2dbfeec584c9c7453ca531b6a08687bcd3f663fef7dccac4388",
     "data/research/v04/prices/SNI.parquet": "6ce413ebe065f715f37f241dc9f74995bd910d240eddbf5dcf49646347f94860",
     "data/research/v04/prices/SNV.parquet": "9ac937045065c7d29405356d01a9799ee5c3a6f32941166f1cc85293710bdc33",
-    "data/research/v04/prices/SRCL-through-2018-12-28.parquet": "f3c6c3325c4d582a89905183ec0f16c14f84c511928c68c2e0afe8492d2102bd",
-    "data/reference/v04-remediation/price-evidence/SRCL-2018-extension/application-review.md": "3e1b41edb4276fe6108f1b07d350b4a6c43040961e10b3b8fae6206c642781aa",
+    "data/research/v04/prices/SRCL.parquet": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
     "data/research/v04/prices/STJ.parquet": "c0d13b6724fa32f562cf817b6bce1e1e699801ee91aee743f9da9d2bb67a5d07",
     "data/research/v04/prices/STR.parquet": "82de22bbe5b326b6c54b5dfe057a64ffd33cbff657744e3b9e3da158bd7ee226",
     "data/research/v04/prices/SWN.parquet": "39e2b940bc0c6a8db9a77cb2053b4f8294e61e65e60f484f7efd156f3cf5c1e4",

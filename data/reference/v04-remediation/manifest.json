@@ -2070,15 +2070,19 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "SRCL": {
-      "path": "data/research/v04/prices/SRCL.parquet",
-      "sha256": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
+      "path": "data/research/v04/prices/SRCL-through-2018-12-28.parquet",
+      "sha256": "f3c6c3325c4d582a89905183ec0f16c14f84c511928c68c2e0afe8492d2102bd",
       "source_ticker": "SRCL",
       "source_name": "Stericycle Inc.",
       "first": "2003-10-01",
-      "last": "2018-03-27",
+      "last": "2018-12-28",
       "invalid_rows": 0,
       "source_archive_sha256": "d2b47aa0fc2c4eff7d3992c3a9cdf8e0a3d9fdb75c90e638506cd36f25bf94b1",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "Preserve all original rows; restore whole IEX 2017-11-08 observation and append191 whole SheepB rows through the fixed post-removal execution window; no extra cash or terminal event.",
+      "legacy_original_path": "data/research/v04/prices/SRCL.parquet",
+      "legacy_original_sha256": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
+      "evidence_path": "data/reference/v04-remediation/price-evidence/SRCL-2018-extension/application-review.md",
+      "evidence_sha256": "3e1b41edb4276fe6108f1b07d350b4a6c43040961e10b3b8fae6206c642781aa"
     },
     "STJ": {
       "path": "data/research/v04/prices/STJ.parquet",

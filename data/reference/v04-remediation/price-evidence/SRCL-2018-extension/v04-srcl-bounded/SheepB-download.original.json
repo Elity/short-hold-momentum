@@ -1,0 +1,18 @@
+{
+  "status": "COMPLETE",
+  "url": "https://www.kaggle.com/api/v1/datasets/download/sheepb/stock-market-dataset-20002021?datasetVersionNumber=1",
+  "bytes": 353571060,
+  "sha256": "22f61a91843c579577a1757bd31653fd998ba8054723da3d4b41d994cda46373",
+  "elapsed_seconds": 10.918993949890137,
+  "members": [
+    {
+      "name": "full_stock_df.csv",
+      "bytes": 2047295793
+    },
+    {
+      "name": "symbol_company.csv",
+      "bytes": 314513
+    }
+  ],
+  "provider_history_calls": 0
+}

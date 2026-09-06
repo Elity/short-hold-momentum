@@ -1,0 +1,170 @@
+{
+  "status": "SOURCE_PREFLIGHT_ONLY_NOT_APPROVED_FOR_APPLICATION",
+  "network_requests": 0,
+  "repository_writes": 0,
+  "scope": {
+    "start": "2007-11-12",
+    "end": "2018-12-28",
+    "expected_XNYS_sessions": 2802,
+    "study_reference": "v04-be90df5d090ac3ff"
+  },
+  "structure": {
+    "wiki_existing_prefix": {
+      "rows": 2610,
+      "first": "2007-11-12",
+      "last": "2018-03-27",
+      "missing_sessions": [
+        "2017-11-08"
+      ],
+      "extra_sessions": [],
+      "duplicate_dates": 0,
+      "bad_ohlcv_rows": 0
+    },
+    "canonical_existing_prefix": {
+      "rows": 2610,
+      "first": "2007-11-12",
+      "last": "2018-03-27",
+      "missing_sessions": [
+        "2017-11-08"
+      ],
+      "extra_sessions": [],
+      "duplicate_dates": 0,
+      "bad_ohlcv_rows": 0
+    },
+    "sheepb_required_window": {
+      "rows": 2802,
+      "first": "2007-11-12",
+      "last": "2018-12-28",
+      "missing_sessions": [],
+      "extra_sessions": [],
+      "duplicate_dates": 0,
+      "bad_ohlcv_rows": 0
+    },
+    "sheepb_needed_tail": {
+      "rows": 191,
+      "first": "2018-03-28",
+      "last": "2018-12-28",
+      "missing_sessions": [],
+      "extra_sessions": [],
+      "duplicate_dates": 0,
+      "bad_ohlcv_rows": 0
+    }
+  },
+  "source_company_labels": {
+    "wiki": "Stericycle Inc.",
+    "sheepb": [
+      "Stericycle"
+    ],
+    "interpretation": "source labels are not independent issuer identity evidence"
+  },
+  "current_canonical_matches_WIKI_exactly": {
+    "open": true,
+    "high": true,
+    "low": true,
+    "close": true,
+    "volume": true,
+    "as_traded_close": true,
+    "dollar_volume": true
+  },
+  "WIKI_nonzero_cash_fields": 0,
+  "WIKI_nonunit_split_fields": 0,
+  "factor_observations": [
+    {
+      "source": "wiki",
+      "factor_min": 1.0,
+      "factor_max": 1.0,
+      "factor_step_count_above_1bp": 0,
+      "interpretation": "vendor observation only; zero steps do not establish no distributions or splits"
+    },
+    {
+      "source": "sheepb",
+      "factor_min": 1.0,
+      "factor_max": 1.0,
+      "factor_step_count_above_1bp": 0,
+      "interpretation": "vendor observation only; zero steps do not establish no distributions or splits"
+    }
+  ],
+  "overlap_relative_difference": {
+    "open": {
+      "rows": 2610,
+      "median": 1.9507274240382344e-08,
+      "p99": 0.0005453726186727362,
+      "maximum": 0.017823718661874488,
+      "observed_count_above_1bp": 36
+    },
+    "high": {
+      "rows": 2610,
+      "median": 2.1311157838432848e-08,
+      "p99": 6.376074601343592e-05,
+      "maximum": 0.0007668477625935033,
+      "observed_count_above_1bp": 1
+    },
+    "low": {
+      "rows": 2610,
+      "median": 2.109857261123338e-08,
+      "p99": 6.28779583762216e-05,
+      "maximum": 0.0008476798431319432,
+      "observed_count_above_1bp": 2
+    },
+    "close": {
+      "rows": 2610,
+      "median": 2.088159384294741e-08,
+      "p99": 3.7321320074992176e-05,
+      "maximum": 0.0026794356127044505,
+      "observed_count_above_1bp": 8
+    },
+    "volume": {
+      "rows": 2610,
+      "median": 0.0,
+      "p99": 0.03709805619723857,
+      "maximum": 1.0678608200568176,
+      "observed_count_above_1bp": 448
+    }
+  },
+  "2017_11_08": {
+    "open": {
+      "iex": 66.98,
+      "sheepb": 66.9800033569336,
+      "sheepb_minus_iex": 3.3569335897709607e-06
+    },
+    "high": {
+      "iex": 67.37,
+      "sheepb": 67.37000274658203,
+      "sheepb_minus_iex": 2.7465820267025265e-06
+    },
+    "low": {
+      "iex": 66.6804,
+      "sheepb": 66.68000030517578,
+      "sheepb_minus_iex": -0.000399694824224639
+    },
+    "close": {
+      "iex": 67.1,
+      "sheepb": 67.0999984741211,
+      "sheepb_minus_iex": -1.5258789005656581e-06
+    },
+    "volume": {
+      "iex": 922226.0,
+      "sheepb": 922200.0,
+      "sheepb_minus_iex": -26.0
+    }
+  },
+  "coverage": {
+    "member_signal_count": 127,
+    "current_dates_complete_260": 113,
+    "local_sheepb_dates_complete_260": 127,
+    "member_signals_whose_260_window_includes_gap": 13
+  },
+  "not_proven": [
+    "issuer identity and common-share basis",
+    "no dividend/split/spinoff merely from zero source fields",
+    "which conflicting overlap source is economically correct",
+    "actual path closure after approved application"
+  ],
+  "not_performed": [
+    "ZIP re-extraction",
+    "web request",
+    "applicable price construction",
+    "repository or strategy changes",
+    "cross-sectional rerun"
+  ]
+}

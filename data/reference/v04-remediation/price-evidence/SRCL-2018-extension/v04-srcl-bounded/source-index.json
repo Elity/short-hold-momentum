@@ -1,0 +1,86 @@
+[
+  {
+    "file": "2018-10K.edgar-online.indexed.txt",
+    "url": "https://content.edgar-online.com/ExternalLink/EDGAR/0001564590-19-005500.html?hash=ed54712ea43ad06f4dc998d3f330efc7f922aea5cce684ff963633eef5262776",
+    "source_grade": "Issuer 2018 SEC filing content mirrored by EDGAR Online, obtained through search index; original SEC HTML attempt returned403. Indexed text is partial, not a full-file download.",
+    "request_number": 4,
+    "sha256": "377889eb0fcbc8a5b55a06bb0b3e13034f9c64101d69cb230ed795f3be0d8757",
+    "characters": 126618
+  },
+  {
+    "file": "2018-annual-cover.eproxymaterials.indexed.txt",
+    "url": "https://eproxymaterials.com/interactive/srcl2018/srcl2018_download.pdf?print_pages=true",
+    "source_grade": "Partial indexed annual-report text from proxy-material host, not downloaded original PDF; cover identity and class only; aggregate market value is not a per-share price anchor.",
+    "request_number": 4,
+    "sha256": "190a2093c9b459c48d0eea8ed9c42e501fdc689768f22b85ce034f5f10a69e4f",
+    "characters": 11204
+  },
+  {
+    "file": "2017-10K-cover.getfilings.indexed.txt",
+    "url": "https://getfilings.com/sec-filings/180226/STERICYCLE-INC_10-K/",
+    "source_grade": "Partial indexed third-party mirror of 2017 issuer annual filing; common and preferred classes are distinct; no 2017 dividend-policy passage returned here.",
+    "request_number": 4,
+    "sha256": "d6a6c483d6fb2d04abc286367dcc07a4d2e34489d700260f712ff04add136a37",
+    "characters": 11070
+  },
+  {
+    "file": "01-sec-submissions.body.json",
+    "url": "https://data.sec.gov/submissions/CIK0000861878.json",
+    "source_grade": "Direct SEC submissions JSON, issuer identity and filing accession metadata",
+    "request_number": 1,
+    "sha256": "ecc28aa742e805b2028368cc0981dd61064b74b091e39d145915b8bddf3cb5b3"
+  },
+  {
+    "file": "SRCL-current-override.original.parquet",
+    "original_path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/SRCL.parquet",
+    "source_grade": "Existing local original; no new network request",
+    "request_number": null,
+    "sha256": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570"
+  },
+  {
+    "file": "SRCL-WIKI.raw-source.parquet",
+    "original_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/SRCL.parquet",
+    "source_grade": "Existing local original; no new network request",
+    "request_number": null,
+    "sha256": "d2b47aa0fc2c4eff7d3992c3a9cdf8e0a3d9fdb75c90e638506cd36f25bf94b1"
+  },
+  {
+    "file": "SRCL-SheepB.raw-source.parquet",
+    "original_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/SRCL.parquet",
+    "source_grade": "Existing local original; no new network request",
+    "request_number": null,
+    "sha256": "1ebe95eb2bc86a6a2070fd09e782fbdcfca54e3fb26cefa3735d87a9be52c487"
+  },
+  {
+    "file": "SheepB-dataset-metadata.original.json",
+    "original_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/04-sheepb-metadata.body",
+    "source_grade": "Existing local original; no new network request",
+    "request_number": null,
+    "sha256": "d763dcf15eebed98f3a80bfc65d2269c47905825b77e3417fca6498141bbbc3e"
+  },
+  {
+    "file": "SheepB-download.original.json",
+    "original_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-2021-download.json",
+    "source_grade": "Existing local original; no new network request",
+    "request_number": null,
+    "sha256": "ca52947426ff0ddd9e673a10e63ccca8cd5aa338dfe616b1262b994347ce8c95"
+  },
+  {
+    "file": "SRCL-IEX.source.csv",
+    "source_grade": "Public Cam Nugent sandp500 archive, original IEX whole-source observations; independent upstream from SheepB Yahoo",
+    "request_number": null,
+    "sha256": "b57e00a2a0521cc3b6464a8817e3eee5f01e9948187925383cdf32d062f62d43"
+  },
+  {
+    "file": "IEX-getSandP.source.py",
+    "source_grade": "Original archive acquisition script explicitly calls pandas_datareader iex; retained as provenance, never executed",
+    "request_number": null,
+    "sha256": "4ef5828dcadd8b4085d655a1a2d9b660da5eec7a4661b824560cc55b707a08dd"
+  },
+  {
+    "file": "SRCL-IEX-missing-day-evidence.json",
+    "source_grade": "Locally extracted source-member and ZIP hashes plus adjacent observations",
+    "request_number": null,
+    "sha256": "261ef25fe463b135a148c17cb63b48fd83d08122c58ea9b77a1c516ffe1dc5f7"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "new_public_requests_started": 4,
+  "budget": 4,
+  "mode": "Serial only; pending requests stay pending and are not repeated",
+  "status": "4/4 requests exhausted; local review only",
+  "requests": [
+    {
+      "number": 1,
+      "kind": "single_public_SEC_HTTP",
+      "url": "https://data.sec.gov/submissions/CIK0000861878.json",
+      "status": "returned",
+      "cik_is_candidate_until_response_identity_checked": true,
+      "timeout_seconds": 25,
+      "http_status": 200,
+      "bytes": 160256,
+      "sha256": "ecc28aa742e805b2028368cc0981dd61064b74b091e39d145915b8bddf3cb5b3",
+      "elapsed_seconds": 0.6388394581153989,
+      "issuer_name_returned": "STERICYCLE INC",
+      "candidate_CIK_confirmed_as_stericycle": true
+    },
+    {
+      "number": 2,
+      "kind": "single_public_SEC_HTTP",
+      "url": "https://www.sec.gov/Archives/edgar/data/861878/000156459019005500/srcl-10k_20181231.htm",
+      "status": "failed",
+      "timeout_seconds": 25,
+      "source_url_derived_from": "Request 1 SEC submissions exact accession and primaryDocument",
+      "error_type": "HTTPError",
+      "error": "HTTP Error 403: Forbidden",
+      "elapsed_seconds": 0.18568575009703636,
+      "http_status": 403,
+      "error_body_sha256": "5c83bdf7f388adfe27d63cdba64addea009aff0400893cec2e26ebff43433649"
+    },
+    {
+      "number": 3,
+      "kind": "Search_MCP_web_serial",
+      "status": "returned",
+      "query": "site:sec.gov/Archives/edgar/data/861878/000156459019005500 \"Stericycle\" \"common stock\"",
+      "response_file": "03-2018-10K-search.json",
+      "response_sha256": "cdff02de413fd6220d52fd1678773dca2495009f584169d0d1783413681152a3"
+    },
+    {
+      "number": 4,
+      "kind": "Search_MCP_web_serial",
+      "status": "returned",
+      "query": "Stericycle 2018 annual report \"cash dividends\" \"common stock\"",
+      "response_file": "04-dividend-annual-search.json",
+      "response_sha256": "e13b209ccf12f8a5673b70b54dbdb07bc644931dd8d32ea4b6c9cd19010108b2"
+    }
+  ]
+}

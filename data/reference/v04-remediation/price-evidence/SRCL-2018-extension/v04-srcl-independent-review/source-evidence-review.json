@@ -1,0 +1,48 @@
+{
+  "status": "SOURCE_FACTS_REVIEWED",
+  "new_network_requests": 0,
+  "SEC_direct_identity": {
+    "cik": "0000861878",
+    "name": "STERICYCLE INC",
+    "ein": "363640402",
+    "filing": {
+      "accessionNumber": "0001564590-19-005500",
+      "filingDate": "2019-02-28",
+      "reportDate": "2018-12-31",
+      "form": "10-K",
+      "primaryDocument": "srcl-10k_20181231.htm"
+    },
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/01-sec-submissions.body.json",
+    "sha256": "ecc28aa742e805b2028368cc0981dd61064b74b091e39d145915b8bddf3cb5b3"
+  },
+  "filing_content": {
+    "source_grade": "Search-indexed third-party EDGAR Online mirror excerpt of issuer filing, matched exact accession; not direct SEC HTML or complete original PDF",
+    "url": "https://content.edgar-online.com/ExternalLink/EDGAR/0001564590-19-005500.html?hash=ed54712ea43ad06f4dc998d3f330efc7f922aea5cce684ff963633eef5262776",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/2018-10K.edgar-online.indexed.txt",
+    "sha256": "377889eb0fcbc8a5b55a06bb0b3e13034f9c64101d69cb230ed795f3be0d8757",
+    "identical_to_saved_search_returned_content": true,
+    "SEC_HTML_request_status": 403,
+    "common_stock_identity_and_cash_dividends_excerpt": "The Company’s common stock is listed on the Nasdaq Global Select Market under the ticker symbol \"SRCL.\" There were 88 shareholders of record as of February 25, 2019. We did not declare or pay any cash dividends on our common stock during 2018, 2017 or 2016. We currently expect that we will retain future earnings for debt repayment and use in the operation and expansion of our business and do not anticipate paying any cash dividends on our common stock in the foreseeable future.",
+    "preferred_conversion_excerpt": "Finally, in September 2018, our Series A Mandatory Convertible Preferred Stock (“Series A Preferred Stock”) was converted, in accordance with the terms of issue, into a total of 4.7 million shares of our common stock (for additional information, see Part II, Item 8. Financial Statements and Supplementary Data; Note 14 – Preferred Stock in the Consolidated Financial Statements)."
+  },
+  "performance_graph": {
+    "method_excerpt_available": "Performance Graph The following graph compares the cumulative total return (i.e., share price appreciation plus dividends) on our common stock over the five-year period ended December 31, 2018 with the cumulative total return for the same period on the S&P 500 Index, the Dow Jones U.S. Waste & Disposal Services Index, the Nasdaq Global Select Index, and the S&P Mid Cap 400 Index. The Company has included the Nasdaq Global Select Market Composite Index, replacing the Nasdaq National Market Composite Index as the Company’s common stock is registered on the Nasdaq Global Select Market. In addition, the Company’s common stock is no longer included as part of the S&P 500 Index, as of December 31, 2018, and the S&P 500 Index will be excluded from future performance analysis. Instead the Company is now included as a part of the S&P Mid Cap 400 Index which has been included in the performance analysis below and will be included in the performance analysis in future periods. The graph assumes that $100 was invested on December 31, 2013 in our common stock and in the shares represented by each of the four indices, and that all dividends were reinvested. \n2018 10-K Annual Report Stericycle, Inc.  • 35 \nPART II The stock price performance of our common stock reflected in the following graph is not necessarily indicative of future performance. \n2018 10-K Annual Report Stericycle, Inc.  • 36 \n",
+    "numeric_graph_or_table_available_in_saved_text": false,
+    "crosscheck_performed": false,
+    "new_requirement_introduced": false
+  },
+  "IEX_vendor_provenance": {
+    "dataset_ref": "camnugent/sandp500",
+    "version": 4,
+    "metadata_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-kaggle-metadata.source.json",
+    "metadata_sha256": "f178d81c5312e7388336f5a9f666858acc974caff5b2940b52b4b2966ba55d1c",
+    "upstream_excerpt": "Due to volatility in google finance, for the newest version I have switched over to acquiring the data from The Investor's Exchange api, the simple script I use to do this is found [here][2]. Special thanks to Kaggle, Github, pandas_datareader and The Market.",
+    "grade": "Independent retained vendor CSV upstream declaration, not exchange transaction certification"
+  },
+  "retained_limitations": [
+    "No new issuer action verification for 2007-2015; preserve legacy WIKI source grade.",
+    "No exact issuer OHLCV anchor for each tail date.",
+    "Preferred dividends and conversion apply to preferred holders, not an entitlement of existing common holders.",
+    "Source facts alone do not clear global historical evidence gate or certify path closure."
+  ]
+}

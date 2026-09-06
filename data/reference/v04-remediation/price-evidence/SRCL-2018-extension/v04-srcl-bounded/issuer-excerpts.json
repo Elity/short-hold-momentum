@@ -1,0 +1,26 @@
+[
+  {
+    "id": "common_class",
+    "source_file": "2018-10K.edgar-online.indexed.txt",
+    "quote": "Common stock, par value $.01 per share Nasdaq Global Select Market",
+    "whitespace_normalized": true
+  },
+  {
+    "id": "symbol",
+    "source_file": "2018-10K.edgar-online.indexed.txt",
+    "quote": "The Company’s common stock is listed on the Nasdaq Global Select Market under the ticker symbol \"SRCL.\"",
+    "whitespace_normalized": true
+  },
+  {
+    "id": "common_cash_policy_2016_2018",
+    "source_file": "2018-10K.edgar-online.indexed.txt",
+    "quote": "We did not declare or pay any cash dividends on our common stock during 2018, 2017 or 2016.",
+    "whitespace_normalized": true
+  },
+  {
+    "id": "preferred_conversion_not_common_distribution",
+    "source_file": "2018-10K.edgar-online.indexed.txt",
+    "quote": "Finally, in September 2018, our Series A Mandatory Convertible Preferred Stock (“Series A Preferred Stock”) was converted, in accordance with the terms of issue, into a total of 4.7 million shares of our common stock",
+    "whitespace_normalized": true
+  }
+]
