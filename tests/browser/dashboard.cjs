@@ -90,16 +90,17 @@ async function screenshot(name) {
   await page.locator('[data-action="tickets"]').click();
   assert.match(await page.locator('#dialog').innerText(),/调仓计划/);
   await close();
-  checks.push('成交筛选、已实现盈亏、调仓计划与 CSV 导出');
+  checks.push(sells.length?'成交筛选、已实现盈亏、调仓计划与 CSV 导出':'真实空成交状态与调仓单入口；成交明细和导出由隔离账户用例覆盖');
   await nav('logs');
   assert.equal(await page.locator('#page-content tbody tr').count(),expected.runs.length);
+  assert.doesNotMatch(await page.locator('#page-content').innerText(),/paper status:|gate_ready=/);
   await screenshot('logs');
   for(const status of ['failed','success']) {
     await page.locator('[data-log-filter="'+status+'"]').click();
     const run=expected.runs.find(r=>r.status===status);
     if(run) {
       await page.locator('[data-run="'+run.id+'"]').first().click();
-      await page.locator('#dialog .section-title').waitFor();
+      await page.getByRole('heading',{name:'真实运行步骤',exact:true}).waitFor();
       const response=await context.request.get(base+'/api/runs/'+run.id);
       const detail=await response.json();
       assert.equal(await page.locator('#dialog details').count(),detail.steps.length);

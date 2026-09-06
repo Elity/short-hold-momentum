@@ -111,7 +111,36 @@ function logsPage(){
   const rows=data.runs.filter(r=>state.logFilter==='all'||r.status===state.logFilter);
   return miniStats([['每日检查时间',esc(data.schedule.time)],['最近运行',data.runs[0]?statusText[data.runs[0].status]:'尚无记录',data.runs[0]?.status==='success'?'positive':''],['下次调仓信号',esc(data.progress.next.slice(5).replace('-',' / '))]])+
     '<section class="panel"><div class="toolbar"><div class="tabs" aria-label="运行状态">'+[['all','全部运行'],['success','成功'],['failed','失败']].map(([key,label])=>'<button data-log-filter="'+key+'" class="'+(state.logFilter===key?'active':'')+'">'+label+'</button>').join('')+'</div><span class="muted small">近 90 天 · '+esc(data.schedule.timezone)+'</span></div>'+
-    (rows.length?'<div class="table-scroll"><table class="logs-table"><thead><tr><th>运行 / 开始时间</th><th>状态</th><th>市场交易日</th><th>耗时</th><th>结果摘要</th><th></th></tr></thead><tbody>'+rows.map(r=>'<tr class="clickable" data-run="'+r.id+'"><td class="two-line num"><strong style="font-weight:500">#'+r.id+'</strong> &nbsp; '+time(r.started_at||r.created_at)+'<small class="muted">'+(r.trigger==='scheduled'?'定时触发':r.trigger==='manual-retry'?'失败重试':'手动触发')+'</small></td><td>'+statusBadge(r.status)+'</td><td class="num small">'+esc(r.market_session||'—')+'</td><td class="two-line small">'+duration(r.started_at,r.finished_at)+'<small class="muted">尝试 '+r.attempts+' 次</small></td><td class="small log-summary">'+esc((r.summary||r.error||'等待执行').slice(0,160))+'</td><td><button class="text-button" data-run="'+r.id+'" aria-label="查看运行 '+r.id+' 详情">'+icon('arrow')+'</button></td></tr>').join('')+'</tbody></table></div><div class="table-bottom"><span>展开记录查看真实步骤、错误与输出</span><span>'+rows.length+' 条</span></div>':empty('暂无符合条件的运行记录','运行记录保存在调度服务中，当前展示最近 90 天。','activity'))+'</section>';
+    (rows.length?'<div class="table-scroll"><table class="logs-table"><thead><tr><th>运行 / 开始时间</th><th>状态</th><th>市场交易日</th><th>耗时</th><th>结果摘要</th><th></th></tr></thead><tbody>'+rows.map(r=>'<tr class="clickable" data-run="'+r.id+'"><td class="two-line num"><strong style="font-weight:500">#'+r.id+'</strong> &nbsp; '+time(r.started_at||r.created_at)+'<small class="muted">'+(r.trigger==='scheduled'?'定时触发':r.trigger==='manual-retry'?'失败重试':'手动触发')+'</small></td><td>'+statusBadge(r.status)+'</td><td class="num small">'+esc(r.market_session||'—')+'</td><td class="two-line small">'+duration(r.started_at,r.finished_at)+'<small class="muted">尝试 '+r.attempts+' 次</small></td><td class="small log-summary">'+esc(runSummary(r).slice(0,160))+'</td><td><button class="text-button" data-run="'+r.id+'" aria-label="查看运行 '+r.id+' 详情">'+icon('arrow')+'</button></td></tr>').join('')+'</tbody></table></div><div class="table-bottom"><span>展开记录查看真实步骤、错误与输出</span><span>'+rows.length+' 条</span></div>':empty('暂无符合条件的运行记录','运行记录保存在调度服务中，当前展示最近 90 天。','activity'))+'</section>';
+}
+function runSummary(run){
+  if(run.status==='queued')return '等待执行';
+  if(run.status==='running')return '任务正在运行';
+  if(run.status==='failed'){
+    if(run.error==='service restarted before completion')return '服务重启，运行在完成前中断';
+    return run.error||'运行失败，请展开查看具体原因';
+  }
+  const summary=run.summary||'检查完成';
+  if(!summary.includes('paper status:'))return summary;
+  const events=[
+    [/\bticket \d{4}-/, '已生成调仓单'],
+    [/\bfills \d{4}-/, '已记录模拟成交'],
+    [/recovered account \d{4}-/, '已恢复账户记账'],
+    [/option overlay \d{4}-/, '期权评估完成'],
+    [/monthly report \d{4}-/, '已生成月报'],
+  ].filter(([pattern])=>pattern.test(summary)).map(([,label])=>label);
+  if(summary.includes('missed rebalance'))events.push('错过调仓窗口');
+  if(summary.includes('missed fill'))events.push('错过模拟成交窗口');
+  if(summary.includes('skipped stale option overlay')){
+    const index=events.indexOf('期权评估完成');
+    if(index>=0)events.splice(index,1);
+    events.push('期权窗口已过，已跳过');
+  }
+  const cycles=summary.match(/cycles=(\d+\/\d+)/),months=summary.match(/monthly_reports=(\d+\/\d+)/);
+  return [
+    events.length?events.join('；'):'行情与任务检查完成',
+    cycles?'调仓 '+cycles[1]:null,months?'月报 '+months[1]:null,
+  ].filter(Boolean).join(' · ');
 }
 function reportsPage(){
   if(!data.reports.length)return '<section class="panel">'+empty('尚无策略报告','月末自动生成模拟盘月报；成交后生成的期权覆盖评估也会在此展示。','file')+'</section>';
@@ -163,9 +192,9 @@ async function showRun(id){
     const result=await api('/api/runs/'+id),r=result.run;
     openDialog('运行 #'+r.id+' &nbsp; '+statusBadge(r.status),'SHM 调度 · '+esc(data.schedule.timezone),
       dialogStats([['开始时间',time(r.started_at).split(' ').at(-1)],['总耗时',duration(r.started_at,r.finished_at)],['尝试次数',r.attempts+' 次']])+
-      '<p class="report-text">'+time(r.started_at||r.created_at)+' · 市场交易日 '+esc(r.market_session||'—')+'</p><p class="report-text run-summary">'+esc(r.summary||r.error||'任务正在运行')+'</p>'+
+      '<p class="report-text">'+time(r.started_at||r.created_at)+' · 市场交易日 '+esc(r.market_session||'—')+'</p><p class="report-text run-summary">'+esc(runSummary(r))+'</p>'+
       '<h3 class="section-title">真实运行步骤</h3>'+result.steps.map(step=>'<details class="log-step" '+(step.status==='failed'?'open':'')+'><summary><span class="step-title">'+esc(stepName(step.name))+'</span><span class="step-result"><span class="muted small">尝试 '+step.attempt+' · '+duration(step.started_at,step.finished_at)+'</span>'+statusBadge(step.status)+icon('down')+'</span></summary><pre>'+esc(step.output||'无文本输出')+'</pre></details>').join('')+
-      (result.steps.length?'':'<p class="field-help">尚无步骤记录。</p>'),true);
+      (result.steps.length?'':'<p class="field-help">尚无步骤记录。</p>')+'<h3 class="section-title">原始运行摘要</h3><pre class="report-json">'+esc(r.summary||r.error||'尚无输出')+'</pre>',true);
   }catch(error){showToast(error.message)}
 }
 function markdown(source){

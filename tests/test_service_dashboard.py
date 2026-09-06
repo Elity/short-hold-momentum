@@ -98,7 +98,10 @@ def seed_dashboard(root: Path, *, populated: bool = True) -> ServiceStore:
                 run_id=run_id, attempt=1, name="rebalance", status="skipped",
                 started_at=NOW, finished_at=NOW, output="本次没有到期调仓",
             )
-        store.finish_run(run_id, status, summary="检查完成" if status == "success" else "",
+        store.finish_run(run_id, status, summary=(
+            "2026-10-16: fills 2026-10-16; paper status: cycles=2/3, pending=0, "
+            "missed=0, monthly_reports=1/3, next_rebalance=2026-11-12"
+        ) if status == "success" else "",
                          error="行情请求失败" if status == "failed" else "")
         with store._connect() as connection:
             connection.execute(
