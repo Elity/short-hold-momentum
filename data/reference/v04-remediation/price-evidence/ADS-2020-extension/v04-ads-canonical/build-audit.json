@@ -1,0 +1,70 @@
+{
+  "status": "WORK_CANDIDATE_REQUIRES_INDEPENDENT_REVIEW",
+  "approved_for_application": false,
+  "candidate": {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-canonical/ADS-repaired-through-2020-07-02.candidate.parquet",
+    "sha256": "ff8ee755db4e74b7e127b1147f4cd41e1c9977fb774796faf9a637c9dd384438",
+    "rows": 4218,
+    "tail_rows": 571
+  },
+  "baseline_sha256": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
+  "source_inputs": {
+    "wiki": {
+      "source": "wiki",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ADS.parquet",
+      "sha256": "89b9ebd7f9e2ff9aabb86c15bc11d2add682f73f7eaf54aa2bb05fe323a5ff62",
+      "matches_expected": true
+    },
+    "canonical": {
+      "source": "canonical",
+      "path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ADS.parquet",
+      "sha256": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
+      "matches_expected": true
+    },
+    "sheepb": {
+      "source": "sheepb",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ADS.parquet",
+      "sha256": "173d8919cbfe7d86a62b8f3795c9a106036c5a97d12283934e5147607bdd13d9",
+      "matches_expected": true
+    },
+    "iex": {
+      "source": "iex",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-bounded-preflight/ADS-IEX.source.csv",
+      "sha256": "b4569e912defe1d4caa45edbb26765bf0f36750513d8fed18c972eea7c7b25de",
+      "matches_expected": true
+    }
+  },
+  "issuer_ledger_sha256": "f21ad921d2fbc3c57110cb030d279871175c8b143b6f066589e9734acdd1a927",
+  "prefix_corrections": [
+    {
+      "date": "2017-11-13",
+      "old_cash": 0,
+      "issuer_cash": 0.52,
+      "pre_ex_multiplier": 0.997686009255963
+    },
+    {
+      "date": "2018-02-13",
+      "old_cash": 0,
+      "issuer_cash": 0.57,
+      "pre_ex_multiplier": 0.9976907183081472
+    }
+  ],
+  "normalization": "Keep 2018-03-27 anchor unchanged; two missing old cash events alone change pre-ex adjusted OHLC; nine tail events advance the factor from each vendor date without renormalizing old prefix.",
+  "original_four_cash_events_retained_once": true,
+  "nominal_fields_unchanged": true,
+  "new_row_download_times_unknown_NaT": true,
+  "maximum_return_identity_error": 8.903988657493755e-14,
+  "required_window": [
+    "2012-12-12",
+    "2020-07-02"
+  ],
+  "required_sessions": 1902,
+  "first_normal_post_removal_nominal_open": 45.20000076293945,
+  "event_date_grade": "Vendor-observed dates retained; only 2017-02-13 has an explicit secondary ex-date in this packet; no primary ex-date claim.",
+  "payment_grade": "2020 two amounts have issuer declarations; actual payment not separately obtained.",
+  "ordinary_cash_actions_added": 0,
+  "source_end_is_not_terminal": true,
+  "older_prefix_not_newly_certified": true,
+  "repo_changed": false,
+  "network_requests": 0
+}

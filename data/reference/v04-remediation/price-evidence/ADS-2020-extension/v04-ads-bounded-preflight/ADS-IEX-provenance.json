@@ -1,0 +1,7 @@
+{
+  "source_zip_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-sp500.source.zip",
+  "source_zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+  "member": "individual_stocks_5yr/individual_stocks_5yr/ADS_data.csv",
+  "member_sha256": "b4569e912defe1d4caa45edbb26765bf0f36750513d8fed18c972eea7c7b25de",
+  "source_grade": "Existing Cam Nugent sandp500 v4 archive with retained IEX upstream metadata; one member read locally, no network"
+}

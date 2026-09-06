@@ -1,0 +1,72 @@
+[
+  {
+    "request_number": 1,
+    "url": "https://last10k.com/sec-filings/ads/0001101215-18-000066.htm",
+    "reason": "Link metadata only; not the actual requested annual/quarterly financial text"
+  },
+  {
+    "request_number": 2,
+    "url": "https://www.sec.gov/Archives/edgar/data/27904/000002790420000004/dal-20191231.htm",
+    "reason": "Wrong issuer CIK; Delta/Apple/Amtech/Align/Ally materials excluded"
+  },
+  {
+    "request_number": 2,
+    "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019319000119/a10-k20199282019.htm",
+    "reason": "Wrong issuer CIK; Delta/Apple/Amtech/Align/Ally materials excluded"
+  },
+  {
+    "request_number": 2,
+    "url": "https://d18rn0p25nwr6d.cloudfront.net/CIK-0001101215/51b9a5ed-2b35-4486-bb1a-d12cbe3c127b.pdf",
+    "reason": "Partial or redundant result not used in ledger"
+  },
+  {
+    "request_number": 2,
+    "url": "https://last10k.com/sec-filings/ads/0001101215-19-000048.htm",
+    "reason": "Link metadata only; not the actual requested annual/quarterly financial text"
+  },
+  {
+    "request_number": 3,
+    "url": "https://www.sec.gov/Archives/edgar/data/720500/000156459020037822/asys-10q_20200630.htm",
+    "reason": "Wrong issuer CIK; Delta/Apple/Amtech/Align/Ally materials excluded"
+  },
+  {
+    "request_number": 3,
+    "url": "https://www.sec.gov/Archives/edgar/data/1097149/000109714920000049/algn-20200630.htm",
+    "reason": "Wrong issuer CIK; Delta/Apple/Amtech/Align/Ally materials excluded"
+  },
+  {
+    "request_number": 3,
+    "url": "https://last10k.com/sec-filings/ads/0001101215-20-000152.htm",
+    "reason": "Link metadata only; not the actual requested annual/quarterly financial text"
+  },
+  {
+    "request_number": 3,
+    "url": "https://www.prnewswire.com/news-releases/alliance-data-declares-dividend-on-common-stock-301162647.html",
+    "reason": "Outside required distribution window; not used to establish earlier payment"
+  },
+  {
+    "request_number": 3,
+    "url": "https://www.sec.gov/Archives/edgar/data/40729/000004072920000021/ally202063010-q.htm",
+    "reason": "Wrong issuer CIK; Delta/Apple/Amtech/Align/Ally materials excluded"
+  },
+  {
+    "request_number": 4,
+    "url": "https://last10k.com/sec-filings/ads/0001101215-20-000152.htm",
+    "reason": "Link metadata only; not the actual requested annual/quarterly financial text"
+  },
+  {
+    "request_number": 4,
+    "url": "https://www.forbes.com/sites/dividendchannel/2020/04/23/daily-dividend-report-kinder-morgan-lockheed-martin-coca-cola-humana-alliance-data-systems/",
+    "reason": "Contemporaneous secondary repeat of already obtained2020Q2 issuer declaration; not needed as extra independent payment evidence"
+  },
+  {
+    "request_number": 4,
+    "url": "https://www.sec.gov/Archives/edgar/data/1101215/000110121520000144/exhibit_99-1.htm",
+    "reason": "Outside required distribution window; not used to establish earlier payment"
+  },
+  {
+    "request_number": 4,
+    "url": "https://www.marketscreener.com/quote/stock/BREAD-FINANCIAL-HOLDINGS--11535/news/Alliance-Data-Systems-Corporation-Declares-Dividend-on-Common-Stock-Payable-on-September-18-2020-33777919/",
+    "reason": "Outside required distribution window; not used to establish earlier payment"
+  }
+]

@@ -566,15 +566,19 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "ADS": {
-      "path": "data/research/v04/prices/ADS.parquet",
-      "sha256": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
+      "path": "data/research/v04/prices/ADS-repaired-through-2020-07-02.parquet",
+      "sha256": "ff8ee755db4e74b7e127b1147f4cd41e1c9977fb774796faf9a637c9dd384438",
       "source_ticker": "ADS",
       "source_name": "Alliance Data Systems Corp.",
       "first": "2003-10-01",
-      "last": "2018-03-27",
+      "last": "2020-07-02",
       "invalid_rows": 0,
       "source_archive_sha256": "89b9ebd7f9e2ff9aabb86c15bc11d2add682f73f7eaf54aa2bb05fe323a5ff62",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "Preserve old nominal fields and March27 anchor; correct two omitted issuer cash amounts in pre-ex adjusted OHLC; restore whole IEX2017-11-08 row; append571 whole SheepB rows with nine issuer amounts and vendor dates under existing total-return convention.",
+      "legacy_original_path": "data/research/v04/prices/ADS.parquet",
+      "legacy_original_sha256": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
+      "evidence_path": "data/reference/v04-remediation/price-evidence/ADS-2020-extension/application-review.md",
+      "evidence_sha256": "a5be79ce9d8434dff6aee63c563a0c8f9e6a7f8a93b4e1e5c532680b58302463"
     },
     "AGN": {
       "path": "data/research/v04/prices/AGN.parquet",

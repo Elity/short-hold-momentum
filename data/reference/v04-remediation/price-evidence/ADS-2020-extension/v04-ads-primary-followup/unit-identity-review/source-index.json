@@ -1,0 +1,37 @@
+[
+  {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-10K.edgar-online.indexed.txt",
+    "sha256": "82a4a43de124839320cce7b76e0cfcc4265dbef6d0cccaf8ed7bcae4c82ee3e0",
+    "grade": "issuer_10K_mirror_search_index_text_not_direct_SEC_download_partial_body"
+  },
+  {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2019-10K.edgar-online.indexed.txt",
+    "sha256": "02c11d849501b4f366b7cb3a8046c1969bd6a77c6d72dd465544a730d3e7f48e",
+    "grade": "issuer_10K_mirror_search_index_text_not_direct_SEC_download_partial_body"
+  },
+  {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2020-04-23-dividend.SEC-indexed.txt",
+    "sha256": "5c9878792cac4d24ce9f8b23373fbca61fe048df4b94824eb0712983e8a69925",
+    "grade": "SEC_8K_index_text_not_direct_download"
+  },
+  {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2020-04-23-dividend.issuer-release.indexed.txt",
+    "sha256": "87c81690aace0d532ceb222413c4b3037ce36b8c1ddf40947b2054d0fb9bcb9d",
+    "grade": "issuer_PRNewswire_release_index_text"
+  },
+  {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ADS.parquet",
+    "sha256": "89b9ebd7f9e2ff9aabb86c15bc11d2add682f73f7eaf54aa2bb05fe323a5ff62",
+    "grade": "existing_price_observations_not_modified"
+  },
+  {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ADS.parquet",
+    "sha256": "173d8919cbfe7d86a62b8f3795c9a106036c5a97d12283934e5147607bdd13d9",
+    "grade": "existing_price_observations_not_modified"
+  },
+  {
+    "path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ADS.parquet",
+    "sha256": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
+    "grade": "existing_price_observations_not_modified"
+  }
+]

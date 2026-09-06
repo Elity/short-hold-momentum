@@ -1,0 +1,93 @@
+[
+  {
+    "id": "2017_quarter_amounts_and_2016_initial_quarter",
+    "source_id": "P17M",
+    "quote": "We declared and paid cash dividends per share during the periods presented as follows: Dividends Per Share Amount (in millions) Year Ended December 31, 2017 First quarter 0.52 29.0 Second quarter 0.52 29.0 Third quarter 0.52 28.8 Fourth quarter 0.52 28.7 Total cash dividends declared and paid 2.08 115.5 Year Ended December 31, 2016 First quarter Second quarter Third quarter Fourth quarter 0.52 30.0 Total cash dividends declared and paid 0.52 30.0",
+    "scope": "2016Q4 and each2017 quarter per-share declared-and-paid amounts; blank earlier2016 rows are not invented event dates",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "dividend_program_start",
+    "source_id": "P17M",
+    "quote": "Since October 2016, our Board of Directors has declared quarterly cash dividend payments on our outstanding common stock.",
+    "scope": "Program timing only; exact2016 first declaration/record/pay dates are not supplied by this passage",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "individual_2017_event_2017-02-13",
+    "source_id": "P17M",
+    "quote": "On January 26, 2017, our Board of Directors declared a quarterly cash dividend of $0.52 per share on our common stock to stockholders of record at the close of business on February 15, 2017, resulting in a dividend payment of $29.0 million on March 17, 2017.",
+    "scope": "Individual common amount and declaration/record/actual payment date; passage does not explicitly state ex-date",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "individual_2017_event_2017-05-11",
+    "source_id": "P17M",
+    "quote": "On April 20, 2017, our Board of Directors declared a quarterly cash dividend of $0.52 per share on our common stock to stockholders of record at the close of business on May 15, 2017, resulting in a dividend payment of $29.0 million on June 19, 2017.",
+    "scope": "Individual common amount and declaration/record/actual payment date; passage does not explicitly state ex-date",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "individual_2017_event_2017-08-10",
+    "source_id": "P17M",
+    "quote": "On July 20, 2017, our Board of Directors declared a quarterly cash dividend of $0.52 per share on our common stock to stockholders of record at the close of business on August 14, 2017, resulting in a dividend payment of $28.8 million on September 19, 2017.",
+    "scope": "Individual common amount and declaration/record/actual payment date; passage does not explicitly state ex-date",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "individual_2017_event_2017-11-13",
+    "source_id": "P17M",
+    "quote": "On October 19, 2017, our Board of Directors declared a quarterly cash dividend of $0.52 per share on our common stock to stockholders of record at the close of business on November 14, 2017, resulting in a dividend payment of $28.7 million on December 19, 2017.",
+    "scope": "Individual common amount and declaration/record/actual payment date; passage does not explicitly state ex-date",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "2018Q1_declaration",
+    "source_id": "P17M",
+    "quote": "On January 25, 2018, our Board of Directors declared a quarterly cash dividend of $0.57 per share on our common stock, payable on March 20, 2018 to stockholders of record at the close of business on February 14, 2018.",
+    "scope": "Individual2018Q1 declared amount and stated payable/record dates",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "2018_2019_quarterly_paid_amounts",
+    "source_id": "P19M",
+    "quote": "Dividends Per Share Amount (in millions) Year Ended December 31, 2019 First quarter $ 0.63 $ 33.9 Second quarter 0.63 33.1 Third quarter 0.63 30.4 Fourth quarter 0.63 30.0 Total cash dividends paid $ 2.52 $ 127.4 Year Ended December 31, 2018 First quarter $ 0.57 $ 31.7 Second quarter 0.57 31.6 Third quarter 0.57 31.2 Fourth quarter 0.57 30.7 Total cash dividends paid $ 2.28 $ 125.2",
+    "scope": "Quarter per-share paid totals. One relevant source event is observed per quarter; this table does not independently supply exact ex/record/pay dates",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "2020Q1_declaration",
+    "source_id": "P19M",
+    "quote": "On January 30, 2020 our Board of Directors declared a quarterly cash dividend of $0.63 per share on our common stock, payable on March 19, 2020 to stockholders of record at the close of business on February 14, 2020.",
+    "scope": "2020Q1 declaration and scheduled dates; actual payment not established by this future-dated statement",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "2019Q2_issuer_declaration",
+    "source_id": "P19Q2_RELEASE",
+    "quote": "Alliance Data Systems Corporation (NYSE: ADS), a leading global provider of data-driven marketing and loyalty solutions, today announced that its Board of Directors declared a quarterly cash dividend of $0.63 per share on the Company's common stock, payable on June 18, 2019 to stockholders of record at the close of business on May 14, 2019.",
+    "scope": "Release is dated April25,2019; individual common declaration and stated payable/record dates",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "2020Q2_SEC_declaration",
+    "source_id": "P20Q2_SEC",
+    "quote": "On April 23, 2020, Alliance Data Systems Corporation (the “Company”) issued a press release announcing that the Board of Directors of the Company declared a quarterly cash dividend of $0.21 per share, payable on June 18, 2020 to stockholders of record at the close of business on May 14, 2020.",
+    "scope": "Individual declared amount and scheduled dates; actual payment/2020Q2 financial statements not retrieved",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "2020Q2_common_stock_class",
+    "source_id": "P20Q2_RELEASE",
+    "quote": "today announced that its Board of Directors declared a quarterly cash dividend of $0.21 per share on the Company's common stock, payable on June 18, 2020 to stockholders of record at the close of business on May 14, 2020.",
+    "scope": "Explicit common-stock class; not preferred distribution",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  },
+  {
+    "id": "secondary_explicit_ex_date_2017Q1",
+    "source_id": "S17Q1_EX",
+    "quote": "Dividend Declaration Date: January 26, 2017 Dividend Ex Date: February 13, 2017 Dividend Record Date: February 15, 2017 Dividend Payment Date: March 17, 2017 Dividend Amount: $ 0.5200",
+    "scope": "Only explicitly labelled independent secondary ex-date obtained in these four requests",
+    "normalization": "Whitespace collapsed and zero-width layout characters removed; original indexed text preserved unchanged"
+  }
+]

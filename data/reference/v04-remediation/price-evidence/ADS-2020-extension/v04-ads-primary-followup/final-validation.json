@@ -1,0 +1,14 @@
+{
+  "status": "PASS_LOCAL_PACKET_CONSISTENCY",
+  "readiness": "READY_FOR_BOUNDED_CANDIDATE_REVIEW_WITH_DISCLOSED_DATE_AND_PAYMENT_LIMITS",
+  "events": 15,
+  "sum_issuer_supported_amounts_usd": 8.24,
+  "source_hashes_checked": 8,
+  "request_hashes_checked": 4,
+  "requests_terminal": 4,
+  "pending_requests": 0,
+  "application_approvals": 0,
+  "primary_ex_dates": 0,
+  "secondary_explicit_ex_dates": 1,
+  "report_sha256": "4f2ba2f793e14377623b074f2ed7af82d55be5e500014ca501e9dabcb4172d98"
+}

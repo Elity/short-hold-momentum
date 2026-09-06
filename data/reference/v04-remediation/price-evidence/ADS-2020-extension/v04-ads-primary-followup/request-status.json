@@ -1,0 +1,39 @@
+{
+  "budget": 4,
+  "new_public_requests_started": 4,
+  "status": "4/4 requests exhausted; local review only",
+  "requests": [
+    {
+      "number": 1,
+      "kind": "Search_MCP_web_serial",
+      "status": "returned",
+      "query": "Alliance Data Systems 2017 annual report common stock dividends 0.52",
+      "response_file": "01-2017-annual-search.json",
+      "sha256": "590e9d8b275883d8735ed4ec8c0a4022c10a60a9d2107e51ad7672bdeb93ac08"
+    },
+    {
+      "number": 2,
+      "kind": "Search_MCP_web_serial",
+      "status": "returned",
+      "query": "Alliance Data Systems 2019 Form 10-K cash dividends per share",
+      "response_file": "02-2019-annual-search.json",
+      "sha256": "59796a23fb14fcfb43867b5e0f0cc3b3297f2fd897c7ae034731e5b6a4a4f54c"
+    },
+    {
+      "number": 3,
+      "kind": "Search_MCP_web_serial",
+      "status": "returned",
+      "query": "Alliance Data Systems 2020 10-Q June 30 cash dividend common stock",
+      "response_file": "03-2020-q2-search.json",
+      "sha256": "5133c0417a44df9358fd0050d3d101df539b1e628d281add336231e7657bef39"
+    },
+    {
+      "number": 4,
+      "kind": "Search_MCP_web_serial",
+      "status": "returned",
+      "query": "\"Alliance Data Systems\" \"June 30, 2020\" \"dividends\" \"0.21\"",
+      "response_file": "04-2020-half-year-search.json",
+      "sha256": "6340dc6d3befc1c02dac63f27c9fb333b33b097a639f9ba531c00d24c4a82f44"
+    }
+  ]
+}

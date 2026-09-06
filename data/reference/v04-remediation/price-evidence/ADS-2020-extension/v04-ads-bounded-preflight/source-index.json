@@ -1,0 +1,46 @@
+[
+  {
+    "source": "wiki",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ADS.parquet",
+    "sha256": "89b9ebd7f9e2ff9aabb86c15bc11d2add682f73f7eaf54aa2bb05fe323a5ff62",
+    "matches_expected": true
+  },
+  {
+    "source": "canonical",
+    "path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ADS.parquet",
+    "sha256": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
+    "matches_expected": true
+  },
+  {
+    "source": "sheepb",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ADS.parquet",
+    "sha256": "173d8919cbfe7d86a62b8f3795c9a106036c5a97d12283934e5147607bdd13d9",
+    "matches_expected": true
+  },
+  {
+    "source": "iex",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-bounded-preflight/ADS-IEX.source.csv",
+    "sha256": "b4569e912defe1d4caa45edbb26765bf0f36750513d8fed18c972eea7c7b25de",
+    "matches_expected": true
+  },
+  {
+    "source": "existing_provenance",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-2021-download.json",
+    "sha256": "ca52947426ff0ddd9e673a10e63ccca8cd5aa338dfe616b1262b994347ce8c95"
+  },
+  {
+    "source": "existing_provenance",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extraction.json",
+    "sha256": "44c194569727c7d875e0bf34859b503410958283e34a16a6f1fdafca4dcc5316"
+  },
+  {
+    "source": "existing_provenance",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-bounded-preflight/ADS-IEX-provenance.json",
+    "sha256": "9c107e46950b70d3c2ee1aeb09391645998d9f704897263684caeb29380cf169"
+  },
+  {
+    "source": "existing_provenance",
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-archive-closure-plan/next-minimum-scope.json",
+    "sha256": "096615f14645d081ef7f6005cf3ed3c3dde5d12996d8483699b27340cf35fd5d"
+  }
+]

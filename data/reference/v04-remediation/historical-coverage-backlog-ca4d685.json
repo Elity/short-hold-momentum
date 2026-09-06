@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at_utc": "2026-09-06T23:17:30.082603+00:00",
+  "generated_at_utc": "2026-09-06T22:38:56.023862+00:00",
   "scope": {
     "study_start": "2005-01-03",
     "cutoff": "2026-09-04",
@@ -12,7 +12,7 @@
       "MBGL"
     ]
   },
-  "manifest_sha256": "54974bff360b1317dbfe3496cfd6b0e346fb75d3401c043d5e24201dbb8c7bda",
+  "manifest_sha256": "e3efbd678b2b3db96e808268c6228ec1724613b98e705f6572a89b0d66ab1c70",
   "registered_actions": [
     "ALTR",
     "ARG",
@@ -27,10 +27,10 @@
   ],
   "counts": {
     "last_price_reaches_cutoff": 627,
-    "terminal_candidate_later_than_membership_end": 29,
+    "terminal_candidate_later_than_membership_end": 28,
     "series_present_but_no_member_period_overlap": 57,
     "whole_series_missing": 105,
-    "archive_2018_tail_gap_while_member": 61,
+    "archive_2018_tail_gap_while_member": 62,
     "terminal_candidate_at_membership_end": 32,
     "quarantined_no_usable_series": 4,
     "archive_boundary_after_membership_ended": 31,
@@ -40,12 +40,12 @@
   },
   "tail_summaries": {
     "archive_2018_tail_gap_while_member": {
-      "tickers": 61,
+      "tickers": 62,
       "end_date_counts": {
-        "2018-03-27": 61
+        "2018-03-27": 62
       },
-      "missing_required_member_sessions": 54856,
-      "missing_required_member_rebalance_observations": 2743,
+      "missing_required_member_sessions": 55418,
+      "missing_required_member_rebalance_observations": 2771,
       "zero_member_overlap_tickers": [
         "ABMD",
         "FRC",
@@ -79,13 +79,13 @@
       "in_previously_upgraded_list_count": 0
     },
     "all_unregistered_member_tail_gaps": {
-      "tickers": 62,
+      "tickers": 63,
       "end_date_counts": {
-        "2018-03-27": 61,
+        "2018-03-27": 62,
         "2021-08-19": 1
       },
-      "missing_required_member_sessions": 55399,
-      "missing_required_member_rebalance_observations": 2770,
+      "missing_required_member_sessions": 55961,
+      "missing_required_member_rebalance_observations": 2798,
       "zero_member_overlap_tickers": [
         "ABMD",
         "FRC",
@@ -36661,6 +36661,64 @@
         "in_previously_upgraded_list": false
       },
       {
+        "ticker": "ADS",
+        "first_member_session": "2013-12-23",
+        "last_member_session": "2020-06-19",
+        "first_nonmember_after_final_period": "2020-06-22",
+        "member_at_cutoff": false,
+        "membership_periods": [
+          {
+            "start": "2013-12-23",
+            "last_member_session": "2020-06-19",
+            "first_nonmember_session": "2020-06-22"
+          }
+        ],
+        "member_sessions": 1634,
+        "required_preterminal_member_sessions": 1634,
+        "member_rebalance_observations": 82,
+        "event_explained_member_sessions": 0,
+        "event_explained_member_rebalances": 0,
+        "source_path": "data/research/v04/prices/ADS.parquet",
+        "source_kind": "research_override",
+        "source_name": "Alliance Data Systems Corp.",
+        "source_sha256": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
+        "is_wiki_derived": true,
+        "manifest_declared_price_end": "2018-03-27",
+        "quarantined": false,
+        "corporate_action_in_manifest": null,
+        "price_window_in_manifest": null,
+        "raw_cache_exists": false,
+        "raw_cache_sha256": null,
+        "raw_first_valid_session": null,
+        "raw_last_valid_session": null,
+        "loaded_rows": 3590,
+        "valid_rows": 3590,
+        "first_price_session": "2003-12-19",
+        "last_price_session": "2018-03-27",
+        "missing_member_rebalances": 28,
+        "missing_required_member_rebalances": 28,
+        "invalid_basic_ohlcv_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "member_price_overlap_sessions": 1071,
+        "missing_member_sessions_before_first": 0,
+        "missing_member_sessions_internal": 1,
+        "missing_member_sessions_after_last": 562,
+        "missing_required_member_sessions_after_last": 562,
+        "missing_rebalances_after_last": 28,
+        "missing_required_rebalances_after_last": 28,
+        "first_missing_member_session_after_last": "2018-03-28",
+        "first_missing_rebalance_after_last": "2018-04-11",
+        "requested_missing_quote_start": "2018-03-28",
+        "action_preterminal_missing_sessions": 0,
+        "price_rows_after_registered_last_trade": 0,
+        "newer_raw_candidate_shadowed": false,
+        "raw_later_member_quote_sessions": 0,
+        "observed_end_matches_manifest": true,
+        "diagnostic_category": "archive_2018_tail_gap_while_member",
+        "archive_label_unverified": "Alliance Data Systems Corp.",
+        "in_previously_upgraded_list": false
+      },
+      {
         "ticker": "AGN",
         "first_member_session": "2005-01-03",
         "last_member_session": "2020-05-11",
@@ -49990,64 +50048,6 @@
         "in_previously_upgraded_list": false
       },
       {
-        "ticker": "ADS",
-        "first_member_session": "2013-12-23",
-        "last_member_session": "2020-06-19",
-        "first_nonmember_after_final_period": "2020-06-22",
-        "member_at_cutoff": false,
-        "membership_periods": [
-          {
-            "start": "2013-12-23",
-            "last_member_session": "2020-06-19",
-            "first_nonmember_session": "2020-06-22"
-          }
-        ],
-        "member_sessions": 1634,
-        "required_preterminal_member_sessions": 1634,
-        "member_rebalance_observations": 82,
-        "event_explained_member_sessions": 0,
-        "event_explained_member_rebalances": 0,
-        "source_path": "data/research/v04/prices/ADS-repaired-through-2020-07-02.parquet",
-        "source_kind": "research_override",
-        "source_name": "Alliance Data Systems Corp.",
-        "source_sha256": "ff8ee755db4e74b7e127b1147f4cd41e1c9977fb774796faf9a637c9dd384438",
-        "is_wiki_derived": true,
-        "manifest_declared_price_end": "2020-07-02",
-        "quarantined": false,
-        "corporate_action_in_manifest": null,
-        "price_window_in_manifest": null,
-        "raw_cache_exists": false,
-        "raw_cache_sha256": null,
-        "raw_first_valid_session": null,
-        "raw_last_valid_session": null,
-        "loaded_rows": 4162,
-        "valid_rows": 4162,
-        "first_price_session": "2003-12-19",
-        "last_price_session": "2020-07-02",
-        "missing_member_rebalances": 0,
-        "missing_required_member_rebalances": 0,
-        "invalid_basic_ohlcv_rows": 0,
-        "physical_range_conflict_rows": 0,
-        "member_price_overlap_sessions": 1634,
-        "missing_member_sessions_before_first": 0,
-        "missing_member_sessions_internal": 0,
-        "missing_member_sessions_after_last": 0,
-        "missing_required_member_sessions_after_last": 0,
-        "missing_rebalances_after_last": 0,
-        "missing_required_rebalances_after_last": 0,
-        "first_missing_member_session_after_last": null,
-        "first_missing_rebalance_after_last": null,
-        "requested_missing_quote_start": "2020-07-06",
-        "action_preterminal_missing_sessions": 0,
-        "price_rows_after_registered_last_trade": 0,
-        "newer_raw_candidate_shadowed": false,
-        "raw_later_member_quote_sessions": 0,
-        "observed_end_matches_manifest": true,
-        "diagnostic_category": "terminal_candidate_later_than_membership_end",
-        "archive_label_unverified": "Alliance Data Systems Corp.",
-        "in_previously_upgraded_list": false
-      },
-      {
         "ticker": "AMCC",
         "first_member_session": "2005-01-03",
         "last_member_session": "2006-05-17",
@@ -54573,7 +54573,7 @@
     },
     {
       "ticker": "ADS",
-      "category": "terminal_candidate_later_than_membership_end",
+      "category": "archive_2018_tail_gap_while_member",
       "source_label_not_verified_identity": "Alliance Data Systems Corp.",
       "membership_periods": [
         {
@@ -54582,11 +54582,11 @@
           "first_nonmember_session": "2020-06-22"
         }
       ],
-      "existing_last_quote": "2020-07-02",
+      "existing_last_quote": "2018-03-27",
       "complete_history_start": "2012-12-11",
       "minimum_member_coverage_end": "2020-06-19",
       "first_nonmember_session": "2020-06-22",
-      "next_missing_quote_start": null,
+      "next_missing_quote_start": "2018-03-28",
       "identity_requirement": "Permanent security ID and dated issuer/CIK; never assume the current ticker is the historic security.",
       "fields": [
         "nominal OHLCV and coverage flags",
@@ -61961,6 +61961,43 @@
       "minimum_member_coverage_end": "2022-12-21",
       "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
       "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event."
+    },
+    {
+      "ticker": "ADS",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ADS.parquet",
+      "sha256": "173d8919cbfe7d86a62b8f3795c9a106036c5a97d12283934e5147607bdd13d9",
+      "rows": 5077,
+      "first": "2001-06-15",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "Alliance Data Systems"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 562,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 28,
+      "minimum_member_coverage_end": "2020-06-19",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 562,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
     },
     {
       "ticker": "ANSS",
@@ -79282,7 +79319,45 @@
       "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event."
     }
   ],
-  "next_five_local_candidates": [],
+  "next_five_local_candidates": [
+    {
+      "ticker": "ADS",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ADS.parquet",
+      "sha256": "173d8919cbfe7d86a62b8f3795c9a106036c5a97d12283934e5147607bdd13d9",
+      "rows": 5077,
+      "first": "2001-06-15",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "Alliance Data Systems"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 562,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 28,
+      "minimum_member_coverage_end": "2020-06-19",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 562,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
+    }
+  ],
   "price_repair_evidence": {
     "name": "PRICE_REPAIR_EVIDENCE",
     "current_manifest_status": "INCONCLUSIVE",
@@ -79313,15 +79388,15 @@
       "whole_missing": 105,
       "quarantined": 4,
       "zero_member_overlap": 57,
-      "member_tail_gaps": 62,
+      "member_tail_gaps": 63,
       "by_tail_type": {
         "archive_2018_tail_gap_while_member": {
-          "tickers": 61,
+          "tickers": 62,
           "end_date_counts": {
-            "2018-03-27": 61
+            "2018-03-27": 62
           },
-          "missing_required_member_sessions": 54856,
-          "missing_required_member_rebalance_observations": 2743,
+          "missing_required_member_sessions": 55418,
+          "missing_required_member_rebalance_observations": 2771,
           "zero_member_overlap_tickers": [
             "ABMD",
             "FRC",
@@ -79355,13 +79430,13 @@
           "in_previously_upgraded_list_count": 0
         },
         "all_unregistered_member_tail_gaps": {
-          "tickers": 62,
+          "tickers": 63,
           "end_date_counts": {
-            "2018-03-27": 61,
+            "2018-03-27": 62,
             "2021-08-19": 1
           },
-          "missing_required_member_sessions": 55399,
-          "missing_required_member_rebalance_observations": 2770,
+          "missing_required_member_sessions": 55961,
+          "missing_required_member_rebalance_observations": 2798,
           "zero_member_overlap_tickers": [
             "ABMD",
             "FRC",
@@ -79373,7 +79448,7 @@
           "in_previously_upgraded_list_count": 0
         }
       },
-      "unregistered_terminal_candidates": 61
+      "unregistered_terminal_candidates": 60
     },
     "do_not_erase": [
       "TIE_NO_VERIFIED_REPLACEMENT: current candidate still has documented whole-row holes, quarterly price conflicts and early volume-basis uncertainty.",
@@ -79400,7 +79475,7 @@
     }
   ],
   "input_hashes": {
-    "data/reference/v04-remediation/manifest.json": "54974bff360b1317dbfe3496cfd6b0e346fb75d3401c043d5e24201dbb8c7bda",
+    "data/reference/v04-remediation/manifest.json": "e3efbd678b2b3db96e808268c6228ec1724613b98e705f6572a89b0d66ab1c70",
     "data/reference/sp500_history.csv": "39a9202c9ef69a74c0ff07e2113ad41fb6da7c8c5b6cd9541f0185fb4391e717",
     "data/reference/v04-remediation/membership-extension.csv": "fa1141a4359c016d9e2d30a22ad51845a5705db1a3b4214acc7249895507d016",
     "data/reference/v04-remediation/corporate-action-evidence/agn-watson-membership-findings.md": "4ec59c5ae40dfc2bc69557c64b37e7d3c9dcdea70cdeb6460c32aa1e301e05f7",
@@ -80109,8 +80184,7 @@
     "data/raw/prices/ZTS.parquet": "78cd34ef7611f549d5ac49eaf806e70c8da411408940e6ec5bdb0513b782ef6e",
     "data/research/v04/prices/ABMD.parquet": "0d92875322ab77d8d16ce27d789ed36536954091fee67b8b2b3d59d46b8581ae",
     "data/research/v04/prices/ACAS.parquet": "ca21b5a3e1fc1f1b1ac7a34c7bc771e2e4833a2283ede8b792d08669c0d05d7a",
-    "data/research/v04/prices/ADS-repaired-through-2020-07-02.parquet": "ff8ee755db4e74b7e127b1147f4cd41e1c9977fb774796faf9a637c9dd384438",
-    "data/reference/v04-remediation/price-evidence/ADS-2020-extension/application-review.md": "a5be79ce9d8434dff6aee63c563a0c8f9e6a7f8a93b4e1e5c532680b58302463",
+    "data/research/v04/prices/ADS.parquet": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
     "data/research/v04/prices/AGN.parquet": "3f380dabb54eac089d75fd7613832fd4a0a9366bcfe5835966c6e49911c70caf",
     "data/research/v04/prices/AKS.parquet": "04833667fbf5d7f3b02aecad5254e82d8e5d0252eab0294983ff7678d22510e7",
     "data/research/v04/prices/ALTR.parquet": "43908d67c51c4dd6ca0de42cfda4fc0c6c8adb208b0ac9b612f492248d96df09",

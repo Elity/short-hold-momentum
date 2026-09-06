@@ -1,0 +1,175 @@
+{
+  "run_id": "v04-b2195bf623494f2f",
+  "status": "INCONCLUSIVE",
+  "winner": null,
+  "price_coverage": 0.8984652498239619,
+  "basis_coverage": 0.8648246379515725,
+  "missing_tickers_including_quarantine": 109,
+  "items": [
+    {
+      "strategy": "S500-C0",
+      "bps": 10,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C0",
+      "bps": 25,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 10,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 25,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 10,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 25,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 10,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 25,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 10,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 25,
+      "transactions": 0,
+      "last_holding_date": null,
+      "last_transaction": [],
+      "final_quantity": 0.0,
+      "execution_validation_status": "NOT_EXERCISED_ZERO_TRADES",
+      "all_fills_match_true_next_adjusted_open": null,
+      "notional_and_model_costs_match": null,
+      "all_held_marks_within_verified_window": true,
+      "ADS_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    }
+  ],
+  "zero_trades_would_not_waive_input_or_opportunity_set_review": true
+}

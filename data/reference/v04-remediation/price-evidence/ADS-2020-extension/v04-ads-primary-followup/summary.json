@@ -1,0 +1,39 @@
+{
+  "status": "ISSUER_AMOUNTS_SUPPORTED_DATE_AND_PAYMENT_LIMITS_DISCLOSED",
+  "required_window": [
+    "2012-12-12",
+    "2020-07-02"
+  ],
+  "issuer": "Alliance Data Systems Corporation",
+  "cik": "0001101215",
+  "events": 15,
+  "amounts_with_issuer_document_support": 15,
+  "source_event_roles": {
+    "old_WIKI_recorded_cash": 4,
+    "old_prefix_unrecorded_event": 2,
+    "tail_event": 9
+  },
+  "total_supported_source_event_amounts": 8.24,
+  "primary_ex_dates_explicitly_obtained": 0,
+  "secondary_explicit_ex_dates_obtained": 1,
+  "individual_declaration_record_payment_date_sets_obtained": 8,
+  "exact_actual_payment_dates_stated_in_annual_report": 4,
+  "events_with_actual_paid_quarter_amount_support": 13,
+  "declaration_only_2020_events": [
+    "2020-02-13",
+    "2020-05-13"
+  ],
+  "full_2020_Q2_10Q_financial_text_obtained": false,
+  "full_2012_2020_corporate_action_census_obtained": false,
+  "every_amount_was_null_until_issuer_source_obtained": true,
+  "from_factor_amount_inference_used": false,
+  "request_budget": 4,
+  "public_requests_started": 4,
+  "public_requests_returned": 4,
+  "pending_requests": 0,
+  "separate_direct_HTTP_requests": 0,
+  "repo_modified": false,
+  "candidate_created": false,
+  "approved_for_application": false,
+  "global_gate_close_approved": false
+}
