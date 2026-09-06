@@ -22,6 +22,7 @@ from shm.v03.research import (
     qualifies, select_winner, write_json,
 )
 from shm.v04.profiles import SP500_IDS, base_candidate, candidate_config
+from shm.v04.history import load_membership, apply_price_repairs
 
 
 def historical_membership(history: pd.DataFrame, schedule: pd.DatetimeIndex,
@@ -76,6 +77,19 @@ def sector_concentration(weights: pd.DataFrame, current: dict | None) -> dict:
             "unknown_peak_weight": float(panel.get("Unknown", pd.Series([0.0])).max())}
 
 
+def eligibility_basis_coverage(prepared, membership: dict) -> dict:
+    rows = []
+    for date, members in membership.items():
+        if not members:
+            continue
+        known = sum(bool(prepared.eligibility_data_known[prepared.row(date), prepared.ticker_index[t]])
+                    for t in members)
+        rows.append({"date": str(date.date()), "expected": len(members), "known": known,
+                     "coverage": known / len(members)})
+    return {"coverage": float(np.mean([row["coverage"] for row in rows])) if rows else 0.0,
+            "rebalance_dates": rows, "basis": "as_traded_close_and_unadjusted_dollar_volume"}
+
+
 def render_research_v04(payload: dict) -> str:
     membership = payload["membership_history"]
     coverage = payload["price_coverage"]
@@ -96,6 +110,14 @@ def render_research_v04(payload: dict) -> str:
             lines.append(f"| {row['strategy_id']} | 数据检查未通过，指标无效 | 数据检查未通过，指标无效 | 否 |")
     lines.extend(["", "原始数字及逐日路径只保留作数据审计，不以异常CAGR宣称扩池有效。",
                   "10%为预警目标，不是本轮淘汰线。官方开盘价与模型成本不构成券商执行证据。"])
+    if "eligibility_basis" in payload:
+        lines.extend(["", f"当时报价与成交额的资格数据覆盖：{payload['eligibility_basis']['coverage']:.1%}。"
+                      "5美元门槛使用当时实际报价，ADV60使用当时成交额；动量和收益仍用含分红复权价。"])
+    repairs = payload.get("data_repairs", {})
+    if repairs:
+        lines.append(f"\n补入 {repairs.get('price_override_count', 0)} 只归档价格序列（不代表已通过质量验收），隔离 {repairs.get('quarantined_count', 0)} 只；隔离证券仍保留在历史成分和覆盖率分母中。")
+        for issue in repairs.get("unresolved", []):
+            lines.append(f"- 未解决：{issue.get('reason', issue)}")
     for row in payload["candidates"]:
         lines.extend(["", f"## {row['strategy_id']}", "",
                       "检查：" + json.dumps(row["checks"], ensure_ascii=False),
@@ -188,19 +210,19 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
     first = calendar.sessions.get_loc(schedule[0])
     sessions = calendar.sessions[first - 260:]
     evaluation = sessions[sessions > schedule[0]]
-    history_path = root / "data/reference/sp500_history.csv"
-    history = load_pit_history(history_path)
+    history, membership_hashes, membership_repairs = load_membership(root)
     membership, history_evidence = historical_membership(history, schedule, evaluation)
     universe = sorted({ticker for members in membership.values() for ticker in members})
     if not universe:
         raise ValueError("historical PIT membership contains no securities for the fixed evaluation period")
     prices, hashes, missing = _load_prices(root, universe + ["SPY"], sessions[0], end)
+    prices, hashes, missing, data_repairs = apply_price_repairs(root, prices, hashes, missing, sessions[0], end)
     if "SPY" not in prices:
         raise ValueError("SPY cache is required")
     current_path = root / "data/reference/sp500/current.json"
     current = json.loads(current_path.read_text()) if current_path.exists() else None
-    all_hashes = {**hashes, **prereg_hashes, str(config_path.relative_to(root)): file_hash(config_path),
-                  str(history_path.relative_to(root)): file_hash(history_path)}
+    all_hashes = {**hashes, **prereg_hashes, **membership_hashes,
+                  str(config_path.relative_to(root)): file_hash(config_path)}
     if current is not None:
         all_hashes[str(current_path.relative_to(root))] = file_hash(current_path)
     snapshot_id = json_hash(all_hashes)
@@ -216,8 +238,10 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
                                              "source_hash": source_hash, "missing_pit": missing,
                                              "membership_history": history_evidence})
     progress(f"Preparing historical PIT universe ({len(universe)} securities); membership through {history_evidence['source_last_date']}")
-    prepared = prepare_inputs(prices, universe, sessions, schedule, membership_by_session=membership)
+    prepared = prepare_inputs(prices, universe, sessions, schedule, membership_by_session=membership,
+                              require_point_in_time_eligibility=True)
     coverage = price_coverage(prices, membership)
+    basis_coverage = eligibility_basis_coverage(prepared, membership)
     benchmarks = {bps: _spy_buy_hold(prices["SPY"], evaluation, bps) for bps in (10, 25)}
     benchmark_metrics = {bps: performance(series) for bps, series in benchmarks.items()}
     benchmark_jumps = _benchmark_price_jumps(prepared, evaluation)
@@ -230,6 +254,8 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
                "warnings": [], "checks": {
                    "MEMBERSHIP_HISTORY_COVERAGE": history_evidence["status"],
                    "PIT_PRICE_COVERAGE": "PASS" if coverage["coverage"] >= .80 else "INCONCLUSIVE",
+                   "PIT_ELIGIBILITY_BASIS": "PASS" if basis_coverage["coverage"] >= .80 else "INCONCLUSIVE",
+                   "PRICE_REPAIR_EVIDENCE": data_repairs["status"],
                }}
         for bps in (10, 25):
             result = run_simulation(prices, universe, candidate, sessions, schedule,
@@ -255,6 +281,10 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
             row["warnings"].append("WARN_MEMBERSHIP_HISTORY_INCOMPLETE")
         if coverage["coverage"] < .80:
             row["warnings"].append("WARN_PIT_PRICE_COVERAGE_BELOW_80_PERCENT")
+        if basis_coverage["coverage"] < .80:
+            row["warnings"].append("WARN_POINT_IN_TIME_ELIGIBILITY_COVERAGE")
+        if data_repairs["status"] != "PASS":
+            row["warnings"].append("WARN_UNRESOLVED_HISTORICAL_PRICE_EVIDENCE")
         if row["holding_price_jumps_10"] or row["holding_price_jumps_25"]:
             row["warnings"].append("WARN_HOLDING_PRICE_JUMPS_RAW_METRICS_INVALID")
         if benchmark_jumps:
@@ -273,10 +303,12 @@ def run_research_v04(repo_root: Path | str, *, progress: Callable[[str], None] =
     previous = json.loads(previous_path.read_text()) if previous_path.exists() else None
     payload = {"spec_version": "0.4", "evidence": "known_history", "run_id": run_id,
                "generated_at": datetime.now(timezone.utc).isoformat(), "snapshot_id": snapshot_id,
-               "source_hash": source_hash, "universe_hash": file_hash(history_path),
+               "source_hash": source_hash, "universe_hash": json_hash(membership_hashes),
                "universe_policy": "historical_sp500_constituents",
                "period": {"start": str(evaluation[0].date()), "end": CUTOFF},
                "winner": winner, "status": status, "candidates": rows,
+               "data_repairs": data_repairs, "membership_repairs": membership_repairs,
+               "eligibility_basis": basis_coverage,
                "benchmark_10": benchmark_metrics[10], "benchmark_25": benchmark_metrics[25],
                "benchmark_price_jumps": benchmark_jumps, "membership_history": history_evidence,
                "price_coverage": coverage, "missing_pit_tickers": missing,

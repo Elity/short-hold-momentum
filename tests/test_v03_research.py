@@ -188,3 +188,33 @@ def test_new_open_positions_are_checked_until_close_without_counting_pre_entry_g
     row = candidate()
     row["checks"] = checks
     assert not qualifies(row)
+
+
+def test_exit_open_jump_is_gated_with_valid_ohlc_and_normal_exits_are_not():
+    from shm.v03.engine import run_simulation
+    from shm.v03.strategy import prepare_inputs
+    from test_v03_strategy import market
+
+    for factor in (1, 3):
+        prices, names, dates = market.__wrapped__()
+        prices["SPY"].loc[dates[270], ["close", "low"]] = [55.0, 54.0]
+        ticker = names[-1]
+        exit_price = factor * prices[ticker].loc[dates[270], "close"]
+        prices[ticker].loc[dates[271], "open"] = exit_price
+        prices[ticker].loc[dates[271], "high"] = max(exit_price, prices[ticker].loc[dates[271], "close"]) + 1
+        bar = prices[ticker].loc[dates[271]]
+        assert bar.low <= min(bar.open, bar.close) <= max(bar.open, bar.close) <= bar.high
+        evaluation, schedule = dates[260:], dates[[259]]
+        prepared = prepare_inputs(prices, names, dates, schedule)
+        result = run_simulation(prices, names, "C1", dates, schedule, cost_bps=10, prepared=prepared)
+        jumps = _holding_price_jumps(prepared, result.backtest, evaluation)
+        checks = _correctness(result, evaluation, holding_price_jumps=jumps, benchmark_price_jumps=[])
+        row = candidate()
+        row["checks"] = checks
+        if factor == 1:
+            assert jumps == [] and qualifies(row)
+        else:
+            assert len(jumps) == 1 and jumps[0]["ticker"] == ticker
+            assert jumps[0]["quote_window"] == "close_to_fill"
+            assert jumps[0]["return"] == pytest.approx(2.0)
+            assert not qualifies(row)

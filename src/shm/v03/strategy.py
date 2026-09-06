@@ -144,6 +144,8 @@ class PreparedInputs:
     ticker_index: dict[str, int] = field(init=False)
     date_index: dict[pd.Timestamp, int] = field(init=False)
     next_dates: dict[pd.Timestamp, str] = field(default_factory=dict)
+    eligibility_data_known: np.ndarray | None = None
+    require_point_in_time_eligibility: bool = False
 
     def __post_init__(self) -> None:
         self.ticker_index = {ticker: i for i, ticker in enumerate(self.tickers)}
@@ -160,11 +162,14 @@ def prepare_inputs(
     rebalance_dates: Sequence,
     *,
     membership_by_session: Mapping[object, Sequence[str]] | None = None,
+    require_point_in_time_eligibility: bool = False,
 ) -> PreparedInputs:
     """Precompute finite trailing windows, including pre-evaluation warmup.
 
     Absent owner tickers remain in the pool with unavailable eligibility. Missing
     dates are reindexed on XNYS, never silently compressed into shorter windows.
+    Absolute price/liquidity filters prefer dated nominal observations. Strict
+    callers require them; legacy callers may fall back to adjusted cache fields.
     """
     sessions = pd.DatetimeIndex(pd.to_datetime(sessions)).tz_localize(None).normalize()
     if sessions.empty or not sessions.is_monotonic_increasing or sessions.has_duplicates:
@@ -182,7 +187,7 @@ def prepare_inputs(
     if not sessions.isin(dates).all():
         raise ValueError("sessions must contain only XNYS trading dates")
     panels = {}
-    for name in ("open", "close", "high", "low", "volume"):
+    for name in ("open", "close", "high", "low", "volume", "as_traded_close", "dollar_volume"):
         panels[name] = pd.DataFrame(
             {t: frames[t][name] if t in frames and name in frames[t] else pd.Series(dtype=float) for t in tickers},
             index=dates,
@@ -205,8 +210,18 @@ def prepare_inputs(
     complete = valid.rolling(260, min_periods=260).sum().eq(260)
     extreme = returns.abs().gt(0.5).rolling(260, min_periods=260).sum().le(3)
     zero_volume = panels["volume"].eq(0).rolling(260, min_periods=260).mean().le(0.05)
-    adv = (close * panels["volume"]).rolling(60, min_periods=60).mean()
-    eligible = complete & extreme & zero_volume & close.ge(5) & adv.ge(10_000_000)
+    nominal_close = panels["as_traded_close"].where(
+        panels["as_traded_close"].gt(0) & np.isfinite(panels["as_traded_close"])
+    )
+    dollar_volume = panels["dollar_volume"].where(
+        panels["dollar_volume"].ge(0) & np.isfinite(panels["dollar_volume"])
+    )
+    eligibility_known = nominal_close.notna() & dollar_volume.notna().rolling(60, min_periods=60).sum().eq(60)
+    if not require_point_in_time_eligibility:
+        nominal_close = nominal_close.fillna(close)
+        dollar_volume = dollar_volume.fillna(close * panels["volume"])
+    adv = dollar_volume.rolling(60, min_periods=60).mean()
+    eligible = complete & extreme & zero_volume & nominal_close.ge(5) & adv.ge(10_000_000)
     all_dates = calendar.sessions_in_range(first, last + pd.Timedelta(days=10)).tz_localize(None)
     next_dates = {d: _date(all_dates[i + 1]) for i, d in enumerate(all_dates[:-1]) if d <= last}
     membership = None if membership_by_session is None else {
@@ -224,6 +239,8 @@ def prepare_inputs(
         atr20=atr.to_numpy(), returns=returns.to_numpy(),
         scores=(close.shift(21) / close.shift(126) - 1).to_numpy(),
         eligible=eligible.to_numpy(), membership_by_session=membership, next_dates=next_dates,
+        eligibility_data_known=eligibility_known.to_numpy(),
+        require_point_in_time_eligibility=require_point_in_time_eligibility,
     )
 
 
@@ -306,6 +323,8 @@ def evaluate_close(
         pool &= prepared.membership_by_session.get(date, frozenset())
     eligible = [t for t in sorted(pool) if prepared.eligible[row, prepared.ticker_index[t]]
                 and np.isfinite(prepared.scores[row, prepared.ticker_index[t]])]
+    eligibility_known_count = sum(bool(prepared.eligibility_data_known[row, prepared.ticker_index[t]])
+                                  for t in pool) if prepared.eligibility_data_known is not None else 0
     targets = None
     selected: list[str] = []
     exposure = 0.0
@@ -340,6 +359,9 @@ def evaluate_close(
         "rebalance": rebalance, "risk_off": bool(risk_off), "market_known": bool(market_known),
         "allow_new_risk": bool(allow_new_risk), "exposure_cap": float(sum(targets.values())) if targets is not None else 0.0,
         "raw_exposure": exposure, "realized_vol": realized_vol,
+        "require_point_in_time_eligibility": prepared.require_point_in_time_eligibility,
+        "eligibility_pool_count": len(pool), "eligibility_data_known_count": eligibility_known_count,
+        "eligibility_data_unknown_count": len(pool) - eligibility_known_count,
         "equity": equity, "drawdown": float(drawdown), "valuation_complete": not missing,
         "atr_by_ticker": {t: float(prepared.atr20[row, prepared.ticker_index[t]]) for t in selected
                           if np.isfinite(prepared.atr20[row, prepared.ticker_index[t]]) and prepared.atr20[row, prepared.ticker_index[t]] >= 0},

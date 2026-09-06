@@ -16,7 +16,7 @@ done
 # assets without replacing owner files, frozen winners, or paper ledgers.
 for directory in config/v03 experiments/prereg/v03 experiments/v03 reports/v03 \
                  config/v04 experiments/prereg/v04 experiments/v04 reports/v04 \
-                 data/reference/sp500; do
+                 data/reference/sp500 data/reference/v04-remediation; do
     if [ -d "$seed_root/$directory" ]; then
         find "$seed_root/$directory" -type f | while IFS= read -r source; do
             destination="$repository/${source#"$seed_root/"}"

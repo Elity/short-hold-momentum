@@ -50,6 +50,48 @@ def test_asof_260_session_eligibility_and_future_truncation(market):
     assert changed.eligible[changed.row(dates[279]), changed.ticker_index[names[0]]]
 
 
+def test_point_in_time_eligibility_survives_future_split_price_scaling(market):
+    prices, names, dates = market
+    for frame in prices.values():
+        frame["as_traded_close"] = frame["close"]
+        frame["dollar_volume"] = frame["close"] * frame["volume"]
+    original = prepare_inputs(prices, names, dates, dates[[259]], require_point_in_time_eligibility=True)
+    scaled = {ticker: frame.copy() for ticker, frame in prices.items()}
+    for frame in scaled.values():
+        frame[["open", "high", "low", "close"]] /= 20
+        frame["volume"] *= 20
+    adjusted = prepare_inputs(scaled, names, dates, dates[[259]], require_point_in_time_eligibility=True)
+    assert np.allclose(original.returns, adjusted.returns, equal_nan=True)
+    assert np.array_equal(original.eligible, adjusted.eligible)
+    decision = evaluate_close(adjusted, dates[259], "C1", PortfolioState())
+    assert decision.eligible_count == len(names)
+    assert decision.diagnostics["eligibility_data_known_count"] == len(names)
+    assert decision.diagnostics["eligibility_data_unknown_count"] == 0
+
+
+def test_strict_eligibility_never_substitutes_adjusted_prices_for_missing_raw_data(market):
+    prices, names, dates = market
+    strict = prepare_inputs(prices, names, dates, dates[[259]], require_point_in_time_eligibility=True)
+    assert not strict.eligible[strict.row(dates[259])].any()
+    assert prepared(market).eligible[strict.row(dates[259])].any()  # Existing callers remain compatible.
+    for frame in prices.values():
+        frame["as_traded_close"] = frame["close"]
+        frame["dollar_volume"] = frame["close"] * frame["volume"]
+    prices[names[0]].drop(columns="as_traded_close", inplace=True)
+    prices[names[1]].loc[dates[250], "dollar_volume"] = 0
+    prices[names[1]].loc[dates[250], "volume"] = 0
+    prices[names[2]].loc[dates[259], "as_traded_close"] = -1
+    strict = prepare_inputs(prices, names, dates, dates[[259]], require_point_in_time_eligibility=True)
+    decision = evaluate_close(strict, dates[259], "C1", PortfolioState())
+    assert strict.eligible[strict.row(dates[259]), strict.ticker_index[names[1]]]
+    assert decision.eligible_count == len(names) - 2
+    assert decision.diagnostics["eligibility_data_unknown_count"] == 2
+    assert decision.allow_new_risk
+    prices[names[3]]["as_traded_close"] = 4.0
+    preferred = prepared(market)
+    assert not preferred.eligible[preferred.row(dates[259]), preferred.ticker_index[names[3]]]
+
+
 @pytest.mark.parametrize("integer_shares", [False, True])
 def test_next_open_costs_gaps_and_no_ordinary_day_buys(market, integer_shares):
     prices, names, dates = market

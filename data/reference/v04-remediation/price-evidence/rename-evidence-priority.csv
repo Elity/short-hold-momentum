@@ -1,0 +1,36 @@
+ticker,candidate_cache,identity_status,effective_date,candidate_exists,candidate_coverage_gain_pp,candidate_cache_sha256,price_series_approved,notes
+BK,BNY,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2026-05-21,True,0.1981720241649178,0c27692a3d4e84963c3ac5d76e5881972364467ee682fb308e093b0e9a877c0f,False,"Issuer says legal name, capital structure, CUSIPs and rights unchanged; OCC notice confirms date."
+MMC,MRSH,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2026-01-14,True,0.19523760118251698,9284059e31a30e6c88ef5ef185b135a7c3d95fff0d15348228cbe5d2911485f7,False,Issuer says legal name and CUSIP unchanged.
+CMA,CMA,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+ABC,COR,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2023-08-30,True,0.17323088438146655,d37d6a79219ba40d07a92cc7c16d9e5244e1ff371bffc0a57277c8afbf925d6e,False,Issuer confirms name and stock-symbol change; OCC notice confirms common-share deliverable.
+PKI,RVTY,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2023-05-16,True,0.17103006714466595,3f2b680c35a39f3c40d3632d28d22557c104d9681f0c690be509442c74f0cda6,False,Issuer confirms formerly NYSE PKI and new RVTY trading date; significant prior business disposal remains a corporate-action validation concern.
+ANTM,ELV,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2022-06-28,True,0.16296040394306377,5f011cefadb6098b1dc3219de3202943779ccb08e81e078015f99f0a3876d9fa,False,SEC filing and exchange corporate-action notice document Anthem to Elevance Health.
+BLL,BALL,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2022-05-10,True,0.1614946480188189,a225c0ed3ef0acb5b687ddc8488fe8efa323ebd1127b7af1efae384bf8ad6566,False,"Issuer confirms BLL to BALL, no shareholder action required."
+GPS,GAP,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+MYL,VTRS,MERGER_SPINOFF_OR_IDENTITY_UNRESOLVED,,True,0.1476098910665818,6eb38ad9141e41377422d2b6d885a52827a2b38f39ef72488ad939c8f3c16b62,False,Do not substitute successor history without security-level continuity and corporate-action evidence.
+CTL,LUMN,RENAME_SUPPORTED_BY_SECONDARY_SOURCE_ONLY,2020-09-18,True,0.14614849031396038,c23c294003a7d5259a37ea7b744933673fced86db0fb0673382d151c09af5d13,False,Primary issuer/SEC source was not retrieved in this investigation.
+UTX,RTX,MERGER_SPINOFF_OR_IDENTITY_UNRESOLVED,,True,0.14176428805609623,5edb54a2b5bbf756d9926af0a0fbbeee14e017c9ee78d98f720e1c64e8491b27,False,Do not substitute successor history without security-level continuity and corporate-action evidence.
+SYMC,GEN,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2019-11-05,True,0.13811078617454275,7203b2cf6f2af6eb4f7866b7f1d8d87b483630b758ac220a23b3453136a3aceb,False,"SYMC to NLOK on 2019-11-05, NLOK to GEN on 2022-11-08; asset sale, special dividend and Avast merger prevent treating this as a price-validation shortcut."
+TMK,GL,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2019-08-09,True,0.1359186850456107,771d4f8af0d02ad90b119f945dd0ffa4106bcb0523c3e5e012e7e1de2c78f7c0,False,Corporate name changed August 8; ticker change August 9.
+DISCA,WBD,MERGER_SPINOFF_OR_IDENTITY_UNRESOLVED,,True,0.11252613805199708,f457e57248fcfb8c8f027aaaf5a34a93817c9402d725e693b9e74c32607ecb13,False,Do not substitute successor history without security-level continuity and corporate-action evidence.
+JEC,J,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2019-12-10,True,0.11209037740638403,5d0890a4e52520d1201a5bb487aee5b6af00ef2aefd6068219930428c180ea72,False,SEC-hosted issuer release confirms JEC to J; subsequent spinoff adjustments still require validation.
+HCP,DOC,MERGER_SPINOFF_OR_IDENTITY_UNRESOLVED,,True,0.10764736626511458,8525531cea42bec27c2cf2916a39dbfb3ddb94770dcd9468d8b36c89a9bcb8a1,False,Do not substitute successor history without security-level continuity and corporate-action evidence.
+HRS,LHX,MERGER_SPINOFF_OR_IDENTITY_UNRESOLVED,,True,0.09954207324132544,de2d66c91d5d21274cab583882a1fd69787b673d2107f210ceb0b28d99673d8b,False,Do not substitute successor history without security-level continuity and corporate-action evidence.
+FII,FHI,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+ADS,BFH,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+FBHS,FBIN,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+RE,EG,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2023-07-10,True,0.05555224265713908,013ab92d0cdc91f35196dc53fc205c4630a32e7a5a4f865cab9eed50faf792af,False,Issuer confirms Everest Re Group to Everest Group and RE to EG.
+WLTW,WTW,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2022-01-10,True,0.05549568846091824,4122ddaefea0d773d595f68266d49b1efe89c127e01bb1d7ff894ab3d171aa37,False,Issuer confirms unchanged CUSIP; do not infer the pre-2016 merger history from this rename alone.
+FLT,CPAY,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2024-03-25,True,0.052674362410071104,801b713a8bd744e570471519472e52629229210a989674c614d20e54a88e42d0,False,Same renamed company; issuer specifies new CUSIP 219948106.
+RX,IQV,MERGER_SPINOFF_OR_IDENTITY_UNRESOLVED,,True,0.0,7dc21854d19ce707f0d2c950146e47d3a06a260d56da29b60051075f583f02fc,False,Do not substitute successor history without security-level continuity and corporate-action evidence.
+KORS,CPRI,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2019-01-02,True,0.04476231710284239,fb508ac2abd22c8f0ef44a9a72e1ad98c530096ab02292cfd7466a4a9fbba5b2,False,SEC-hosted issuer release confirms Michael Kors to Capri; related Versace acquisition is disclosed.
+PEAK,DOC,MERGER_SPINOFF_OR_IDENTITY_UNRESOLVED,,True,0.040255338426125185,8525531cea42bec27c2cf2916a39dbfb3ddb94770dcd9468d8b36c89a9bcb8a1,False,Do not substitute successor history without security-level continuity and corporate-action evidence.
+ATGE,ATGE,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+NLOK,GEN,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2022-11-08,True,0.027784040750921793,7203b2cf6f2af6eb4f7866b7f1d8d87b483630b758ac220a23b3453136a3aceb,False,Issuer says GEN replaces NLOK without shareholder action; Avast merger requires separate action validation.
+HFC,DINO,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+NCR,VYX,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+FI,FISV,RENAME_SUPPORTED_BY_PRIMARY_SOURCE,2025-11-11,True,0.02274032254665063,d7306facffbf947280890c26facd3e16b9fd7b4396742cce0c1833fc87a6ece9,False,Issuer announced exchange transfer and FI to FISV; verify historical series through earlier mergers.
+CDAY,DAY,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+DDR,SITC,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+DAY,DAY,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.
+IAC,IAC,NO_LOCAL_TARGET_CACHE_AND_NOT_VALIDATED,,False,,,False,Hypothesis only; no recovery approved.

@@ -468,8 +468,14 @@ def build_dashboard(root: Path, store: ServiceStore, timezone_name: str, *, now=
             "quote_current": sum(observations.get(ticker, {}).get("latest") == current_session for ticker in symbols) if same_day else 0,
             "history_complete": market.get("universe_fresh", 0) if same_day else 0,
             "expected": len(symbols), "complete": bool(same_day and market.get("complete")),
+            "eligibility_basis_ready": market.get("universe_eligibility_fields_ready", 0) if same_day else 0,
+            "eligibility_basis_required": market.get("require_point_in_time_eligibility") is True,
             "missing": market.get("missing", []), "provider_calls": market.get("requested"),
         }
+        source["market_data"]["complete"] = bool(
+            source["market_data"]["complete"] and source["market_data"]["eligibility_basis_required"]
+            and not market.get("eligibility_fields_missing")
+        )
         result["universe"] = source
         if not source["market_data"]["complete"]:
             result["warnings"].append("S&P 500 同日行情或历史窗口尚未齐全，新增仓位暂停；已有持仓风险检查继续。")

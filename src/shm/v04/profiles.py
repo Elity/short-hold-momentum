@@ -28,7 +28,8 @@ def candidate_config(strategy_id: str) -> dict:
     if version(strategy_id) == "0.3":
         return config
     return {"spec_version": "0.4", "base_candidate": config,
-            "universe_policy": "verified_current_sp500", "max_source_age_sessions": 1}
+            "universe_policy": "verified_current_sp500", "max_source_age_sessions": 1,
+            "eligibility_basis": "as_traded_close_and_unadjusted_dollar_volume"}
 
 
 def account_directory(root: Path, strategy_id: str) -> Path:

@@ -37,7 +37,8 @@ def refresh_sp500_prices(root: Path | str, *, as_of, now=None, **overrides) -> d
         held.update(set(yaml.safe_load(legacy.read_text())["tickers"]) - set(symbols))
     kwargs = {"held_tickers": sorted(held), "daily_budget": settings["daily_provider_call_budget"],
               "min_interval_seconds": settings["min_request_interval_seconds"],
-              "history_start": settings["history_start"], "now": now}
+              "history_start": settings["history_start"], "now": now,
+              "require_point_in_time_eligibility": True}
     kwargs.update(overrides)
     result = refresh_market_cache(root, symbols, as_of=as_of, **kwargs)
     source = sp500_status(root, as_of, now=now)

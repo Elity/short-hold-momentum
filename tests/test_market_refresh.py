@@ -150,17 +150,118 @@ def test_empty_response_and_interior_gap_do_not_claim_coverage(tmp_path, bars):
     assert not list((tmp_path / "data/raw/prices").glob("*.coverage*"))
 
 
-def test_default_source_requests_raising_single_ticker_history(monkeypatch, bars):
+@pytest.fixture
+def yahoo_bars():
+    return pd.DataFrame({
+        "Open": [9.0, 10.0, 10.5, 11.0], "High": [11.0, 11.5, 12.0, 12.5],
+        "Low": [8.0, 9.0, 10.0, 10.5], "Close": [10.0, 10.5, 11.0, 11.5],
+        "Adj Close": [8.0, 8.4, 9.9, 11.5], "Volume": [400, 400, 400, 0],
+        "Stock Splits": [0.0, 2.0, 0.0, 4.0], "Dividends": [0.0, 0.0, 1.0, 0.0],
+    }, index=pd.date_range("2026-09-01", periods=4, name="Date"))
+
+
+def test_default_source_requests_raw_history_once_and_separates_price_bases(monkeypatch, yahoo_bars):
     import yfinance as yf
-    seen = {}
+    seen = {"calls": 0}
     class Ticker:
         def __init__(self, symbol, *, session):
             seen["symbol"] = symbol
         def history(self, **kwargs):
             seen.update(kwargs)
-            return bars
+            seen["calls"] += 1
+            return yahoo_bars
     monkeypatch.setattr(yf, "Ticker", Ticker)
     source = YahooHistorySource()
-    assert source("BRK.B", start="2026-08-01", end="2026-09-05", auto_adjust=True) is bars
+    result = source("BRK.B", start="2026-08-01", end="2026-09-05", auto_adjust=True)
     assert seen["symbol"] == "BRK-B"
-    assert seen["raise_errors"] and seen["auto_adjust"] and seen["actions"] is False
+    assert seen["calls"] == 1
+    assert seen["raise_errors"] and seen["auto_adjust"] is False and seen["actions"] is True
+    np.testing.assert_allclose(result.as_traded_close, [80, 42, 44, 11.5])
+    np.testing.assert_allclose(result.dollar_volume, [4000, 4200, 4400, 0])
+    for column in ("Open", "High", "Low", "Close"):
+        np.testing.assert_allclose(result[column], yahoo_bars[column] * [0.8, 0.8, 0.9, 1.0])
+    assert result.Volume.equals(yahoo_bars.Volume)
+
+
+@pytest.mark.parametrize("missing", ["Adj Close", "Stock Splits", "Dividends"])
+def test_default_source_rejects_unknown_adjustment_or_actions(monkeypatch, yahoo_bars, missing):
+    import yfinance as yf
+    class Ticker:
+        def __init__(self, *args, **kwargs):
+            pass
+        def history(self, **kwargs):
+            return yahoo_bars.drop(columns=missing)
+    monkeypatch.setattr(yf, "Ticker", Ticker)
+    with pytest.raises(ValueError, match="YAHOO_MISSING_FIELDS"):
+        YahooHistorySource()("AAA", start="2026-09-01", end="2026-09-05", auto_adjust=True)
+
+
+def test_strict_eligibility_upgrades_fresh_legacy_history_with_backup_and_budget_resume(tmp_path, bars):
+    spy_path = save(tmp_path, "SPY", bars)
+    aaa_path = save(tmp_path, "AAA", bars)
+    originals = {"SPY": spy_path.read_bytes(), "AAA": aaa_path.read_bytes()}
+    enriched = bars.assign(as_traded_close=bars.close * 4, dollar_volume=bars.close * bars.volume)
+    calls = []
+    source = source_for(enriched, calls)
+    first = refresh_market_cache(tmp_path, ["AAA"], as_of=ASOF, now=NOW, downloader=source,
+                                 daily_budget=1, sleep=lambda _: None, require_point_in_time_eligibility=True)
+    assert calls == [("SPY", "2003-10-01", "2026-09-05", True)]
+    assert first["fresh"] == first["eligibility_fields_ready"] == 1
+    assert first["eligibility_fields_missing"] == ["AAA"]
+    assert first["eligible_data_ready"] == [] and not first["complete"]
+    assert aaa_path.read_bytes() == originals["AAA"]
+    state = json.loads((tmp_path / "data/market_refresh/state.json").read_text())
+    assert state["tickers"]["AAA"]["needs_full_refresh"]
+    resumed = refresh_market_cache(tmp_path, ["AAA"], as_of=ASOF, now="2026-09-07T12:00:00Z",
+                                   downloader=source, daily_budget=1, sleep=lambda _: None,
+                                   require_point_in_time_eligibility=True)
+    assert resumed["complete"] and resumed["requested"] == 1
+    assert calls[-1] == ("AAA", "2003-10-01", "2026-09-05", True)
+    assert resumed["eligibility_fields_ready"] == 2 and resumed["universe_eligibility_fields_ready"] == 1
+    assert resumed["eligibility_rows"] == resumed["eligibility_expected_rows"] == 2 * len(bars)
+    for ticker, response in (("SPY", first), ("AAA", resumed)):
+        row = response["results"][ticker]
+        assert row["history_reloaded"]
+        assert row["archive"]["reason"] == "point_in_time_eligibility_upgrade"
+        assert (tmp_path / row["archive"]["path"]).read_bytes() == originals[ticker]
+        written = pd.read_parquet(tmp_path / "data/raw/prices" / f"{ticker}.parquet")
+        np.testing.assert_allclose(written.as_traded_close, enriched.as_traded_close)
+        np.testing.assert_allclose(written.dollar_volume, enriched.dollar_volume)
+
+
+def test_strict_eligibility_upgrade_honors_pause_and_rejects_incomplete_provider_fields(tmp_path, bars):
+    enriched = bars.assign(as_traded_close=bars.close, dollar_volume=bars.close * bars.volume)
+    save(tmp_path, "SPY", enriched)
+    path = save(tmp_path, "AAA", bars)
+    original = path.read_bytes()
+    calls = []
+    def limited(ticker, **kwargs):
+        calls.append(ticker)
+        raise ProviderPause("HTTP 429", retry_after="120")
+    first = refresh_market_cache(tmp_path, ["AAA", "BBB"], as_of=ASOF, now=NOW,
+                                 downloader=limited, sleep=lambda _: None, require_point_in_time_eligibility=True)
+    assert calls == ["AAA"] and first["results"]["BBB"]["status"] == "paused"
+    assert first["next_retry"] == "2026-09-06T12:02:00+00:00"
+    assert path.read_bytes() == original
+    incomplete = enriched.copy()
+    incomplete.loc[0, "as_traded_close"] = np.nan
+    failed = refresh_market_cache(tmp_path, ["AAA"], as_of=ASOF, now="2026-09-06T12:02:01Z",
+                                  downloader=source_for(incomplete, []), sleep=lambda _: None,
+                                  require_point_in_time_eligibility=True)
+    assert "MISSING_ELIGIBILITY_FIELDS" in failed["results"]["AAA"]["error"]
+    assert path.read_bytes() == original and not failed["complete"]
+
+
+def test_strict_eligibility_zero_dollar_volume_is_known_and_short_history_stays_ineligible(tmp_path, bars):
+    enriched = bars.assign(as_traded_close=bars.close, dollar_volume=bars.close * bars.volume)
+    enriched.loc[enriched.index[-1], ["volume", "dollar_volume"]] = 0
+    save(tmp_path, "SPY", enriched)
+    save(tmp_path, "IPO", enriched.iloc[-60:])
+    def forbidden(*args, **kwargs):
+        raise AssertionError("complete eligibility fields must not request Yahoo")
+    result = refresh_market_cache(tmp_path, ["IPO"], as_of=ASOF, now=NOW, downloader=forbidden,
+                                  require_point_in_time_eligibility=True)
+    assert result["requested"] == 0 and result["complete"]
+    assert result["eligibility_fields_ready"] == 2
+    assert not result["results"]["IPO"]["history_ready"]
+    assert result["eligible_data_ready"] == []

@@ -244,7 +244,8 @@ def _prepare_day(root: Path, as_of: pd.Timestamp, states: list[PortfolioState], 
                 path, ticker=ticker, start=window[0], end=as_of,
                 mode="paper", paper_sessions=260,
             )
-    prepared = prepare_inputs(prices, universe, window, _schedule(root, as_of))
+    prepared = prepare_inputs(prices, universe, window, _schedule(root, as_of),
+                              require_point_in_time_eligibility=version(strategy_id) == "0.4")
     return prepared, prices
 
 
@@ -254,7 +255,9 @@ def _apply_sp500_gate(root: Path, session: pd.Timestamp, state: PortfolioState, 
     source = sp500_status(root, session, now=now)
     market_path = root / "data/market_refresh/latest.json"
     market = _read(market_path) if market_path.exists() else {}
-    prices_ready = market.get("date") == str(session.date()) and market.get("complete") is True
+    prices_ready = (market.get("date") == str(session.date()) and market.get("complete") is True
+                    and market.get("require_point_in_time_eligibility") is True
+                    and not market.get("eligibility_fields_missing"))
     decision.diagnostics["universe"] = source
     decision.diagnostics["price_snapshot_complete"] = prices_ready
     if not source.get("allow_new_risk") or not prices_ready:

@@ -117,7 +117,9 @@ def _load_prices(root: Path, tickers: list[str], start: pd.Timestamp,
             continue
         if "adjusted" not in frame or not frame["adjusted"].eq(True).all():
             raise ValueError(f"{ticker}: adjusted total-return OHLC cache is required")
-        prices[ticker] = frame[["date", "open", "high", "low", "close", "volume"]].copy()
+        columns = ["date", "open", "high", "low", "close", "volume"]
+        columns += [key for key in ("as_traded_close", "dollar_volume") if key in frame]
+        prices[ticker] = frame[columns].copy()
         hashes[str(path.relative_to(root))] = file_hash(path)
     return prices, hashes, missing
 
@@ -194,22 +196,29 @@ def _holding_price_jumps(prepared, backtest, evaluation: pd.DatetimeIndex) -> li
     dates = {date: i for i, date in enumerate(evaluation)}
     columns = {ticker: j for j, ticker in enumerate(prepared.tickers)}
     if not backtest.transactions.empty:
-        for trade in backtest.transactions.loc[backtest.transactions["side"].eq("buy")].itertuples(index=False):
+        for trade in backtest.transactions.itertuples(index=False):
             date = pd.Timestamp(trade.execution_date).tz_localize(None).normalize()
             key = (str(date.date()), trade.ticker)
             if date not in dates or key in flagged:
                 continue
             i, j = dates[date], columns[trade.ticker]
-            close, entry = float(prepared.closes[rows[i], j]), float(trade.price)
-            if not (np.isfinite(close) and np.isfinite(entry) and close > 0 and entry > 0):
+            if trade.side == "buy":
+                start, end = float(trade.price), float(prepared.closes[rows[i], j])
+                window, quote = "fill_to_close", {"entry_price": start}
+            else:
+                if rows[i] == 0 or weights[i, j] <= 0:
+                    continue
+                start, end = float(prepared.closes[rows[i] - 1, j]), float(trade.price)
+                window, quote = "close_to_fill", {"previous_close": start, "exit_price": end}
+            if not (np.isfinite(start) and np.isfinite(end) and start > 0 and end > 0):
                 continue
-            # New positions had no prior-close weight. Check their owned period,
-            # without treating a gap before the opening purchase as investment P&L.
-            move = close / entry - 1
+            # Check only the owned interval: entry-to-close for buys and
+            # prior-close-to-fill for exits, even when the exit-day close is normal.
+            move = end / start - 1
             if abs(move) > .50:
                 details.append({"date": key[0], "ticker": trade.ticker, "return": move,
-                                "prior_weight": float(weights[i, j]), "entry_price": entry,
-                                "quote_window": "fill_to_close"})
+                                "prior_weight": float(weights[i, j]),
+                                "quote_window": window, **quote})
                 flagged.add(key)
     return details
 

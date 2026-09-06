@@ -21,7 +21,7 @@ import exchange_calendars as xcals
 import numpy as np
 import pandas as pd
 
-from shm.data.prices import normalize_price_frame
+from shm.data.prices import ELIGIBILITY_COLUMNS, normalize_price_frame
 
 
 class ProviderPause(RuntimeError):
@@ -32,7 +32,7 @@ class ProviderPause(RuntimeError):
 
 
 class YahooHistorySource:
-    """Use raising single-ticker history, preserving Yahoo Retry-After headers."""
+    """Fetch raw prices/actions once and preserve Yahoo Retry-After headers."""
 
     def __init__(self) -> None:
         self.session = None
@@ -62,8 +62,8 @@ class YahooHistorySource:
         self.session.pause = None
         try:
             result = yf.Ticker(ticker.replace(".", "-"), session=self.session).history(
-                start=start, end=end, interval="1d", auto_adjust=auto_adjust,
-                actions=False, raise_errors=True, timeout=15,
+                start=start, end=end, interval="1d", auto_adjust=False,
+                actions=True, raise_errors=True, timeout=15,
             )
         except Exception as error:
             if self.session.pause is not None:
@@ -71,6 +71,30 @@ class YahooHistorySource:
             raise
         if self.session.pause is not None:
             raise self.session.pause
+        if result.empty:
+            return result
+        required = {"Open", "High", "Low", "Close", "Volume", "Adj Close", "Stock Splits", "Dividends"}
+        missing = sorted(required - set(result.columns))
+        if missing:
+            raise ValueError(f"YAHOO_MISSING_FIELDS: {', '.join(missing)}")
+        result = result.sort_index().copy()
+        close = pd.to_numeric(result["Close"], errors="coerce")
+        adjustment = pd.to_numeric(result["Adj Close"], errors="coerce") / close
+        actions = result[["Stock Splits", "Dividends"]].apply(pd.to_numeric, errors="coerce")
+        if not np.isfinite(actions).all().all() or actions["Stock Splits"].lt(0).any():
+            raise ValueError("YAHOO_INVALID_ACTIONS: split/dividend history is unknown")
+        if not np.isfinite(adjustment).all() or adjustment.le(0).any():
+            raise ValueError("YAHOO_INVALID_ADJUSTMENT: Adj Close / Close must be finite and positive")
+        # Yahoo Close and Volume are split-adjusted. Undo only subsequent
+        # splits for the nominal price; the split-date quote is already post-split.
+        split_factors = actions["Stock Splits"].replace(0, 1.0)
+        future_splits = split_factors.shift(-1, fill_value=1.0).iloc[::-1].cumprod().iloc[::-1]
+        result["as_traded_close"] = close * future_splits
+        result["dollar_volume"] = close * pd.to_numeric(result["Volume"], errors="coerce")
+        # Keep the existing total-return OHLC contract independently of the
+        # nominal-price and unadjusted-dollar-volume eligibility fields.
+        for column in ("Open", "High", "Low", "Close"):
+            result[column] = pd.to_numeric(result[column], errors="coerce") * adjustment
         return result
 
 
@@ -131,8 +155,10 @@ def _valid_rows(frame: pd.DataFrame) -> pd.DataFrame:
 
 def _cache_status(frame: pd.DataFrame, as_of: pd.Timestamp, window: pd.DatetimeIndex) -> dict:
     valid = _valid_rows(frame.loc[frame["date"] <= as_of]) if not frame.empty else frame
+    eligibility = _eligibility_status(valid)
     if valid.empty:
-        return {"fresh": False, "latest": None, "gaps": [], "history_ready": False, "quality_warnings": []}
+        return {"fresh": False, "latest": None, "gaps": [], "history_ready": False, "quality_warnings": [],
+                **eligibility}
     dates = pd.DatetimeIndex(valid["date"])
     # Listing-before-first-observation is not asserted. Short histories stay
     # explicitly ineligible for the 260-session strategy, even with a fresh tail.
@@ -143,7 +169,17 @@ def _cache_status(frame: pd.DataFrame, as_of: pd.Timestamp, window: pd.DatetimeI
     warnings = [f"LARGE_PRICE_JUMP:{date.date()}" for date in tail.index[jumps]]
     return {"fresh": bool(as_of in dates and not len(gaps)), "latest": str(dates.max().date()),
             "gaps": [str(date.date()) for date in gaps],
-            "history_ready": bool(window.isin(dates).all()), "quality_warnings": warnings}
+            "history_ready": bool(window.isin(dates).all()), "quality_warnings": warnings, **eligibility}
+
+
+def _eligibility_status(frame: pd.DataFrame) -> dict:
+    known_rows = 0
+    if all(column in frame for column in ELIGIBILITY_COLUMNS):
+        known = np.isfinite(frame[ELIGIBILITY_COLUMNS]).all(axis=1)
+        known &= frame["as_traded_close"].gt(0) & frame["dollar_volume"].ge(0)
+        known_rows = int(known.sum())
+    return {"eligibility_rows": known_rows, "eligibility_expected_rows": len(frame),
+            "eligibility_fields_ready": bool(len(frame) and known_rows == len(frame))}
 
 
 def _pause_details(error: Exception, now: pd.Timestamp, strike: int) -> float | None:
@@ -200,6 +236,7 @@ def refresh_market_cache(
     daily_budget: int = 600,
     min_interval_seconds: float = 1.0,
     history_start: str = "2003-10-01",
+    require_point_in_time_eligibility: bool = False,
     downloader: Callable | None = None,
     now: object | None = None,
     sleep: Callable[[float], None] = time.sleep,
@@ -254,6 +291,8 @@ def refresh_market_cache(
             normalized = normalized.loc[(normalized["date"] >= start) & (normalized["date"] <= as_of)]
             if normalized.empty:
                 raise ValueError("EMPTY_OR_INVALID_RESPONSE: no coverage advanced")
+            if require_point_in_time_eligibility and not _eligibility_status(normalized)["eligibility_fields_ready"]:
+                raise ValueError("MISSING_ELIGIBILITY_FIELDS: as_traded_close/dollar_volume require complete coverage")
             state["rate_limit_strikes"] = 0
             state["next_retry"] = None
             return normalized
@@ -270,6 +309,13 @@ def refresh_market_cache(
                 prior = {**prior, "cache_error": str(error)}
             cache_status = _cache_status(cached, as_of, window)
             full_repair = bool(prior.get("needs_full_refresh"))
+            repair_reason = prior.get("refresh_reason", "adjusted_history_repair")
+            if require_point_in_time_eligibility and not cached.empty and not cache_status["eligibility_fields_ready"]:
+                full_repair = True
+                repair_reason = "point_in_time_eligibility_upgrade"
+                prior = {**prior, "date": date_text, "needs_full_refresh": True,
+                         "refresh_reason": repair_reason}
+                state["tickers"][ticker] = prior
             result = {"date": date_text, "ticker": ticker, **cache_status, "requested": 0,
                       "status": "cache_hit" if cache_status["fresh"] and not full_repair else "pending"}
             before_calls = calls
@@ -305,8 +351,9 @@ def refresh_market_cache(
                     changed = not np.allclose(old, new, rtol=1e-5, atol=1e-7, equal_nan=False)
                 if changed:
                     full_repair = True
+                    repair_reason = "adjusted_history_repair"
                     state["tickers"][ticker] = {"date": date_text, "needs_full_refresh": True,
-                                                "status": "adjusted_history_changed"}
+                                                "status": "adjusted_history_changed", "refresh_reason": repair_reason}
                     checkpoint()
                     fresh = request(ticker, first)
                 if full_repair:
@@ -323,7 +370,7 @@ def refresh_market_cache(
                 if full_repair and not updated_status["fresh"]:
                     raise ValueError("INCOMPLETE_HISTORY_REPAIR: latest session or interior gap missing")
                 archive = _replace_cache(root, ticker, combined, date_text,
-                                         "adjusted_history_repair" if full_repair else "incremental_overlap")
+                                         repair_reason if full_repair else "incremental_overlap")
                 result.update(updated_status, status="updated" if updated_status["fresh"] else "incomplete",
                               history_reloaded=full_repair, archive=archive)
                 if not updated_status["fresh"]:
@@ -344,7 +391,8 @@ def refresh_market_cache(
                     retry = (_utc(now) + pd.Timedelta(minutes=5)).isoformat()
                     status = "failed"
                 result.update(status=status, fresh=False, error=str(error), next_retry=retry)
-                state["tickers"][ticker] = {**result, "needs_full_refresh": full_repair}
+                state["tickers"][ticker] = {**result, "needs_full_refresh": full_repair,
+                                            "refresh_reason": repair_reason}
             result["requested"] = calls - before_calls
             if ticker in state["tickers"]:
                 state["tickers"][ticker]["requested"] = result["requested"]
@@ -361,6 +409,12 @@ def refresh_market_cache(
             "active_now": len(active), "expected": len(queue), "queue": queue,
             "requested": calls, "provider_calls": calls, "daily_provider_calls": budget_used,
             "daily_budget": daily_budget, "fresh": len(fresh_names),
+            "require_point_in_time_eligibility": require_point_in_time_eligibility,
+            "eligibility_fields_ready": sum(results[ticker]["eligibility_fields_ready"] for ticker in queue),
+            "universe_eligibility_fields_ready": sum(results[ticker]["eligibility_fields_ready"] for ticker in active),
+            "eligibility_fields_missing": [ticker for ticker in queue if not results[ticker]["eligibility_fields_ready"]],
+            "eligibility_rows": sum(results[ticker]["eligibility_rows"] for ticker in queue),
+            "eligibility_expected_rows": sum(results[ticker]["eligibility_expected_rows"] for ticker in queue),
             "universe_fresh": sum(ticker in fresh_names for ticker in active),
             "fresh_tickers": fresh_names, "missing": missing, "complete": not missing,
             "critical_complete": all(ticker in fresh_names for ticker in critical),

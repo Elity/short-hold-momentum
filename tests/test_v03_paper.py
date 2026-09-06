@@ -58,6 +58,7 @@ def paper_repo(tmp_path):
         frame = pd.DataFrame({
             "date": sessions, "open": close - 0.05, "high": close + 0.8,
             "low": close - 0.8, "close": close, "volume": 2_000_000.0,
+            "as_traded_close": close, "dollar_volume": close * 2_000_000.0,
             "downloaded_at": pd.Timestamp("2026-09-06T12:00:00Z"),
         })
         frame.to_parquet(root / "data/raw/prices" / f"{ticker}.parquet", index=False)
@@ -90,11 +91,11 @@ def test_sp500_profile_uses_separate_ledger_and_requires_verified_snapshot(paper
     init_paper_v03(paper_repo, "S500-C3", as_of="2026-09-04", now="2026-09-06T23:00:00Z")
     market = paper_repo / "data/market_refresh/latest.json"
     market.parent.mkdir(parents=True)
-    market.write_text(json.dumps({"date": SIGNAL, "complete": True}))
+    market.write_text(json.dumps({"date": SIGNAL, "complete": True, "require_point_in_time_eligibility": True}))
     signal = run_paper_v03(paper_repo, "S500-C3", as_of=SIGNAL, now=_now(SIGNAL))
     assert signal["spec_version"] == "0.4"
     assert signal["books"]["10"]["state"]["pending"]["target_weights"]
-    market.write_text(json.dumps({"date": FILL, "complete": True}))
+    market.write_text(json.dumps({"date": FILL, "complete": True, "require_point_in_time_eligibility": True}))
     filled = run_paper_v03(paper_repo, "S500-C3", as_of=FILL, now=_now(FILL))
     assert filled["books"]["10"]["state"]["positions"]
     assert (paper_repo / "paper/v04/S500-C3/days" / f"{FILL}.json").exists()
@@ -135,7 +136,7 @@ def test_sp500_rechecks_pending_buys_before_open_and_preserves_sales(paper_repo,
     init_paper_v03(paper_repo, "S500-C3", as_of="2026-09-04", now="2026-09-06T23:00:00Z")
     market = paper_repo / "data/market_refresh/latest.json"
     market.parent.mkdir(parents=True)
-    market.write_text(json.dumps({"date": SIGNAL, "complete": True}))
+    market.write_text(json.dumps({"date": SIGNAL, "complete": True, "require_point_in_time_eligibility": True}))
     signal = run_paper_v03(paper_repo, "S500-C3", as_of=SIGNAL, now=_now(SIGNAL))
     marks = {
         ticker: float(pd.read_parquet(paper_repo / f"data/raw/prices/{ticker}.parquet")
@@ -154,7 +155,7 @@ def test_sp500_rechecks_pending_buys_before_open_and_preserves_sales(paper_repo,
         book["state"] = state.to_dict()
     (paper_repo / f"paper/v04/S500-C3/days/{SIGNAL}.json").write_text(json.dumps(signal))
     monkeypatch.setattr(sources, "sp500_status", lambda *a, **kw: {"allow_new_risk": unavailable != "source"})
-    market.write_text(json.dumps({"date": FILL, "complete": unavailable != "prices"}))
+    market.write_text(json.dumps({"date": FILL, "complete": unavailable != "prices", "require_point_in_time_eligibility": True}))
 
     filled = run_paper_v03(paper_repo, "S500-C3", as_of=FILL, now=_now(FILL))
     reason = "MISSING_VERIFIED_SP500_UNIVERSE" if unavailable == "source" else "MISSING_COMPLETE_SP500_PRICE_SNAPSHOT"
