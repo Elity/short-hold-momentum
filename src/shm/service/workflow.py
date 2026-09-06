@@ -11,7 +11,9 @@ from pathlib import Path
 import exchange_calendars as xcals
 import pandas as pd
 
+from shm.config import load_config_bundle
 from shm.paper.status import build_paper_progress
+from shm.universe import load_frozen_universe
 
 
 StepReporter = Callable[[str, str, str, datetime, datetime], None]
@@ -138,6 +140,24 @@ def _completed_report_months(repo_root: Path, market_session: pd.Timestamp) -> t
     return tuple(completed)
 
 
+def validate_required_price_caches(repo_root: Path) -> str:
+    config = load_config_bundle(repo_root / "config")
+    universe = load_frozen_universe(repo_root / "config")
+    required = set(universe.active_tickers) | {config.params.risk.trend_filter.benchmark}
+    cache_dir = repo_root / "data/raw/prices"
+    missing = sorted(
+        ticker
+        for ticker in required
+        if not (cache_dir / f"{ticker}.parquet").is_file()
+        or (cache_dir / f"{ticker}.parquet").stat().st_size == 0
+    )
+    if missing:
+        for ticker in missing:
+            (cache_dir / f"{ticker}.coverage.json").unlink(missing_ok=True)
+        raise RuntimeError("required price caches missing after update: " + ", ".join(missing))
+    return f"required price caches available: {len(required)}"
+
+
 def run_daily_workflow(
     repo_root: Path | str,
     *,
@@ -181,7 +201,22 @@ def run_daily_workflow(
         if reporter:
             reporter(name, "success", str(path.relative_to(root)), started, finished)
 
+    def run_local_step(name: str, operation: Callable[[], str]) -> str:
+        started = datetime.now(UTC)
+        try:
+            output = operation()
+        except Exception as exc:
+            finished = datetime.now(UTC)
+            if reporter:
+                reporter(name, "failed", str(exc), started, finished)
+            raise
+        finished = datetime.now(UTC)
+        if reporter:
+            reporter(name, "success", output, started, finished)
+        return output
+
     run_step("data-update", ["data", "update", "--through-oos", "--skip-pit"])
+    run_local_step("validate-price-cache", lambda: validate_required_price_caches(root))
 
     forward_start = _forward_start(root)
     for ticket in sorted((root / "paper/tickets").glob("????-??-??.csv")):

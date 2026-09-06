@@ -1,6 +1,7 @@
 from types import SimpleNamespace
 
 import pandas as pd
+import pytest
 
 from shm.service import workflow
 
@@ -36,6 +37,7 @@ def test_daily_workflow_runs_update_and_status_when_nothing_is_due(
         ),
     )
     monkeypatch.setattr(workflow, "_forward_start", lambda root: pd.Timestamp("2026-09-05"))
+    monkeypatch.setattr(workflow, "validate_required_price_caches", lambda root: "ok")
     monkeypatch.setattr(workflow, "_completed_report_months", lambda root, session: ())
 
     def run(command, cwd):
@@ -66,9 +68,36 @@ def test_daily_workflow_records_a_missed_rebalance_and_moves_forward(
 
     monkeypatch.setattr(workflow, "build_paper_progress", progress)
     monkeypatch.setattr(workflow, "_forward_start", lambda root: pd.Timestamp("2026-09-05"))
+    monkeypatch.setattr(workflow, "validate_required_price_caches", lambda root: "ok")
     monkeypatch.setattr(workflow, "_completed_report_months", lambda root, session: ())
 
     result = workflow.run_daily_workflow(tmp_path, command_runner=lambda command, cwd: "ok")
 
     assert "missed rebalance 2026-09-17" in result.actions
     assert (tmp_path / "paper/missed/2026-09-17.json").exists()
+
+
+def test_cache_validation_clears_empty_success_marker(tmp_path, monkeypatch) -> None:
+    cache = tmp_path / "data/raw/prices"
+    cache.mkdir(parents=True)
+    (cache / "AAA.parquet").write_bytes(b"parquet")
+    (cache / "SPY.coverage.json").write_text("{}", encoding="utf-8")
+    monkeypatch.setattr(
+        workflow,
+        "load_config_bundle",
+        lambda path: SimpleNamespace(
+            params=SimpleNamespace(
+                risk=SimpleNamespace(trend_filter=SimpleNamespace(benchmark="SPY"))
+            )
+        ),
+    )
+    monkeypatch.setattr(
+        workflow,
+        "load_frozen_universe",
+        lambda path: SimpleNamespace(active_tickers=("AAA",)),
+    )
+
+    with pytest.raises(RuntimeError, match="SPY"):
+        workflow.validate_required_price_caches(tmp_path)
+
+    assert not (cache / "SPY.coverage.json").exists()
