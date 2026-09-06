@@ -1,0 +1,83 @@
+{
+  "identity": {
+    "source_file": "05-jwn-2019-10k-direct.txt",
+    "quote": "ion 12 (b) of the Act: Title of each class Trading Symbol Name of each exchange on which registered Common stock, without par value JWN New York Stock Exchange Securities registered pursuant to Section 12 (g) of the Act: None Indicate by check mark if the registrant is a well-known seasoned issuer, as defined in Rule 405 of the Securities Act. Yes ☑ No☐ Indicate by check mark if the registrant is not required to file reports pursuant to Section 13 or Section 15 (d) of the Act. Yes☐ No ☑ Indicate by check mark whether the registrant (1) has filed all reports required to be filed by Section 13 o"
+  },
+  "annual_totals_2017_2019": {
+    "source_file": "05-jwn-2019-10k-direct.txt",
+    "quote": " \n Per Share Information \n \n \n \n \nEarnings per diluted share1,2,6 $3.18 \n$3.32 \n$2.59 \n$2.02 \n$3.15 Dividends declared per share4 1.48 \n1.48 \n1.48 \n1.48 \n6.33 1 In the fourth quarter of 2019, we incurred charges related to the integration of Trunk Club and debt refinancing costs, which reduced net earnings by $29, or $0.19 per diluted share. The integration charges reduced earnings before interest and income taxes by $32 and debt refinancing costs increased interest expense by $8. 2 Results for 2018 include the Estimated Non-recurring Charge of $72, or $0.28 per diluted share. See Note 1: Nature of Operations and Summary of Significant Accounting Policies in Item 8. 3 Amounts were impacted by the 2019 adoption of the Lease Standard. As a result, return on assets was negatively impacted by "
+  },
+  "quarters_2019_2020": {
+    "source_file": "06-jwn-2020-10k-direct.txt",
+    "quote": "nd such other factors as the Board of Directors deems relevant (see Note 11: Shareholders’ Equity). The following table summarizes our historical dividends declared and paid per share:                         Fiscal year 2020   2019 1st Quarter $0.37     $0.37   2nd Quarter —     0.37   3rd Quarter —     0.37   4th Quarter —     0.37   Full Year 0.37     1.48   SHARE REPURCHASES In August 2018, our Board of Directors authorized a program to repurchase up to $1,500 of our outstanding common stock, with no expiration date. As a result of uncertainties from COVID-19 impacts, we repurchased no shares of our common stock in 2020 and we had $707 remaining in share repurchase capacity as of January 30, 2021. The actual timing, price, manner and amounts of future share repurchases, if any, will be subject to the discretion of the Board of Directors, contractual commitments, market and economic conditions and applicable SEC rules. 20 Table of Contents STOCK PRICE PERFORMANCE The following graph"
+  },
+  "suspension": {
+    "source_file": "06-jwn-2020-10k-direct.txt",
+    "quote": "s of March 10, 2021 was 4,687. On this date, we had 157,770,380 shares of common stock outstanding. On March 23, 2020, in response to uncertainty from the COVID-19 pandemic, we announced the suspension of our quarterly dividend payments beginning in the second quarter of 2020. We remain committed to this program over the long-term and intend to resume dividend payments and share repurchases when appropriate. While we are targeting being in a position to resume cash dividends to shareholders by the end of 2021, any future determination to pay cash dividends will be at the discretion of the Board of Directors and will be dependent upon our financial condition, operating results, capital requirements, contractual commitments and such other factors as the Board of Directors deems relevant (see Note 11: Shareholders’ Equity). The following table summarizes our historical dividends declared and paid per share:                         Fiscal year 2020   2019 1st Quarter $0.37     $0.37   2nd Quarter —     0.37   3rd Quarter —     0.37   4th Quarter —     0.37   Full Year 0.37     1.48   SHARE REPURCHASES In August 2018, our Board of Direct"
+  },
+  "2020_record_payment": {
+    "source_file": "05-jwn-2019-10k-direct.txt",
+    "quote": "d liquidity. Our dividend payout ratio target range is 30% to 40% of the prior year’s net earnings. In February 2020, subsequent to year end, we declared a quarterly dividend of $0.37 per share, which will be paid on March 25, 2020 to shareholders of record as ofMarch 10, 2020. Free Cash Flow (Non-GAAP financial measure) Free Cash Flow is one of our key liquidity measures, and when used in conjunction with GAAP measures, we believe it provides investors with a meaningful analysis of our ability to generate cash from our business. Free Cash Flow is not a measure of financial performance under GAAP and should be considered in addition to, and not as a substitute for, operating cash flows or other financial measures prepared in accordance with GAAP. Our method of determining non-GAAP financia"
+  },
+  "publisher_attribution": {
+    "source_file": "04-jwn-issuer-dividends-direct.txt",
+    "quote": "otal dividends in 1900:       0.050521     3/23/2020     6/25/2020 0.00   Dividend omitted 5/9/2025   5/19/2025 5/27/2025 0.25   Extra, special, participating or arrears 5/9/2025   5/19/2025 5/27/2025 0.1462   U.S. Currency 3/23/2020     6/25/2020 0.00   Dividend omitted The historical dividend information provided is for informational purposes  only, and is not intended for trading purposes. The historical dividend  information is provided by Mergent, a third party service, and Notified  does not maintain or provide information directly to this service. Total  dividends per year is based on the dividend ex-date."
+  },
+  "target_event_rows": [
+    {
+      "ex_date": "2017-11-24",
+      "quote": "11/15/2017 11/24/2017 11/27/2017 12/12/2017 0.37   U.S. Currency 8/16/201",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    },
+    {
+      "ex_date": "2018-03-02",
+      "quote": "2/21/2018 3/2/2018 3/5/2018 3/20/2018 0.37   U.S. Currency Total di",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    },
+    {
+      "ex_date": "2018-05-17",
+      "quote": "5/8/2018 5/17/2018 5/18/2018 6/4/2018 0.37   U.S. Currency 2/21/201",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    },
+    {
+      "ex_date": "2018-08-31",
+      "quote": "8/22/2018 8/31/2018 9/4/2018 9/19/2018 0.37   U.S. Currency 5/8/2018",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    },
+    {
+      "ex_date": "2018-11-23",
+      "quote": "11/14/2018 11/23/2018 11/26/2018 12/11/2018 0.37   U.S. Currency 8/22/201",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    },
+    {
+      "ex_date": "2019-03-08",
+      "quote": "2/27/2019 3/8/2019 3/11/2019 3/26/2019 0.37   U.S. Currency Total di",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    },
+    {
+      "ex_date": "2019-05-31",
+      "quote": "5/23/2019 5/31/2019 6/3/2019 6/18/2019 0.37   U.S. Currency 2/27/201",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    },
+    {
+      "ex_date": "2019-08-29",
+      "quote": "8/20/2019 8/29/2019 8/30/2019 9/16/2019 0.37   U.S. Currency 5/23/201",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    },
+    {
+      "ex_date": "2019-11-27",
+      "quote": "11/21/2019 11/27/2019 11/29/2019 12/16/2019 0.37   U.S. Currency 8/20/201",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    },
+    {
+      "ex_date": "2020-03-09",
+      "quote": "2/27/2020 3/9/2020 3/10/2020 3/25/2020 0.37   U.S. Currency Total di",
+      "origin": "Mergent table hosted on Nordstrom IR website"
+    }
+  ],
+  "limits": [
+    "Exact ex-dates are published third-party Mergent records hosted by issuer, not all independently read SEC declarations.",
+    "2021 Q2 Browse response ends before financial statements; direct file request returned 403. No retry or bypass was attempted.",
+    "Split list is issuer-hosted Mergent data corroborated by WIKI event and long nominal overlap; not an independently read 2005 original split announcement."
+  ]
+}

@@ -1,0 +1,93 @@
+[
+  {
+    "date": "2018-02-27",
+    "cash_dividend": 0.33,
+    "actual_adjusted_return": -0.007323568575233197,
+    "nominal_plus_cash_return": -0.007323568575233197,
+    "absolute_error": 0.0
+  },
+  {
+    "date": "2018-05-22",
+    "cash_dividend": 0.33,
+    "actual_adjusted_return": -0.024886837415915575,
+    "nominal_plus_cash_return": -0.024886837415915797,
+    "absolute_error": 2.220446049250313e-16
+  },
+  {
+    "date": "2018-08-22",
+    "cash_dividend": 0.33,
+    "actual_adjusted_return": 0.006735917927159996,
+    "nominal_plus_cash_return": 0.006735917927160218,
+    "absolute_error": 2.220446049250313e-16
+  },
+  {
+    "date": "2018-11-20",
+    "cash_dividend": 0.33,
+    "actual_adjusted_return": -0.044120034498130845,
+    "nominal_plus_cash_return": -0.044120034498130845,
+    "absolute_error": 0.0
+  },
+  {
+    "date": "2019-02-26",
+    "cash_dividend": 0.33,
+    "actual_adjusted_return": -0.012609657207072744,
+    "nominal_plus_cash_return": -0.012609657207072855,
+    "absolute_error": 1.1102230246251565e-16
+  },
+  {
+    "date": "2019-05-17",
+    "cash_dividend": 0.33,
+    "actual_adjusted_return": -0.03177444716123434,
+    "nominal_plus_cash_return": -0.03177444716123434,
+    "absolute_error": 0.0
+  },
+  {
+    "date": "2019-08-21",
+    "cash_dividend": 0.33,
+    "actual_adjusted_return": -0.002183412813135055,
+    "nominal_plus_cash_return": -0.002183412813135277,
+    "absolute_error": 2.220446049250313e-16
+  },
+  {
+    "date": "2019-11-26",
+    "cash_dividend": 0.35,
+    "actual_adjusted_return": -0.00656039284447163,
+    "nominal_plus_cash_return": -0.006560392844471408,
+    "absolute_error": 2.220446049250313e-16
+  },
+  {
+    "date": "2020-02-21",
+    "cash_dividend": 0.35,
+    "actual_adjusted_return": 0.018070832150099747,
+    "nominal_plus_cash_return": 0.018070832150099747,
+    "absolute_error": 0.0
+  },
+  {
+    "date": "2020-05-22",
+    "cash_dividend": 0.35,
+    "actual_adjusted_return": -0.005808347466115915,
+    "nominal_plus_cash_return": -0.005808347466115915,
+    "absolute_error": 0.0
+  },
+  {
+    "date": "2020-08-14",
+    "cash_dividend": 0.35,
+    "actual_adjusted_return": 0.032131633959474826,
+    "nominal_plus_cash_return": 0.032131633959474826,
+    "absolute_error": 0.0
+  },
+  {
+    "date": "2020-11-20",
+    "cash_dividend": 0.35,
+    "actual_adjusted_return": -0.016608372210429434,
+    "nominal_plus_cash_return": -0.016608372210429545,
+    "absolute_error": 1.1102230246251565e-16
+  },
+  {
+    "date": "2021-02-26",
+    "cash_dividend": 0.35,
+    "actual_adjusted_return": -0.004686247852432879,
+    "nominal_plus_cash_return": -0.004686247852432657,
+    "absolute_error": 2.220446049250313e-16
+  }
+]

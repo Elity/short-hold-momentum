@@ -1241,15 +1241,19 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "FL": {
-      "path": "data/research/v04/prices/FL.parquet",
-      "sha256": "8e74d578db3db6d7bf02452e4965f15f30e22986d0321ef86d8bce78907de7e4",
+      "path": "data/research/v04/prices/FL-history-repaired-through-2021-08-19.parquet",
+      "sha256": "33946ddd8eac2b907e4e82f75b5177d08fa3cb405e8e46c7fafc646fb9fd8a2f",
       "source_ticker": "FL",
       "source_name": "Foot Locker Inc.",
       "first": "2003-10-01",
-      "last": "2018-03-27",
+      "last": "2021-08-19",
       "invalid_rows": 0,
       "source_archive_sha256": "77861997bd56e9f0871fdc37f32f4035ea48c1a66ff0814183eb4658dee7651d",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "Append 856 whole-source daily rows; explicitly restore 2017-11-08 IEX row and missed 2018-01-18 $0.31 dividend using fixed WIKI total-return convention; raw nominal fields retained.",
+      "evidence_path": "data/reference/v04-remediation/price-evidence/FL-2021-extension/application-review.md",
+      "evidence_sha256": "8e552e17f54cbc03e4d5307915932cc2d19be67dc2005f9a769a3041a3c32854",
+      "legacy_original_path": "data/research/v04/prices/FL.parquet",
+      "legacy_original_sha256": "8e74d578db3db6d7bf02452e4965f15f30e22986d0321ef86d8bce78907de7e4"
     },
     "FLIR": {
       "path": "data/research/v04/prices/FLIR.parquet",
@@ -1406,15 +1410,19 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "HFC": {
-      "path": "data/research/v04/prices/HFC.parquet",
-      "sha256": "8e32b35e068f736fc1c6719ab85979d5a2717dc8a1a4bca90a4d2cf2eff06b54",
+      "path": "data/research/v04/prices/HFC-through-2021-08-19-dividend-repaired.parquet",
+      "sha256": "c59827215d323fb4e2cf9d467f4e06fda7ea07b04c02aab9056c386cda869233",
       "source_ticker": "HFC",
       "source_name": "HollyFrontier Corp.",
       "first": "2003-10-01",
-      "last": "2018-03-27",
+      "last": "2021-08-19",
       "invalid_rows": 0,
       "source_archive_sha256": "e20be066f5a4537478a899d7af9c2d934009f2ba758bb819dce8d7a293da0f05",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "Append 856 whole SheepB rows; explicitly restore 2017-11-08 from agreeing dated Yahoo captures and 2018-02-27 $0.33 dividend using fixed pre-ex WIKI correction; retain raw nominal fields.",
+      "evidence_path": "data/reference/v04-remediation/price-evidence/HFC-2021-extension/application-review.md",
+      "evidence_sha256": "6f9775285cc11322ac48e0d1a8a3fcc974478543d1df48125126e548e7c73b57",
+      "legacy_original_path": "data/research/v04/prices/HFC.parquet",
+      "legacy_original_sha256": "8e32b35e068f736fc1c6719ab85979d5a2717dc8a1a4bca90a4d2cf2eff06b54"
     },
     "HOLX": {
       "path": "data/research/v04/prices/HOLX.parquet",
@@ -1538,15 +1546,22 @@
       "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
     },
     "JWN": {
-      "path": "data/research/v04/prices/JWN.parquet",
-      "sha256": "1e01003047228373f09124d26372dfd64a6452e25c291eed7ca10307a726ab4c",
+      "path": "data/research/v04/prices/JWN-through-2021-08-19-dividend-repaired.parquet",
+      "sha256": "06e1a93159d3bb81a7d1599ae3441cdc4dd602d6e40155b711f63ee9ef44ed91",
       "source_ticker": "JWN",
       "source_name": "Nordstrom Inc.",
       "first": "2003-10-01",
-      "last": "2018-03-27",
+      "last": "2021-08-19",
       "invalid_rows": 0,
       "source_archive_sha256": "590fc660aecc365ace17b6d03bb05636f2c1801981fe989da10f86d437ab6dd3",
-      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation"
+      "method": "Extend with 856 full SheepB v1 nominal OHLCV rows using canonical WIKI dividend reinvestment factors; explicitly repair 2017-11-24 and 2018-03-02 missing 0.37 dividends in prior adjusted OHLC only; fill 2017-11-08 whole row after independent local IEX cross-check. Preserve original files and all existing nominal price/volume/dollar-volume fields.",
+      "evidence_path": "data/reference/v04-remediation/price-evidence/ADS-JWN-next/application-review.md",
+      "evidence_sha256": "f5f81070fe0c4834ba866d0817927b46c98e1f4c6263b0cd7218fc070b772e70",
+      "prefix_sha256": "1e01003047228373f09124d26372dfd64a6452e25c291eed7ca10307a726ab4c",
+      "extension_source_sha256": "289d709a94b9165e1f1b2a5ffd2a80ec78a2465e47b29ae0f1d2c9788fa15aae",
+      "cash_dividend_events_separately_credited": false,
+      "legacy_original_path": "data/research/v04/prices/JWN.parquet",
+      "legacy_original_sha256": "1e01003047228373f09124d26372dfd64a6452e25c291eed7ca10307a726ab4c"
     },
     "K": {
       "path": "data/research/v04/prices/K.parquet",

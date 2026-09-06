@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at_utc": "2026-09-06T19:50:12.666753+00:00",
+  "generated_at_utc": "2026-09-06T19:10:19.099695+00:00",
   "scope": {
     "study_start": "2005-01-03",
     "cutoff": "2026-09-04",
@@ -12,7 +12,7 @@
       "MBGL"
     ]
   },
-  "manifest_sha256": "636f04fab9721fb80b8609fff59c316e88fca02b5e210a2064570a947bd28e11",
+  "manifest_sha256": "9cffffc95781d98e2eab3f612b534a4fdb6a88a7cc88dd3a1bc08cd84dcfe34f",
   "registered_actions": [
     "ALTR",
     "ARG",
@@ -29,8 +29,8 @@
     "last_price_reaches_cutoff": 627,
     "whole_series_missing": 107,
     "series_present_but_no_member_period_overlap": 57,
-    "archive_2018_tail_gap_while_member": 64,
-    "terminal_candidate_later_than_membership_end": 24,
+    "archive_2018_tail_gap_while_member": 67,
+    "terminal_candidate_later_than_membership_end": 21,
     "terminal_candidate_at_membership_end": 32,
     "quarantined_no_usable_series": 4,
     "archive_boundary_after_membership_ended": 31,
@@ -40,15 +40,16 @@
   },
   "tail_summaries": {
     "archive_2018_tail_gap_while_member": {
-      "tickers": 64,
+      "tickers": 67,
       "end_date_counts": {
-        "2018-03-27": 64
+        "2018-03-27": 67
       },
-      "missing_required_member_sessions": 56076,
-      "missing_required_member_rebalance_observations": 2804,
+      "missing_required_member_sessions": 57728,
+      "missing_required_member_rebalance_observations": 2886,
       "zero_member_overlap_tickers": [
         "ABMD",
         "FRC",
+        "HFC",
         "SATS",
         "WCG"
       ],
@@ -79,16 +80,17 @@
       "in_previously_upgraded_list_count": 0
     },
     "all_unregistered_member_tail_gaps": {
-      "tickers": 65,
+      "tickers": 68,
       "end_date_counts": {
-        "2018-03-27": 64,
+        "2018-03-27": 67,
         "2021-08-19": 1
       },
-      "missing_required_member_sessions": 56619,
-      "missing_required_member_rebalance_observations": 2831,
+      "missing_required_member_sessions": 58271,
+      "missing_required_member_rebalance_observations": 2913,
       "zero_member_overlap_tickers": [
         "ABMD",
         "FRC",
+        "HFC",
         "SATS",
         "WCG"
       ],
@@ -37995,6 +37997,64 @@
         "in_previously_upgraded_list": false
       },
       {
+        "ticker": "FL",
+        "first_member_session": "2016-04-04",
+        "last_member_session": "2019-08-08",
+        "first_nonmember_after_final_period": "2019-08-09",
+        "member_at_cutoff": false,
+        "membership_periods": [
+          {
+            "start": "2016-04-04",
+            "last_member_session": "2019-08-08",
+            "first_nonmember_session": "2019-08-09"
+          }
+        ],
+        "member_sessions": 844,
+        "required_preterminal_member_sessions": 844,
+        "member_rebalance_observations": 42,
+        "event_explained_member_sessions": 0,
+        "event_explained_member_rebalances": 0,
+        "source_path": "data/research/v04/prices/FL.parquet",
+        "source_kind": "research_override",
+        "source_name": "Foot Locker Inc.",
+        "source_sha256": "8e74d578db3db6d7bf02452e4965f15f30e22986d0321ef86d8bce78907de7e4",
+        "is_wiki_derived": true,
+        "manifest_declared_price_end": "2018-03-27",
+        "quarantined": false,
+        "corporate_action_in_manifest": null,
+        "price_window_in_manifest": null,
+        "raw_cache_exists": false,
+        "raw_cache_sha256": null,
+        "raw_first_valid_session": null,
+        "raw_last_valid_session": null,
+        "loaded_rows": 3590,
+        "valid_rows": 3590,
+        "first_price_session": "2003-12-19",
+        "last_price_session": "2018-03-27",
+        "missing_member_rebalances": 17,
+        "missing_required_member_rebalances": 17,
+        "invalid_basic_ohlcv_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "member_price_overlap_sessions": 499,
+        "missing_member_sessions_before_first": 0,
+        "missing_member_sessions_internal": 1,
+        "missing_member_sessions_after_last": 344,
+        "missing_required_member_sessions_after_last": 344,
+        "missing_rebalances_after_last": 17,
+        "missing_required_rebalances_after_last": 17,
+        "first_missing_member_session_after_last": "2018-03-28",
+        "first_missing_rebalance_after_last": "2018-04-11",
+        "requested_missing_quote_start": "2018-03-28",
+        "action_preterminal_missing_sessions": 0,
+        "price_rows_after_registered_last_trade": 0,
+        "newer_raw_candidate_shadowed": false,
+        "raw_later_member_quote_sessions": 0,
+        "observed_end_matches_manifest": true,
+        "diagnostic_category": "archive_2018_tail_gap_while_member",
+        "archive_label_unverified": "Foot Locker Inc.",
+        "in_previously_upgraded_list": false
+      },
+      {
         "ticker": "FLIR",
         "first_member_session": "2009-01-02",
         "last_member_session": "2021-05-13",
@@ -38406,6 +38466,64 @@
         "in_previously_upgraded_list": false
       },
       {
+        "ticker": "HFC",
+        "first_member_session": "2018-06-18",
+        "last_member_session": "2021-06-03",
+        "first_nonmember_after_final_period": "2021-06-04",
+        "member_at_cutoff": false,
+        "membership_periods": [
+          {
+            "start": "2018-06-18",
+            "last_member_session": "2021-06-03",
+            "first_nonmember_session": "2021-06-04"
+          }
+        ],
+        "member_sessions": 746,
+        "required_preterminal_member_sessions": 746,
+        "member_rebalance_observations": 37,
+        "event_explained_member_sessions": 0,
+        "event_explained_member_rebalances": 0,
+        "source_path": "data/research/v04/prices/HFC.parquet",
+        "source_kind": "research_override",
+        "source_name": "HollyFrontier Corp.",
+        "source_sha256": "8e32b35e068f736fc1c6719ab85979d5a2717dc8a1a4bca90a4d2cf2eff06b54",
+        "is_wiki_derived": true,
+        "manifest_declared_price_end": "2018-03-27",
+        "quarantined": false,
+        "corporate_action_in_manifest": null,
+        "price_window_in_manifest": null,
+        "raw_cache_exists": false,
+        "raw_cache_sha256": null,
+        "raw_first_valid_session": null,
+        "raw_last_valid_session": null,
+        "loaded_rows": 3590,
+        "valid_rows": 3590,
+        "first_price_session": "2003-12-19",
+        "last_price_session": "2018-03-27",
+        "missing_member_rebalances": 37,
+        "missing_required_member_rebalances": 37,
+        "invalid_basic_ohlcv_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "member_price_overlap_sessions": 0,
+        "missing_member_sessions_before_first": 0,
+        "missing_member_sessions_internal": 0,
+        "missing_member_sessions_after_last": 746,
+        "missing_required_member_sessions_after_last": 746,
+        "missing_rebalances_after_last": 37,
+        "missing_required_rebalances_after_last": 37,
+        "first_missing_member_session_after_last": "2018-06-18",
+        "first_missing_rebalance_after_last": "2018-07-06",
+        "requested_missing_quote_start": "2018-03-28",
+        "action_preterminal_missing_sessions": 0,
+        "price_rows_after_registered_last_trade": 0,
+        "newer_raw_candidate_shadowed": false,
+        "raw_later_member_quote_sessions": 0,
+        "observed_end_matches_manifest": true,
+        "diagnostic_category": "archive_2018_tail_gap_while_member",
+        "archive_label_unverified": "HollyFrontier Corp.",
+        "in_previously_upgraded_list": false
+      },
+      {
         "ticker": "HOLX",
         "first_member_session": "2016-03-30",
         "last_member_session": "2026-04-08",
@@ -38635,6 +38753,64 @@
         "observed_end_matches_manifest": true,
         "diagnostic_category": "archive_2018_tail_gap_while_member",
         "archive_label_unverified": "Juniper Networks Inc",
+        "in_previously_upgraded_list": false
+      },
+      {
+        "ticker": "JWN",
+        "first_member_session": "2005-01-03",
+        "last_member_session": "2020-06-19",
+        "first_nonmember_after_final_period": "2020-06-22",
+        "member_at_cutoff": false,
+        "membership_periods": [
+          {
+            "start": "2005-01-03",
+            "last_member_session": "2020-06-19",
+            "first_nonmember_session": "2020-06-22"
+          }
+        ],
+        "member_sessions": 3893,
+        "required_preterminal_member_sessions": 3893,
+        "member_rebalance_observations": 195,
+        "event_explained_member_sessions": 0,
+        "event_explained_member_rebalances": 0,
+        "source_path": "data/research/v04/prices/JWN.parquet",
+        "source_kind": "research_override",
+        "source_name": "Nordstrom Inc.",
+        "source_sha256": "1e01003047228373f09124d26372dfd64a6452e25c291eed7ca10307a726ab4c",
+        "is_wiki_derived": true,
+        "manifest_declared_price_end": "2018-03-27",
+        "quarantined": false,
+        "corporate_action_in_manifest": null,
+        "price_window_in_manifest": null,
+        "raw_cache_exists": false,
+        "raw_cache_sha256": null,
+        "raw_first_valid_session": null,
+        "raw_last_valid_session": null,
+        "loaded_rows": 3590,
+        "valid_rows": 3590,
+        "first_price_session": "2003-12-19",
+        "last_price_session": "2018-03-27",
+        "missing_member_rebalances": 28,
+        "missing_required_member_rebalances": 28,
+        "invalid_basic_ohlcv_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "member_price_overlap_sessions": 3330,
+        "missing_member_sessions_before_first": 0,
+        "missing_member_sessions_internal": 1,
+        "missing_member_sessions_after_last": 562,
+        "missing_required_member_sessions_after_last": 562,
+        "missing_rebalances_after_last": 28,
+        "missing_required_rebalances_after_last": 28,
+        "first_missing_member_session_after_last": "2018-03-28",
+        "first_missing_rebalance_after_last": "2018-04-11",
+        "requested_missing_quote_start": "2018-03-28",
+        "action_preterminal_missing_sessions": 0,
+        "price_rows_after_registered_last_trade": 0,
+        "newer_raw_candidate_shadowed": false,
+        "raw_later_member_quote_sessions": 0,
+        "observed_end_matches_manifest": true,
+        "diagnostic_category": "archive_2018_tail_gap_while_member",
+        "archive_label_unverified": "Nordstrom Inc.",
         "in_previously_upgraded_list": false
       },
       {
@@ -50420,122 +50596,6 @@
         "in_previously_upgraded_list": false
       },
       {
-        "ticker": "FL",
-        "first_member_session": "2016-04-04",
-        "last_member_session": "2019-08-08",
-        "first_nonmember_after_final_period": "2019-08-09",
-        "member_at_cutoff": false,
-        "membership_periods": [
-          {
-            "start": "2016-04-04",
-            "last_member_session": "2019-08-08",
-            "first_nonmember_session": "2019-08-09"
-          }
-        ],
-        "member_sessions": 844,
-        "required_preterminal_member_sessions": 844,
-        "member_rebalance_observations": 42,
-        "event_explained_member_sessions": 0,
-        "event_explained_member_rebalances": 0,
-        "source_path": "data/research/v04/prices/FL-history-repaired-through-2021-08-19.parquet",
-        "source_kind": "research_override",
-        "source_name": "Foot Locker Inc.",
-        "source_sha256": "33946ddd8eac2b907e4e82f75b5177d08fa3cb405e8e46c7fafc646fb9fd8a2f",
-        "is_wiki_derived": true,
-        "manifest_declared_price_end": "2021-08-19",
-        "quarantined": false,
-        "corporate_action_in_manifest": null,
-        "price_window_in_manifest": null,
-        "raw_cache_exists": false,
-        "raw_cache_sha256": null,
-        "raw_first_valid_session": null,
-        "raw_last_valid_session": null,
-        "loaded_rows": 4447,
-        "valid_rows": 4447,
-        "first_price_session": "2003-12-19",
-        "last_price_session": "2021-08-19",
-        "missing_member_rebalances": 0,
-        "missing_required_member_rebalances": 0,
-        "invalid_basic_ohlcv_rows": 0,
-        "physical_range_conflict_rows": 0,
-        "member_price_overlap_sessions": 844,
-        "missing_member_sessions_before_first": 0,
-        "missing_member_sessions_internal": 0,
-        "missing_member_sessions_after_last": 0,
-        "missing_required_member_sessions_after_last": 0,
-        "missing_rebalances_after_last": 0,
-        "missing_required_rebalances_after_last": 0,
-        "first_missing_member_session_after_last": null,
-        "first_missing_rebalance_after_last": null,
-        "requested_missing_quote_start": "2021-08-20",
-        "action_preterminal_missing_sessions": 0,
-        "price_rows_after_registered_last_trade": 0,
-        "newer_raw_candidate_shadowed": false,
-        "raw_later_member_quote_sessions": 0,
-        "observed_end_matches_manifest": true,
-        "diagnostic_category": "terminal_candidate_later_than_membership_end",
-        "archive_label_unverified": "Foot Locker Inc.",
-        "in_previously_upgraded_list": false
-      },
-      {
-        "ticker": "HFC",
-        "first_member_session": "2018-06-18",
-        "last_member_session": "2021-06-03",
-        "first_nonmember_after_final_period": "2021-06-04",
-        "member_at_cutoff": false,
-        "membership_periods": [
-          {
-            "start": "2018-06-18",
-            "last_member_session": "2021-06-03",
-            "first_nonmember_session": "2021-06-04"
-          }
-        ],
-        "member_sessions": 746,
-        "required_preterminal_member_sessions": 746,
-        "member_rebalance_observations": 37,
-        "event_explained_member_sessions": 0,
-        "event_explained_member_rebalances": 0,
-        "source_path": "data/research/v04/prices/HFC-through-2021-08-19-dividend-repaired.parquet",
-        "source_kind": "research_override",
-        "source_name": "HollyFrontier Corp.",
-        "source_sha256": "c59827215d323fb4e2cf9d467f4e06fda7ea07b04c02aab9056c386cda869233",
-        "is_wiki_derived": true,
-        "manifest_declared_price_end": "2021-08-19",
-        "quarantined": false,
-        "corporate_action_in_manifest": null,
-        "price_window_in_manifest": null,
-        "raw_cache_exists": false,
-        "raw_cache_sha256": null,
-        "raw_first_valid_session": null,
-        "raw_last_valid_session": null,
-        "loaded_rows": 4447,
-        "valid_rows": 4447,
-        "first_price_session": "2003-12-19",
-        "last_price_session": "2021-08-19",
-        "missing_member_rebalances": 0,
-        "missing_required_member_rebalances": 0,
-        "invalid_basic_ohlcv_rows": 0,
-        "physical_range_conflict_rows": 0,
-        "member_price_overlap_sessions": 746,
-        "missing_member_sessions_before_first": 0,
-        "missing_member_sessions_internal": 0,
-        "missing_member_sessions_after_last": 0,
-        "missing_required_member_sessions_after_last": 0,
-        "missing_rebalances_after_last": 0,
-        "missing_required_rebalances_after_last": 0,
-        "first_missing_member_session_after_last": null,
-        "first_missing_rebalance_after_last": null,
-        "requested_missing_quote_start": "2021-08-20",
-        "action_preterminal_missing_sessions": 0,
-        "price_rows_after_registered_last_trade": 0,
-        "newer_raw_candidate_shadowed": false,
-        "raw_later_member_quote_sessions": 0,
-        "observed_end_matches_manifest": true,
-        "diagnostic_category": "terminal_candidate_later_than_membership_end",
-        "archive_label_unverified": "HollyFrontier Corp.",
-        "in_previously_upgraded_list": false
-      },
-      {
         "ticker": "HOT",
         "first_member_session": "2005-01-03",
         "last_member_session": "2016-09-22",
@@ -50823,64 +50883,6 @@
         "observed_end_matches_manifest": true,
         "diagnostic_category": "terminal_candidate_later_than_membership_end",
         "archive_label_unverified": "Joy Global Inc.",
-        "in_previously_upgraded_list": false
-      },
-      {
-        "ticker": "JWN",
-        "first_member_session": "2005-01-03",
-        "last_member_session": "2020-06-19",
-        "first_nonmember_after_final_period": "2020-06-22",
-        "member_at_cutoff": false,
-        "membership_periods": [
-          {
-            "start": "2005-01-03",
-            "last_member_session": "2020-06-19",
-            "first_nonmember_session": "2020-06-22"
-          }
-        ],
-        "member_sessions": 3893,
-        "required_preterminal_member_sessions": 3893,
-        "member_rebalance_observations": 195,
-        "event_explained_member_sessions": 0,
-        "event_explained_member_rebalances": 0,
-        "source_path": "data/research/v04/prices/JWN-through-2021-08-19-dividend-repaired.parquet",
-        "source_kind": "research_override",
-        "source_name": "Nordstrom Inc.",
-        "source_sha256": "06e1a93159d3bb81a7d1599ae3441cdc4dd602d6e40155b711f63ee9ef44ed91",
-        "is_wiki_derived": true,
-        "manifest_declared_price_end": "2021-08-19",
-        "quarantined": false,
-        "corporate_action_in_manifest": null,
-        "price_window_in_manifest": null,
-        "raw_cache_exists": false,
-        "raw_cache_sha256": null,
-        "raw_first_valid_session": null,
-        "raw_last_valid_session": null,
-        "loaded_rows": 4447,
-        "valid_rows": 4447,
-        "first_price_session": "2003-12-19",
-        "last_price_session": "2021-08-19",
-        "missing_member_rebalances": 0,
-        "missing_required_member_rebalances": 0,
-        "invalid_basic_ohlcv_rows": 0,
-        "physical_range_conflict_rows": 0,
-        "member_price_overlap_sessions": 3893,
-        "missing_member_sessions_before_first": 0,
-        "missing_member_sessions_internal": 0,
-        "missing_member_sessions_after_last": 0,
-        "missing_required_member_sessions_after_last": 0,
-        "missing_rebalances_after_last": 0,
-        "missing_required_rebalances_after_last": 0,
-        "first_missing_member_session_after_last": null,
-        "first_missing_rebalance_after_last": null,
-        "requested_missing_quote_start": "2021-08-20",
-        "action_preterminal_missing_sessions": 0,
-        "price_rows_after_registered_last_trade": 0,
-        "newer_raw_candidate_shadowed": false,
-        "raw_later_member_quote_sessions": 0,
-        "observed_end_matches_manifest": true,
-        "diagnostic_category": "terminal_candidate_later_than_membership_end",
-        "archive_label_unverified": "Nordstrom Inc.",
         "in_previously_upgraded_list": false
       },
       {
@@ -57024,7 +57026,7 @@
     },
     {
       "ticker": "FL",
-      "category": "terminal_candidate_later_than_membership_end",
+      "category": "archive_2018_tail_gap_while_member",
       "source_label_not_verified_identity": "Foot Locker Inc.",
       "membership_periods": [
         {
@@ -57033,11 +57035,11 @@
           "first_nonmember_session": "2019-08-09"
         }
       ],
-      "existing_last_quote": "2021-08-19",
+      "existing_last_quote": "2018-03-27",
       "complete_history_start": "2015-03-23",
       "minimum_member_coverage_end": "2019-08-08",
       "first_nonmember_session": "2019-08-09",
-      "next_missing_quote_start": null,
+      "next_missing_quote_start": "2018-03-28",
       "identity_requirement": "Permanent security ID and dated issuer/CIK; never assume the current ticker is the historic security.",
       "fields": [
         "nominal OHLCV and coverage flags",
@@ -57634,7 +57636,7 @@
     },
     {
       "ticker": "HFC",
-      "category": "terminal_candidate_later_than_membership_end",
+      "category": "archive_2018_tail_gap_while_member",
       "source_label_not_verified_identity": "HollyFrontier Corp.",
       "membership_periods": [
         {
@@ -57643,11 +57645,11 @@
           "first_nonmember_session": "2021-06-04"
         }
       ],
-      "existing_last_quote": "2021-08-19",
+      "existing_last_quote": "2018-03-27",
       "complete_history_start": "2017-06-06",
       "minimum_member_coverage_end": "2021-06-03",
       "first_nonmember_session": "2021-06-04",
-      "next_missing_quote_start": null,
+      "next_missing_quote_start": "2018-03-28",
       "identity_requirement": "Permanent security ID and dated issuer/CIK; never assume the current ticker is the historic security.",
       "fields": [
         "nominal OHLCV and coverage flags",
@@ -58084,7 +58086,7 @@
     },
     {
       "ticker": "JWN",
-      "category": "terminal_candidate_later_than_membership_end",
+      "category": "archive_2018_tail_gap_while_member",
       "source_label_not_verified_identity": "Nordstrom Inc.",
       "membership_periods": [
         {
@@ -58093,11 +58095,11 @@
           "first_nonmember_session": "2020-06-22"
         }
       ],
-      "existing_last_quote": "2021-08-19",
+      "existing_last_quote": "2018-03-27",
       "complete_history_start": "2003-12-19",
       "minimum_member_coverage_end": "2020-06-19",
       "first_nonmember_session": "2020-06-22",
-      "next_missing_quote_start": null,
+      "next_missing_quote_start": "2018-03-28",
       "identity_requirement": "Permanent security ID and dated issuer/CIK; never assume the current ticker is the historic security.",
       "fields": [
         "nominal OHLCV and coverage flags",
@@ -67829,6 +67831,43 @@
       "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event."
     },
     {
+      "ticker": "FL",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/FL.parquet",
+      "sha256": "0d47533f419a3da85aff4c9e9288a9de3a27464dd51e3eaf03c7e17c3d269a6d",
+      "rows": 5444,
+      "first": "1999-12-31",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "Foot Locker"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 344,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 17,
+      "minimum_member_coverage_end": "2019-08-08",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 344,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
+    },
+    {
       "ticker": "FRC",
       "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/FRC.parquet",
       "sha256": "b37861dfe9525586f646c060fd708039672c4b6448e2fa5a2c0adfa817175374",
@@ -69520,6 +69559,43 @@
       "minimum_member_coverage_end": "2025-07-22",
       "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
       "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event."
+    },
+    {
+      "ticker": "HFC",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/HFC.parquet",
+      "sha256": "196aea2aefc53bc736c9d8008cbc77142cfae321f8b0192d64d6be2669d1b0bc",
+      "rows": 5444,
+      "first": "1999-12-31",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "HollyFrontier"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 746,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 37,
+      "minimum_member_coverage_end": "2021-06-03",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 802,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
     },
     {
       "ticker": "HOLX",
@@ -72791,6 +72867,43 @@
       "minimum_member_coverage_end": "2025-07-08",
       "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
       "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event."
+    },
+    {
+      "ticker": "JWN",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/JWN.parquet",
+      "sha256": "289d709a94b9165e1f1b2a5ffd2a80ec78a2465e47b29ae0f1d2c9788fa15aae",
+      "rows": 5444,
+      "first": "1999-12-31",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "Nordstrom"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 562,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 28,
+      "minimum_member_coverage_end": "2020-06-19",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 562,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
     },
     {
       "ticker": "K",
@@ -77248,24 +77361,7 @@
       "recoverable_member_rebalances_if_fully_validated": 9,
       "minimum_member_coverage_end": "2018-11-30",
       "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
-      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
-      "next_step_audit": {
-        "rows_checked": 173,
-        "invalid_basic_rows": 0,
-        "physical_range_conflict_rows": 0,
-        "upstream_fields": [
-          "Date",
-          "Open",
-          "High",
-          "Low",
-          "Close",
-          "Adj Close",
-          "Volume",
-          "Name",
-          "Company Name"
-        ],
-        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
-      }
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event."
     },
     {
       "ticker": "WBA",
@@ -79361,6 +79457,43 @@
   ],
   "next_five_local_candidates": [
     {
+      "ticker": "HFC",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/HFC.parquet",
+      "sha256": "196aea2aefc53bc736c9d8008cbc77142cfae321f8b0192d64d6be2669d1b0bc",
+      "rows": 5444,
+      "first": "1999-12-31",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "HollyFrontier"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 746,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 37,
+      "minimum_member_coverage_end": "2021-06-03",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 802,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
+    },
+    {
       "ticker": "ADS",
       "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ADS.parquet",
       "sha256": "173d8919cbfe7d86a62b8f3795c9a106036c5a97d12283934e5147607bdd13d9",
@@ -79369,6 +79502,43 @@
       "last": "2021-08-19",
       "labels_not_identity_approval": [
         "Alliance Data Systems"
+      ],
+      "rows_after_current_effective_end": 856,
+      "first_after_current_effective_end": "2018-03-28",
+      "needed_member_tail_sessions": 562,
+      "missing_needed_member_dates": [],
+      "covers_all_current_missing_member_dates": true,
+      "recoverable_member_rebalances_if_fully_validated": 28,
+      "minimum_member_coverage_end": "2020-06-19",
+      "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
+      "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
+      "next_step_audit": {
+        "rows_checked": 562,
+        "invalid_basic_rows": 0,
+        "physical_range_conflict_rows": 0,
+        "upstream_fields": [
+          "Date",
+          "Open",
+          "High",
+          "Low",
+          "Close",
+          "Adj Close",
+          "Volume",
+          "Name",
+          "Company Name"
+        ],
+        "approval_status": "DATE_COMPLETE_LOCAL_CANDIDATE_ONLY_IDENTITY_ACTION_UNITS_NOT_APPROVED"
+      }
+    },
+    {
+      "ticker": "JWN",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/JWN.parquet",
+      "sha256": "289d709a94b9165e1f1b2a5ffd2a80ec78a2465e47b29ae0f1d2c9788fa15aae",
+      "rows": 5444,
+      "first": "1999-12-31",
+      "last": "2021-08-19",
+      "labels_not_identity_approval": [
+        "Nordstrom"
       ],
       "rows_after_current_effective_end": 856,
       "first_after_current_effective_end": "2018-03-28",
@@ -79435,26 +79605,26 @@
       }
     },
     {
-      "ticker": "SRCL",
-      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/SRCL.parquet",
-      "sha256": "1ebe95eb2bc86a6a2070fd09e782fbdcfca54e3fb26cefa3735d87a9be52c487",
+      "ticker": "FL",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/FL.parquet",
+      "sha256": "0d47533f419a3da85aff4c9e9288a9de3a27464dd51e3eaf03c7e17c3d269a6d",
       "rows": 5444,
       "first": "1999-12-31",
       "last": "2021-08-19",
       "labels_not_identity_approval": [
-        "Stericycle"
+        "Foot Locker"
       ],
       "rows_after_current_effective_end": 856,
       "first_after_current_effective_end": "2018-03-28",
-      "needed_member_tail_sessions": 173,
+      "needed_member_tail_sessions": 344,
       "missing_needed_member_dates": [],
       "covers_all_current_missing_member_dates": true,
-      "recoverable_member_rebalances_if_fully_validated": 9,
-      "minimum_member_coverage_end": "2018-11-30",
+      "recoverable_member_rebalances_if_fully_validated": 17,
+      "minimum_member_coverage_end": "2019-08-08",
       "status": "LOCAL_DATE_RANGE_CANDIDATE_NOT_APPROVED",
       "required_validation": "Dated security identity, unadjusted unit basis, OHLCV validity, adjustment factors and distributions, and legal terminal event.",
       "next_step_audit": {
-        "rows_checked": 173,
+        "rows_checked": 344,
         "invalid_basic_rows": 0,
         "physical_range_conflict_rows": 0,
         "upstream_fields": [
@@ -79502,18 +79672,19 @@
       "whole_missing": 107,
       "quarantined": 4,
       "zero_member_overlap": 57,
-      "member_tail_gaps": 65,
+      "member_tail_gaps": 68,
       "by_tail_type": {
         "archive_2018_tail_gap_while_member": {
-          "tickers": 64,
+          "tickers": 67,
           "end_date_counts": {
-            "2018-03-27": 64
+            "2018-03-27": 67
           },
-          "missing_required_member_sessions": 56076,
-          "missing_required_member_rebalance_observations": 2804,
+          "missing_required_member_sessions": 57728,
+          "missing_required_member_rebalance_observations": 2886,
           "zero_member_overlap_tickers": [
             "ABMD",
             "FRC",
+            "HFC",
             "SATS",
             "WCG"
           ],
@@ -79544,16 +79715,17 @@
           "in_previously_upgraded_list_count": 0
         },
         "all_unregistered_member_tail_gaps": {
-          "tickers": 65,
+          "tickers": 68,
           "end_date_counts": {
-            "2018-03-27": 64,
+            "2018-03-27": 67,
             "2021-08-19": 1
           },
-          "missing_required_member_sessions": 56619,
-          "missing_required_member_rebalance_observations": 2831,
+          "missing_required_member_sessions": 58271,
+          "missing_required_member_rebalance_observations": 2913,
           "zero_member_overlap_tickers": [
             "ABMD",
             "FRC",
+            "HFC",
             "SATS",
             "WCG"
           ],
@@ -79562,7 +79734,7 @@
           "in_previously_upgraded_list_count": 0
         }
       },
-      "unregistered_terminal_candidates": 56
+      "unregistered_terminal_candidates": 53
     },
     "do_not_erase": [
       "TIE_NO_VERIFIED_REPLACEMENT: current candidate still has documented whole-row holes, quarterly price conflicts and early volume-basis uncertainty.",
@@ -79589,7 +79761,7 @@
     }
   ],
   "input_hashes": {
-    "data/reference/v04-remediation/manifest.json": "636f04fab9721fb80b8609fff59c316e88fca02b5e210a2064570a947bd28e11",
+    "data/reference/v04-remediation/manifest.json": "9cffffc95781d98e2eab3f612b534a4fdb6a88a7cc88dd3a1bc08cd84dcfe34f",
     "data/reference/sp500_history.csv": "39a9202c9ef69a74c0ff07e2113ad41fb6da7c8c5b6cd9541f0185fb4391e717",
     "data/reference/v04-remediation/membership-extension.csv": "fa1141a4359c016d9e2d30a22ad51845a5705db1a3b4214acc7249895507d016",
     "data/reference/v04-remediation/corporate-action-evidence/agn-watson-membership-findings.md": "4ec59c5ae40dfc2bc69557c64b37e7d3c9dcdea70cdeb6460c32aa1e301e05f7",
@@ -80354,8 +80526,7 @@
     "data/research/v04/prices/FBHS.parquet": "9e3782027259a445868ee64bc0475df4262d8c7ba363beccdcda755f7badf47b",
     "data/research/v04/prices/FDO.parquet": "49a6154529e3a4bae652ea628bb47d48523ef3127efa40c6a28994ec780785a2",
     "data/research/v04/prices/FII.parquet": "034e63784ecca145dc9a7910608050c9c066633893fb1228141624bdf6f8c3c0",
-    "data/research/v04/prices/FL-history-repaired-through-2021-08-19.parquet": "33946ddd8eac2b907e4e82f75b5177d08fa3cb405e8e46c7fafc646fb9fd8a2f",
-    "data/reference/v04-remediation/price-evidence/FL-2021-extension/application-review.md": "8e552e17f54cbc03e4d5307915932cc2d19be67dc2005f9a769a3041a3c32854",
+    "data/research/v04/prices/FL.parquet": "8e74d578db3db6d7bf02452e4965f15f30e22986d0321ef86d8bce78907de7e4",
     "data/research/v04/prices/FLIR.parquet": "462f2dc23a7897ed7fdda0d45c966979564fded302f3b249640946e959469d5d",
     "data/research/v04/prices/FRC.parquet": "378fefb19a6af9b801df5e56501b0a80f615ac5063bf9611b670439d10ecddb6",
     "data/research/v04/prices/FRX.parquet": "fbbc74318b134fec23bb9dbb878374343a741b820e03862ae61fc0642273ce0b",
@@ -80370,8 +80541,7 @@
     "data/research/v04/prices/HCBK.parquet": "0fe5e9264d6ea91b1465f4684c0a8150736da5ad60cbd54e38f041134be6e03d",
     "data/research/v04/prices/HCP.parquet": "f942e6149f100ae5f1c35b3064ac212cd4b933fc663f255820352c0517b71c3b",
     "data/research/v04/prices/HES.parquet": "435ebbf6655f1d0ad0cf0b829519a96a9aba9ddd15053552448a7a9dbc41081a",
-    "data/research/v04/prices/HFC-through-2021-08-19-dividend-repaired.parquet": "c59827215d323fb4e2cf9d467f4e06fda7ea07b04c02aab9056c386cda869233",
-    "data/reference/v04-remediation/price-evidence/HFC-2021-extension/application-review.md": "6f9775285cc11322ac48e0d1a8a3fcc974478543d1df48125126e548e7c73b57",
+    "data/research/v04/prices/HFC.parquet": "8e32b35e068f736fc1c6719ab85979d5a2717dc8a1a4bca90a4d2cf2eff06b54",
     "data/research/v04/prices/HOLX.parquet": "04979ecb8aa6b1894e87501225caae576a0354b8fca3fd862ba882fb86fe337b",
     "data/research/v04/prices/HRS.parquet": "bd3b90fa13f1945a3dcc137dddae9c023224281f09483d2909caa31561e2e060",
     "data/research/v04/prices/HSH.parquet": "88816b5eff140b8e918a6876c7abab9f9dd1df82d149fdf1399696750e590cb1",
@@ -80383,8 +80553,7 @@
     "data/research/v04/prices/JNS.parquet": "03a640f59dd52301e8513bfb1fca6668424375f21d771e8e096da28390ee9890",
     "data/research/v04/prices/JNY.parquet": "c061d3b5e57b2d211f4e09394be748ffbc4cb9ec71100940db7bcced75e0881f",
     "data/research/v04/prices/JOY.parquet": "97f151c6e3d3efa3e50b3ea0077ebd9ab3f1eec987c72ec62853c4b2fae046c7",
-    "data/research/v04/prices/JWN-through-2021-08-19-dividend-repaired.parquet": "06e1a93159d3bb81a7d1599ae3441cdc4dd602d6e40155b711f63ee9ef44ed91",
-    "data/reference/v04-remediation/price-evidence/ADS-JWN-next/application-review.md": "f5f81070fe0c4834ba866d0817927b46c98e1f4c6263b0cd7218fc070b772e70",
+    "data/research/v04/prices/JWN.parquet": "1e01003047228373f09124d26372dfd64a6452e25c291eed7ca10307a726ab4c",
     "data/research/v04/prices/K.parquet": "5f84dd763c7e4fcaa340bfedc07034416483f835e732da2700668ae771c4401d",
     "data/research/v04/prices/KRFT.parquet": "7c4a0fc1b95fbd3238d117764f08929fcfb5758408a29c0c4a4606525aad9c48",
     "data/research/v04/prices/KSU.parquet": "bae3dc327899f3363eda9d0cff40720f916ca04ae1b4fc8ddc3a8ddb59010939",

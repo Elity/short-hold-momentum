@@ -1,0 +1,13 @@
+date,cash_dividend,record_date,pay_date,kind,exact_date_evidence,amount_evidence,primary_individual_ex_date_obtained
+2018-05-22,0.33,2018-05-23,2018-06-14,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2018-08-22,0.33,2018-08-23,2018-09-20,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2018-11-20,0.33,2018-11-21,2018-12-12,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2019-02-26,0.33,2019-02-27,2019-03-13,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2019-05-17,0.33,2019-05-20,2019-06-05,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2019-08-21,0.33,2019-08-22,2019-09-04,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2019-11-26,0.35,2019-11-27,2019-12-11,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2020-02-21,0.35,2020-02-24,2020-03-05,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2020-05-22,0.35,2020-05-26,2020-06-18,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2020-08-14,0.35,2020-08-17,2020-09-02,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2020-11-20,0.35,2020-11-23,2020-12-07,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False
+2021-02-26,0.35,2021-03-01,2021-03-10,ordinary_cash_dividend,SheepB factor step plus secondary A2 Finance history in request-01,SEC quarterly/year totals; 2018 issuer declarations in request-08,False

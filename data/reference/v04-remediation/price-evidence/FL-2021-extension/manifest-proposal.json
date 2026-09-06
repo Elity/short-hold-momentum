@@ -1,0 +1,22 @@
+{
+  "ticker": "FL",
+  "expected_current_override_path": "data/research/v04/prices/FL.parquet",
+  "expected_current_override_sha256": "8e74d578db3db6d7bf02452e4965f15f30e22986d0321ef86d8bce78907de7e4",
+  "candidate_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-member-extensions/FL/FL-history-repaired-through-2021-08-19.parquet",
+  "price_override": {
+    "path": "data/research/v04/prices/FL-history-repaired-through-2021-08-19.parquet",
+    "sha256": "33946ddd8eac2b907e4e82f75b5177d08fa3cb405e8e46c7fafc646fb9fd8a2f",
+    "source_ticker": "FL",
+    "source_name": "Foot Locker Inc.",
+    "first": "2003-10-01",
+    "last": "2021-08-19",
+    "invalid_rows": 0,
+    "source_archive_sha256": "77861997bd56e9f0871fdc37f32f4035ea48c1a66ff0814183eb4658dee7651d",
+    "method": "Append 856 whole-source daily rows; explicitly restore 2017-11-08 IEX row and missed 2018-01-18 $0.31 dividend using fixed WIKI total-return convention; raw nominal fields retained.",
+    "evidence_path": "data/reference/v04-remediation/price-evidence/FL-2021-extension/report.md",
+    "evidence_sha256": "d47f7cb652a7c607aa6111808e1740d49edeb1ef254c0b1921c539f6aefa7ddc"
+  },
+  "new_corporate_actions": [],
+  "all_unresolved_gates_retained": true,
+  "evidence_source_grades_and_quote_conflicts": "See report; bounded unit and cash-dividend verification, not all historical OHLCV certified."
+}

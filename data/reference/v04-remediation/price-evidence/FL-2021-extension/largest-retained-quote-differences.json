@@ -1,0 +1,142 @@
+[
+  {
+    "date": "2017-05-19",
+    "field": "Open",
+    "relative_error": 0.16446275947507827,
+    "wiki_nominal": 60.499999999999964,
+    "yahoo_nominal": 70.44999694824219
+  },
+  {
+    "date": "2008-12-19",
+    "field": "Open",
+    "relative_error": 0.0750000476837247,
+    "wiki_nominal": 7.999999999999934,
+    "yahoo_nominal": 8.600000381469727
+  },
+  {
+    "date": "2004-06-25",
+    "field": "Open",
+    "relative_error": 0.04000003212376635,
+    "wiki_nominal": 23.750000000000004,
+    "yahoo_nominal": 24.700000762939453
+  },
+  {
+    "date": "2008-03-03",
+    "field": "Open",
+    "relative_error": 0.02502084752736189,
+    "wiki_nominal": 11.98999999999996,
+    "yahoo_nominal": 12.289999961853027
+  },
+  {
+    "date": "2007-11-21",
+    "field": "Open",
+    "relative_error": 0.022500038146971102,
+    "wiki_nominal": 12.00000000000002,
+    "yahoo_nominal": 12.270000457763672
+  },
+  {
+    "date": "2017-05-19",
+    "field": "High",
+    "relative_error": 0.14739408710491353,
+    "wiki_nominal": 61.40000000000043,
+    "yahoo_nominal": 70.44999694824219
+  },
+  {
+    "date": "2006-07-07",
+    "field": "High",
+    "relative_error": 0.0303846505972295,
+    "wiki_nominal": 26.000000000000643,
+    "yahoo_nominal": 25.209999084472656
+  },
+  {
+    "date": "2012-08-17",
+    "field": "High",
+    "relative_error": 0.005277739630791811,
+    "wiki_nominal": 35.99999999999952,
+    "yahoo_nominal": 35.810001373291016
+  },
+  {
+    "date": "2017-05-17",
+    "field": "High",
+    "relative_error": 0.0032841997837793624,
+    "wiki_nominal": 71.55499999999901,
+    "yahoo_nominal": 71.79000091552734
+  },
+  {
+    "date": "2016-08-30",
+    "field": "High",
+    "relative_error": 0.0016584115996760573,
+    "wiki_nominal": 66.32999999999974,
+    "yahoo_nominal": 66.44000244140625
+  },
+  {
+    "date": "2018-03-23",
+    "field": "Low",
+    "relative_error": 0.0016505433208284792,
+    "wiki_nominal": 42.41,
+    "yahoo_nominal": 42.47999954223633
+  },
+  {
+    "date": "2005-04-21",
+    "field": "Low",
+    "relative_error": 0.0010960850351159346,
+    "wiki_nominal": 27.369999999999013,
+    "yahoo_nominal": 27.34000015258789
+  },
+  {
+    "date": "2016-01-05",
+    "field": "Low",
+    "relative_error": 0.0007650312332631026,
+    "wiki_nominal": 65.35999999999983,
+    "yahoo_nominal": 65.30999755859375
+  },
+  {
+    "date": "2009-07-06",
+    "field": "Low",
+    "relative_error": 0.0005079107638192859,
+    "wiki_nominal": 9.844999999999928,
+    "yahoo_nominal": 9.850000381469728
+  },
+  {
+    "date": "2009-04-01",
+    "field": "Low",
+    "relative_error": 0.0004962703430329007,
+    "wiki_nominal": 10.075000000000001,
+    "yahoo_nominal": 10.079999923706056
+  },
+  {
+    "date": "2006-01-18",
+    "field": "Close",
+    "relative_error": 0.008362645834264604,
+    "wiki_nominal": 22.72,
+    "yahoo_nominal": 22.530000686645508
+  },
+  {
+    "date": "2007-01-16",
+    "field": "Close",
+    "relative_error": 0.00600465065337219,
+    "wiki_nominal": 21.65,
+    "yahoo_nominal": 21.780000686645508
+  },
+  {
+    "date": "2007-04-17",
+    "field": "Close",
+    "relative_error": 0.005485228848356671,
+    "wiki_nominal": 23.7,
+    "yahoo_nominal": 23.829999923706055
+  },
+  {
+    "date": "2009-07-02",
+    "field": "Close",
+    "relative_error": 0.005015091049515696,
+    "wiki_nominal": 9.97,
+    "yahoo_nominal": 10.020000457763672
+  },
+  {
+    "date": "2006-06-09",
+    "field": "Close",
+    "relative_error": 0.003742241809868818,
+    "wiki_nominal": 24.05,
+    "yahoo_nominal": 23.959999084472656
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "number": 3,
+  "kind": "issuer_q2_document_get",
+  "url": "https://investors.footlocker-inc.com/static-files/a3da522c-cb46-4718-971a-df6b3f306d9e",
+  "started_at": "2026-09-06T19:36:42.557298+00:00",
+  "retries": 0,
+  "authentication": "none",
+  "status_code": 200,
+  "content_type": "application/rtf",
+  "bytes": 199125,
+  "sha256": "a06ac2f937c9973c593ab91537e7feba6fbd4ce61c3060a90e00a81018785827",
+  "final_host": "investors.footlocker-inc.com",
+  "redirect_count": 0,
+  "actual_format": "RTF",
+  "local_conversion": "macOS textutil -convert txt; offline",
+  "text_sha256": "0f5b0a2ea9fc277c3027981ce905e3162423a14ef0c04a06bc2989bd7fce04d1"
+}

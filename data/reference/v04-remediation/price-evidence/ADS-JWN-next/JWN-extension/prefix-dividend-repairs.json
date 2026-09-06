@@ -1,0 +1,36 @@
+[
+  {
+    "declaration_date":"2017-11-15",
+    "ex_date":"2017-11-24",
+    "record_date":"2017-11-27",
+    "payment_date":"2017-12-12",
+    "cash_per_nominal_share":0.37,
+    "currency":"USD",
+    "scope":"prefix_missing_dividend",
+    "amount_source":"Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly\/annual dividend disclosures and saved issuer releases",
+    "ex_date_source":"Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+    "date_source_grade":"ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+    "amount_not_inferred_from_factor":true,
+    "nominal_ex_close_from_existing_prefix":40.96,
+    "multiplier_for_strictly_pre_ex_adjusted_ohlc":0.9910476651,
+    "old_rows_changed":3562,
+    "candidate_rows_changed":3563
+  },
+  {
+    "declaration_date":"2018-02-21",
+    "ex_date":"2018-03-02",
+    "record_date":"2018-03-05",
+    "payment_date":"2018-03-20",
+    "cash_per_nominal_share":0.37,
+    "currency":"USD",
+    "scope":"prefix_missing_dividend",
+    "amount_source":"Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly\/annual dividend disclosures and saved issuer releases",
+    "ex_date_source":"Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+    "date_source_grade":"ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+    "amount_not_inferred_from_factor":true,
+    "nominal_ex_close_from_existing_prefix":53.04,
+    "multiplier_for_strictly_pre_ex_adjusted_ohlc":0.9930724583,
+    "old_rows_changed":3628,
+    "candidate_rows_changed":3629
+  }
+]

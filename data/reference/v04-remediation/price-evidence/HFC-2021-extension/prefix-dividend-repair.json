@@ -1,0 +1,48 @@
+{
+  "date": "2018-02-27",
+  "cash_dividend": 0.33,
+  "nominal_ex_date_close": 44.4,
+  "backward_factor": 0.9926224010731053,
+  "affected_existing_rows": 3625,
+  "evidence": "SheepB factor step and A2 Finance exact-date history; primary 2018 total 1.32 less later three issuer-supported 0.33 payments leaves 0.33.",
+  "old_wiki_ex_dividend": 0,
+  "old_wiki_factor_step": 0,
+  "unchanged_on_and_after_date": "2018-02-27",
+  "unchanged_fields_for_existing_rows": [
+    "date",
+    "volume",
+    "as_traded_close",
+    "dollar_volume",
+    "adjusted",
+    "downloaded_at"
+  ],
+  "changed_fields": [
+    "open",
+    "high",
+    "low",
+    "close",
+    "source"
+  ],
+  "missing_session_repair_applied": true,
+  "missing_row_repair": {
+    "date": "2017-11-08",
+    "whole_row_source": "SheepB",
+    "corroboration": "JacksonCrow v2; same Yahoo upstream, distinct archived capture",
+    "five_session_max_absolute_differences": {
+      "Open": 0.0,
+      "High": 0.0,
+      "Low": 0.0,
+      "Close": 0.0,
+      "Volume": 0.0
+    },
+    "adjacent_wiki_factor_before_dividend_correction": 0.9926058704906923,
+    "final_inserted_adjustment_factor": 0.9852828224857307,
+    "nominal_ohlcv": {
+      "Open": 42.2599983215332,
+      "High": 42.4900016784668,
+      "Low": 41.31999969482422,
+      "Close": 42.31999969482422,
+      "Volume": 2557300.0
+    }
+  }
+}

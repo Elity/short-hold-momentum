@@ -1,0 +1,145 @@
+{
+  "ADS": {
+    "source_all_adjustment_events_above_1bp": 20,
+    "source_events_after_2018_03_27": 14,
+    "source_2016_onward_events_not_labeled_in_wiki": [
+      {
+        "date": "2017-11-13",
+        "Close": 224.1999969482422,
+        "Adj Close": 212.2901153564453,
+        "factor": 0.9468783151029821,
+        "factor_change": 0.0023118928957757134
+      },
+      {
+        "date": "2018-02-13",
+        "Close": 246.2599945068359,
+        "Adj Close": 233.71478271484375,
+        "factor": 0.9490570451074873,
+        "factor_change": 0.0023009285626443
+      }
+    ],
+    "wiki_neighborhoods": {
+      "2017-11-13": [
+        {
+          "date": "2017-11-10",
+          "close": 225.45,
+          "adj_close": 225.45,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        },
+        {
+          "date": "2017-11-13",
+          "close": 224.2,
+          "adj_close": 224.2,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        },
+        {
+          "date": "2017-11-14",
+          "close": 226.17,
+          "adj_close": 226.17,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        }
+      ],
+      "2018-02-13": [
+        {
+          "date": "2018-02-12",
+          "close": 248.29,
+          "adj_close": 248.29,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        },
+        {
+          "date": "2018-02-13",
+          "close": 246.26,
+          "adj_close": 246.26,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        },
+        {
+          "date": "2018-02-14",
+          "close": 250.05,
+          "adj_close": 250.05,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        }
+      ]
+    }
+  },
+  "JWN": {
+    "source_all_adjustment_events_above_1bp": 82,
+    "source_events_after_2018_03_27": 8,
+    "source_2016_onward_events_not_labeled_in_wiki": [
+      {
+        "date": "2017-11-24",
+        "Close": 40.959999084472656,
+        "Adj Close": 37.698028564453125,
+        "factor": 0.9203620460710387,
+        "factor_change": 0.009070720316919356
+      },
+      {
+        "date": "2018-03-02",
+        "Close": 53.040000915527344,
+        "Adj Close": 49.176456451416016,
+        "factor": 0.9271579110591552,
+        "factor_change": 0.007383792013010204
+      }
+    ],
+    "wiki_neighborhoods": {
+      "2017-11-24": [
+        {
+          "date": "2017-11-21",
+          "close": 41.3,
+          "adj_close": 41.3,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        },
+        {
+          "date": "2017-11-22",
+          "close": 41.16,
+          "adj_close": 41.16,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        },
+        {
+          "date": "2017-11-24",
+          "close": 40.96,
+          "adj_close": 40.96,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        }
+      ],
+      "2018-03-02": [
+        {
+          "date": "2018-02-27",
+          "close": 51.03,
+          "adj_close": 51.03,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        },
+        {
+          "date": "2018-02-28",
+          "close": 51.31,
+          "adj_close": 51.31,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        },
+        {
+          "date": "2018-03-01",
+          "close": 50.48,
+          "adj_close": 50.48,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        },
+        {
+          "date": "2018-03-02",
+          "close": 53.04,
+          "adj_close": 53.04,
+          "ex-dividend": 0.0,
+          "factor": 1.0
+        }
+      ]
+    }
+  }
+}

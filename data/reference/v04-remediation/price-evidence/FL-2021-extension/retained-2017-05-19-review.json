@@ -1,0 +1,26 @@
+{
+  "date": "2017-05-19",
+  "decision": "Keep original WIKI whole row; independently corroborated by IEX",
+  "wiki_ohlc": {
+    "open": 60.5,
+    "high": 61.4,
+    "low": 58.13,
+    "close": 58.72
+  },
+  "IEX_ohlc": {
+    "open": 60.5,
+    "high": 61.4,
+    "low": 58.13,
+    "close": 58.72
+  },
+  "Yahoo_open_high": 70.44999694824219,
+  "Yahoo_previous_close": 70.44999694824219,
+  "volume": {
+    "WIKI": 16881586,
+    "IEX": 16898634,
+    "Yahoo": 16898600
+  },
+  "source": "IEX-FL.csv",
+  "source_grade": "Independent IEX versus WIKI price corroboration; vendor volume difference remains",
+  "row_changed": false
+}

@@ -1,0 +1,18 @@
+{
+  "obtained": {
+    "file": "09-issuer-2020-annual.pdf",
+    "url": "https://www.footlocker-inc.com/content/dam/flincfoundation/footlockerinc_documents/annual-reports/Foot_Locker_2020_Annual_Report%20FINAL%20Post.pdf",
+    "bytes": 6189216,
+    "sha256": "96f87144b12cb476652a08d023e698611bb2db7f9c82de30ac5bc9d485f53b52",
+    "pages": 124,
+    "download_result": "Complete PDF saved; parser opens all pages",
+    "visual_inspection_pdf_pages": [
+      36,
+      58
+    ]
+  },
+  "other_request": {
+    "url": "https://investors.footlocker-inc.com/static-files/8293fa73-de5e-4e36-a8be-c5bf476f2bcd",
+    "result": "TimeoutError while waiting for HTTP response; no PDF obtained; no retry"
+  }
+}
