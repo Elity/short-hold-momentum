@@ -23,6 +23,7 @@ from shm.paper import (
     simulate_next_open_fills,
 )
 from shm.runner import run_development_backtest, update_development_data
+from shm.v04.profiles import STRATEGY_IDS
 
 
 def _load_paper_account(path: Path) -> PaperAccount:
@@ -138,11 +139,74 @@ def build_parser() -> argparse.ArgumentParser:
         "status", help="Audit P4 cycle, report, and Gate readiness"
     )
     status.add_argument("--repo-root", type=Path, default=Path("."))
+    research = commands.add_parser("research-v03", help="Run the closed v0.3 known-history study")
+    research.add_argument("--repo-root", type=Path, default=Path("."))
+    study = commands.add_parser("research-v04", help="Fixed-rule historical S&P 500 universe study")
+    study.add_argument("--repo-root", type=Path, default=Path("."))
+    for name in ("sp500-refresh", "market-refresh-sp500"):
+        command = commands.add_parser(name, help="Verify constituents or refresh the bounded market cache")
+        command.add_argument("--repo-root", type=Path, default=Path("."))
+        command.add_argument("--as-of", help="latest completed XNYS session")
+    for name in ("init-v03", "init-v04", "daily-decision", "status-v03", "status-v04", "report-v03", "report-v04"):
+        command = paper_commands.add_parser(name, help="Independent v0.3 paper account")
+        command.add_argument("--repo-root", type=Path, default=Path("."))
+        command.add_argument("--strategy-id", choices=STRATEGY_IDS, required=True)
+        if name in ("init-v03", "init-v04", "daily-decision"):
+            command.add_argument("--as-of", help="latest completed XNYS session")
+        if name in ("report-v03", "report-v04"):
+            command.add_argument("--month", required=True)
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.command in ("sp500-refresh", "market-refresh-sp500"):
+        from shm.service.workflow import latest_completed_session
+        from shm.v04.runtime import refresh_constituents, refresh_sp500_prices
+        as_of = args.as_of or str(latest_completed_session().date())
+        function = refresh_constituents if args.command == "sp500-refresh" else refresh_sp500_prices
+        try:
+            result = function(args.repo_root, as_of=as_of)
+        except (OSError, ValueError, KeyError) as exc:
+            print(f"market verification failed: {exc}", file=sys.stderr)
+            return 2
+        compact = {key: value for key, value in result.items() if key not in ("results", "queue", "fresh_tickers", "eligible_data_ready")}
+        print(json.dumps(compact, ensure_ascii=False, allow_nan=False, default=str))
+        return 0
+    if args.command == "research-v04":
+        from shm.v04.research import run_research_v04
+        try:
+            result = run_research_v04(args.repo_root)
+        except (OSError, ValueError, KeyError) as exc:
+            print(f"v0.4 research failed: {exc}", file=sys.stderr)
+            return 2
+        print(json.dumps({key: result[key] for key in ("run_id", "status", "winner", "report_path")}, ensure_ascii=False))
+        return 0
+    if args.command == "research-v03":
+        from shm.v03.research import run_research_v03
+        try:
+            result = run_research_v03(args.repo_root)
+        except (OSError, ValueError, KeyError) as exc:
+            print(f"v0.3 research failed: {exc}", file=sys.stderr)
+            return 2
+        print(json.dumps({key: result[key] for key in ("run_id", "status", "winner", "report_path")}, ensure_ascii=False))
+        return 0
+    if args.command == "paper" and args.paper_command in ("init-v03", "init-v04", "daily-decision", "status-v03", "status-v04", "report-v03", "report-v04"):
+        from shm.paper.v03 import init_paper_v03, run_paper_v03, paper_v03_status, report_paper_v03
+        try:
+            if args.paper_command in ("init-v03", "init-v04"):
+                result = init_paper_v03(args.repo_root, args.strategy_id, as_of=args.as_of)
+            elif args.paper_command == "daily-decision":
+                result = run_paper_v03(args.repo_root, args.strategy_id, as_of=args.as_of)
+            elif args.paper_command in ("report-v03", "report-v04"):
+                result = report_paper_v03(args.repo_root, args.strategy_id, args.month)
+            else:
+                result = paper_v03_status(args.repo_root, args.strategy_id)
+        except (OSError, ValueError, KeyError) as exc:
+            print(f"v0.3 paper failed: {exc}", file=sys.stderr)
+            return 2
+        print(json.dumps(result, ensure_ascii=False, allow_nan=False, default=str))
+        return 0
     if args.command == "config" and args.config_command == "validate":
         try:
             load_config_bundle(args.config_dir)

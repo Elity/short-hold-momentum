@@ -1,0 +1,7 @@
+enabled: true
+max_source_age_sessions: 1
+max_verification_age_sessions: 1
+daily_provider_call_budget: 600
+min_request_interval_seconds: 1.0
+history_start: '2003-10-01'
+new_risk_requires_complete_snapshot: true

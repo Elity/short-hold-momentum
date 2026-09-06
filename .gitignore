@@ -16,3 +16,11 @@ data/raw/*
 !data/raw/prices/
 data/raw/prices/*
 !data/raw/prices/.gitkeep
+
+# Local download queue state, cache backups and reproducible detailed research traces.
+work/
+data/market_refresh/
+data/snapshots/backups/
+reports/v0*/*/*.daily.parquet
+reports/v0*/*/*.decisions.json
+reports/v0*/*/*.warnings.json

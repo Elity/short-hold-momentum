@@ -1,0 +1,731 @@
+{
+  "strategy_id": "S500-C3",
+  "config": {
+    "spec_version": "0.4",
+    "base_candidate": {
+      "id": "C3",
+      "daily_market_exit": true,
+      "stock_exit": "atr20",
+      "target_vol": 0.15,
+      "modules": 2
+    },
+    "universe_policy": "verified_current_sp500",
+    "max_source_age_sessions": 1
+  },
+  "module_count": 2,
+  "pit": null,
+  "warnings": [
+    "WARN_MEMBERSHIP_HISTORY_INCOMPLETE",
+    "WARN_PIT_PRICE_COVERAGE_BELOW_80_PERCENT",
+    "WARN_HOLDING_PRICE_JUMPS_RAW_METRICS_INVALID",
+    "WARN_ONE_YEAR_DEPENDENCY"
+  ],
+  "checks": {
+    "MEMBERSHIP_HISTORY_COVERAGE": "INCONCLUSIVE",
+    "PIT_PRICE_COVERAGE": "INCONCLUSIVE",
+    "NEXT_SESSION_10": "PASS",
+    "FUNDED_LONG_ONLY_10": "PASS",
+    "EXECUTION_DATA_10": "PASS",
+    "SIGNAL_DATA_10": "PASS",
+    "HOLDING_PRICE_JUMPS_10": "INCONCLUSIVE",
+    "BENCHMARK_PRICE_JUMPS_10": "PASS",
+    "EVALUATION_COVERAGE_10": "PASS",
+    "NEXT_SESSION_25": "PASS",
+    "FUNDED_LONG_ONLY_25": "PASS",
+    "EXECUTION_DATA_25": "PASS",
+    "SIGNAL_DATA_25": "PASS",
+    "HOLDING_PRICE_JUMPS_25": "INCONCLUSIVE",
+    "BENCHMARK_PRICE_JUMPS_25": "PASS",
+    "EVALUATION_COVERAGE_25": "PASS"
+  },
+  "metrics_10": {
+    "cagr": 0.25001884654127093,
+    "maxdd": -0.21606718951909798,
+    "sharpe": 0.21816677288210434,
+    "calmar": 1.1571347185925793,
+    "net_return": 123.96319015287919,
+    "turnover": 5.864827254831483,
+    "avg_exposure": 0.46193621397520307,
+    "avg_holding_days": 19.926293995859215,
+    "cost_total_usd": 1852381.1659456012,
+    "sessions": 5452
+  },
+  "benchmark_10": {
+    "cagr": 0.10948121031069791,
+    "maxdd": -0.5518944114552402,
+    "sharpe": 0.6442677543441075,
+    "calmar": 0.1983734715160765,
+    "net_return": 8.466001568713487,
+    "turnover": 0.0,
+    "avg_exposure": null,
+    "avg_holding_days": 0.0,
+    "cost_total_usd": null,
+    "sessions": 5452
+  },
+  "holding_price_jumps_10": [
+    {
+      "date": "2010-02-22",
+      "ticker": "TIE",
+      "return": 1897.8390715767343,
+      "prior_weight": 0.03108209223632529
+    },
+    {
+      "date": "2010-04-23",
+      "ticker": "TIE",
+      "return": -0.9994133333574261,
+      "prior_weight": 0.0660731447818582
+    },
+    {
+      "date": "2010-04-26",
+      "ticker": "TIE",
+      "return": 1709.5263860361997,
+      "prior_weight": 4.152878973471547e-05
+    }
+  ],
+  "views_10": {
+    "annual_returns": {
+      "2005": {
+        "strategy": 0.08506697404369268,
+        "spy": 0.05080004675799965,
+        "partial_year": false
+      },
+      "2006": {
+        "strategy": 0.03739671131465894,
+        "spy": 0.15845254926792762,
+        "partial_year": false
+      },
+      "2007": {
+        "strategy": 0.11457761494578866,
+        "spy": 0.051462651303475715,
+        "partial_year": false
+      },
+      "2008": {
+        "strategy": -0.01709816269235176,
+        "spy": -0.36794990250566584,
+        "partial_year": false
+      },
+      "2009": {
+        "strategy": 0.09406980047387625,
+        "spy": 0.26351715601473646,
+        "partial_year": false
+      },
+      "2010": {
+        "strategy": 59.22356419885878,
+        "spy": 0.15056132959630308,
+        "partial_year": false
+      },
+      "2011": {
+        "strategy": -0.0870405044254624,
+        "spy": 0.01895009201291442,
+        "partial_year": false
+      },
+      "2012": {
+        "strategy": -0.014224455824776383,
+        "spy": 0.15990327965597562,
+        "partial_year": false
+      },
+      "2013": {
+        "strategy": 0.16454714302230822,
+        "spy": 0.32307772014853353,
+        "partial_year": false
+      },
+      "2014": {
+        "strategy": 0.004685830215625186,
+        "spy": 0.13463802308634665,
+        "partial_year": false
+      },
+      "2015": {
+        "strategy": -0.053202724716821304,
+        "spy": 0.012342743110014487,
+        "partial_year": false
+      },
+      "2016": {
+        "strategy": 0.03961528845213902,
+        "spy": 0.11997929323562162,
+        "partial_year": false
+      },
+      "2017": {
+        "strategy": 0.09548471041480844,
+        "spy": 0.21705356305586387,
+        "partial_year": false
+      },
+      "2018": {
+        "strategy": 0.029746445384973175,
+        "spy": -0.04568984399693965,
+        "partial_year": false
+      },
+      "2019": {
+        "strategy": 0.008271270057231606,
+        "spy": 0.3122384804094682,
+        "partial_year": false
+      },
+      "2020": {
+        "strategy": 0.0640573736475698,
+        "spy": 0.18331626017004532,
+        "partial_year": false
+      },
+      "2021": {
+        "strategy": 0.03928124988999038,
+        "spy": 0.287287606967888,
+        "partial_year": false
+      },
+      "2022": {
+        "strategy": -0.06796623243242639,
+        "spy": -0.18175362536271633,
+        "partial_year": false
+      },
+      "2023": {
+        "strategy": -0.038404560727954395,
+        "spy": 0.26175788361349794,
+        "partial_year": false
+      },
+      "2024": {
+        "strategy": 0.06250562618112876,
+        "spy": 0.24886463075613352,
+        "partial_year": false
+      },
+      "2025": {
+        "strategy": 0.1254821202882137,
+        "spy": 0.17719067981214454,
+        "partial_year": false
+      },
+      "2026": {
+        "strategy": 0.10076890380851022,
+        "spy": 0.13544551198329025,
+        "partial_year": true
+      }
+    },
+    "since_2019": {
+      "strategy": {
+        "cagr": 0.03644529505133387,
+        "maxdd": -0.21606718951909665,
+        "sharpe": 0.3664587301603914,
+        "calmar": 0.1686757491151276,
+        "net_return": 0.3154233994745015,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 1930
+      },
+      "spy": {
+        "cagr": 0.17527439784029175,
+        "maxdd": -0.3371729231437848,
+        "sharpe": 0.9339325760977866,
+        "calmar": 0.5198353302099153,
+        "net_return": 2.444909246828372,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 1930
+      }
+    },
+    "excluding_best_year": {
+      "removed_year": 2010,
+      "strategy": {
+        "cagr": 0.036007897527967625,
+        "maxdd": -0.21606718951909798,
+        "sharpe": 0.3751010481818085,
+        "calmar": 0.16665139028332165,
+        "net_return": 1.074988284324213,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 5200
+      },
+      "spy": {
+        "cagr": 0.10752809664223184,
+        "maxdd": -0.5518944114552404,
+        "sharpe": 0.6338252089566485,
+        "calmar": 0.19483454517812698,
+        "net_return": 7.227289867316193,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 5200
+      }
+    }
+  },
+  "risk_matched_spy_10": {
+    "cagr": 0.06749888241181745,
+    "maxdd": -0.22680595201400633,
+    "sharpe": 0.6744629212893695,
+    "calmar": 0.29760630976584374,
+    "net_return": 3.1089142274486274,
+    "turnover": 1.4329477621743654,
+    "avg_exposure": 0.716909090689473,
+    "avg_holding_days": 134.86666666666667,
+    "cost_total_usd": 11813.00606236174,
+    "sessions": 5452
+  },
+  "sector_concentration_10": {
+    "classification_as_of": "2026-09-03",
+    "classification": "current_metadata_not_historical_sector_classification",
+    "average_weights": {
+      "Health Care": 0.04904636436775709,
+      "Unknown": 0.08473071804449153,
+      "Information Technology": 0.09391986870158918,
+      "Consumer Discretionary": 0.055329343248275716,
+      "Financials": 0.026139633389608802,
+      "Consumer Staples": 0.02128556774447548,
+      "Industrials": 0.04213389878397997,
+      "Utilities": 0.01586740847906741,
+      "Materials": 0.022840272868313298,
+      "Real Estate": 0.011576972650629293,
+      "Energy": 0.025848179276255132,
+      "Communication Services": 0.013217986420760178
+    },
+    "peak_weights": {
+      "Health Care": 0.4662884191475527,
+      "Unknown": 0.9860237051782194,
+      "Information Technology": 0.5391136677088664,
+      "Consumer Discretionary": 0.40463294298065483,
+      "Financials": 0.3862376650241688,
+      "Consumer Staples": 0.400869597384215,
+      "Industrials": 0.27743743365774504,
+      "Utilities": 0.3465947272855732,
+      "Materials": 0.26911809435024947,
+      "Real Estate": 0.27498941163122215,
+      "Energy": 0.4015741178337361,
+      "Communication Services": 0.14324421498718615
+    },
+    "unknown_peak_weight": 0.9860237051782194
+  },
+  "views": {
+    "annual_returns": {
+      "2005": {
+        "strategy": 0.08506697404369268,
+        "spy": 0.05080004675799965,
+        "partial_year": false
+      },
+      "2006": {
+        "strategy": 0.03739671131465894,
+        "spy": 0.15845254926792762,
+        "partial_year": false
+      },
+      "2007": {
+        "strategy": 0.11457761494578866,
+        "spy": 0.051462651303475715,
+        "partial_year": false
+      },
+      "2008": {
+        "strategy": -0.01709816269235176,
+        "spy": -0.36794990250566584,
+        "partial_year": false
+      },
+      "2009": {
+        "strategy": 0.09406980047387625,
+        "spy": 0.26351715601473646,
+        "partial_year": false
+      },
+      "2010": {
+        "strategy": 59.22356419885878,
+        "spy": 0.15056132959630308,
+        "partial_year": false
+      },
+      "2011": {
+        "strategy": -0.0870405044254624,
+        "spy": 0.01895009201291442,
+        "partial_year": false
+      },
+      "2012": {
+        "strategy": -0.014224455824776383,
+        "spy": 0.15990327965597562,
+        "partial_year": false
+      },
+      "2013": {
+        "strategy": 0.16454714302230822,
+        "spy": 0.32307772014853353,
+        "partial_year": false
+      },
+      "2014": {
+        "strategy": 0.004685830215625186,
+        "spy": 0.13463802308634665,
+        "partial_year": false
+      },
+      "2015": {
+        "strategy": -0.053202724716821304,
+        "spy": 0.012342743110014487,
+        "partial_year": false
+      },
+      "2016": {
+        "strategy": 0.03961528845213902,
+        "spy": 0.11997929323562162,
+        "partial_year": false
+      },
+      "2017": {
+        "strategy": 0.09548471041480844,
+        "spy": 0.21705356305586387,
+        "partial_year": false
+      },
+      "2018": {
+        "strategy": 0.029746445384973175,
+        "spy": -0.04568984399693965,
+        "partial_year": false
+      },
+      "2019": {
+        "strategy": 0.008271270057231606,
+        "spy": 0.3122384804094682,
+        "partial_year": false
+      },
+      "2020": {
+        "strategy": 0.0640573736475698,
+        "spy": 0.18331626017004532,
+        "partial_year": false
+      },
+      "2021": {
+        "strategy": 0.03928124988999038,
+        "spy": 0.287287606967888,
+        "partial_year": false
+      },
+      "2022": {
+        "strategy": -0.06796623243242639,
+        "spy": -0.18175362536271633,
+        "partial_year": false
+      },
+      "2023": {
+        "strategy": -0.038404560727954395,
+        "spy": 0.26175788361349794,
+        "partial_year": false
+      },
+      "2024": {
+        "strategy": 0.06250562618112876,
+        "spy": 0.24886463075613352,
+        "partial_year": false
+      },
+      "2025": {
+        "strategy": 0.1254821202882137,
+        "spy": 0.17719067981214454,
+        "partial_year": false
+      },
+      "2026": {
+        "strategy": 0.10076890380851022,
+        "spy": 0.13544551198329025,
+        "partial_year": true
+      }
+    },
+    "since_2019": {
+      "strategy": {
+        "cagr": 0.03644529505133387,
+        "maxdd": -0.21606718951909665,
+        "sharpe": 0.3664587301603914,
+        "calmar": 0.1686757491151276,
+        "net_return": 0.3154233994745015,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 1930
+      },
+      "spy": {
+        "cagr": 0.17527439784029175,
+        "maxdd": -0.3371729231437848,
+        "sharpe": 0.9339325760977866,
+        "calmar": 0.5198353302099153,
+        "net_return": 2.444909246828372,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 1930
+      }
+    },
+    "excluding_best_year": {
+      "removed_year": 2010,
+      "strategy": {
+        "cagr": 0.036007897527967625,
+        "maxdd": -0.21606718951909798,
+        "sharpe": 0.3751010481818085,
+        "calmar": 0.16665139028332165,
+        "net_return": 1.074988284324213,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 5200
+      },
+      "spy": {
+        "cagr": 0.10752809664223184,
+        "maxdd": -0.5518944114552404,
+        "sharpe": 0.6338252089566485,
+        "calmar": 0.19483454517812698,
+        "net_return": 7.227289867316193,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 5200
+      }
+    }
+  },
+  "universe_eligibility": {
+    "rebalance_count": 273,
+    "below_30_count": 2,
+    "minimum_count": 0,
+    "insufficient_dates": [
+      "2026-07-22",
+      "2026-08-19"
+    ]
+  },
+  "metrics_25": {
+    "cagr": 0.22823842758000734,
+    "maxdd": -0.2414408929278974,
+    "sharpe": 0.2167825023747444,
+    "calmar": 0.9453180230250691,
+    "net_return": 84.4326181267209,
+    "turnover": 5.8619651247044295,
+    "avg_exposure": 0.46201075917280476,
+    "avg_holding_days": 19.926293995859215,
+    "cost_total_usd": 3670655.9680976253,
+    "sessions": 5452
+  },
+  "benchmark_25": {
+    "cagr": 0.10940442438834586,
+    "maxdd": -0.5518944114552402,
+    "sharpe": 0.6438878919418343,
+    "calmar": 0.19823433997069706,
+    "net_return": 8.451837975343839,
+    "turnover": 0.0,
+    "avg_exposure": null,
+    "avg_holding_days": 0.0,
+    "cost_total_usd": null,
+    "sessions": 5452
+  },
+  "holding_price_jumps_25": [
+    {
+      "date": "2010-02-22",
+      "ticker": "TIE",
+      "return": 1897.8390715767343,
+      "prior_weight": 0.03108209223634122
+    },
+    {
+      "date": "2010-04-23",
+      "ticker": "TIE",
+      "return": -0.9994133333574261,
+      "prior_weight": 0.06609139374648926
+    },
+    {
+      "date": "2010-04-26",
+      "ticker": "TIE",
+      "return": 1709.5263860361997,
+      "prior_weight": 4.154107837939828e-05
+    }
+  ],
+  "views_25": {
+    "annual_returns": {
+      "2005": {
+        "strategy": 0.06181545805408195,
+        "spy": 0.04922777736135586,
+        "partial_year": false
+      },
+      "2006": {
+        "strategy": 0.013644742231605944,
+        "spy": 0.15845254926792585,
+        "partial_year": false
+      },
+      "2007": {
+        "strategy": 0.09463403263706693,
+        "spy": 0.05146265130347483,
+        "partial_year": false
+      },
+      "2008": {
+        "strategy": -0.018907433350974334,
+        "spy": -0.36794990250566506,
+        "partial_year": false
+      },
+      "2009": {
+        "strategy": 0.08785891869729201,
+        "spy": 0.26351715601473535,
+        "partial_year": false
+      },
+      "2010": {
+        "strategy": 58.2366793752762,
+        "spy": 0.1505613295963042,
+        "partial_year": false
+      },
+      "2011": {
+        "strategy": -0.0997622611072021,
+        "spy": 0.018950092012914865,
+        "partial_year": false
+      },
+      "2012": {
+        "strategy": -0.03636957099829663,
+        "spy": 0.1599032796559754,
+        "partial_year": false
+      },
+      "2013": {
+        "strategy": 0.1386624512952559,
+        "spy": 0.32307772014853353,
+        "partial_year": false
+      },
+      "2014": {
+        "strategy": -0.01913775020792685,
+        "spy": 0.13463802308634465,
+        "partial_year": false
+      },
+      "2015": {
+        "strategy": -0.07361254716822219,
+        "spy": 0.012342743110014931,
+        "partial_year": false
+      },
+      "2016": {
+        "strategy": 0.019549152025859495,
+        "spy": 0.11997929323562317,
+        "partial_year": false
+      },
+      "2017": {
+        "strategy": 0.06785537525744356,
+        "spy": 0.2170535630558632,
+        "partial_year": false
+      },
+      "2018": {
+        "strategy": 0.00880954898050712,
+        "spy": -0.045689843996939095,
+        "partial_year": false
+      },
+      "2019": {
+        "strategy": -0.014794763750768047,
+        "spy": 0.3122384804094709,
+        "partial_year": false
+      },
+      "2020": {
+        "strategy": 0.048892609968626655,
+        "spy": 0.18331626017004377,
+        "partial_year": false
+      },
+      "2021": {
+        "strategy": 0.020029479006444806,
+        "spy": 0.2872876069678867,
+        "partial_year": false
+      },
+      "2022": {
+        "strategy": -0.0724349949471842,
+        "spy": -0.18175362536271755,
+        "partial_year": false
+      },
+      "2023": {
+        "strategy": -0.05890247288629813,
+        "spy": 0.26175788361349883,
+        "partial_year": false
+      },
+      "2024": {
+        "strategy": 0.0403811084634087,
+        "spy": 0.24886463075613086,
+        "partial_year": false
+      },
+      "2025": {
+        "strategy": 0.10869537983536581,
+        "spy": 0.1771906798121441,
+        "partial_year": false
+      },
+      "2026": {
+        "strategy": 0.096224107844882,
+        "spy": 0.13544551198329025,
+        "partial_year": true
+      }
+    },
+    "since_2019": {
+      "strategy": {
+        "cagr": 0.019965377541309115,
+        "maxdd": -0.2414408929278954,
+        "sharpe": 0.22814304260699997,
+        "calmar": 0.08269260976959539,
+        "net_return": 0.16346545148563507,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 1930
+      },
+      "spy": {
+        "cagr": 0.1752743978402902,
+        "maxdd": -0.3371729231437852,
+        "sharpe": 0.9339325760977847,
+        "calmar": 0.51983533020991,
+        "net_return": 2.44490924682834,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 1930
+      }
+    },
+    "excluding_best_year": {
+      "removed_year": 2010,
+      "strategy": {
+        "cagr": 0.01790438288567775,
+        "maxdd": -0.24144089292789583,
+        "sharpe": 0.2155831020086318,
+        "calmar": 0.07415638116872246,
+        "net_return": 0.4422249698617915,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 5200
+      },
+      "spy": {
+        "cagr": 0.10744773141416153,
+        "maxdd": -0.5518944114552411,
+        "sharpe": 0.6334283231757324,
+        "calmar": 0.19468892814268984,
+        "net_return": 7.214979707913633,
+        "turnover": 0.0,
+        "avg_exposure": null,
+        "avg_holding_days": 0.0,
+        "cost_total_usd": null,
+        "sessions": 5200
+      }
+    }
+  },
+  "risk_matched_spy_25": {
+    "cagr": 0.06292317719595109,
+    "maxdd": -0.23668982281061435,
+    "sharpe": 0.633086565429015,
+    "calmar": 0.26584656851215194,
+    "net_return": 2.744260064249008,
+    "turnover": 1.4323759897746144,
+    "avg_exposure": 0.7169700769071011,
+    "avg_holding_days": 134.86666666666667,
+    "cost_total_usd": 27893.114884947692,
+    "sessions": 5452
+  },
+  "sector_concentration_25": {
+    "classification_as_of": "2026-09-03",
+    "classification": "current_metadata_not_historical_sector_classification",
+    "average_weights": {
+      "Health Care": 0.04905513804211872,
+      "Unknown": 0.08474518337030248,
+      "Information Technology": 0.09393453081291987,
+      "Consumer Discretionary": 0.05533809366984856,
+      "Financials": 0.026143006492665457,
+      "Consumer Staples": 0.021289126095700536,
+      "Industrials": 0.04214086015417891,
+      "Utilities": 0.015869692798477778,
+      "Materials": 0.022844150187529,
+      "Real Estate": 0.011578376358502463,
+      "Energy": 0.02585227850713834,
+      "Communication Services": 0.01322032268342266
+    },
+    "peak_weights": {
+      "Health Care": 0.4662884191474235,
+      "Unknown": 0.986023705178228,
+      "Information Technology": 0.5391136677092153,
+      "Consumer Discretionary": 0.4046709393578931,
+      "Financials": 0.38626159460801884,
+      "Consumer Staples": 0.40086959738415595,
+      "Industrials": 0.2775406458056406,
+      "Utilities": 0.34668921959804405,
+      "Materials": 0.26911809435021916,
+      "Real Estate": 0.2749894116312786,
+      "Energy": 0.40157411783385566,
+      "Communication Services": 0.14333721416579942
+    },
+    "unknown_peak_weight": 0.986023705178228
+  },
+  "metrics_valid": false,
+  "qualified": false
+}

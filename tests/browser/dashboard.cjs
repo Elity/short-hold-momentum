@@ -125,6 +125,48 @@ async function screenshot(name) {
   }
   if(!expected.reports.length)assert.match(await page.locator('#page-content').innerText(),/尚无策略报告/);
   checks.push('已有报告正文或尚未生成状态');
+  await page.locator('#strategy-select').selectOption('C3');
+  await page.waitForFunction(()=>document.querySelector('#cost-select'));
+  assert.match(await page.locator('.strategy-bar').innerText(),/模型成本|前向/);
+  await page.locator('#cost-select').selectOption('25');
+  await page.waitForFunction(()=>document.querySelector('.strategy-bar').textContent.includes('单边 25 bps'));
+  const candidateResponse=await context.request.get(base+'/api/dashboard?strategy_id=C3&cost_bps=25');
+  const candidate=await candidateResponse.json();
+  await nav('overview');
+  assert.equal(await page.locator('.metric-value').first().innerText(),money(candidate.account.total));
+  if(candidate.strategy.performance_verdict==='NOT_STARTED'){
+    assert.equal(candidate.trades.length,0);
+    assert.equal(candidate.account.total,null);
+    assert.match(await page.locator('body').innerText(),/尚未启动|尚未建立/);
+  }
+  assert.match(await page.locator('.historical-panel').innerText(),/历史筛选/);
+  await screenshot('v03-strategy');
+  await page.locator('#strategy-select').selectOption('S500-C3');
+  await page.locator('.universe-panel').waitFor();
+  const sourceResponse=await context.request.get(base+'/api/dashboard?strategy_id=S500-C3&cost_bps=25');
+  const sourceDashboard=await sourceResponse.json();
+  assert.match(await page.locator('.universe-panel').innerText(),/来源日期|核验交易日|证券|家公司/);
+  assert.ok((await page.locator('.universe-panel').innerText()).includes(String(sourceDashboard.universe.security_count)));
+  assert.equal(await page.locator('.source-links a').count(),sourceDashboard.universe.source_urls.length);
+  assert.equal(await page.locator('.metric-value').first().innerText(),money(sourceDashboard.account.total));
+  const historical=sourceDashboard.strategy.historical_screen;
+  if(historical?.metrics_valid===false){
+    assert.match(await page.locator('.historical-panel').innerText(),/数据未通过|不可用/);
+    const cells=await page.locator('.history-table tbody .num').allTextContents();
+    assert.ok(cells.every(value=>value==='— / —'),'invalid historical and benchmark returns must be hidden');
+  }
+  for(const width of [390,320]){
+    await page.setViewportSize({width,height:844});
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,'S&P 500 source panel overflow');
+  }
+  await page.setViewportSize({width:1440,height:1000});
+  await screenshot('sp500-source');
+  checks.push('S&P 500来源日期、核验、证券数、来源链接及风险闸门；无效历史收益和基准指标隐藏');
+  await page.locator('#strategy-select').selectOption('V04');
+  await page.waitForFunction(()=>!document.querySelector('#cost-select'));
+  assert.equal(await page.locator('.metric-value').first().innerText(),money(expected.account.total));
+  await nav('reports');
+  checks.push('策略版本与10/25bps模型账本切换，前向与历史筛选分开，V04原账目保持');
   if(!process.env.SHM_BROWSER_URL||process.env.SHM_TEST_SETTINGS==='1') {
     restoreSettings=true;
     const changed=originalTime==='05:31'?'05:32':'05:31';

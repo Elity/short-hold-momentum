@@ -17,6 +17,7 @@ from zoneinfo import ZoneInfo
 from shm.service.dashboard import build_dashboard, read_report
 from shm.service.store import ServiceStore
 from shm.service.workflow import MissedForwardWindow, latest_completed_session, run_daily_workflow
+from shm.v04.profiles import STRATEGY_IDS
 
 
 _TIME = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d$")
@@ -211,9 +212,19 @@ def _handler(service: RunService):
 
         def do_GET(self) -> None:
             parsed = urlparse(self.path)
+            query = parse_qs(parsed.query)
             if parsed.path == "/api/dashboard":
                 try:
-                    data = build_dashboard(service.repo_root, service.store, service.timezone_name)
+                    strategy_id = query.get("strategy_id", ["V04"])[-1]
+                    cost_bps = int(query.get("cost_bps", ["10"])[-1])
+                    if strategy_id not in ("V04", *STRATEGY_IDS) or cost_bps not in (10, 25):
+                        raise ValueError("invalid strategy or cost scenario")
+                except ValueError as exc:
+                    self._json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+                    return
+                try:
+                    data = build_dashboard(service.repo_root, service.store, service.timezone_name,
+                                           strategy_id=strategy_id, cost_bps=cost_bps)
                 except (OSError, ValueError, KeyError) as exc:
                     self._json(HTTPStatus.SERVICE_UNAVAILABLE, {"error": str(exc)})
                 else:
@@ -232,9 +243,12 @@ def _handler(service: RunService):
                 return
             if parsed.path.startswith("/api/reports/"):
                 try:
-                    report = read_report(service.repo_root, parsed.path.removeprefix("/api/reports/"))
+                    report = read_report(service.repo_root, parsed.path.removeprefix("/api/reports/"),
+                                         strategy_id=query.get("strategy_id", ["V04"])[-1])
                 except FileNotFoundError:
                     self._json(HTTPStatus.NOT_FOUND, {"error": "报告不存在"})
+                except ValueError as exc:
+                    self._json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
                 else:
                     self._json(HTTPStatus.OK, report)
                 return

@@ -260,3 +260,37 @@ def test_parameterized_dry_run_stays_covered_and_paper_only(tmp_path) -> None:
     assert all("paper_only" in str(row["reason"]) for row in rows)
     output = write_paper_ticket_csv(plan, tmp_path / "ticket.csv")
     assert pd.read_csv(output).columns.tolist() == list(rows[0])
+
+
+@pytest.mark.parametrize("allow_new_risk,max_exposure,expected_puts", [
+    (False, 1.0, 0),
+    (True, 0.30, 0),
+    (True, 0.40, 1),
+])
+def test_overlay_respects_exit_and_combined_exposure_gates(
+    allow_new_risk, max_exposure, expected_puts
+) -> None:
+    class Source:
+        def load(self, ticker, *, not_before):
+            assert ticker != "AAA", "a pending stock sale must not open a covered call"
+            return _chain(ticker)
+
+    plan = build_overlay_plan(
+        holdings=[Holding("AAA", 100, 100.0, 100.0)],
+        candidates=[Candidate("BBB", 100.0), Candidate("CCC", 100.0)],
+        portfolio_equity=50_000,
+        available_cash=40_000,
+        as_of=date(2026, 9, 16),
+        next_rebalance_date=date(2026, 10, 1),
+        source=Source(),
+        allow_new_risk=allow_new_risk,
+        pending_exit_symbols={"aaa"},
+        stock_exposure=0.20,
+        max_total_exposure=max_exposure,
+    )
+    assert len(plan.orders) == expected_puts
+    assert all(order.strategy == "cash_secured_put" for order in plan.orders)
+    assert plan.summary.csp_notional + 10_000 <= 50_000 * max_exposure
+    assert any(skip.reason == "stock exit is pending" for skip in plan.skipped)
+    if not allow_new_risk:
+        assert any(skip.reason == "new risk is disabled" for skip in plan.skipped)

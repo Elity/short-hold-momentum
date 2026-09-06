@@ -57,6 +57,22 @@ def test_daily_workflow_runs_update_and_status_when_nothing_is_due(
     ]
 
 
+def test_sp500_workflow_uses_shared_throttled_queue_instead_of_legacy_downloader(tmp_path, monkeypatch):
+    (tmp_path / "config").mkdir()
+    (tmp_path / "config/sp500.yaml").write_text("enabled: true\n")
+    monkeypatch.setattr(workflow, "latest_completed_session", lambda now=None: pd.Timestamp("2026-09-04"))
+    monkeypatch.setattr(workflow, "build_paper_progress", lambda root: SimpleNamespace(
+        next_rebalance_date=pd.Timestamp("2026-09-17"), pending_cycles=()))
+    monkeypatch.setattr(workflow, "_forward_start", lambda root: pd.Timestamp("2026-09-05"))
+    monkeypatch.setattr(workflow, "validate_required_price_caches", lambda root: "ok")
+    monkeypatch.setattr(workflow, "_completed_report_months", lambda root, session: ())
+    commands = []
+    result = workflow.run_daily_workflow(tmp_path, command_runner=lambda command, cwd: commands.append(command) or "ok")
+    assert [command[3] for command in commands] == ["sp500-refresh", "market-refresh-sp500", "paper"]
+    assert not any(command[3:5] == ["data", "update"] for command in commands)
+    assert "new risk paused" in result.actions[-1]
+
+
 def test_daily_workflow_records_a_missed_rebalance_and_moves_forward(
     tmp_path, monkeypatch
 ) -> None:

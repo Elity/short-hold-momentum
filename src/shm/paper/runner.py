@@ -349,6 +349,7 @@ def run_paper_rebalance(
             "ranking": list(ranked_tickers),
             "selected": list(selected),
             "target_exposure": exposure,
+            "trend_exposure": trend,
             "ticket_count": len(ticket_plan.tickets),
             "projected_cash": ticket_plan.projected_cash,
             "rounding_residual_usd": ticket_plan.rounding_residual_usd,

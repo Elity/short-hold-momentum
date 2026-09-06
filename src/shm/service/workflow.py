@@ -10,6 +10,7 @@ from pathlib import Path
 
 import exchange_calendars as xcals
 import pandas as pd
+import yaml
 
 from shm.config import load_config_bundle
 from shm.paper.status import build_paper_progress
@@ -220,7 +221,25 @@ def run_daily_workflow(
             reporter(name, "success", output, started, finished)
         return output
 
-    run_step("data-update", ["data", "update", "--through-oos", "--skip-pit"])
+    sp500_config = root / "config/sp500.yaml"
+    sp500_enabled = sp500_config.exists() and bool(yaml.safe_load(sp500_config.read_text()).get("enabled"))
+    if sp500_enabled:
+        run_step("sp500-membership", ["sp500-refresh", "--repo-root", str(root), "--as-of", str(market_session.date())])
+        run_step("sp500-market-cache", ["market-refresh-sp500", "--repo-root", str(root), "--as-of", str(market_session.date())])
+        winner_path = root / "config/v04/winner.json"
+        if winner_path.exists():
+            from shm.v04.profiles import SP500_IDS
+            winner = json.loads(winner_path.read_text())["strategy_id"]
+            if winner not in SP500_IDS:
+                raise ValueError("invalid frozen S&P 500 candidate")
+            if not (root / "paper/v04" / winner / "manifest.json").exists():
+                run_step("v04-init", ["paper", "init-v04", "--repo-root", str(root), "--strategy-id", winner,
+                                      "--as-of", str(market_session.date())])
+            run_step("v04-daily-decision", ["paper", "daily-decision", "--repo-root", str(root),
+                                            "--strategy-id", winner, "--as-of", str(market_session.date())])
+            actions.append(f"v0.4 {winner} daily risk and model-cost accounts")
+    else:
+        run_step("data-update", ["data", "update", "--through-oos", "--skip-pit"])
     run_local_step("validate-price-cache", lambda: validate_required_price_caches(root))
 
     forward_start = _forward_start(root)
@@ -394,4 +413,22 @@ def run_daily_workflow(
     status = run_step("paper-status", ["paper", "status", "--repo-root", str(root)])
     if status:
         actions.append(status.splitlines()[-1])
+    winner_path = root / "config/v03/winner.json"
+    if winner_path.exists():
+        winner = json.loads(winner_path.read_text())["strategy_id"]
+        if winner not in ("C0", "C1", "C2", "C3", "C4"):
+            raise ValueError("invalid frozen v0.3 candidate")
+        if not (root / "paper/v03" / winner / "manifest.json").exists():
+            run_step("v03-init", ["paper", "init-v03", "--repo-root", str(root), "--strategy-id", winner,
+                                  "--as-of", str(market_session.date())])
+        run_step("v03-daily-decision", ["paper", "daily-decision", "--repo-root", str(root),
+                                        "--strategy-id", winner, "--as-of", str(market_session.date())])
+        actions.append(f"v0.3 {winner} daily risk and model-cost accounts")
+    if sp500_enabled:
+        latest = root / "data/market_refresh/latest.json"
+        data = json.loads(latest.read_text()) if latest.exists() else {}
+        if not data.get("allow_new_risk"):
+            actions.append("S&P 500 data or constituent verification incomplete; new risk paused")
+        else:
+            actions.append(f"S&P 500 verified: {data.get('active_now', 0)} securities, same-session cache complete")
     return WorkflowResult(str(market_session.date()), tuple(actions))

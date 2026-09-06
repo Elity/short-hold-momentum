@@ -27,7 +27,8 @@ const glyphs = {
 const icon = name => '<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + (glyphs[name] || glyphs.file) + '</svg>';
 let data=null,chartObserver,toastTimer,returnFocus;
 const titles={overview:'账户总览',holdings:'当前持仓',trades:'交易记录',logs:'运行日志',reports:'策略报告'};
-const state={page:titles[location.hash.slice(1)]?location.hash.slice(1):'overview',chartMode:'assets',tradeFilter:'all',logFilter:'all',sort:'value'};
+const query=new URLSearchParams(location.search);
+const state={page:titles[location.hash.slice(1)]?location.hash.slice(1):'overview',chartMode:'assets',tradeFilter:'all',logFilter:'all',sort:'value',strategy:query.get('strategy_id')||'V04',cost:query.get('cost_bps')==='25'?25:10};
 const statusText={success:'成功',failed:'失败',running:'运行中',queued:'排队中',skipped:'跳过'};
 const statusTone={failed:'bad',running:'warn',queued:'warn',skipped:'gray'};
 const time=value=>{
@@ -43,7 +44,9 @@ const badge=(label,kind='')=>'<span class="pill '+kind+'"><span class="dot"></sp
 const statusBadge=status=>badge(statusText[status]||status,statusTone[status]||'');
 const button=(label,action)=>'<button class="button" data-action="'+action+'">'+label+'</button>';
 const a=()=>({...data.account,holdings:data.holdings,next:data.progress.next});
-const stockLabel=h=>'<div class="holding-symbol"><span class="stock-mark">'+esc(h.symbol.slice(0,2))+'</span><span class="stock-name"><strong>'+esc(h.symbol)+'</strong><small>'+h.qty+' 股</small></span></div>';
+const nextLabel=()=>data.progress.next||'等待合格胜者启动';
+const strategyQuery=()=>'?'+new URLSearchParams({strategy_id:state.strategy,cost_bps:state.cost});
+const stockLabel=h=>'<div class="holding-symbol"><span class="stock-mark">'+esc(h.symbol.slice(0,2))+'</span><span class="stock-name"><strong>'+esc(h.symbol)+'</strong><small>'+h.qty+' 股</small>'+(h.peak!=null?'<small class="holding-risk">峰值 '+money(h.peak)+' · 跟踪线 '+money(h.trailing_line)+'</small>':'')+(h.exit_reason?'<small class="holding-risk warn">待退出：'+esc(h.exit_reason)+'</small>':'')+'</span></div>';
 const empty=(title,body,graphic='layers')=>'<div class="empty"><div class="empty-graphic">'+icon(graphic)+'</div><h3>'+esc(title)+'</h3><p>'+esc(body)+'</p></div>';
 const miniStats=items=>'<div class="mini-stats">'+items.map(item=>'<div class="mini-stat"><span>'+item[0]+'</span><strong class="num '+(item[2]||'')+'">'+item[1]+'</strong></div>').join('')+'</div>';
 async function api(path,options={}){
@@ -54,7 +57,9 @@ async function api(path,options={}){
 }
 async function refresh(manual=false){
   try{
-    data=await api('/api/dashboard');
+    const requested=strategyQuery(),result=await api('/api/dashboard'+requested);
+    if(requested!==strategyQuery())return;
+    data=result;
     if($('#overlay').hidden)render();
     if(manual)showToast('已读取最新账户与运行记录');
   }catch(error){
@@ -65,17 +70,43 @@ async function refresh(manual=false){
     showToast('读取失败：'+error.message);
   }
 }
+function strategyPanel(){
+  if(!data.strategy)return '';
+  const s=data.strategy,risk=data.risk;
+  const labels={INCOMPLETE:'前向证据不完整',AWAITING_FIRST_SIGNAL:'等待首次前向信号',PENDING_12_MONTHS:'前向验证中 · 尚未满 12 个月',ELIGIBLE_FOR_12_MONTH_REVIEW:'已满 12 个月 · 等待完整年评价',PENDING:'前向验证中 · 尚未满 12 个月',NOT_STARTED:'前向尚未启动',PASS:'完整年前向目标通过',FAIL:'完整年前向目标未通过'};
+  return '<section class="strategy-bar" aria-label="策略版本与证据"><div class="strategy-controls"><label>策略版本 <select id="strategy-select" aria-label="策略版本">'+data.strategies.map(item=>'<option value="'+esc(item.id)+'" '+(item.id===s.id?'selected':'')+'>'+esc(item.label)+'</option>').join('')+'</select></label>'+
+    (s.id==='V04'?'':'<label>模型成本 <select id="cost-select" aria-label="模型成本"><option value="10" '+(state.cost===10?'selected':'')+'>10 bps</option><option value="25" '+(state.cost===25?'selected':'')+'>25 bps</option></select></label>')+
+    badge(s.id==='V04'?'原策略前向模拟':labels[s.performance_verdict]||s.performance_verdict||'前向验证中','gray')+'</div><p>'+esc(s.cost_assumption)+'</p>'+
+    (risk?'<div class="risk-strip"><span>当前回撤 <strong>'+percent(risk.drawdown==null?null:risk.drawdown*100)+'</strong></span><span>峰值资产 <strong>'+money(risk.equity_peak)+'</strong></span><span>目标敞口 <strong>'+(risk.max_total_exposure==null?'—':fmt(risk.max_total_exposure*100,1)+'%')+'</strong></span>'+badge(risk.drawdown_alert?'已触及 10% 回撤预警':'10% 回撤预警线',risk.drawdown_alert?'warn':'gray')+'<span>同期 SPY <strong>'+percent(data.account.spy_return==null?null:data.account.spy_return*100)+'</strong></span><span>相对 SPY <strong>'+percent(data.account.excess_return==null?null:data.account.excess_return*100)+'</strong></span></div>':'')+'</section>';
+}
+function historicalPanel(){
+  const selection=data.strategy?.historical_screen;
+  const sp500=data.strategy?.version==='0.4',version=sp500?'v0.4':'v0.3',candidates=sp500?'S500-C0–S500-C4':'C0–C4';
+  if(!selection)return '<section class="panel historical-panel"><div class="panel-head"><h2>'+version+' 历史筛选</h2></div><p class="history-note">固定候选 '+candidates+' 的历史研究尚未产出。前向账户只在合格胜者冻结后启动。</p></section>';
+  const valid=row=>selection.metrics_valid!==false&&row.metrics_valid!==false;
+  const metric=(row,key,name)=>valid(row)?row[key]?.[name]:null;
+  const rows=selection.candidates||[];
+  const winner=selection.winner&&rows.some(row=>row.strategy_id===selection.winner&&valid(row)&&row.qualified)?selection.winner:null;
+  return '<section class="panel historical-panel"><div class="panel-head"><div><h2>'+version+' 历史筛选</h2><div class="panel-sub">'+esc(data.strategy?.universe_label||'原股票池')+' · 已知历史研究 · '+esc(selection.period?.start||'—')+' — '+esc(selection.period?.end||'—')+'</div></div>'+badge(winner?'历史胜者 '+winner:'本轮尚无合格胜者',winner?'':'gray')+'</div><p class="history-note">'+(sp500?'按历史时点成分股和时点资格判断。':'')+(rows.some(row=>!valid(row))?'关键数据未通过的候选，其历史收益与基准指标不可用。':'')+'历史通过表示可以开始前向验证。不同起点的账户单独展示；满 12 个月后才评价完整年前向目标。</p><div class="table-scroll"><table class="history-table"><thead><tr><th>候选</th><th class="right">10 bps CAGR / 回撤</th><th class="right">25 bps CAGR / 回撤</th><th class="right">SPY 25 bps CAGR / 回撤</th><th>筛选结果与提示</th></tr></thead><tbody>'+rows.map(row=>'<tr><td>'+esc(row.strategy_id)+'</td>'+['metrics_10','metrics_25','benchmark_25'].map(key=>'<td class="right num">'+percent(metric(row,key,'cagr')==null?null:metric(row,key,'cagr')*100)+' / '+percent(metric(row,key,'maxdd')==null?null:metric(row,key,'maxdd')*100)+'</td>').join('')+'<td class="history-warnings">'+badge(!valid(row)?'数据未通过 / 不可用':row.qualified?'历史通过':'未通过',valid(row)&&row.qualified?'':'gray')+'<small>'+esc((row.warnings||[]).map(w=>typeof w==='string'?w:JSON.stringify(w)).join('；'))+'</small></td></tr>').join('')+'</tbody></table></div></section>';
+}
+function universePanel(){
+  const u=data.universe;if(!u)return '';
+  const links=(u.source_urls||[]).filter(url=>/^https?:\/\//i.test(url)).map((url,i)=>'<a href="'+esc(url)+'" target="_blank" rel="noreferrer">核验来源 '+(i+1)+'</a>').join(' · ');
+  const added=u.added||[],removed=u.removed||[],m=u.market_data;
+  const market=m?'<p class="source-note">行情日期 '+esc(m.date||'尚未更新')+' · 最新日报价 '+esc(m.quote_current)+' / '+esc(m.expected)+' · 完整历史窗口 '+esc(m.history_complete)+' / '+esc(m.expected)+(m.complete?' · 行情完整':' · 新增仓位暂停')+(m.missing?.length?'；待补齐：'+esc(m.missing.join(', ')):'')+'</p>':'';
+  return '<section class="panel universe-panel" aria-label="S&P 500 股票池来源"><div class="universe-heading"><div><h2>跨行业 S&P 500 股票池</h2><p><strong>'+esc(u.security_count??'—')+'</strong> 只证券 · '+esc(u.company_count??'—')+' 家公司</p></div>'+badge(u.allow_new_risk?'来源允许新增买入':'暂停新增买入',u.allow_new_risk?'':'warn')+'</div><div class="source-grid"><div><span>来源日期</span><strong>'+esc(u.source_as_of||'—')+'</strong></div><div><span>抓取时间</span><strong>'+time(u.fetched_at)+'</strong></div><div><span>最近核验</span><strong>'+time(u.verified_at)+'</strong></div><div><span>核验交易日</span><strong>'+esc(u.verified_for_session||'—')+'</strong></div></div><p class="source-note">'+(u.allow_new_risk?'来源已核验且符合时效要求。新增买入还需行情完整、历史研究及策略风险条件通过。':'来源核验未通过，新增买入暂停；已有持仓继续按风险规则处理。')+' 时效：'+(u.fresh?'符合要求':'不可用')+' · 来源落后 '+esc(u.source_age_sessions??'—')+' 个交易日 · 核验落后 '+esc(u.verification_age_sessions??'—')+' 个交易日</p>'+(u.error?'<p class="source-error">'+esc(u.error)+'</p>':'')+market+'<div class="source-links">'+links+'</div><details class="source-diff"><summary>本次成分变化：新增 '+added.length+' / 移除 '+removed.length+'</summary><p>新增：'+esc(added.join(', ')||'无')+'</p><p>移除：'+esc(removed.join(', ')||'无')+'</p></details></section>';
+}
 function metrics(account){
   const previous=account.total!=null&&account.day!=null?account.total-account.day:null;
   return '<div class="metrics">'+
-    '<div class="metric"><div class="metric-label">总资产 <span class="currency">USD</span><button class="text-button" data-action="method" aria-label="资产计算口径">'+icon('info')+'</button></div><div class="metric-value num">'+money(account.total)+'</div><div class="metric-foot">'+(account.day!=null?'<b class="'+tone(account.day)+'">当日 '+signed(account.day)+'</b><span>('+percent(previous?account.day/previous*100:null)+')</span>':'<span>账户起点 '+esc(account.start)+'</span>')+'</div></div>'+
+    '<div class="metric"><div class="metric-label">总资产 <span class="currency">USD</span><button class="text-button" data-action="method" aria-label="资产计算口径">'+icon('info')+'</button></div><div class="metric-value num">'+money(account.total)+'</div><div class="metric-foot">'+(account.day!=null?'<b class="'+tone(account.day)+'">当日 '+signed(account.day)+'</b><span>('+percent(previous?account.day/previous*100:null)+')</span>':'<span>账户起点 '+esc(account.start||'尚未启动')+'</span>')+'</div></div>'+
     '<div class="metric"><div class="metric-label">累计盈亏</div><div class="metric-value num '+tone(account.gain)+'">'+signed(account.gain)+'</div><div class="metric-foot"><b class="'+tone(account.gain)+'">'+percent(account.gain_percent)+'</b><span>初始资金 '+money(account.initial)+'</span></div></div>'+
     '<div class="metric"><div class="metric-label">持仓浮动盈亏</div><div class="metric-value num '+tone(account.unrealized)+'">'+signed(account.unrealized)+'</div><div class="metric-foot"><span>已实现</span><b class="'+tone(account.realized)+'">'+signed(account.realized)+'</b></div></div>'+
     '<div class="metric"><div class="metric-label">可用现金</div><div class="metric-value num">'+money(account.cash)+'</div><div class="metric-foot"><span>占总资产</span><b>'+(account.total?fmt(account.cash/account.total*100,1)+'%':'—')+'</b></div></div></div>';
 }
 function chartPanel(account){
   const benchmark=data.chart.some(point=>point.benchmark!=null);
-  return '<section class="panel chart-panel"><div class="panel-head"><div><h2>资产表现</h2><div class="panel-sub">'+esc(account.start)+' — '+esc(account.valuation_date)+'</div></div><div class="segments" aria-label="图表指标">'+['assets','return'].map((key,i)=>'<button data-chart="'+key+'" class="'+(state.chartMode===key?'active':'')+'" aria-pressed="'+(state.chartMode===key)+'">'+(i?'收益率':'总资产')+'</button>').join('')+'</div></div><div class="legend"><span><i></i>SHM 模拟账户</span>'+(benchmark?'<span><i class="benchmark"></i>SPY · 同额起点参考</span>':'')+'</div><div class="chart-container" id="asset-chart"><svg id="equity-svg" role="img" aria-label="模拟账户总资产历史曲线，缺少行情的日期留空"></svg><div class="chart-tip" id="chart-tip"></div></div><div class="chart-footer"><span>累计收益 <b class="'+tone(account.gain)+'">'+percent(account.gain_percent)+'</b></span><span>基于已完成交易日 · 初始资金 '+money(account.initial)+'</span></div></section>';
+  return '<section class="panel chart-panel"><div class="panel-head"><div><h2>资产表现</h2><div class="panel-sub">'+esc(account.start||'尚未启动')+' — '+esc(account.valuation_date||'—')+'</div></div><div class="segments" aria-label="图表指标">'+['assets','return'].map((key,i)=>'<button data-chart="'+key+'" class="'+(state.chartMode===key?'active':'')+'" aria-pressed="'+(state.chartMode===key)+'">'+(i?'收益率':'总资产')+'</button>').join('')+'</div></div><div class="legend"><span><i></i>SHM 模拟账户</span>'+(benchmark?'<span><i class="benchmark"></i>SPY · 同额起点参考</span>':'')+'</div><div class="chart-container" id="asset-chart"><svg id="equity-svg" role="img" aria-label="模拟账户总资产历史曲线，缺少行情的日期留空"></svg><div class="chart-tip" id="chart-tip"></div></div><div class="chart-footer"><span>累计收益 <b class="'+tone(account.gain)+'">'+percent(account.gain_percent)+'</b></span><span>基于已完成交易日 · 初始资金 '+money(account.initial)+'</span></div></section>';
 }
 function allocationPanel(account){
   const weight=account.total?account.market/account.total*100:null;
@@ -83,7 +114,7 @@ function allocationPanel(account){
 }
 function schedulePanel(account){
   const last=data.runs[0],progress=data.progress;
-  return '<section class="panel schedule-panel"><div class="panel-head"><h2>自动运行</h2><button class="text-button" data-action="schedule" aria-label="修改每日检查时间">'+icon('settings')+'</button></div><div class="schedule-status">'+(last?statusBadge(last.status):badge('尚无运行记录','gray'))+'</div><div class="schedule-time"><small>下次调仓信号日</small><strong class="num">'+esc(account.next.slice(5).replace('-',' 月 '))+' 日 <span>'+account.next.slice(0,4)+'</span></strong><span>每 20 个美股交易日 · 收盘后检查</span></div><div class="timeline"><div class="timeline-item"><i class="timeline-dot"></i><div><strong>'+progress.completed+' / 3 换仓周期 · '+progress.months+' / 3 月报</strong><small>等待成交 '+progress.pending+' 个 · 错过窗口 '+progress.missed+' 个</small></div></div><div class="timeline-item"><i class="timeline-dot next"></i><div><strong>每日检查 · '+esc(data.schedule.time)+'</strong><small>'+esc(data.schedule.timezone)+' · '+(data.schedule.due?'等待调度检查':'下次 '+time(data.schedule.next_at))+'</small></div></div></div><div class="schedule-foot"><button class="text-button" data-page="logs">查看运行日志 '+icon('arrow')+'</button></div></section>';
+  return '<section class="panel schedule-panel"><div class="panel-head"><h2>统一调度</h2><button class="text-button" data-action="schedule" aria-label="修改每日检查时间">'+icon('settings')+'</button></div><div class="schedule-status">'+(last?statusBadge(last.status):badge('尚无运行记录','gray'))+'</div><div class="schedule-time"><small>下次调仓信号日</small><strong class="num">'+esc(account.next?account.next.slice(5).replace('-',' 月 ')+' 日':'尚未启动')+' <span>'+esc(account.next?account.next.slice(0,4):'')+'</span></strong><span>每 20 个美股交易日 · 收盘后检查</span></div><div class="timeline"><div class="timeline-item"><i class="timeline-dot"></i><div><strong>'+progress.completed+' / 3 换仓周期 · '+progress.months+' / 3 月报</strong><small>等待成交 '+progress.pending+' 个 · 错过窗口 '+progress.missed+' 个</small></div></div><div class="timeline-item"><i class="timeline-dot next"></i><div><strong>每日检查 · '+esc(data.schedule.time)+'</strong><small>'+esc(data.schedule.timezone)+' · '+(data.schedule.due?'等待调度检查':'下次 '+time(data.schedule.next_at))+'</small></div></div></div><div class="schedule-foot"><button class="text-button" data-page="logs">查看运行日志 '+icon('arrow')+'</button></div></section>';
 }
 function holdingRows(rows,compact=false){
   return rows.map(h=>'<tr class="clickable" data-holding="'+esc(h.symbol)+'"><td>'+stockLabel(h)+'</td>'+
@@ -93,7 +124,7 @@ function holdingRows(rows,compact=false){
 }
 function overview(account){
   return metrics(account)+'<div class="chart-grid">'+chartPanel(account)+allocationPanel(account)+'</div><div class="lower-grid"><section class="panel holdings-preview"><div class="panel-head"><div><h2>当前持仓 <span class="muted small">/ '+account.holdings.length+'</span></h2><div class="panel-sub">按市值排序 · 点击持仓查看明细</div></div><button class="text-button" data-page="holdings">全部持仓 '+icon('arrow')+'</button></div>'+
-    (account.holdings.length?'<div class="table-scroll"><table><thead><tr><th>股票</th><th class="right">最新价</th><th class="right optional-col">市值</th><th class="right">持仓盈亏</th></tr></thead><tbody>'+holdingRows(account.holdings.slice(0,4),true)+'</tbody></table></div><div class="table-bottom"><span>估值使用已完成交易日的收盘价 · USD</span><span>显示 '+Math.min(4,account.holdings.length)+' / '+account.holdings.length+' 只</span></div>':empty('尚无持仓','下一调仓信号日为 '+account.next+'。调仓单生成后，等待下一交易日模拟成交。'))+'</section>'+schedulePanel(account)+'</div>';
+    (account.holdings.length?'<div class="table-scroll"><table><thead><tr><th>股票</th><th class="right">最新价</th><th class="right optional-col">市值</th><th class="right">持仓盈亏</th></tr></thead><tbody>'+holdingRows(account.holdings.slice(0,4),true)+'</tbody></table></div><div class="table-bottom"><span>估值使用已完成交易日的收盘价 · USD</span><span>显示 '+Math.min(4,account.holdings.length)+' / '+account.holdings.length+' 只</span></div>':empty('尚无持仓',account.next?'下一调仓信号日为 '+account.next+'。调仓单生成后，等待下一交易日模拟成交。':'本候选尚未建立前向账户。固定历史筛选通过并冻结胜者后，才会从下一选股日开始。'))+'</section>'+schedulePanel(account)+'</div>';
 }
 function holdingsPage(account){
   const rows=[...account.holdings].sort((x,y)=>(y[state.sort]??-Infinity)-(x[state.sort]??-Infinity));
@@ -109,7 +140,7 @@ function tradesPage(account){
 }
 function logsPage(){
   const rows=data.runs.filter(r=>state.logFilter==='all'||r.status===state.logFilter);
-  return miniStats([['每日检查时间',esc(data.schedule.time)],['最近运行',data.runs[0]?statusText[data.runs[0].status]:'尚无记录',data.runs[0]?.status==='success'?'positive':''],['下次调仓信号',esc(data.progress.next.slice(5).replace('-',' / '))]])+
+  return miniStats([['每日检查时间',esc(data.schedule.time)],['最近运行',data.runs[0]?statusText[data.runs[0].status]:'尚无记录',data.runs[0]?.status==='success'?'positive':''],['下次调仓信号',esc(data.progress.next?data.progress.next.slice(5).replace('-',' / '):'尚未启动')]])+
     '<section class="panel"><div class="toolbar"><div class="tabs" aria-label="运行状态">'+[['all','全部运行'],['success','成功'],['failed','失败']].map(([key,label])=>'<button data-log-filter="'+key+'" class="'+(state.logFilter===key?'active':'')+'">'+label+'</button>').join('')+'</div><span class="muted small">近 90 天 · '+esc(data.schedule.timezone)+'</span></div>'+
     (rows.length?'<div class="table-scroll"><table class="logs-table"><thead><tr><th>运行 / 开始时间</th><th>状态</th><th>市场交易日</th><th>耗时</th><th>结果摘要</th><th></th></tr></thead><tbody>'+rows.map(r=>'<tr class="clickable" data-run="'+r.id+'"><td class="two-line num"><strong style="font-weight:500">#'+r.id+'</strong> &nbsp; '+time(r.started_at||r.created_at)+'<small class="muted">'+(r.trigger==='scheduled'?'定时触发':r.trigger==='manual-retry'?'失败重试':'手动触发')+'</small></td><td>'+statusBadge(r.status)+'</td><td class="num small">'+esc(r.market_session||'—')+'</td><td class="two-line small">'+duration(r.started_at,r.finished_at)+'<small class="muted">尝试 '+r.attempts+' 次</small></td><td class="small log-summary">'+esc(runSummary(r).slice(0,160))+'</td><td><button class="text-button" data-run="'+r.id+'" aria-label="查看运行 '+r.id+' 详情">'+icon('arrow')+'</button></td></tr>').join('')+'</tbody></table></div><div class="table-bottom"><span>展开记录查看真实步骤、错误与输出</span><span>'+rows.length+' 条</span></div>':empty('暂无符合条件的运行记录','运行记录保存在调度服务中，当前展示最近 90 天。','activity'))+'</section>';
 }
@@ -144,7 +175,7 @@ function runSummary(run){
 }
 function reportsPage(){
   if(!data.reports.length)return '<section class="panel">'+empty('尚无策略报告','月末自动生成模拟盘月报；成交后生成的期权覆盖评估也会在此展示。','file')+'</section>';
-  return '<div class="report-grid">'+data.reports.map(report=>'<article class="panel report-card"><div class="report-top"><span class="report-icon">'+icon('file')+'</span>'+badge('已生成')+'</div><h2>'+esc(report.title)+'</h2><p>'+(report.kind==='monthly'?'模拟盘与同参数模型的收益、执行成本和偏差归因。':'备兑看涨与现金担保卖出看跌的候选方案、资金占用和跳过原因。')+'</p><div class="report-bottom" style="margin-top:24px"><span>'+time(report.updated_at)+'</span><button class="text-button" data-report="'+esc(report.id)+'">阅读报告 '+icon('arrow')+'</button></div></article>').join('')+'</div>';
+  return '<div class="report-grid">'+data.reports.map(report=>'<article class="panel report-card"><div class="report-top"><span class="report-icon">'+icon('file')+'</span>'+badge('已生成')+'</div><h2>'+esc(report.title)+'</h2><p>'+(report.kind==='monthly'?(data.strategy?.id==='V04'?'模拟盘与同参数模型的收益、执行成本和偏差归因。':'前向账户与同期 SPY、10/25 bps 模型成本及回撤预警。'):'备兑看涨与现金担保卖出看跌的候选方案、资金占用和跳过原因。')+'</p><div class="report-bottom" style="margin-top:24px"><span>'+time(report.updated_at)+'</span><button class="text-button" data-report="'+esc(report.id)+'">阅读报告 '+icon('arrow')+'</button></div></article>').join('')+'</div>';
 }
 function openDialog(title,subtitle,body,wide=false){
   returnFocus=document.activeElement;
@@ -167,20 +198,20 @@ function showHolding(symbol){
   openDialog(esc(h.symbol),'持仓明细 · 估值交易日 '+esc(h.quote_date||'价格待补齐'),
     dialogStats([['持仓市值',money(h.value)],['浮动盈亏',signed(h.pnl),tone(h.pnl)],['持仓收益率',percent(h.pnl_percent),tone(h.pnl)]])+
     detailRow('持有股数',h.qty+' 股')+detailRow('成本均价',money(h.cost))+detailRow('最新收盘价',money(h.price))+detailRow('资产占比',h.weight!=null?fmt(h.weight,2)+'%':'—')+
-    '<h3 class="section-title">相关成交</h3><div class="table-scroll"><table><thead><tr><th>日期</th><th>方向</th><th class="right">股数</th><th class="right">成交价</th></tr></thead><tbody>'+data.trades.filter(t=>t.symbol===symbol).map(t=>'<tr><td>'+t.date+'</td><td>'+(t.side==='sell'?'卖出':'买入')+'</td><td class="right">'+t.qty+'</td><td class="right">'+money(t.price)+'</td></tr>').join('')+'</tbody></table></div>');
+    (data.strategy?.id!=='V04'?detailRow('建仓日期',esc(h.entry_date||'—'))+detailRow('持仓峰值',money(h.peak))+detailRow('ATR 跟踪线',money(h.trailing_line))+detailRow('待执行退出',esc(h.exit_reason||'无')):'')+'<h3 class="section-title">相关成交</h3><div class="table-scroll"><table><thead><tr><th>日期</th><th>方向</th><th class="right">股数</th><th class="right">成交价</th></tr></thead><tbody>'+data.trades.filter(t=>t.symbol===symbol).map(t=>'<tr><td>'+t.date+'</td><td>'+(t.side==='sell'?'卖出':t.side==='target'?'目标仓位':'买入')+'</td><td class="right">'+(t.qty??(t.target_weight!=null?fmt(t.target_weight*100,1)+'%':'—'))+'</td><td class="right">'+money(t.price)+'</td></tr>').join('')+'</tbody></table></div>');
 }
 function showTrade(id){
   const t=data.trades.find(row=>row.id===id);if(!t)return;
   openDialog(esc(t.symbol)+' · '+(t.side==='sell'?'卖出':'买入'),'模拟账户成交记录 · '+esc(t.date),
     dialogStats([['成交股数',t.qty+' 股'],['成交价',money(t.price)],['成交金额',money(t.amount)]])+
-    detailRow('成交时间（'+esc(data.schedule.timezone)+'）',time(t.filled_at))+detailRow('信号日期',esc(t.signal_date))+detailRow('交易原因',esc(t.reason))+detailRow('佣金',money(t.commission))+
+    detailRow('成交时间（'+esc(data.schedule.timezone)+'）',time(t.filled_at))+detailRow('信号日期',esc(t.signal_date))+detailRow('交易原因',esc(t.reason))+detailRow(data.strategy?.id==='V04'?'佣金':'模型交易成本',money(t.commission))+
     (t.side==='sell'?detailRow('卖出部分成本',money(t.cost!=null?t.qty*t.cost:null))+detailRow('已实现盈亏','<span class="'+tone(t.realized_pnl)+'">'+signed(t.realized_pnl)+'</span>'):'')+
-    '<p class="field-help">数据来自已记录的模拟成交文件。已实现盈亏包含卖出费用。</p>');
+    '<p class="field-help">数据来自已记录的模拟成交文件。已实现盈亏包含卖出费用。'+(data.strategy?.id==='V04'?'':'成本为模型假设，非券商实测；风险退出不计作完整调仓周期。')+'</p>');
 }
 function showTickets(){
   const rows=data.tickets;
   openDialog('调仓计划','信号日生成计划，下一交易日结束后再记录模拟成交。',
-    rows.length?'<div class="table-scroll"><table><thead><tr><th>信号日</th><th>股票</th><th>方向</th><th class="right">股数</th><th>原因</th></tr></thead><tbody>'+rows.map(t=>'<tr><td>'+esc(t.signal_date)+'</td><td>'+esc(t.symbol)+'</td><td>'+(t.side==='sell'?'卖出':'买入')+'</td><td class="right">'+t.qty+'</td><td class="reason-cell">'+esc(t.reason)+'</td></tr>').join('')+'</tbody></table></div>':empty('尚无调仓单','下一信号日为 '+data.progress.next,'file'),true);
+    rows.length?'<div class="table-scroll"><table><thead><tr><th>信号日</th><th>股票</th><th>方向</th><th class="right">股数</th><th>原因</th></tr></thead><tbody>'+rows.map(t=>'<tr><td>'+esc(t.signal_date)+'</td><td>'+esc(t.symbol)+'</td><td>'+(t.side==='sell'?'卖出':t.side==='target'?'目标仓位':'买入')+'</td><td class="right">'+(t.qty??(t.target_weight!=null?fmt(t.target_weight*100,1)+'%':'—'))+'</td><td class="reason-cell">'+esc(t.reason)+'</td></tr>').join('')+'</tbody></table></div>':empty('尚无调仓单','下一信号日：'+nextLabel(),'file'),true);
 }
 function stepName(name){
   const labels={'data-update':'更新行情','validate-price-cache':'检查数据完整性','recover-rebalance-audit':'恢复调仓审计','missed-rebalance':'记录错过的调仓窗口','missed-fill':'记录错过的成交窗口','missed-option-overlay':'记录错过的期权窗口','simulate-fills':'模拟成交与账户更新','option-overlay':'期权覆盖评估','monthly-report':'生成月度报告','paper-status':'更新验证进度','rebalance':'生成调仓单'};
@@ -214,7 +245,7 @@ function markdown(source){
 }
 async function showReport(id){
   try{
-    const report=await api('/api/reports/'+id),meta=data.reports.find(r=>r.id===id);
+    const report=await api('/api/reports/'+id+strategyQuery()),meta=data.reports.find(r=>r.id===id);
     const body=report.kind==='monthly'?markdown(report.content):optionReport(JSON.parse(report.content));
     openDialog(esc(meta?.title||'策略报告'),'读取已保存的报告正文',body,true);
   }catch(error){showToast(error.message)}
@@ -243,7 +274,7 @@ function renderChart(){
   const rows=data.chart,initial=data.account.initial,isReturn=state.chartMode==='return';
   const val=value=>value==null||isReturn&&!initial?null:isReturn?(value/initial-1)*100:value;
   const values=rows.flatMap(p=>[val(p.equity),val(p.benchmark)]).filter(v=>v!=null);
-  if(!values.length){svg.innerHTML='<text x="50%" y="50%" text-anchor="middle" fill="#6b8272" font-size="12">价格待补齐，暂无可用曲线</text>';return}
+  if(!values.length){svg.innerHTML='<text x="50%" y="50%" text-anchor="middle" fill="#6b8272" font-size="12">'+(data.strategy?.performance_verdict==='NOT_STARTED'?'前向账户尚未启动，暂无曲线':'价格待补齐，暂无可用曲线')+'</text>';return}
   const low=Math.min(...values),high=Math.max(...values),span=Math.max(high-low,isReturn?1:1000);
   const min=low-span*.13,max=high+span*.15;
   const x=i=>left+(rows.length>1?i/(rows.length-1):.5)*w;
@@ -282,14 +313,14 @@ function render(){
   if(chartObserver)chartObserver.disconnect();
   const account=a();
   $('#page-title').textContent=titles[state.page];$('#crumb-name').textContent=state.page==='overview'?'总览':titles[state.page];
-  $('#heading-sub').textContent=state.page==='logs'?'定时执行与结果追溯 · '+data.schedule.timezone:state.page==='reports'?'已保存的月度报告与期权评估':'账户快照 '+account.asof+' · 行情 '+account.market_session+' 收盘 · USD';
+  $('#heading-sub').textContent=state.page==='logs'?'统一调度记录 · 各版本执行步骤可展开 · '+data.schedule.timezone:state.page==='reports'?'已保存的月度报告与期权评估':account.asof?'账户快照 '+account.asof+' · 行情 '+account.market_session+' 收盘 · USD':'前向账户尚未启动 · 历史筛选单独展示';
   $('#page-actions').innerHTML=['trades','holdings'].includes(state.page)?button(icon('download')+'导出记录','export'):button(icon('clock')+'调度设置','schedule');
   const notice=$('#data-notice');notice.hidden=!data.warnings.length;
   notice.innerHTML=data.warnings.length?icon('info')+'<span>'+data.warnings.map(esc).join('；')+'</span>':'';
   $('#footer-note').textContent='数据读取于 '+time(data.generated_at)+' · '+data.schedule.timezone;
   $$('#main-nav button').forEach(b=>{b.classList.toggle('active',b.dataset.page===state.page);if(b.dataset.page===state.page)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
   const pages={overview,holdings:holdingsPage,trades:tradesPage,logs:logsPage,reports:reportsPage};
-  $('#page-content').innerHTML=pages[state.page](account);
+  $('#page-content').innerHTML=strategyPanel()+universePanel()+pages[state.page](account)+(state.page==='reports'||state.page==='overview'?historicalPanel():'');
   if(state.page==='overview'){chartObserver=new ResizeObserver(renderChart);chartObserver.observe($('#asset-chart'));renderChart()}
 }
 function navigate(page){
@@ -320,7 +351,13 @@ document.addEventListener('click',event=>{
   const actions={schedule:showSchedule,close:closeDialog,export:exportRecords,tickets:showTickets,method:showMethod};
   if(actions[el.dataset.action])actions[el.dataset.action]();
 });
-document.addEventListener('change',event=>{if(event.target.id==='holding-sort'){state.sort=event.target.value;render()}});
+document.addEventListener('change',event=>{
+  if(event.target.id==='holding-sort'){state.sort=event.target.value;render()}
+  if(event.target.id==='strategy-select'||event.target.id==='cost-select'){
+    if(event.target.id==='strategy-select')state.strategy=event.target.value;else state.cost=Number(event.target.value);
+    history.replaceState(null,'',strategyQuery()+'#'+state.page);refresh();
+  }
+});
 document.addEventListener('submit',async event=>{
   if(event.target.id!=='schedule-form')return;
   event.preventDefault();
@@ -341,7 +378,12 @@ document.addEventListener('keydown',event=>{
     else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
   }
 });
-window.addEventListener('popstate',()=>{state.page=titles[location.hash.slice(1)]?location.hash.slice(1):'overview';closeDialog();render()});
+window.addEventListener('popstate',()=>{
+  state.page=titles[location.hash.slice(1)]?location.hash.slice(1):'overview';
+  const query=new URLSearchParams(location.search);
+  state.strategy=query.get('strategy_id')||'V04';state.cost=query.get('cost_bps')==='25'?25:10;
+  closeDialog();refresh();
+});
 $$('[data-icon]').forEach(el=>el.outerHTML=icon(el.dataset.icon));
 refresh();
 setInterval(()=>{if(!document.hidden)refresh()},30000);
