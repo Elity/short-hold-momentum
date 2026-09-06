@@ -11,6 +11,14 @@ def test_latest_completed_session_uses_market_close() -> None:
     )
 
 
+def test_completed_report_months_normalizes_month_end(tmp_path) -> None:
+    paper = tmp_path / "paper"
+    paper.mkdir()
+    (paper / "p4.yaml").write_text("forward_test_start: 2026-09-05\n", encoding="utf-8")
+
+    assert workflow._completed_report_months(tmp_path, pd.Timestamp("2026-09-04")) == ()
+
+
 def test_daily_workflow_runs_update_and_status_when_nothing_is_due(
     tmp_path, monkeypatch
 ) -> None:

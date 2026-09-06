@@ -125,12 +125,14 @@ def _completed_report_months(repo_root: Path, market_session: pd.Timestamp) -> t
     end = market_session.to_period("M")
     completed: list[str] = []
     for period in pd.period_range(start, end, freq="M"):
+        month_start = period.start_time.normalize()
+        month_end = period.end_time.normalize()
         calendar = xcals.get_calendar(
             "XNYS",
-            start=period.start_time - pd.Timedelta("7D"),
-            end=period.end_time + pd.Timedelta("7D"),
+            start=month_start - pd.Timedelta("7D"),
+            end=month_end + pd.Timedelta("7D"),
         )
-        sessions = calendar.sessions_in_range(period.start_time, period.end_time)
+        sessions = calendar.sessions_in_range(month_start, month_end)
         if len(sessions) >= 2 and pd.Timestamp(sessions[-1]).normalize() <= market_session:
             completed.append(str(period))
     return tuple(completed)
