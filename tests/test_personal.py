@@ -53,6 +53,7 @@ def test_combo_aggregate_closing_and_credit():
         apply(state,a,event(leg('BTC'),leg('BTC')))
     state,summary=apply(initial(a),a,event(leg(),leg('BTO',instrument={**OPT,'strike':'185'},price='1.10')))
     assert summary['cash_change']==D('98.70')
+    assert summary['delivery_total']==19000  # long Put is a right, not another short delivery obligation
     state2,summary=apply(state,a,event(leg()))
     assert positions(state2)[instrument(OPT)['key']]==-2
     assert summary['delivery_change']==19000

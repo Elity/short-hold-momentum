@@ -17,7 +17,7 @@ from zoneinfo import ZoneInfo
 from cryptography.fernet import Fernet
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
-from .domain import Invalid, dec, digest, encoded, stamp, NY, ZERO
+from .domain import Invalid, Conflict, dec, digest, encoded, stamp, NY, ZERO
 from .store import now
 from .valuation import valuations
 from .comparison import compare
@@ -273,6 +273,8 @@ class AIService:
         with self.store.connection() as db:
             prior = [{**json.loads(r['payload']),'status':r['status']} for r in db.execute('SELECT s.* FROM suggestions s JOIN reports r ON r.id=s.report_id ORDER BY s.updated_at DESC LIMIT 12') if json.loads(db.execute('SELECT payload FROM reports WHERE id=?',(r['report_id'],)).fetchone()[0]).get('subject')==subject]
         add('previous.suggestions','上次建议与当前状态',prior)
+        if self.store.account()['version'] != current['version']:
+            raise Conflict('准备证据时账本变化，请重新生成报告')
         return {'subject':subject,'start':start,'end':end,'ledger_version':current['version'],
                 'strategy_id':strategy,'cost_bps':cost,'template_version':TEMPLATE,'evidence':evidence,'source_version':source_version,'limited':limited}
 

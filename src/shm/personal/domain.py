@@ -110,7 +110,7 @@ def positions(state):
 def obligation(state):
     # Gross physical delivery amount, deliberately not margin or maximum loss.
     return sum((abs(l['quantity']) * dec(l['instrument']['strike']) * dec(l['instrument']['multiplier'])
-                for l in state['lots'] if l['instrument']['kind'] == 'option'
+                for l in state['lots'] if l['instrument']['kind'] == 'option' and l['quantity'] < 0
                 and l['instrument']['settlement'] == 'physical' and not l['instrument']['adjusted']), ZERO)
 
 
@@ -345,5 +345,5 @@ def apply(state, account, event, link='preview'):
     return state, {'before': before, 'after': positions(state), 'cash_before': before_cash,
                    'cash_change': state['cash']-before_cash, 'cash_after': state['cash'],
                    'delivery_change': obligation(state)-before_obligation,
-                   'delivery_total': obligation(state), 'warnings': ['交割总额不是最大亏损或券商保证金'],
+                   'delivery_total': obligation(state), 'warnings': ['交割总额为空头期权按行权价计算的名义金额；多头行权属于权利，不计为空头义务。该金额不是最大亏损或券商保证金'],
                    'issues': state['issues']}
