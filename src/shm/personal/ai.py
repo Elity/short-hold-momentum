@@ -5,6 +5,8 @@ import calendar
 import hashlib
 import json
 import os
+import re
+import sys
 import threading
 import time
 import urllib.error
@@ -32,12 +34,14 @@ DEFAULTS = {'base_url': '', 'model': '', 'automatic': False, 'scope': ['personal
             'weekly': True, 'monthly': True, 'auto_limit': 8, 'manual_limit': 4,
             'max_completion_tokens': 6000, 'input_limit': 200000, 'tested': False}
 REDACT = {'encrypted_key', 'key', 'api_key'}
+USER_AGENT = 'SHM/0.1 (+https://github.com/Elity/short-hold-momentum)'
 
 
 class ReportError(Invalid):
-    def __init__(self, message, transient=False):
+    def __init__(self, message, transient=False, *, details=None):
         super().__init__(message)
         self.transient = transient
+        self.details = details or {}
 
 
 class StrictModel(BaseModel):
@@ -93,7 +97,8 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 def completion(settings, key, messages, parameter, *, test=False):
     payload = {'model': settings['model'], 'messages': messages, parameter: 128 if test else settings['max_completion_tokens']}
     request = urllib.request.Request(settings['base_url'].rstrip('/')+'/chat/completions',
-                                     data=encoded(payload).encode(), headers={'Authorization': 'Bearer '+key, 'Content-Type': 'application/json'})
+                                     data=encoded(payload).encode(), headers={'Authorization': 'Bearer '+key, 'Content-Type': 'application/json',
+                                                                             'User-Agent': USER_AGENT, 'Accept': 'application/json'})
     try:
         with urllib.request.build_opener(NoRedirect()).open(request, timeout=90) as response:
             raw = response.read(2_000_001)
@@ -103,7 +108,22 @@ def completion(settings, key, messages, parameter, *, test=False):
         unsupported = exc.code == 400 and parameter == 'max_completion_tokens' and 'max_completion_tokens' in body and any(w in body for w in ('unsupported', 'unrecognized', 'unknown parameter', 'not supported'))
         if test and unsupported:
             return {'unsupported_parameter': True}
-        raise ReportError(f'接口 HTTP {exc.code}', exc.code in (408, 429, 500, 502, 503, 504)) from None
+        details = {'stage': 'provider_http', 'http_status': exc.code, 'host': urlparse(settings['base_url']).hostname}
+        # Keep only diagnostic identifiers, never the provider body or request payload.
+        for header, name in [('cf-ray', 'cf_ray'), ('x-request-id', 'request_id')]:
+            value = exc.headers.get(header, '')
+            if value and key not in value and re.fullmatch(r'[A-Za-z0-9._:-]{1,128}', value):
+                details[name] = value
+        cf_code = re.search(r'error code:\s*(\d{4})\b', body) if 'cloudflare' in exc.headers.get('server', '').lower() else None
+        if cf_code:
+            details['cloudflare_code'] = cf_code[1]
+            hint = f'Cloudflare 拒绝了请求（错误码 {cf_code[1]}），请检查接口侧访问规则'
+        else:
+            hint = {401: '接口拒绝密钥，请核对密钥是否有效', 403: '接口拒绝访问，请核对密钥权限、模型权限及接口侧访问规则',
+                    404: '接口或模型不存在，请核对 Base URL 和模型 ID', 429: '接口限流或额度不足，请稍后重试或核对额度'}.get(exc.code, '服务商返回错误，请联系接口管理员核对')
+        reference = details.get('cf_ray') or details.get('request_id')
+        message = f'上游接口 HTTP {exc.code}：{hint}' + (f'；请求编号 {reference}' if reference else '')
+        raise ReportError(message, exc.code in (408, 429, 500, 502, 503, 504), details=details) from None
     except (urllib.error.URLError, TimeoutError, OSError):
         raise ReportError('接口网络失败或超时', True) from None
     if len(raw)>2_000_000:
@@ -166,7 +186,7 @@ class AIService:
                 new.pop('encrypted_key', None)
             identity = ['base_url','model','encrypted_key']
             if any(new.get(k) != old.get(k) for k in identity):
-                new.update(tested=False, compatibility=None, tested_at=None)
+                new.update(tested=False, compatibility=None, tested_at=None, last_test=None)
             new['config_hash'] = digest({k:new.get(k) for k in (*DEFAULTS.keys(),'encrypted_key') if k!='tested'})
             self.store.set_setting(new)
             return self.settings()
@@ -182,22 +202,36 @@ class AIService:
             config_hash = s.get('config_hash')
             s['tested'] = False
             self.store.set_setting(s)
+        context = {'event': 'ai_connection_test', 'host': urlparse(s['base_url']).hostname}
+        print(encoded({**context, 'at': now(), 'status': 'started'}), file=sys.stderr, flush=True)
+        try:
             key = self._key(s)
-        messages = [{'role':'user','content':'Reply with the single word OK. No account data is provided.'}]
-        mode = 'max_completion_tokens'
-        result = self.caller(s,key,messages,mode,test=True)
-        if result.get('unsupported_parameter'):
-            mode = 'max_tokens'
+            messages = [{'role':'user','content':'Reply with the single word OK. No account data is provided.'}]
+            mode = 'max_completion_tokens'
             result = self.caller(s,key,messages,mode,test=True)
-        if not result.get('text'):
-            raise ReportError('连接测试没有有效文本')
+            if result.get('unsupported_parameter'):
+                mode = 'max_tokens'
+                result = self.caller(s,key,messages,mode,test=True)
+            if not result.get('text'):
+                raise ReportError('连接测试没有有效文本')
+        except Invalid as exc:
+            failure = {'at': now(), 'status': 'failed', 'message': str(exc), 'details': getattr(exc, 'details', {})}
+            with self.lock:
+                latest = self.store.setting()
+                if latest.get('config_hash') == config_hash:
+                    latest['last_test'] = failure
+                    self.store.set_setting(latest)
+            print(encoded({**context, **failure}), file=sys.stderr, flush=True)
+            raise
         with self.lock:
             latest = self.store.setting()
             if latest.get('config_hash') != config_hash:
                 raise Invalid('测试期间配置变化，请重新测试')
-            latest.update(tested=True, compatibility=mode, tested_at=now())
+            success = {'at': now(), 'status': 'success', 'message': '当前连接测试通过', 'compatibility': mode}
+            latest.update(tested=True, compatibility=mode, tested_at=success['at'], last_test=success)
             self.store.set_setting(latest)
-        return {'tested':True, 'compatibility':mode, 'usage':result.get('usage',{}), 'cost':'费用未知'}
+        print(encoded({**context, **success}), file=sys.stderr, flush=True)
+        return {'tested':True, 'compatibility':mode, 'usage':result.get('usage',{}), 'cost':'费用未知', 'last_test':success}
 
     def evidence(self, subject, start, end, strategy, cost):
         start_date, end_date = date.fromisoformat(start), date.fromisoformat(end)

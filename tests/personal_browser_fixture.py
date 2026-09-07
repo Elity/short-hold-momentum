@@ -9,7 +9,7 @@ from shm.service import app
 from shm.service.dashboard import build_dashboard
 from shm.personal.store import PortfolioStore
 from shm.personal.api import PrivateAPI
-from shm.personal.ai import AIService
+from shm.personal.ai import AIService, ReportError
 from test_service_dashboard import seed_dashboard, NOW
 
 def terminate_fixture(_signum, _frame):
@@ -27,6 +27,8 @@ with tempfile.TemporaryDirectory(prefix='shm-personal-acceptance-') as directory
     key=root/'key';key.write_bytes(Fernet.generate_key());key.chmod(0o600)
     def fake(settings,key,messages,param,**kwargs):
         if kwargs.get('test'):
+            if settings['model']=='provider-denied':
+                raise ReportError('上游接口 HTTP 403：Cloudflare 拒绝了请求（错误码 1010）；请求编号 fixture-ray')
             return {'text':'OK','usage':{'completion_tokens':1}}
         return {'text':json.dumps({'title':'样本有限的账户复盘','summary':'基于当前录入证据，先补齐账目。','limitations':['本地验收模型样例'], 'facts':[{'evidence_id':'window.start','value':json.loads(messages[-1]['content'])['start']}], 'suggestions':[]}), 'usage':{'completion_tokens':50}}
     ai=AIService(personal,root,key_path=key,caller=fake)
