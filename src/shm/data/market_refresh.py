@@ -240,8 +240,11 @@ def refresh_market_cache(
     downloader: Callable | None = None,
     now: object | None = None,
     sleep: Callable[[float], None] = time.sleep,
+    summary_namespace: str | None = None,
 ) -> dict:
     """Refresh a fixed as-of queue; rate limits return a resumable global pause."""
+    if summary_namespace not in (None, "personal"):
+        raise ValueError("invalid refresh namespace")
     if daily_budget < 1 or min_interval_seconds < 1.0:
         raise ValueError("daily budget must be positive and source interval at least one second")
     root = Path(repo_root)
@@ -423,7 +426,7 @@ def refresh_market_cache(
             "next_retry": min(retry_times) if retry_times else None,
             "results": results,
         }
-        state["last_summary"] = {key: value for key, value in summary.items() if key != "results"}
+        state["last_summary" if summary_namespace is None else "personal_summary"] = {key: value for key, value in summary.items() if key != "results"}
         checkpoint()
-        _save(directory / f"{date_text}.json", summary)
+        _save(directory / (f"{date_text}.json" if summary_namespace is None else f"personal-{date_text}.json"), summary)
         return summary

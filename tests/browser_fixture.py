@@ -1,5 +1,6 @@
 """Start an isolated populated dashboard for browser acceptance; no scheduler."""
 import json
+import signal
 import tempfile
 from http.server import ThreadingHTTPServer
 from pathlib import Path
@@ -10,6 +11,12 @@ from shm.paper.v03 import init_paper_v03
 from shm.universe.sp500 import refresh_sp500_universe
 from test_service_dashboard import NOW, seed_dashboard
 from test_sp500_universe import source_documents
+
+def terminate_fixture(_signum, _frame):
+    raise SystemExit(0)
+
+
+signal.signal(signal.SIGTERM, terminate_fixture)
 
 
 with tempfile.TemporaryDirectory(prefix="shm-dashboard-test-") as directory:
@@ -36,7 +43,7 @@ with tempfile.TemporaryDirectory(prefix="shm-dashboard-test-") as directory:
         store, root, timezone_name="Asia/Shanghai", retry_attempts=3, retry_delay_seconds=0
     )
     server = ThreadingHTTPServer(("127.0.0.1", 0), app._handler(service))
-    print(json.dumps({"url": f"http://127.0.0.1:{server.server_port}"}), flush=True)
+    print(json.dumps({"url": f"http://127.0.0.1:{server.server_port}", "directory":directory}), flush=True)
     try:
         server.serve_forever()
     finally:

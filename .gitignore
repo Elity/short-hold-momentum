@@ -27,3 +27,8 @@ reports/v0*/*/*.decisions.json
 reports/v0*/*/*.warnings.json
 reports/v0*/*/*.execution-events.csv
 reports/v0*/*/*.transactions.csv
+
+# Private runtime data and separated encryption keys.
+portfolio.sqlite3*
+*.fernet-key
+*.gateway-token
