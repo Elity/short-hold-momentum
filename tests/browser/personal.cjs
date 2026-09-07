@@ -44,14 +44,33 @@ const layoutChecks=[];
  await page.locator('[data-p=valuation]').click();await fill('at','2026-08-04T16:00:00-04:00');await fill('broker_nav','100999');await fill('mark_0','110');await fill('source_0','验收券商');await page.locator('[name=source]').selectOption('ledger');await page.locator('[name=flows_complete]').check();
  await page.locator('[data-p=preview-value]').click();await page.locator('[data-p=save-value]:not([disabled])').waitFor();assert.match(await page.locator('#p-summary').innerText(),/对账 一致/);await page.locator('[data-p=save-value]').click();await page.locator('#p-overlay').waitFor({state:'hidden'});
  await page.getByText('$100,999.00',{exact:true}).waitFor();await page.screenshot({path:'.browser-artifacts/personal/account.png',fullPage:true});
- await page.locator('[data-page=ai-settings]').click();await page.locator('[name=base_url]').fill('https://test.invalid/v1');await page.locator('[name=model]').fill('acceptance-model');await page.locator('[name=key]').fill('local-fake-key');await page.locator('[data-p=save-settings]').click();await page.locator('[data-p=test-ai]').click();await page.getByText('当前连接测试通过',{exact:true}).waitFor();
+ await page.locator('[data-page=ai-settings]').click();
+ const aiRequests=[];
+ page.on('request',r=>{if(r.method()==='POST'&&/\/api\/ai\/(settings|test)$/.test(r.url()))aiRequests.push(new URL(r.url()).pathname)});
+ await page.locator('[name=base_url]').fill('https://test.invalid/v1');await page.locator('[name=model]').fill('provider-denied');await page.locator('[name=key]').fill('local-fake-key');
+ // A first-time user can test directly: current inputs are saved first.
+ await page.getByRole('button',{name:'保存并测试连接',exact:true}).click();
+ await page.locator('#p-settings #p-error').filter({hasText:'Cloudflare'}).waitFor();
+ assert.deepEqual(aiRequests.slice(0,2),['/api/ai/settings','/api/ai/test']);
+ assert.equal(await page.locator('[name=key]').inputValue(),'');
+ assert.match(await page.locator('#p-key-status').innerText(),/密钥已保存在 NAS/);
+ assert.match(await page.locator('#p-settings #p-error').innerText(),/403.*1010.*fixture-ray/);
+ // Private navigation must work even while the separate simulation API is unavailable.
+ await context.route('**/api/dashboard**',route=>route.abort());
+ await page.reload();await page.locator('#p-settings #p-error').filter({hasText:'fixture-ray'}).waitFor();
+ assert.equal(await page.locator('[name=key]').inputValue(),'');
+ await page.screenshot({path:'.browser-artifacts/personal/ai-connection-failed.png',fullPage:true});
+ // Blank key keeps the server secret, and changed model is used immediately.
+ await page.locator('[name=model]').fill('acceptance-model');await page.locator('[data-p=test-ai]').click();await page.getByText('当前连接测试通过',{exact:true}).waitFor();
+ assert.equal(await page.locator('#p-settings #p-error').innerText(),'');
+ await page.screenshot({path:'.browser-artifacts/personal/ai-connection-success.png',fullPage:true});
  await page.locator('[data-page=ai-review]').click();await page.locator('[data-p=new-report]').click();await fill('start','2026-08-01');await fill('end','2026-08-31');await page.locator('[data-p=create-report]').click();await page.locator('#p-overlay').waitFor({state:'hidden'});
  for(let n=0;n<12;n++){await page.waitForTimeout(2000);await page.locator('[data-p=refresh]').first().click();if(await page.getByText('个人账户复盘 · 区间或数据受限',{exact:true}).count())break;}
  await page.getByText('个人账户复盘 · 区间或数据受限',{exact:true}).waitFor();await page.screenshot({path:'.browser-artifacts/personal/report.png',fullPage:true});
  await page.locator('[data-page=ai-settings]').click();assert.equal(await page.locator('[name=model]').inputValue(),'acceptance-model');assert.equal(await page.locator('[name=key]').inputValue(),'');await page.locator('[name=model]').fill('model-changed');await page.locator('[data-p=save-settings]').click();await page.getByText('尚未通过当前连接测试',{exact:true}).waitFor();
  await page.locator('[data-page=personal]').click();await page.setViewportSize({width:390,height:844});await page.locator('.p-mobile-positions [data-p=row-trade]').waitFor();await page.screenshot({path:'.browser-artifacts/personal/mobile.png',fullPage:true});
  assert.equal(await page.evaluate(()=>localStorage.length),0);assert.deepEqual(errors,[]);
- const checks=['AI 复盘和资产表现：5 个宽度共 10 组控件边缘、等高、换行、遮挡和页面溢出检查','私人接口拒绝未认证和伪造标记','期初建账与持仓对账','MSFT 行操作、切换及关闭重开保留草稿','预览再提交与真实余额','每日估值来源和对账','AI 设置保存、密钥不回显、测试失效','独立报告作业闭环（替身模型）','手机直接操作持仓、旧菜单保留'];
+ const checks=['AI 复盘和资产表现：5 个宽度共 10 组控件边缘、等高、换行、遮挡和页面溢出检查','私人接口拒绝未认证和伪造标记','期初建账与持仓对账','MSFT 行操作、切换及关闭重开保留草稿','预览再提交与真实余额','每日估值来源和对账','AI 首次直接保存并测试、密钥保留提示、403 详情刷新后保留、更换模型后重测','独立报告作业闭环（替身模型）','手机直接操作持仓、旧菜单保留'];
  await fs.writeFile('.browser-artifacts/personal/acceptance.json',JSON.stringify({status:'PASS',checks,layoutChecks,errors},null,2));console.log(JSON.stringify({status:'PASS',checks}));
 })().catch(e=>{console.error(e);process.exitCode=1}).finally(async()=>{
  if(browser)await browser.close();

@@ -21,7 +21,7 @@ window.Portfolio = (() => {
   };
   const state={page:null,account:null,events:[],valuations:[],settings:null,reports:[],suggestions:[],reportSubject:'personal',reportId:null,comparisonStrategy:'S500-C3',comparisonCost:'10'};
   const drafts={trade:{at:localNow(),type:'equity',symbol:'',action:'BUY',quantity:'',price:'',fee:'',legs:[],plan:''},account:null,valuation:null};
-  let modal=null, preview=null, activeRequest=null, previousFocus=null;
+  let modal=null, preview=null, activeRequest=null, previousFocus=null, settingsBusy=false;
   async function api(path,body){
     const r=await fetch(path,{method:body?'POST':'GET',cache:'no-store',headers:body?{'Content-Type':'application/json'}:{},body:body?JSON.stringify(body):undefined});
     const j=await r.json();if(!r.ok){if(r.status===409){preview=null;activeRequest=null;const fresh=await fetch('/api/personal/account',{cache:'no-store'});if(fresh.ok)state.account=await fresh.json();}throw new Error(j.error||'请求失败')}return j;
@@ -124,7 +124,33 @@ window.Portfolio = (() => {
   async function valuationModal(){modal='valuation';if(!drafts.valuation){const q=await api('/api/personal/quotes');drafts.valuation={at:q.at,coverage:'截至此时点，包含所有已发生并已录入的交易与资金流',source:'unselected',marks:q.marks||{}}}const d=drafts.valuation,hs=holdings();
     openModal('每日估值与收益来源',`<div class="p-fields">${field('at','快照覆盖时点 · 纽约 ISO 时间',d.at)}${field('broker_nav','券商净资产（可留空）',d.broker_nav)}${area('coverage','覆盖说明',d.coverage)}</div><h3>单位估值</h3><p class="personal-muted">空白表示缺价。正股用名义价格；期权用券商每股报价。没有最新报价时保留缺失。</p>${hs.map((h,i)=>`<div class="p-row"><strong>${e(insLabel(h.instrument))}</strong><div class="p-fields">${field('mark_'+i,'单位估值',d['mark_'+i]??d.marks[h.instrument.key]?.price??'')}${field('source_'+i,'来源',d['source_'+i]??d.marks[h.instrument.key]?.source??'')}</div></div>`).join('')}<div class="p-fields">${select('source','账户收益依据',[['unselected','暂存待核对'],['ledger','采用持仓账本'],['broker','采用券商净资产']],d.source)}${area('reason','来源选择依据 / 差异待核说明',d.reason)}</div>${check('flows_complete','我已确认此快照之前的入出金全部录入',d.flows_complete)}`,`<div id="p-summary"></div><div class="personal-toolbar">${b('预览估值','preview-value')}${b('保存估值版本','save-value','disabled')}</div>`);
   }
-  function settings(){const s=state.settings;shell(`<section class="personal-card"><h3>OpenAI 兼容接口</h3><p class="personal-muted">密钥加密保存在 NAS；发送去标识化交易数据。连接测试仅发送无持仓短样例。</p><form id="p-settings" autocomplete="off"><div class="p-fields">${field('base_url','Base URL（含 /v1）',s.base_url,'url')}${field('model','精确模型 ID',s.model)}${field('key',s.has_key?'替换密钥（留空保留已有密钥）':'API 密钥','','password')}${field('auto_limit','每月自动尝试上限（含重试）',s.auto_limit,'number','min="1" max="8"')}${field('manual_limit','每日手动尝试上限',s.manual_limit,'number','min="1" max="4"')}${field('max_completion_tokens','单次 completion token 上限',s.max_completion_tokens,'number','min="1" max="6000"')}${field('input_limit','输入字符上限',s.input_limit,'number','min="1" max="200000"')}</div>${check('scope_personal','允许发送去标识化个人账本指标与持仓',s.scope.includes('personal'))}${check('scope_simulation','允许发送模拟策略证据',s.scope.includes('simulation'))}${check('automatic','开启自动发送与报告生成',s.automatic)}${check('weekly','每周六 08:00 生成上周简报（北京时间）',s.weekly)}${check('monthly','每月 1 日 08:15 生成上月复盘（北京时间）',s.monthly)}<p id="p-test-status">${badge(s.tested?'当前连接测试通过':'尚未通过当前连接测试',!s.tested)} ${e(s.compatibility||'')}</p><div class="personal-toolbar">${b('保存设置','save-settings')}${b('测试已保存连接','test-ai')}</div><div id="p-error" class="p-error" role="alert"></div></form><p class="personal-muted">最多重试一次；失败也计入额度。费用未知时只显示用量。接口、模型或密钥变化会使原连接测试失效。</p></section>`)}
+  function settings(){const s=state.settings;shell(`<section class="personal-card"><h3>OpenAI 兼容接口</h3><p class="personal-muted">密钥加密保存在 NAS；发送去标识化交易数据。连接测试仅发送无持仓短样例。</p><form id="p-settings" autocomplete="off"><div class="p-fields">${field('base_url','Base URL（含 /v1）',s.base_url,'url')}${field('model','精确模型 ID',s.model)}${field('key','API 密钥','','password','autocomplete="new-password"').replace('</label>',`<small id="p-key-status" class="personal-muted">${s.has_key?'密钥已保存在 NAS；留空会保留，仅更换时输入新密钥。':'尚未保存密钥；填写后点击“保存并测试连接”。'}</small></label>`)}${field('auto_limit','每月自动尝试上限（含重试）',s.auto_limit,'number','min="1" max="8"')}${field('manual_limit','每日手动尝试上限',s.manual_limit,'number','min="1" max="4"')}${field('max_completion_tokens','单次 completion token 上限',s.max_completion_tokens,'number','min="1" max="6000"')}${field('input_limit','输入字符上限',s.input_limit,'number','min="1" max="200000"')}</div>${check('scope_personal','允许发送去标识化个人账本指标与持仓',s.scope.includes('personal'))}${check('scope_simulation','允许发送模拟策略证据',s.scope.includes('simulation'))}${check('automatic','开启自动发送与报告生成',s.automatic)}${check('weekly','每周六 08:00 生成上周简报（北京时间）',s.weekly)}${check('monthly','每月 1 日 08:15 生成上月复盘（北京时间）',s.monthly)}<p id="p-test-status">${badge(s.tested?'当前连接测试通过':'尚未通过当前连接测试',!s.tested)} ${e(s.compatibility||'')}</p><div class="personal-toolbar">${b('保存设置','save-settings')}${b('保存并测试连接','test-ai')}</div><div id="p-error" class="p-error" role="alert">${s.last_test?.status==='failed'?e(s.last_test.message):''}</div></form><p class="personal-muted">测试会先保存当前填写的配置；只发送无持仓短样例。失败详情会保留，Docker 日志可搜索 ai_connection_test。</p><p class="personal-muted">最多重试一次；失败也计入额度。费用未知时只显示用量。接口、模型或密钥变化会使原连接测试失效。</p></section>`)}
+  async function saveAISettings(testConnection){
+    if(settingsBusy)return;
+    const form=$('#p-settings'),v=Object.fromEntries(new FormData(form));
+    ['auto_limit','manual_limit','max_completion_tokens','input_limit'].forEach(k=>v[k]=Number(v[k]));
+    ['automatic','weekly','monthly'].forEach(k=>v[k]=form.elements[k].checked);
+    v.scope=['personal','simulation'].filter(k=>form.elements['scope_'+k].checked);delete v.scope_personal;delete v.scope_simulation;
+    settingsBusy=true;let saved=false;
+    form.querySelectorAll('input,select,button').forEach(x=>x.disabled=true);
+    $('#p-error').textContent='';$('#p-test-status').textContent=testConnection?'正在保存并测试连接…':'正在保存设置…';
+    try{
+      state.settings=await api('/api/ai/settings',v);saved=true;form.elements.key.value='';
+      if(testConnection){
+        const result=await api('/api/ai/test',{});
+        state.settings={...state.settings,tested:true,compatibility:result.compatibility,last_test:result.last_test};
+      }
+    }catch(error){
+      if(saved&&testConnection)state.settings={...state.settings,tested:false,last_test:{status:'failed',message:error.message}};
+      throw error;
+    }finally{
+      settingsBusy=false;
+      if(state.page==='ai-settings'){
+        if(saved)settings();
+        else{form.querySelectorAll('input,select,button').forEach(x=>x.disabled=false);$('#p-test-status').textContent='设置未保存，请检查错误后重试';}
+      }
+    }
+  }
   function reports(){
     const rows=state.reports.filter(r=>r.payload.subject===state.reportSubject),chosen=rows.find(r=>String(r.id)===String(state.reportId))||rows[0];if(chosen)state.reportId=chosen.id;
     const result=chosen?.result?.report;
@@ -150,8 +176,7 @@ window.Portfolio = (() => {
     if(action==='preview-value'){capture();const d=drafts.valuation,marks={};holdings().forEach((h,i)=>{if(d['mark_'+i]!==''&&d['mark_'+i]!=null)marks[h.instrument.key]={price:d['mark_'+i],source:d['source_'+i],at:d.at,basis:h.instrument.kind==='equity'?'nominal':'broker'}});activeRequest={version:state.account.version,at:d.at,coverage:d.coverage,broker_nav:d.broker_nav,source:d.source,reason:d.reason,flows_complete:!!d.flows_complete,marks};preview=await api('/api/personal/valuations',activeRequest);activeRequest.preview_hash=preview.preview_hash;$('#p-summary').innerHTML=`<p>账本 ${money(preview.ledger_nav)} · 券商 ${money(preview.broker_nav)} · 差额 ${money(preview.difference)}</p>${badge('收益依据 '+label(preview.source))}${badge('归因 '+label(preview.attribution))}${badge('对账 '+label(preview.reconciliation))}<p class="personal-muted">缺价 ${e(preview.missing.join('、')||'无')}</p>`;$('[data-p="save-value"]').disabled=false;return}
     if(action==='save-value'){await api('/api/personal/valuations',{...activeRequest,save:true});close();drafts.valuation=null;preview=null;activeRequest=null;return show('personal',true)}
     if(action==='compare'){state.comparisonStrategy=$('[name=compare_strategy]').value;state.comparisonCost=$('[name=compare_cost]').value;return show('performance',true)}
-    if(action==='save-settings'){const form=$('#p-settings'),v=Object.fromEntries(new FormData(form));['auto_limit','manual_limit','max_completion_tokens','input_limit'].forEach(k=>v[k]=Number(v[k]));['automatic','weekly','monthly'].forEach(k=>v[k]=form.elements[k].checked);v.scope=['personal','simulation'].filter(k=>form.elements['scope_'+k].checked);delete v.scope_personal;delete v.scope_simulation;state.settings=await api('/api/ai/settings',v);form.elements.key.value='';settings();return}
-    if(action==='test-ai'){target.disabled=true;try{await api('/api/ai/test',{});return show('ai-settings',true)}finally{target.disabled=false}}
+    if(action==='save-settings'||action==='test-ai')return saveAISettings(action==='test-ai');
     if(action==='new-report')return newReport();
     if(action==='create-report'){const p=Object.fromEntries(new FormData($('#p-form')));const r=await api('/api/ai/reports',p);state.reportId=r.id;state.reportSubject=p.subject;close();return show('ai-review',true)}
     if(action==='suggestion'){await api('/api/ai/suggestions',{id:target.dataset.id,status:target.dataset.status});return show('ai-review',true)}

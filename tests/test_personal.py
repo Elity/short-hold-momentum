@@ -175,6 +175,48 @@ def test_ai_encryption_test_invalidation_and_evidence(tmp_path):
         validate_report({'title':'结论','summary':'x','limitations':[], 'facts':[{'evidence_id':'fake','value':2}],'suggestions':[]},{'real':{'value':2}})
 
 
+def test_ai_http_diagnostics_persist_without_provider_body_or_key(tmp_path, monkeypatch, capsys):
+    import io
+    import urllib.error
+    from email.message import Message
+    from shm.personal import ai as module
+    store=PortfolioStore(tmp_path/'portfolio.sqlite3');store.initialize()
+    master=tmp_path/'key';master.write_bytes(Fernet.generate_key());master.chmod(0o600)
+    ai=AIService(store,tmp_path,key_path=master)
+    secret='secret-must-never-leak'
+    ai.save_settings({'base_url':'https://example.com/v1','model':'test-model','key':secret})
+    failed=True
+    class Opener:
+        def open(self, request, timeout):
+            assert request.get_header('User-agent') == module.USER_AGENT
+            assert request.get_header('Authorization') == 'Bearer '+secret
+            assert json.loads(request.data)['max_completion_tokens'] == 128
+            if failed:
+                headers=Message();headers['Server']='cloudflare';headers['CF-Ray']='abc123-AMS'
+                headers['X-Request-ID']=secret
+                raise urllib.error.HTTPError(request.full_url,403,'Forbidden',headers,
+                    io.BytesIO(('error code: 1010\n'+secret+' provider-private-body').encode()))
+            return io.BytesIO(json.dumps({'choices':[{'finish_reason':'stop','message':{'content':'OK'}}]}).encode())
+    monkeypatch.setattr(module.urllib.request,'build_opener',lambda *a:Opener())
+    with pytest.raises(ReportError,match='Cloudflare.*1010.*abc123-AMS'):
+        ai.test()
+    restarted=AIService(PortfolioStore(store.path),tmp_path,key_path=master)
+    status=restarted.settings()
+    assert status['has_key'] and not status['tested']
+    assert status['last_test']['details']['http_status']==403
+    logs=capsys.readouterr().err
+    assert 'ai_connection_test' in logs and 'abc123-AMS' in logs
+    for content in (logs,json.dumps(status),store.path.read_bytes().decode(errors='ignore')):
+        assert secret not in content and 'provider-private-body' not in content
+    failed=False
+    assert restarted.test()['tested']
+    assert restarted.settings()['last_test']['status']=='success'
+    assert 'success' in capsys.readouterr().err
+    restarted.save_settings({'model':'another-model'})
+    assert restarted.settings()['last_test'] is None
+    assert restarted.settings()['has_key']
+
+
 def test_gateway_disabled_direct_and_forged_headers(tmp_path):
     s=PortfolioStore(tmp_path/'p.sqlite3')
     p=PrivateAPI(s,tmp_path,public_url='https://shm.example.com',gateway_token='a'*32,enabled=True,verified=True)

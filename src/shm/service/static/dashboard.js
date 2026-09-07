@@ -347,8 +347,8 @@ document.addEventListener('click',event=>{
   const el=event.target.closest('[data-page],[data-action],[data-holding],[data-trade],[data-run],[data-report],[data-trade-filter],[data-log-filter],[data-chart]');
   if(!el)return;
   if(el.dataset.action==='refresh'){refresh(true);return}
-  if(!data)return;
   if(el.dataset.page){navigate(el.dataset.page);return}
+  if(!data)return;
   if(el.dataset.holding){showHolding(el.dataset.holding);return}
   if(el.dataset.trade){showTrade(el.dataset.trade);return}
   if(el.dataset.run){showRun(el.dataset.run);return}
