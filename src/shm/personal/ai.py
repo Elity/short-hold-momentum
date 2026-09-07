@@ -245,8 +245,13 @@ class AIService:
             add('personal.plan_adherence','计划遵守证据','历史补录的计划不属于事前计划；首版不能自动判断主观退出条件是否满足')
             vs = [v for v in valuations(self.store) if v['valid'] and str(stamp(v['at']).astimezone(NY).date())<=end]
             latest = max(vs,key=lambda v:stamp(v['at'])) if vs else None
-            calendar_days = xcals.get_calendar('XNYS',start=str(min(start_date,account_start)),end=end).sessions_in_range(max(start_date,account_start),end)
-            observed_days = {str(stamp(v['at']).astimezone(NY).date()) for v in vs if v['nav'] is not None and v['flows_complete']}
+            report_calendar = xcals.get_calendar('XNYS',start=str(min(start_date,account_start)),end=end)
+            calendar_days = report_calendar.sessions_in_range(max(start_date,account_start),end)
+            observed_days = set()
+            for v in vs:
+                day = pd.Timestamp(stamp(v['at']).astimezone(NY).date())
+                if v['nav'] is not None and v['flows_complete'] and day in calendar_days and stamp(v['at']) >= report_calendar.session_close(day).to_pydatetime():
+                    observed_days.add(str(day.date()))
             # A weekend month end needs the last trading close, not an invented weekend mark.
             covered = all(str(day.date()) in observed_days for day in calendar_days)
             limited = limited or not covered or latest is None or latest['attribution']!='complete' or latest['reconciliation']!='matched'
