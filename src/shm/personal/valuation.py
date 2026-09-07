@@ -30,7 +30,8 @@ def value_state(state, payload):
             valid = valid and not (ins['kind'] == 'equity' and mark.get('basis') != 'nominal')
         price = dec(mark['price'], '单位估值', nonnegative=True) if valid else None
         amount = q*price*dec(ins['multiplier']) if price is not None else None
-        holdings.append({'instrument': ins, 'quantity': q, 'mark': price, 'value': amount})
+        holdings.append({'instrument': ins, 'quantity': q, 'mark': price, 'value': amount,
+                         'price_at': mark.get('at') if mark else None})
         if amount is None:
             missing.append(key + ('（到期事件待确认）' if awaiting_expiry else ''))
         else:
@@ -81,7 +82,25 @@ def valuation(store, payload, *, save=False):
 
 def valuations(store):
     with store.connection() as db:
-        return [{**json.loads(r['result']), 'id': r['id'], 'valid': bool(r['valid'])} for r in db.execute('SELECT * FROM valuations ORDER BY id DESC')]
+        rows = [{**json.loads(r['result']), 'id': r['id'], 'valid': bool(r['valid'])} for r in db.execute('SELECT * FROM valuations ORDER BY id DESC')]
+        current = store._account(db)
+        if current:
+            rows.append(opening_snapshot(current['account'], current['version']))
+        return rows
+
+
+def opening_snapshot(account, version):
+    from .domain import initial
+    state = initial(account)
+    marks = {lot['instrument']['key']: {'price': entry['mark'], 'source': entry['source'],
+             'at': account['at'], 'basis': 'nominal' if lot['instrument']['kind'] == 'equity' else 'broker'}
+             for lot, entry in zip(state['lots'], account.get('positions', []))}
+    result = value_state(state, {'at': account['at'], 'marks': marks, 'broker_nav': account['broker_nav'],
+                                 'source': 'unselected', 'flows_complete': True, 'coverage': '已确认的期初资产'})
+    if result['ledger_nav'] is not None:
+        result.update(source='ledger', nav=result['ledger_nav'])
+    # The persisted opening account is the snapshot's source; no duplicate input or migration.
+    return {**result, 'id': 'opening', 'origin': 'opening', 'valid': True, 'version': version}
 
 
 def interval_return(start_at, end_at, start_nav, end_nav, flows):
