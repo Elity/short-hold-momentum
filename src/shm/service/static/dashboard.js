@@ -26,7 +26,7 @@ const glyphs = {
 };
 const icon = name => '<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + (glyphs[name] || glyphs.file) + '</svg>';
 let data=null,chartObserver,toastTimer,returnFocus;
-const titles={overview:'账户总览',holdings:'当前持仓',trades:'交易记录',logs:'运行日志',reports:'策略报告'};
+const titles={overview:'账户总览',holdings:'当前持仓',trades:'交易记录',logs:'运行日志',reports:'策略报告',...window.Portfolio.pages};
 const query=new URLSearchParams(location.search);
 const state={page:titles[location.hash.slice(1)]?location.hash.slice(1):'overview',chartMode:'assets',tradeFilter:'all',logFilter:'all',sort:'value',strategy:query.get('strategy_id')||'V04',cost:query.get('cost_bps')==='25'?25:10};
 const statusText={success:'成功',failed:'失败',running:'运行中',queued:'排队中',skipped:'跳过'};
@@ -56,6 +56,7 @@ async function api(path,options={}){
   return result;
 }
 async function refresh(manual=false){
+  if(window.Portfolio.handles(state.page))window.Portfolio.show(state.page);
   try{
     const requested=strategyQuery(),result=await api('/api/dashboard'+requested);
     if(requested!==strategyQuery())return;
@@ -63,7 +64,7 @@ async function refresh(manual=false){
     if($('#overlay').hidden)render();
     if(manual)showToast('已读取最新账户与运行记录');
   }catch(error){
-    if(!data){
+    if(!data&&!window.Portfolio.handles(state.page)){
       $('#data-notice').hidden=true;
       $('#page-content').innerHTML='<section class="panel">'+empty('暂时无法读取账户数据',error.message,'info')+'<div style="text-align:center;padding-bottom:24px">'+button('重新读取','refresh')+'</div></section>';
     }
@@ -313,6 +314,9 @@ function renderChart(){
   hit.addEventListener('pointerleave',()=>{tip.style.opacity='0';$('#chart-hover').setAttribute('visibility','hidden')});
 }
 function render(){
+  if(window.Portfolio.handles(state.page)){window.Portfolio.show(state.page);return;}
+  window.Portfolio.leave();
+  $('.top-actions .pill').textContent='PAPER · 模拟盘';
   if(!data)return;
   if(chartObserver)chartObserver.disconnect();
   const account=a();
@@ -322,13 +326,13 @@ function render(){
   const notice=$('#data-notice');notice.hidden=!data.warnings.length;
   notice.innerHTML=data.warnings.length?icon('info')+'<span>'+data.warnings.map(esc).join('；')+'</span>':'';
   $('#footer-note').textContent='数据读取于 '+time(data.generated_at)+' · '+data.schedule.timezone;
-  $$('#main-nav button').forEach(b=>{b.classList.toggle('active',b.dataset.page===state.page);if(b.dataset.page===state.page)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
+  $$('[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page===state.page);if(b.dataset.page===state.page)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
   const pages={overview,holdings:holdingsPage,trades:tradesPage,logs:logsPage,reports:reportsPage};
   $('#page-content').innerHTML=strategyPanel()+universePanel()+pages[state.page](account)+(state.page==='reports'||state.page==='overview'?historicalPanel():'');
   if(state.page==='overview'){chartObserver=new ResizeObserver(renderChart);chartObserver.observe($('#asset-chart'));renderChart()}
 }
 function navigate(page){
-  state.page=page;closeDialog();history.pushState(null,'','#'+page);render();window.scrollTo(0,0);
+  window.Portfolio.leave();state.page=page;closeDialog();history.pushState(null,'','#'+page);render();window.scrollTo(0,0);
 }
 function exportRecords(){
   const holdings=state.page==='holdings';
