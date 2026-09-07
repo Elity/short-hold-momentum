@@ -9,6 +9,9 @@ import threading
 import time
 import urllib.error
 import urllib.request
+
+import exchange_calendars as xcals
+import pandas as pd
 from datetime import datetime, timedelta, timezone, date
 from pathlib import Path
 from urllib.parse import urlparse
@@ -242,7 +245,11 @@ class AIService:
             add('personal.plan_adherence','计划遵守证据','历史补录的计划不属于事前计划；首版不能自动判断主观退出条件是否满足')
             vs = [v for v in valuations(self.store) if v['valid'] and str(stamp(v['at']).astimezone(NY).date())<=end]
             latest = max(vs,key=lambda v:stamp(v['at'])) if vs else None
-            limited = limited or latest is None or latest['attribution']!='complete' or latest['reconciliation']!='matched' or str(stamp(latest['at']).astimezone(NY).date()) < end
+            calendar_days = xcals.get_calendar('XNYS',start=str(min(start_date,account_start)),end=end).sessions_in_range(max(start_date,account_start),end)
+            observed_days = {str(stamp(v['at']).astimezone(NY).date()) for v in vs if v['nav'] is not None and v['flows_complete']}
+            # A weekend month end needs the last trading close, not an invented weekend mark.
+            covered = all(str(day.date()) in observed_days for day in calendar_days)
+            limited = limited or not covered or latest is None or latest['attribution']!='complete' or latest['reconciliation']!='matched'
             source_version = digest({'version':current['version'],'valuation':latest})
             add('personal.valuation','最近估值与独立完整度', {k:latest[k] for k in ('at','nav','source','attribution','reconciliation','difference','missing')} if latest else None)
             add('personal.holdings','截至报告期末的合约与数量',[{'instrument':l['instrument'],'quantity':l['quantity']} for l in state['lots']])
@@ -253,6 +260,7 @@ class AIService:
                 weights = None
             add('personal.concentration','完整估值时的持仓净市值绝对值占比；不是期权 Delta 风险',weights)
             add('personal.account_start','观察期起点',current['account']['at'])
+            add('personal.full_calendar_month','完整自然月及交易日估值覆盖',not limited and start_date.day==1 and end_date.day==calendar.monthrange(end_date.year,end_date.month)[1] and start_date.month==end_date.month and start_date.year==end_date.year)
         elif subject == 'simulation':
             if strategy not in ('V04',*STRATEGY_IDS) or cost not in (10,25):
                 raise Invalid('模拟版本无效')
