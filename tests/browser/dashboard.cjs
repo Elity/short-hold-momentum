@@ -1,8 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const path = require('node:path');
-const readline = require('node:readline');
-const {spawn} = require('node:child_process');
+const {startFixture,stopFixture} = require('./fixture.cjs');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const artifacts = process.env.SHM_BROWSER_ARTIFACTS || '.browser-artifacts';
 const checks = [];
@@ -29,13 +28,8 @@ async function screenshot(name) {
   await fs.mkdir(artifacts,{recursive:true});
   base = process.env.SHM_BROWSER_URL;
   if (!base) {
-    fixture = spawn('uv',['run','--no-sync','python','tests/browser_fixture.py'],{stdio:['ignore','pipe','inherit']});
-    const output = readline.createInterface({input:fixture.stdout});
-    base = await new Promise((resolve,reject) => {
-      const timer=setTimeout(()=>reject(new Error('Fixture did not start')),30000);
-      output.once('line',line=>{clearTimeout(timer);resolve(JSON.parse(line).url)});
-      fixture.once('exit',code=>{clearTimeout(timer);reject(new Error('Fixture exited '+code))});
-    });
+    fixture = await startFixture('tests/browser_fixture.py');
+    base = fixture.url;
   }
   base=base.replace(/\/$/,'');
   browser=await chromium.launch({headless:process.env.SHM_BROWSER_HEADED!=='1',channel:process.env.SHM_BROWSER_CHANNEL||undefined});
@@ -216,5 +210,9 @@ async function screenshot(name) {
     if(!response.ok()){console.error('Could not restore original schedule');process.exitCode=1}
   }
   if(browser)await browser.close();
-  if(fixture)fixture.kill('SIGTERM');
-});
+  if(fixture) {
+    const cleanup=await stopFixture(fixture);
+    await fs.writeFile(path.join(artifacts,'cleanup.json'),JSON.stringify(cleanup,null,2));
+    console.log('Legacy fixture database and temporary files removed');
+  }
+}).catch(error=>{console.error(error);process.exitCode=1});

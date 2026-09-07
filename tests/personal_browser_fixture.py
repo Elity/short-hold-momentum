@@ -1,5 +1,6 @@
 """Disposable local acceptance service; never uses NAS data or a real AI key."""
 import json
+import signal
 import tempfile
 from pathlib import Path
 from http.server import ThreadingHTTPServer
@@ -10,6 +11,13 @@ from shm.personal.store import PortfolioStore
 from shm.personal.api import PrivateAPI
 from shm.personal.ai import AIService
 from test_service_dashboard import seed_dashboard, NOW
+
+def terminate_fixture(_signum, _frame):
+    # Unwind TemporaryDirectory on test failure as well as success.
+    raise SystemExit(0)
+
+
+signal.signal(signal.SIGTERM, terminate_fixture)
 
 with tempfile.TemporaryDirectory(prefix='shm-personal-acceptance-') as directory:
     root=Path(directory)
@@ -26,6 +34,6 @@ with tempfile.TemporaryDirectory(prefix='shm-personal-acceptance-') as directory
     service.personal=PrivateAPI(personal,root,public_url='https://shm.test',gateway_token='fixture-gateway-token-32-characters',enabled=True,verified=True,ai=ai)
     ai.start()
     server=ThreadingHTTPServer(('127.0.0.1',0),app._handler(service))
-    print(json.dumps({'url':f'http://127.0.0.1:{server.server_port}'}),flush=True)
+    print(json.dumps({'url':f'http://127.0.0.1:{server.server_port}', 'directory':directory}),flush=True)
     try:server.serve_forever()
     finally:service.stop();server.server_close()

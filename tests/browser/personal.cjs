@@ -1,20 +1,31 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs/promises');
-const {spawn}=require('node:child_process');
-const readline=require('node:readline');
 const {chromium}=require('playwright');
-let processFixture,browser;
+const {assertToolbarLayout}=require('./toolbar-layout.cjs');
+const {startFixture,stopFixture}=require('./fixture.cjs');
+let fixture,browser;
+const layoutChecks=[];
 (async()=>{
  await fs.mkdir('.browser-artifacts/personal',{recursive:true});
- processFixture=spawn('uv',['run','--no-sync','python','tests/personal_browser_fixture.py'],{stdio:['ignore','pipe','inherit']});
- const lines=readline.createInterface({input:processFixture.stdout});
- const base=await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('fixture timeout')),30000);lines.once('line',line=>{clearTimeout(timer);resolve(JSON.parse(line).url)})});
+ fixture=await startFixture('tests/personal_browser_fixture.py');
+ const base=fixture.url;
  browser=await chromium.launch({channel:process.env.SHM_BROWSER_CHANNEL||undefined});
  const context=await browser.newContext({viewport:{width:1440,height:1050}}),page=await context.newPage(),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  assert.equal((await context.request.get(base+'/api/personal/account')).status(),401);
  assert.equal((await context.request.get(base+'/api/personal/account',{headers:{'X-Authenticated-User':'admin'}})).status(),401);
  await context.route('**/api/**',route=>route.continue({headers:{...route.request().headers(),'X-SHM-Gateway-Token':'fixture-gateway-token-32-characters',Origin:'https://shm.test'}}));
+ for(const width of [1440,1024,768,390,320]) {
+  await page.setViewportSize({width,height:1050});
+  for(const route of ['ai-review','performance']) {
+   await page.goto(base+'/#'+route);
+   const toolbar=page.locator('#page-content > .personal-toolbar');
+   await toolbar.waitFor();
+   await toolbar.screenshot({path:`.browser-artifacts/personal/${route}-toolbar-${width}.png`});
+   layoutChecks.push(await assertToolbarLayout(page,'#page-content > .personal-toolbar',route+' at '+width+'px'));
+  }
+ }
+ await page.setViewportSize({width:1440,height:1050});
  await page.goto(base+'/#personal');
  await page.locator('[data-p=account]').click();
  const fill=(name,val)=>page.locator('#p-form [name='+name+']').fill(val);
@@ -40,6 +51,13 @@ let processFixture,browser;
  await page.locator('[data-page=ai-settings]').click();assert.equal(await page.locator('[name=model]').inputValue(),'acceptance-model');assert.equal(await page.locator('[name=key]').inputValue(),'');await page.locator('[name=model]').fill('model-changed');await page.locator('[data-p=save-settings]').click();await page.getByText('尚未通过当前连接测试',{exact:true}).waitFor();
  await page.locator('[data-page=personal]').click();await page.setViewportSize({width:390,height:844});await page.locator('.p-mobile-positions [data-p=row-trade]').waitFor();await page.screenshot({path:'.browser-artifacts/personal/mobile.png',fullPage:true});
  assert.equal(await page.evaluate(()=>localStorage.length),0);assert.deepEqual(errors,[]);
- const checks=['私人接口拒绝未认证和伪造标记','期初建账与持仓对账','MSFT 行操作、切换及关闭重开保留草稿','预览再提交与真实余额','每日估值来源和对账','AI 设置保存、密钥不回显、测试失效','独立报告作业闭环（替身模型）','手机直接操作持仓、旧菜单保留'];
- await fs.writeFile('.browser-artifacts/personal/acceptance.json',JSON.stringify({status:'PASS',checks,errors},null,2));console.log(JSON.stringify({status:'PASS',checks}));
-})().catch(e=>{console.error(e);process.exitCode=1}).finally(async()=>{if(browser)await browser.close();if(processFixture)processFixture.kill('SIGTERM')});
+ const checks=['AI 复盘和资产表现：5 个宽度共 10 组控件边缘、等高、换行、遮挡和页面溢出检查','私人接口拒绝未认证和伪造标记','期初建账与持仓对账','MSFT 行操作、切换及关闭重开保留草稿','预览再提交与真实余额','每日估值来源和对账','AI 设置保存、密钥不回显、测试失效','独立报告作业闭环（替身模型）','手机直接操作持仓、旧菜单保留'];
+ await fs.writeFile('.browser-artifacts/personal/acceptance.json',JSON.stringify({status:'PASS',checks,layoutChecks,errors},null,2));console.log(JSON.stringify({status:'PASS',checks}));
+})().catch(e=>{console.error(e);process.exitCode=1}).finally(async()=>{
+ if(browser)await browser.close();
+ if(fixture){
+  const cleanup=await stopFixture(fixture);
+  await fs.writeFile('.browser-artifacts/personal/cleanup.json',JSON.stringify(cleanup,null,2));
+  console.log('Fixture database, fake key and temporary files removed');
+ }
+}).catch(error=>{console.error(error);process.exitCode=1});

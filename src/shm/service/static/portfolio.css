@@ -2,3 +2,9 @@
 @media(max-width:700px){.p-fields{grid-template-columns:1fr}.p-overlay{padding:0;align-items:stretch}.p-dialog{max-height:100dvh;border-radius:0}.p-dialog-head,.p-form,.p-confirm{padding:16px}.p-desktop-positions{display:none}.p-mobile-positions{display:grid;gap:10px}.personal-grid{grid-template-columns:1fr}.personal-toolbar input{width:auto}.p-chart{height:220px}#private-nav{margin-top:0}.personal-card{padding:16px}}
 .personal-card p{margin:10px 0}.p-dialog p{margin:8px 0}.sidebar{overflow-y:auto}.p-confirm p{overflow-wrap:anywhere}
 @media(max-width:580px){.sidebar{display:grid;grid-template-columns:30px minmax(0,1fr);grid-template-rows:43px 43px;gap:4px 10px;height:auto;overflow:hidden;padding:7px 10px}.brand{grid-row:1/3;grid-column:1;padding:0}.side-bottom{display:none}#main-nav{grid-column:2;grid-row:1}#private-nav{grid-column:2;grid-row:2;margin:0}#main-nav,#private-nav{width:100%;min-width:0;justify-content:space-between;gap:1px}#main-nav button,#private-nav button{flex-direction:column;gap:2px;padding:4px 6px;min-width:0}#main-nav .nav-text,#private-nav .nav-text{display:block;font-size:0;white-space:nowrap;line-height:15px}#main-nav .nav-text:after,#private-nav .nav-text:after{content:attr(data-short);font-size:10px}#private-nav .icon{width:17px;height:17px}}
+
+/* Align buttons with the controls beneath labels, while preserving plain toolbars. */
+.personal-toolbar:has(> .p-field){align-items:flex-end}
+.personal-toolbar:has(> .p-field) > .p-button,
+.personal-toolbar:has(> .p-field) > .p-field > select,
+.personal-toolbar:has(> .p-field) > .p-field > input{min-height:44px;padding-block:10px}
