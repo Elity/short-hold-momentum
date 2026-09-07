@@ -26,7 +26,7 @@ class PrivateAPI:
         self.public_url = public_url.rstrip('/')
         self.gateway_token = gateway_token
         u = urlparse(self.public_url)
-        self.enabled = bool(enabled and verified and u.scheme=='https' and u.netloc and len(gateway_token)>=32)
+        self.enabled = bool(enabled and verified and u.scheme=='https' and u.netloc and not u.username and not u.password and not u.query and not u.fragment and not u.path and len(gateway_token)>=32)
         self.ai = ai or AIService(store, root, key_path=key_path)
 
     @classmethod
@@ -35,7 +35,10 @@ class PrivateAPI:
         if os.environ.get('SHM_PRIVATE_ENABLED') != '1':
             return None
         token_path = os.environ.get('SHM_GATEWAY_TOKEN_FILE')
-        token = Path(token_path).read_text().strip() if token_path and Path(token_path).is_file() else ''
+        try:
+            token = Path(token_path).read_text().strip() if token_path and Path(token_path).is_file() else ''
+        except (OSError, UnicodeError):
+            token = ''
         store = PortfolioStore(os.environ.get('SHM_PORTFOLIO_DB_PATH',str(Path(db_path).with_name('portfolio.sqlite3'))))
         api = cls(store,root,public_url=os.environ.get('SHM_PUBLIC_URL',''),gateway_token=token,enabled=True,
                   verified=os.environ.get('SHM_GATEWAY_VERIFIED')=='1',key_path=os.environ.get('SHM_AI_MASTER_KEY_FILE'))

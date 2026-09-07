@@ -177,6 +177,8 @@ class AIService:
         with self.lock:
             s = {**DEFAULTS, **self.store.setting()}
             config_hash = s.get('config_hash')
+            s['tested'] = False
+            self.store.set_setting(s)
             key = self._key(s)
         messages = [{'role':'user','content':'Reply with the single word OK. No account data is provided.'}]
         mode = 'max_completion_tokens'
