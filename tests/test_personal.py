@@ -247,3 +247,13 @@ def test_report_disabled_before_worker_sends(tmp_path,monkeypatch):
     ai.create({'subject':'personal','start':'2026-08-03','end':'2026-08-04'},'automatic')
     ai.save_settings({'automatic':False});ai.run_one()
     assert len(calls)==1 and ai.reports()[0]['status']=='failed'
+
+
+def test_receivable_settlement_and_unconfirmed_expiry():
+    a=account(cash='99000',receivable='1000',balance_note='已确认应收')
+    state,_=apply(initial(a),a,event({'kind':'cash','action':'RECEIVABLE_SETTLED','amount':'1000','fee':'0','note':'到账'}))
+    assert state['cash']==100000 and state['receivable']==0 and state['flows']==[]
+    a=account();state,_=apply(initial(a),a,event(leg()))
+    at='2026-08-24T16:00:00-04:00'
+    v=value_state(state,{'at':at,'marks':{instrument(OPT)['key']:{'price':'0','source':'broker','at':at}}})
+    assert v['ledger_nav'] is None and '到期事件待确认' in v['missing'][0]

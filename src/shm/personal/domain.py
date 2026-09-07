@@ -225,12 +225,17 @@ def apply(state, account, event, link='preview'):
         action = leg.get('action')
         if kind == 'cash':
             amount = dec(leg.get('amount'), '金额', nonnegative=True)
-            signs = {'DEPOSIT': 1, 'WITHDRAW': -1, 'DIVIDEND': 1, 'INTEREST': 1, 'FINANCING_INTEREST': -1, 'FEE': -1}
+            signs = {'DEPOSIT': 1, 'WITHDRAW': -1, 'DIVIDEND': 1, 'INTEREST': 1, 'FINANCING_INTEREST': -1, 'FEE': -1, 'RECEIVABLE_SETTLED': 1, 'PAYABLE_SETTLED': -1}
             if action not in signs or not leg.get('note'):
                 raise Invalid('现金类型无效或缺少说明')
             tax = dec(leg.get('tax', '0'), '分红扣税', nonnegative=True)
             if (action != 'DIVIDEND' and tax) or tax > amount:
                 raise Invalid('扣税须对应分红且不大于税前金额')
+            if action in ('RECEIVABLE_SETTLED','PAYABLE_SETTLED'):
+                balance = 'receivable' if action=='RECEIVABLE_SETTLED' else 'payable'
+                if amount > state[balance]:
+                    raise Invalid('结清金额超过已记账的应收或应付余额')
+                state[balance] -= amount
             change = signs[action]*amount-tax-fee
             state['cash'] += change
             if action in ('DEPOSIT', 'WITHDRAW'):

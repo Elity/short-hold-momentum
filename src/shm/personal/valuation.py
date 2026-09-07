@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 from decimal import Decimal
-from datetime import datetime
+from datetime import datetime, date
 import exchange_calendars as xcals
 import pandas as pd
 
@@ -21,7 +21,8 @@ def value_state(state, payload):
     for key, q in positions(state).items():
         ins = instruments[key]
         mark = marks.get(key)
-        valid = bool(mark and mark.get('source') and mark.get('at') and key not in pending)
+        awaiting_expiry = ins['kind']=='option' and date.fromisoformat(ins['expiry']) < at.astimezone(NY).date()
+        valid = bool(mark and mark.get('source') and mark.get('at') and key not in pending and not awaiting_expiry)
         if valid:
             quoted = stamp(mark['at'])
             # Same-session marks only; no stale or future fill-forward.
@@ -31,7 +32,7 @@ def value_state(state, payload):
         amount = q*price*dec(ins['multiplier']) if price is not None else None
         holdings.append({'instrument': ins, 'quantity': q, 'mark': price, 'value': amount})
         if amount is None:
-            missing.append(key)
+            missing.append(key + ('（到期事件待确认）' if awaiting_expiry else ''))
         else:
             total += amount
     ledger = total if not missing and not pending else None
