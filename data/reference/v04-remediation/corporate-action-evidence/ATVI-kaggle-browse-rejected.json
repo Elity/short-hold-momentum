@@ -1,0 +1,12 @@
+{
+  "rejected_reason": "Browse returned an unrelated cancer_pred title/content; not used for provenance. Direct Kaggle metadata API supplies correct dataset identity.",
+  "response": {
+    "url": "https://www.kaggle.com/datasets/camnugent/sandp500",
+    "title": "cancer_pred",
+    "content": "cancer_pred OK, Got it. Abhimanyu Mehta · Updated 2 years ago arrow_drop_up 6 code Code file_download Download more_vert cancer_pred Data Card Code (0) Discussion (0) Suggestions (0) About Dataset No description available Usability info License MIT Tags An error occurred: Failed to execute 'json' on 'Response': Unexpected end of JSON input lightbulb See what others are saying about this dataset What have you used this dataset for? How would you describe this dataset? Other text_snippet Metadata Oh no! Loading items failed. If the issue persists, it's likely a problem on our side. Try again insights Activity Overview Detail View keyboard_arrow_up Historical stock data for all current S&P 500 companies",
+    "isAdult": false,
+    "lastUpdatedAt": "",
+    "crawledAt": "2026-09-04T20:27:00Z",
+    "traceId": "6a9da70b94f24b868cb774e9c212972f"
+  }
+}

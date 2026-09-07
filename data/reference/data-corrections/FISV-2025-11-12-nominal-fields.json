@@ -1,0 +1,15 @@
+{
+  "date": "2025-11-12",
+  "ticker": "FISV",
+  "parent_evidence": "data/reference/data-corrections/FISV-2025-11-12.json",
+  "basis_checks": {
+    "neighbor_basis_verified": true
+  },
+  "as_traded_close": 64.38,
+  "dollar_volume": 401807425.91999996,
+  "source_urls": [
+    "https://markets.financialcontent.com/siliconvalley.com/quote/historical?Symbol=537%3A930831",
+    "https://stoculator.com/stock/FI/historical"
+  ],
+  "new_cache_sha256": "51a4928549ffd71f649d36b40a184f54e1c7e0d2a507421e28390eb252146c73"
+}

@@ -14,9 +14,13 @@ from pathlib import Path
 from urllib.parse import parse_qs, quote, urlparse
 from zoneinfo import ZoneInfo
 
+from shm.personal.api import PrivateAPI, private_path
+from shm.personal.domain import Invalid, Conflict, encoded
+
 from shm.service.dashboard import build_dashboard, read_report
 from shm.service.store import ServiceStore
 from shm.service.workflow import MissedForwardWindow, latest_completed_session, run_daily_workflow
+from shm.v04.profiles import STRATEGY_IDS
 
 
 _TIME = re.compile(r"^(?:[01]\d|2[0-3]):[0-5]\d$")
@@ -43,6 +47,7 @@ class RunService:
         self._guard = threading.Lock()
         self._active_run_id: int | None = None
         self._stop = threading.Event()
+        self.personal = None
 
     def start(self) -> None:
         self.store.mark_interrupted_runs()
@@ -50,6 +55,8 @@ class RunService:
 
     def stop(self) -> None:
         self._stop.set()
+        if self.personal:
+            self.personal.ai.stop_event.set()
 
     def trigger(
         self,
@@ -126,6 +133,16 @@ class RunService:
                         break
                 else:
                     self.store.finish_run(run_id, "success", summary=result.summary)
+                    if self.personal and self.personal.enabled:
+                        # Complete the legacy run first. Private refresh never changes its status.
+                        try:
+                            self.personal.refresh_after_strategy()
+                        except Exception:
+                            try:
+                                with self.personal.store.connection(True) as private_db:
+                                    private_db.execute('INSERT INTO audit(kind,payload,at) VALUES(?,?,?)', ('market_refresh_failed', '{}', datetime.now().isoformat()))
+                            except Exception:
+                                pass
                     return
             self.store.finish_run(run_id, "failed", error=last_error or "workflow failed")
         finally:
@@ -209,11 +226,53 @@ def _handler(service: RunService):
             values = parse_qs(self.rfile.read(length).decode("utf-8"), keep_blank_values=True)
             return {key: items[-1] for key, items in values.items()}
 
-        def do_GET(self) -> None:
+        def _private(self, method):
             parsed = urlparse(self.path)
+            if not private_path(parsed.path):
+                return False
+            private = service.personal
+            if not private or not private.enabled:
+                self._json(HTTPStatus.SERVICE_UNAVAILABLE, {"error": "私人功能尚未启用：等待 HTTPS 认证网关配置及绕过验证"})
+                return True
+            if not private.authorized(self.headers, method):
+                self._json(HTTPStatus.UNAUTHORIZED, {"error": "请通过已认证的 HTTPS 入口访问"})
+                return True
+            try:
+                payload = None
+                if method == 'POST':
+                    length = int(self.headers.get('Content-Length', '0'))
+                    if not 0 < length <= 1_000_000:
+                        raise Invalid('请求长度无效或超过 1 MB')
+                    payload = json.loads(self.rfile.read(length))
+                    if not isinstance(payload, dict):
+                        raise Invalid('请求须为 JSON 对象')
+                value = private.dispatch(method, parsed.path, parse_qs(parsed.query), payload)
+                self._send(HTTPStatus.OK, encoded(value).encode(), 'application/json')
+            except Conflict as exc:
+                self._json(HTTPStatus.CONFLICT, {"error": str(exc)})
+            except (Invalid, ValueError, KeyError, TypeError) as exc:
+                self._json(HTTPStatus.BAD_REQUEST, {"error": str(exc) if isinstance(exc, Invalid) else "输入字段缺失或格式无效"})
+            except Exception:
+                self._json(HTTPStatus.SERVICE_UNAVAILABLE, {"error": "私人服务暂时不可用；账本未确认提交时请使用原提交编号重试"})
+            return True
+
+        def do_GET(self) -> None:
+            if self._private('GET'):
+                return
+            parsed = urlparse(self.path)
+            query = parse_qs(parsed.query)
             if parsed.path == "/api/dashboard":
                 try:
-                    data = build_dashboard(service.repo_root, service.store, service.timezone_name)
+                    strategy_id = query.get("strategy_id", ["V04"])[-1]
+                    cost_bps = int(query.get("cost_bps", ["10"])[-1])
+                    if strategy_id not in ("V04", *STRATEGY_IDS) or cost_bps not in (10, 25):
+                        raise ValueError("invalid strategy or cost scenario")
+                except ValueError as exc:
+                    self._json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+                    return
+                try:
+                    data = build_dashboard(service.repo_root, service.store, service.timezone_name,
+                                           strategy_id=strategy_id, cost_bps=cost_bps)
                 except (OSError, ValueError, KeyError) as exc:
                     self._json(HTTPStatus.SERVICE_UNAVAILABLE, {"error": str(exc)})
                 else:
@@ -232,15 +291,20 @@ def _handler(service: RunService):
                 return
             if parsed.path.startswith("/api/reports/"):
                 try:
-                    report = read_report(service.repo_root, parsed.path.removeprefix("/api/reports/"))
+                    report = read_report(service.repo_root, parsed.path.removeprefix("/api/reports/"),
+                                         strategy_id=query.get("strategy_id", ["V04"])[-1])
                 except FileNotFoundError:
                     self._json(HTTPStatus.NOT_FOUND, {"error": "报告不存在"})
+                except ValueError as exc:
+                    self._json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
                 else:
                     self._json(HTTPStatus.OK, report)
                 return
             assets = {
                 "/static/dashboard.js": "text/javascript",
                 "/static/dashboard.css": "text/css",
+                "/static/portfolio.js": "text/javascript",
+                "/static/portfolio.css": "text/css",
             }
             if parsed.path in assets:
                 self._send(
@@ -264,6 +328,8 @@ def _handler(service: RunService):
             self._send(HTTPStatus.NOT_FOUND, _page("Not found", "<p>页面不存在。</p>"))
 
         def do_POST(self) -> None:
+            if self._private('POST'):
+                return
             origin = self.headers.get("Origin")
             if origin and urlparse(origin).netloc != self.headers.get("Host"):
                 self._json(HTTPStatus.FORBIDDEN, {"error": "请在当前仪表盘页面修改设置"})
@@ -371,6 +437,9 @@ def main(argv: list[str] | None = None) -> int:
         retry_delay_seconds=int(os.environ.get("SHM_RETRY_DELAY_SECONDS", "300")),
         poll_seconds=int(os.environ.get("SHM_SCHEDULER_POLL_SECONDS", "20")),
     )
+    service.personal = PrivateAPI.from_environment(db_path, repo_root)
+    if service.personal and service.personal.enabled:
+        service.personal.ai.start()
     service.start()
     server = ThreadingHTTPServer((args.host, args.port), _handler(service))
     try:

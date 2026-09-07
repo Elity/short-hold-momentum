@@ -1,0 +1,14 @@
+{
+  "status": "APPLIED_VERIFIED_EXTENSION_AND_EXPLICIT_OLD_ROW_REPAIR",
+  "input_path": "data/research/v04/prices/ATVI-through-2021-08-19.parquet",
+  "input_sha256": "3ae0974fa6785531839c5743c16243894e5d60ff6cd322577a864e727ea82a74",
+  "output_path": "data/research/v04/prices/ATVI-through-2021-08-19-repaired.parquet",
+  "output_sha256": "60325363742c97f38dcc96f88d7b11b69651bd53b5609f4cec50682b8d0fac41",
+  "rows": 4503,
+  "appended_rows": 349,
+  "existing_prefix_rows": 4154,
+  "explicit_prefix_repair": "2016-11-25",
+  "all_other_rows_unchanged": true,
+  "entire_effective_series_invalid_ohlcv_rows": 0,
+  "terminal_gap_starts": "2021-08-20"
+}

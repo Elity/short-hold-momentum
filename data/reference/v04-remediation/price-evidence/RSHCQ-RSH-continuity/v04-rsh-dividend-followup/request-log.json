@@ -1,0 +1,51 @@
+{
+  "maximum_new_requests": 4,
+  "used_new_requests": 4,
+  "additional_network_requests_during_local_assembly": 0,
+  "requests": [
+    {
+      "number": 1,
+      "request": {
+        "query": "site:sec.gov RadioShack 2005 \"Dividends declared per share\" \"0.25\"",
+        "maxResults": 4,
+        "maxLength": 250000,
+        "contentFormat": "text"
+      },
+      "response_file": "01-search.json",
+      "sha256": "7c48d437d3642614fbcd22ced7e31b6eb3095e3a5b2005ed2dd5debcb8920c6a"
+    },
+    {
+      "number": 2,
+      "request": {
+        "query": "RadioShack RSH dividend history 2004 2005 2006 2007 2008 2009 2010 ex dividend dates",
+        "maxResults": 6,
+        "maxLength": 22000,
+        "contentFormat": "text"
+      },
+      "response_file": "02-search.json",
+      "sha256": "df4be18cc8cec2515adec4fc453f8e69bc0ccc7641e6b1a191349c18b182d1f9"
+    },
+    {
+      "number": 3,
+      "request": {
+        "query": "RadioShack 2005 annual report \"2004\" \"dividends\" \"0.25\"",
+        "maxResults": 6,
+        "maxLength": 300000,
+        "contentFormat": "text"
+      },
+      "response_file": "03-search.json",
+      "sha256": "cb735fdcee92221e8d38f48d0c5d0b1534b0afc1a5c9f751851a7d0002997f23"
+    },
+    {
+      "number": 4,
+      "request": {
+        "query": "RadioShack \"2005\" \"annual dividend\" \"December\" \"0.25\"",
+        "maxResults": 6,
+        "maxLength": 250000,
+        "contentFormat": "text"
+      },
+      "response_file": "04-search.json",
+      "sha256": "3a162327259ed75971b298d1bcff72f3e755a155553525838828d5a518a0360b"
+    }
+  ]
+}

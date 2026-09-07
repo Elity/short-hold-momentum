@@ -1,0 +1,7 @@
+{
+  "url": "https://www.kaggle.com/api/v1/datasets/download/camnugent/sandp500",
+  "bytes": 20283917,
+  "sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+  "content_type": "application/zip",
+  "resolved_host": "storage.googleapis.com:443"
+}

@@ -1,0 +1,51 @@
+{
+  "status": "WORK_ONLY_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "research_key": "SRCL",
+  "legal_issuer": "Stericycle, Inc.",
+  "cik": "0000861878",
+  "source_request_budget": 4,
+  "new_public_requests_started": 4,
+  "successful_public_responses": 3,
+  "failed_direct_SEC_HTML_attempts": 1,
+  "candidate_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-through-2018-12-28.candidate.parquet",
+  "candidate_sha256": "f3c6c3325c4d582a89905183ec0f16c14f84c511928c68c2e0afe8492d2102bd",
+  "baseline_sha256": "4ddc2e30639ac0800ce9cf51638bc0ce058828b357d38273b5e6ee2476cca570",
+  "first": "2003-10-01",
+  "last": "2018-12-28",
+  "rows": 3838,
+  "required_window": [
+    "2007-11-12",
+    "2018-12-28"
+  ],
+  "required_window_rows": 2802,
+  "all_original_rows_all_columns_preserved_exactly": true,
+  "original_rows": 3646,
+  "appended_tail_rows": 191,
+  "restored_whole_row_date": "2017-11-08",
+  "restored_row_source": "IEX whole row; no fields selected from SheepB",
+  "ordinary_cash_credits_created": 0,
+  "corporate_actions_created": 0,
+  "required_window_missing_sessions": [],
+  "required_window_invalid_ohlcv_rows": 0,
+  "required_window_adjusted_to_nominal_ratio": 1.0,
+  "issuer_common_cash_dividend_policy_years": [
+    2016,
+    2017,
+    2018
+  ],
+  "zero_vendor_factor_events_not_treated_as_independent_action_proof": true,
+  "original_old_quote_conflicts_resolved": false,
+  "limits": [
+    "Only 2016, 2017 and 2018 common cash-dividend absence is explicitly supported by the newly returned issuer filing content; no new 2007-2015 primary action certification was obtained.",
+    "No independent complete split/spinoff census was obtained. Unchanging vendor factors, raw/adjusted unit ratios and independent IEX overlap support the bounded same-unit interpretation; they are not themselves proof of no corporate action.",
+    "No exact issuer/exchange per-share historical price anchor was obtained in this four-request budget. The accurately dated IEX whole row is a public independent-vendor quote anchor, not an issuer price statement.",
+    "Annual-report cover aggregate nonaffiliate market value is not divided by later total shares to fabricate a per-share price.",
+    "WIKI/SheepB historical quote and volume differences remain disclosed in source-preflight; all existing rows are retained exactly, not averaged or silently replaced.",
+    "The 2018 preferred-to-common conversion is not a cash dividend or stock split entitlement for existing ordinary common holders. Preferred dividends are not credited to this strategy.",
+    "New-row downloaded_at is unavailable and stored as NaT; original metadata remains unchanged. Source publication/retrieval provenance is in the preserved source index.",
+    "The 2003-2007 older prefix is retained unchanged for compatibility, but new evidence review targets only 2007-11-12 through 2018-12-28.",
+    "This is a work-only candidate pending independent review; no manifest, account, strategy parameter or global evidence gate is changed."
+  ],
+  "approved_for_application": false,
+  "repo_modified": false
+}

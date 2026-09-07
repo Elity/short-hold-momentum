@@ -38,7 +38,7 @@ jobs:
         with:
           images: ghcr.io/elity/short-hold-momentum
           tags: |
-            type=raw,value=latest
+            type=raw,value=latest,enable={{is_default_branch}}
             type=sha,format=long
 
       - uses: docker/build-push-action@v6

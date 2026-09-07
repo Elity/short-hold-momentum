@@ -1,0 +1,32 @@
+{
+  "authorized_limit": 4,
+  "used": 4,
+  "searches": 0,
+  "requests": [
+    {
+      "number": 1,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000141809122000029/twtr-20211231.htm",
+      "response_file": "05-2021-10k-direct.json",
+      "sha256": "234d824b8a2ffeb95455794decc6454095ee1417567edbd1d17032cd4cf1ec06"
+    },
+    {
+      "number": 2,
+      "url": "https://data.sec.gov/submissions/CIK0001418091.json",
+      "response_file": "06-submissions.meta.json",
+      "sha256": "08e995d73728bd41461c3d551cec7904953f38254fa3e743f22d3ebe2be6e79f"
+    },
+    {
+      "number": 3,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000141809122000147/twtr-20220630.htm",
+      "response_file": "07-2022-q2-direct.json",
+      "sha256": "176db58f76f3594044eb3200b16c90adbd1108062d0c77dd1396adf3a723d587"
+    },
+    {
+      "number": 4,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522202163/d283119ddefm14a.htm",
+      "response_file": "08-merger-proxy-direct.json",
+      "sha256": "5bf503292bf63da79b4c64f4d02a523468bb101d99347b4a222ed282f498dc7c"
+    }
+  ],
+  "requests_complete": true
+}

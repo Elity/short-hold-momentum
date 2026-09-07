@@ -1,0 +1,16 @@
+{
+  "network_requests": 0,
+  "repo_changes": 0,
+  "candidate_created": false,
+  "reviewed_filings": [
+    "2017_10K_partial_mirror",
+    "2019_10K_partial_mirror",
+    "2020-04-23_8K_and_issuer_declaration"
+  ],
+  "quarter_checks": 16,
+  "all_quarter_extremes_match_reported_cent_precision": true,
+  "nominal_price_anchor_comparisons": 8,
+  "all_nominal_anchors_match_reported_cent_precision": true,
+  "scope_limit": "identity, nominal prices, ordinary-common-stock unit context; not all daily bars or all historical actions certified",
+  "source_limit": "2017 and 2019 supplied mirror/index bodies are partial; no missing-word negative conclusion about all splits"
+}

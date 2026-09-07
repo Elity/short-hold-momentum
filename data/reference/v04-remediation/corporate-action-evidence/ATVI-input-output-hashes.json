@@ -1,0 +1,30 @@
+{
+  "sha256": {
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ATVI.parquet": "b0002c6708b01e70ea888d52dda4bfd2c49c4a1e24a9fde010262793478c5084",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ATVI.parquet": "5739988ed3062b923f7834ca89e5e4b8bcc18f02c89f79fd2d6c9159fcc9151c",
+    "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/manifest.json": "579544ab6acc322a15b6804d7fb10c6c24fba40b130c89a00a38f4c9c7d918f3",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-before.parquet": "b0002c6708b01e70ea888d52dda4bfd2c49c4a1e24a9fde010262793478c5084",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-with-2017-08-07.candidate.parquet": "b058ed6c5af2a230ff7f66e635030af353969e71bb192cf8d0837db1a811ecd1",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-sp500.source.zip": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/wiki-prices.zip": "adfd226694c6f3ec2c56b585d973764180a39a3ec516601721e90096dc1de94f",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-original-archive-Aug2017.json": "914167059cfa514018f26e0a2cd956e68d0ae581a2ef2ed67b8d81245194ce25",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-extracted.source.csv": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-kaggle-metadata.source.json": "f178d81c5312e7388336f5a9f666858acc974caff5b2940b52b4b2966ba55d1c",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-dataset-acquisition-script.source.txt": "4ef5828dcadd8b4085d655a1a2d9b660da5eec7a4661b824560cc55b707a08dd",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-overlap-JulAug2017.csv": "e4a10bc5da22eb77c59ccc2af46c44120e3975b9c92b6b1eae887e07b75fa84f",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-stock-data.source.csv": "2650b350fe0fdb01ca3cb9a99c9ba2bf1de1bad05fe894129a5da8a9ded23c43",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-github-source.json": "660859f6dec35429039f697aed54e2f82985335594e1188447b59f76938cc94e",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/build_atvi_single_day.py": "a62a1e2817d34d02bcc7fa1318e07d45732832ba60ea1522a0691ea752767717"
+  },
+  "main_inputs_before": {
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ATVI.parquet": "b0002c6708b01e70ea888d52dda4bfd2c49c4a1e24a9fde010262793478c5084",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ATVI.parquet": "5739988ed3062b923f7834ca89e5e4b8bcc18f02c89f79fd2d6c9159fcc9151c",
+    "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/manifest.json": "579544ab6acc322a15b6804d7fb10c6c24fba40b130c89a00a38f4c9c7d918f3"
+  },
+  "main_inputs_after": {
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ATVI.parquet": "b0002c6708b01e70ea888d52dda4bfd2c49c4a1e24a9fde010262793478c5084",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ATVI.parquet": "5739988ed3062b923f7834ca89e5e4b8bcc18f02c89f79fd2d6c9159fcc9151c",
+    "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/manifest.json": "579544ab6acc322a15b6804d7fb10c6c24fba40b130c89a00a38f4c9c7d918f3"
+  },
+  "main_inputs_unchanged": true
+}

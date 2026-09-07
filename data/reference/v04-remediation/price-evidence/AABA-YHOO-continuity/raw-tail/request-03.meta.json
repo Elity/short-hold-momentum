@@ -1,0 +1,11 @@
+{
+  "url": "https://raw.githubusercontent.com/szrlee/Stock-Time-Series-Analysis/55639c5cfa7556c4372ff361c026acb792bfdcf4/data/AABA_2006-01-01_to_2018-01-01.csv",
+  "status": 200,
+  "retrieved_at": "2026-09-06T20:10:41.402033+00:00",
+  "bytes": 145792,
+  "sha256": "219a6434d20f717ed921a8335ff9b3c9ca9d04b0c0b0e266db010cb922c040eb",
+  "new_network_requests": 1,
+  "redirects_followed": 0,
+  "provider_price_calls": 0,
+  "content_type": "text/plain; charset=utf-8"
+}

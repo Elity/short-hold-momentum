@@ -1,0 +1,46 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_APPLIED",
+  "choose_explicitly_between_variants": true,
+  "ticker": "HFC",
+  "source_ticker": "HFC",
+  "source_name": "HollyFrontier Corp.",
+  "original": {
+    "path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/HFC.parquet",
+    "sha256": "8e32b35e068f736fc1c6719ab85979d5a2717dc8a1a4bca90a4d2cf2eff06b54"
+  },
+  "candidates": {
+    "prefix_preserving": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-hfc-extension/HFC-tail-prefix-unchanged.candidate.parquet",
+      "sha256": "ed6e10cb4eb218e8c7f4afacf6794b0b177a1b972557f8a39fd8aa266a1d4413",
+      "rows": 4502,
+      "first": "2003-10-01",
+      "last": "2021-08-19",
+      "invalid_rows": 0,
+      "legacy_gap": [
+        "2017-11-08"
+      ],
+      "preserves_entire_old_prefix": true
+    },
+    "prefix_dividend_corrected": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-hfc-extension/HFC-tail-plus-prefix-repairs.candidate.parquet",
+      "sha256": "c59827215d323fb4e2cf9d467f4e06fda7ea07b04c02aab9056c386cda869233",
+      "rows": 4503,
+      "first": "2003-10-01",
+      "last": "2021-08-19",
+      "invalid_rows": 0,
+      "legacy_gap": [],
+      "preserves_entire_old_prefix": false
+    }
+  },
+  "method": "Append whole nominal SheepB rows with ordinary cash dividends normalized to WIKI forward total-return convention. Pure variant preserves existing prefix. Corrected variant additionally inserts the corroborated 2017-11-08 whole row and repairs the omitted 2018-02-27 dividend by multiplying earlier OHLC by Pex/(Pex+D), preserving the old terminal anchor and identical appended tail.",
+  "cash_dividend_handling": "Embedded in adjusted OHLC only; do not separately credit these dividends again.",
+  "source_archive_sha256": "22f61a91843c579577a1757bd31653fd998ba8054723da3d4b41d994cda46373",
+  "evidence_audit": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-hfc-extension/audit.json",
+  "limitations": [
+    "Pure variant retains 2017-11-08 gap; repaired variant changes historical adjusted OHLC",
+    "Nominal-unit assessment is supported inference, not exhaustive primary split ledger",
+    "Some prefix OHLCV vendor disagreements",
+    "Primary annual captures are partial",
+    "SheepB/JacksonCrow are same upstream vendor"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "status": "WORK_ONLY_PROPOSAL",
+  "candidate_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-with-2017-08-07.candidate.parquet",
+  "replacement_target": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ATVI.parquet",
+  "expected_target_sha256_before": "b0002c6708b01e70ea888d52dda4bfd2c49c4a1e24a9fde010262793478c5084",
+  "candidate_sha256": "b058ed6c5af2a230ff7f66e635030af353969e71bb192cf8d0837db1a811ecd1",
+  "proposed_price_overrides_entry": {
+    "ATVI": {
+      "path": "data/research/v04/prices/ATVI.parquet",
+      "sha256": "b058ed6c5af2a230ff7f66e635030af353969e71bb192cf8d0837db1a811ecd1",
+      "source_ticker": "ATVI",
+      "source_name": "Activision Blizzard Inc.",
+      "first": "2003-10-01",
+      "last": "2018-03-27",
+      "invalid_rows": 0,
+      "source_archive_sha256": "5739988ed3062b923f7834ca89e5e4b8bcc18f02c89f79fd2d6c9159fcc9151c",
+      "method": "whole missing series from frozen archive; no forward fill, no post-2018 extrapolation; insert 2017-08-07 whole IEX row from Cam Nugent Kaggle sandp500 v4; all existing rows unchanged",
+      "single_day_repairs": [
+        {
+          "date": "2017-08-07",
+          "source": {
+            "dataset": "camnugent/sandp500",
+            "version": 4,
+            "dataset_last_updated": "2018-02-10T03:15:53.777Z",
+            "publisher": "Cam Nugent",
+            "upstream": "IEX API, confirmed by dataset metadata and included getSandP.py",
+            "download_url": "https://www.kaggle.com/api/v1/datasets/download/camnugent/sandp500",
+            "member": "individual_stocks_5yr/individual_stocks_5yr/ATVI_data.csv",
+            "zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+            "member_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6"
+          },
+          "volume_basis": "Dataset describes volume as number of shares traded. Preserve the reported integer share count; exact venue/consolidation scope is not independently established and differs from WIKI.",
+          "OHLCV": {
+            "open": 62.14,
+            "high": 62.85,
+            "low": 61.8,
+            "close": 62.51,
+            "volume": 7287073
+          }
+        }
+      ]
+    }
+  },
+  "evidence": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-single-day-audit.json",
+  "change_scope": "Insert only 2017-08-07; retain every preexisting row and all strategy/corporate-action settings."
+}

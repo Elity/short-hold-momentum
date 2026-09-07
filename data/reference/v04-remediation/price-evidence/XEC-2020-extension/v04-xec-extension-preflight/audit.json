@@ -1,0 +1,409 @@
+{
+  "network_requests": 0,
+  "repo_mutated": false,
+  "canonical_candidate_written": false,
+  "run_id": "v04-cf5a0714087194e8",
+  "manifest_sha256": "a3abfe1ef5fdb8d141e914dc9a232326adb50fdc32fdad3cbf06a63c65c0bb14",
+  "inputs": {
+    "canonical": {
+      "path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/XEC.parquet",
+      "sha256": "c793f0947e1e82051776936a2b68b26ccb64608d711c7acf50bfab66ef508e77"
+    },
+    "wiki": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/XEC.parquet",
+      "sha256": "0c5531b61913909e788561ba5b37d1f146e926416bff1ea10a119c52836ef342"
+    },
+    "sheepb": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/XEC.parquet",
+      "sha256": "d435d3385d66572e31eb22d9fb3831a0afb566eac42792762825c4107406fb1b"
+    }
+  },
+  "identity_status": "SOURCE_NAMES_MATCH_CIMAREX_NO_LOCAL_PRIMARY_CIK_OR_COMMON_SHARE_BRIDGE_FOUND",
+  "member": {
+    "ticker": "XEC",
+    "first_member_session": "2014-06-20",
+    "last_member_session": "2020-03-02",
+    "first_nonmember_after_final_period": "2020-03-03",
+    "member_at_cutoff": false,
+    "membership_periods": [
+      {
+        "start": "2014-06-20",
+        "last_member_session": "2020-03-02",
+        "first_nonmember_session": "2020-03-03"
+      }
+    ],
+    "member_sessions": 1434,
+    "required_preterminal_member_sessions": 1434,
+    "member_rebalance_observations": 71,
+    "event_explained_member_sessions": 0,
+    "event_explained_member_rebalances": 0,
+    "source_path": "data/research/v04/prices/XEC.parquet",
+    "source_kind": "research_override",
+    "source_name": "Cimarex Energy Co",
+    "source_sha256": "c793f0947e1e82051776936a2b68b26ccb64608d711c7acf50bfab66ef508e77",
+    "is_wiki_derived": true,
+    "manifest_declared_price_end": "2018-03-27",
+    "quarantined": false,
+    "corporate_action_in_manifest": null,
+    "price_window_in_manifest": null,
+    "raw_cache_exists": false,
+    "raw_cache_sha256": null,
+    "raw_first_valid_session": null,
+    "raw_last_valid_session": null,
+    "loaded_rows": 3590,
+    "valid_rows": 3590,
+    "first_price_session": "2003-12-19",
+    "last_price_session": "2018-03-27",
+    "missing_member_rebalances": 24,
+    "missing_required_member_rebalances": 24,
+    "invalid_basic_ohlcv_rows": 0,
+    "physical_range_conflict_rows": 1,
+    "member_price_overlap_sessions": 948,
+    "missing_member_sessions_before_first": 0,
+    "missing_member_sessions_internal": 1,
+    "missing_member_sessions_after_last": 485,
+    "missing_required_member_sessions_after_last": 485,
+    "missing_rebalances_after_last": 24,
+    "missing_required_rebalances_after_last": 24,
+    "first_missing_member_session_after_last": "2018-03-28",
+    "first_missing_rebalance_after_last": "2018-04-11",
+    "requested_missing_quote_start": "2018-03-28",
+    "action_preterminal_missing_sessions": 0,
+    "price_rows_after_registered_last_trade": 0,
+    "newer_raw_candidate_shadowed": false,
+    "raw_later_member_quote_sessions": 0,
+    "observed_end_matches_manifest": true,
+    "diagnostic_category": "archive_2018_tail_gap_while_member",
+    "archive_label_unverified": "Cimarex Energy Co",
+    "in_previously_upgraded_list": false
+  },
+  "existing_source_end": "2018-03-27",
+  "normal_first_post_removal_rebalance": {
+    "signal_date": "2020-03-09",
+    "execution_date": "2020-03-10"
+  },
+  "normal_exit_caveat": "Schedule anchor, not proof of a repaired counterfactual path exit. Existing truncated-source paths do not own XEC at this boundary.",
+  "segments": {
+    "member_tail": {
+      "rows": 485,
+      "duplicates": 0,
+      "invalid_basic_dates": [],
+      "physical_conflict_dates": [],
+      "zero_volume_dates": [],
+      "start": "2018-03-28",
+      "end": "2020-03-02",
+      "expected_sessions": 485,
+      "missing_expected_sessions": [],
+      "extra_non_sessions": [],
+      "rebalance_dates": [
+        "2018-04-11",
+        "2018-05-09",
+        "2018-06-07",
+        "2018-07-06",
+        "2018-08-03",
+        "2018-08-31",
+        "2018-10-01",
+        "2018-10-29",
+        "2018-11-27",
+        "2018-12-27",
+        "2019-01-28",
+        "2019-02-26",
+        "2019-03-26",
+        "2019-04-24",
+        "2019-05-22",
+        "2019-06-20",
+        "2019-07-19",
+        "2019-08-16",
+        "2019-09-16",
+        "2019-10-14",
+        "2019-11-11",
+        "2019-12-10",
+        "2020-01-09",
+        "2020-02-07"
+      ]
+    },
+    "through_first_regular_exit": {
+      "rows": 491,
+      "duplicates": 0,
+      "invalid_basic_dates": [],
+      "physical_conflict_dates": [],
+      "zero_volume_dates": [],
+      "start": "2018-03-28",
+      "end": "2020-03-10",
+      "expected_sessions": 491,
+      "missing_expected_sessions": [],
+      "extra_non_sessions": [],
+      "rebalance_dates": [
+        "2018-04-11",
+        "2018-05-09",
+        "2018-06-07",
+        "2018-07-06",
+        "2018-08-03",
+        "2018-08-31",
+        "2018-10-01",
+        "2018-10-29",
+        "2018-11-27",
+        "2018-12-27",
+        "2019-01-28",
+        "2019-02-26",
+        "2019-03-26",
+        "2019-04-24",
+        "2019-05-22",
+        "2019-06-20",
+        "2019-07-19",
+        "2019-08-16",
+        "2019-09-16",
+        "2019-10-14",
+        "2019-11-11",
+        "2019-12-10",
+        "2020-01-09",
+        "2020-02-07",
+        "2020-03-09"
+      ]
+    },
+    "full_available_tail": {
+      "rows": 856,
+      "duplicates": 0,
+      "invalid_basic_dates": [],
+      "physical_conflict_dates": [],
+      "zero_volume_dates": [],
+      "start": "2018-03-28",
+      "end": "2021-08-19",
+      "expected_sessions": 856,
+      "missing_expected_sessions": [],
+      "extra_non_sessions": [],
+      "rebalance_dates": [
+        "2018-04-11",
+        "2018-05-09",
+        "2018-06-07",
+        "2018-07-06",
+        "2018-08-03",
+        "2018-08-31",
+        "2018-10-01",
+        "2018-10-29",
+        "2018-11-27",
+        "2018-12-27",
+        "2019-01-28",
+        "2019-02-26",
+        "2019-03-26",
+        "2019-04-24",
+        "2019-05-22",
+        "2019-06-20",
+        "2019-07-19",
+        "2019-08-16",
+        "2019-09-16",
+        "2019-10-14",
+        "2019-11-11",
+        "2019-12-10",
+        "2020-01-09",
+        "2020-02-07",
+        "2020-03-09",
+        "2020-04-06",
+        "2020-05-05",
+        "2020-06-03",
+        "2020-07-01",
+        "2020-07-30",
+        "2020-08-27",
+        "2020-09-25",
+        "2020-10-23",
+        "2020-11-20",
+        "2020-12-21",
+        "2021-01-21",
+        "2021-02-19",
+        "2021-03-19",
+        "2021-04-19",
+        "2021-05-17",
+        "2021-06-15",
+        "2021-07-14",
+        "2021-08-11"
+      ]
+    }
+  },
+  "overlap_stats": {
+    "open": {
+      "overlap": 3646,
+      "median_ratio": 1.0,
+      "median_absolute_relative_error": 2.0312328152805037e-08,
+      "p99_absolute_relative_error": 0.004183027729723583,
+      "max_absolute_relative_error": 0.058691867376049256,
+      "over_1bp_rows": 94
+    },
+    "high": {
+      "overlap": 3646,
+      "median_ratio": 1.0,
+      "median_absolute_relative_error": 2.08360643183525e-08,
+      "p99_absolute_relative_error": 5.2058521978404465e-05,
+      "max_absolute_relative_error": 0.06313459361184992,
+      "over_1bp_rows": 11
+    },
+    "low": {
+      "overlap": 3646,
+      "median_ratio": 1.0,
+      "median_absolute_relative_error": 2.1354298440634523e-08,
+      "p99_absolute_relative_error": 5.9925060720744737e-05,
+      "max_absolute_relative_error": 0.07366213243130237,
+      "over_1bp_rows": 14
+    },
+    "close": {
+      "overlap": 3646,
+      "median_ratio": 1.0,
+      "median_absolute_relative_error": 2.014710198672276e-08,
+      "p99_absolute_relative_error": 5.354259050571743e-08,
+      "max_absolute_relative_error": 0.06091368436299416,
+      "over_1bp_rows": 12
+    },
+    "volume": {
+      "overlap": 3646,
+      "median_ratio": 1.0,
+      "median_absolute_relative_error": 0.0,
+      "p99_absolute_relative_error": 0.040633995403235104,
+      "max_absolute_relative_error": 0.883047316734451,
+      "over_1bp_rows": 358
+    }
+  },
+  "canonical_equals_wiki_fields": {
+    "open": true,
+    "high": true,
+    "low": true,
+    "close": true,
+    "volume": true,
+    "as_traded_close": true,
+    "dollar_volume": true
+  },
+  "wiki_prefix_audit": {
+    "rows": 3646,
+    "duplicates": 0,
+    "invalid_basic_dates": [],
+    "physical_conflict_dates": [
+      "2015-08-28"
+    ],
+    "zero_volume_dates": []
+  },
+  "canonical_prefix_audit": {
+    "rows": 3646,
+    "duplicates": 0,
+    "invalid_basic_dates": [],
+    "physical_conflict_dates": [
+      "2015-08-28"
+    ],
+    "zero_volume_dates": []
+  },
+  "prefix_missing_sessions": [
+    "2017-11-08"
+  ],
+  "prefix_nonunit_split_rows": [],
+  "wiki_dividend_count": 48,
+  "wiki_recorded_event_formula_conflicts": [],
+  "sheepb_step_count": 63,
+  "sheepb_step_count_member_tail": 8,
+  "sheepb_step_count_normal_exit_tail": 8,
+  "calendar_only_260_windows": {
+    "tail_only_keep_prefix_gaps": {
+      "member_sessions_without_260_observed_dates": 260,
+      "member_rebalance_dates_without_260_observed_dates": [
+        "2017-11-14",
+        "2017-12-13",
+        "2018-01-12",
+        "2018-02-12",
+        "2018-03-13",
+        "2018-04-11",
+        "2018-05-09",
+        "2018-06-07",
+        "2018-07-06",
+        "2018-08-03",
+        "2018-08-31",
+        "2018-10-01",
+        "2018-10-29"
+      ],
+      "note": "Date count only; ignores identity, physical OHLCV defects and corporate-action correctness."
+    },
+    "tail_plus_source_prefix_dates": {
+      "member_sessions_without_260_observed_dates": 0,
+      "member_rebalance_dates_without_260_observed_dates": [],
+      "note": "Date count only; ignores identity, physical OHLCV defects and corporate-action correctness."
+    }
+  },
+  "actual_current_paths": [
+    {
+      "path": "S500-C0-10",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-10-06",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    },
+    {
+      "path": "S500-C0-25",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-10-06",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    },
+    {
+      "path": "S500-C1-10",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-10-06",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    },
+    {
+      "path": "S500-C1-25",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-10-06",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    },
+    {
+      "path": "S500-C2-10",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-09-15",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    },
+    {
+      "path": "S500-C2-25",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-09-15",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    },
+    {
+      "path": "S500-C3-10",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-09-14",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    },
+    {
+      "path": "S500-C3-25",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-09-14",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    },
+    {
+      "path": "S500-C4-10",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-10-06",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    },
+    {
+      "path": "S500-C4-25",
+      "trades": 4,
+      "first_trade": "2014-07-18",
+      "last_trade": "2016-10-06",
+      "held_sessions_after_existing_end": 0,
+      "held_sessions_after_member_end": 0
+    }
+  ],
+  "source_cutoff_is_not_terminal_event": true
+}

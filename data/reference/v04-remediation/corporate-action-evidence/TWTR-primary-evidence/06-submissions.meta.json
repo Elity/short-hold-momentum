@@ -1,0 +1,164 @@
+{
+  "request_number_in_new_direct_budget": 2,
+  "url": "https://data.sec.gov/submissions/CIK0001418091.json",
+  "status": 200,
+  "bytes": 156398,
+  "sha256": "dc3a049042821da59e68c7354e8e769f17c71087f56d47160d4854486ad8f815",
+  "selected_2022_filings": [
+    {
+      "accessionNumber": "0001193125-22-272772",
+      "filingDate": "2022-10-31",
+      "reportDate": "2022-10-27",
+      "form": "8-K",
+      "primaryDocument": "d411753d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-244289",
+      "filingDate": "2022-09-14",
+      "reportDate": "2022-09-13",
+      "form": "8-K",
+      "primaryDocument": "d403306d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-242335",
+      "filingDate": "2022-09-12",
+      "reportDate": "2022-09-12",
+      "form": "8-K",
+      "primaryDocument": "d395119d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-233469",
+      "filingDate": "2022-08-30",
+      "reportDate": "2022-08-30",
+      "form": "8-K",
+      "primaryDocument": "d359937d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-202163",
+      "filingDate": "2022-07-26",
+      "reportDate": "",
+      "form": "DEFM14A",
+      "primaryDocument": "d283119ddefm14a.htm"
+    },
+    {
+      "accessionNumber": "0001418091-22-000147",
+      "filingDate": "2022-07-26",
+      "reportDate": "2022-06-30",
+      "form": "10-Q",
+      "primaryDocument": "twtr-20220630.htm"
+    },
+    {
+      "accessionNumber": "0001418091-22-000143",
+      "filingDate": "2022-07-22",
+      "reportDate": "2022-07-22",
+      "form": "8-K",
+      "primaryDocument": "twtr-20220722.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-192993",
+      "filingDate": "2022-07-13",
+      "reportDate": "2022-07-12",
+      "form": "8-K",
+      "primaryDocument": "d381911d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-191300",
+      "filingDate": "2022-07-11",
+      "reportDate": "2022-07-08",
+      "form": "8-K",
+      "primaryDocument": "d370677d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-161795",
+      "filingDate": "2022-05-27",
+      "reportDate": "2022-05-25",
+      "form": "8-K",
+      "primaryDocument": "d340224d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-152250",
+      "filingDate": "2022-05-17",
+      "reportDate": "2022-05-16",
+      "form": "PREM14A",
+      "primaryDocument": "d283119dprem14a.htm"
+    },
+    {
+      "accessionNumber": "0001418091-22-000075",
+      "filingDate": "2022-05-02",
+      "reportDate": "2022-03-31",
+      "form": "10-Q",
+      "primaryDocument": "twtr-20220331.htm"
+    },
+    {
+      "accessionNumber": "0001418091-22-000072",
+      "filingDate": "2022-04-28",
+      "reportDate": "2022-04-28",
+      "form": "8-K",
+      "primaryDocument": "twtr-20220428.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-120461",
+      "filingDate": "2022-04-26",
+      "reportDate": "2022-04-25",
+      "form": "8-K",
+      "primaryDocument": "d310843d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-117720",
+      "filingDate": "2022-04-25",
+      "reportDate": "2022-04-25",
+      "form": "8-K",
+      "primaryDocument": "d319190d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-107462",
+      "filingDate": "2022-04-18",
+      "reportDate": "2022-04-15",
+      "form": "8-K",
+      "primaryDocument": "d296740d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-095651",
+      "filingDate": "2022-04-05",
+      "reportDate": "2022-04-04",
+      "form": "8-K",
+      "primaryDocument": "d342257d8k.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-054392",
+      "filingDate": "2022-02-25",
+      "reportDate": "2022-02-23",
+      "form": "8-K",
+      "primaryDocument": "d171069d8k.htm"
+    },
+    {
+      "accessionNumber": "0001418091-22-000029",
+      "filingDate": "2022-02-16",
+      "reportDate": "2021-12-31",
+      "form": "10-K",
+      "primaryDocument": "twtr-20211231.htm"
+    },
+    {
+      "accessionNumber": "0001193125-22-035882",
+      "filingDate": "2022-02-11",
+      "reportDate": "2022-02-09",
+      "form": "8-K",
+      "primaryDocument": "d284337d8k.htm"
+    },
+    {
+      "accessionNumber": "0001418091-22-000021",
+      "filingDate": "2022-02-10",
+      "reportDate": "2022-02-10",
+      "form": "8-K",
+      "primaryDocument": "twtr-20220210.htm"
+    }
+  ],
+  "older_files": [
+    {
+      "name": "CIK0001418091-submissions-001.json",
+      "filingCount": 372,
+      "filingFrom": "2007-11-30",
+      "filingTo": "2015-10-29"
+    }
+  ]
+}

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SHM · 投资仪表盘</title>
 <link rel="stylesheet" href="/static/dashboard.css">
+<link rel="stylesheet" href="/static/portfolio.css">
 </head>
 <body>
 <div class="app">
@@ -17,6 +18,13 @@
       <button data-page="trades" aria-label="交易记录"><span data-icon="arrows"></span><span class="nav-text" data-short="交易">交易记录</span></button>
       <button data-page="logs" aria-label="运行日志"><span data-icon="activity"></span><span class="nav-text" data-short="日志">运行日志</span></button>
       <button data-page="reports" aria-label="策略报告"><span data-icon="file"></span><span class="nav-text" data-short="报告">策略报告</span></button>
+    </nav>
+    <div class="nav-label">PERSONAL</div>
+    <nav class="nav" id="private-nav" aria-label="个人账户与复盘">
+      <button data-page="personal"><span data-icon="wallet"></span><span class="nav-text" data-short="个人">个人账户</span></button>
+      <button data-page="performance"><span data-icon="activity"></span><span class="nav-text" data-short="表现">资产表现</span></button>
+      <button data-page="ai-review"><span data-icon="file"></span><span class="nav-text" data-short="复盘">AI 复盘</span></button>
+      <button data-page="ai-settings"><span data-icon="settings"></span><span class="nav-text" data-short="AI设置">AI 设置</span></button>
     </nav>
     <div class="side-bottom"><div class="nav"><button data-action="schedule" aria-label="调度设置"><span data-icon="settings"></span><span class="nav-text">调度设置</span></button></div><div class="side-account"><div class="avatar">P</div><div><strong>本地模拟账户</strong><span>Paper trading · USD</span></div></div></div>
   </aside>
@@ -32,6 +40,7 @@
 </div>
 <div class="overlay" id="overlay" hidden><section class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title"></section></div>
 <div class="toast" id="toast" role="status" hidden></div>
+<script src="/static/portfolio.js"></script>
 <script src="/static/dashboard.js"></script>
 </body>
 </html>

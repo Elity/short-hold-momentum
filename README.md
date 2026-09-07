@@ -6,6 +6,74 @@ infrastructure, not investment advice.
 
 ## Current phase
 
+### Verified S&P 500 expansion (v0.4)
+
+The cross-industry profiles are `S500-C0` through `S500-C4`. Their trading rules
+are unchanged; only the universe policy changes. Current membership comes from
+dated State Street SPY equity holdings cross-checked against Wikipedia, with
+CIK/security identities, source hashes and immutable change snapshots. Both
+source and verification age must be no more than one completed trading session;
+stale or conflicting evidence prohibits new risk. This is a verified daily
+public snapshot, not a real-time licensed index feed.
+
+```bash
+uv run --no-sync shm sp500-refresh --repo-root .
+uv run --no-sync shm market-refresh-sp500 --repo-root .
+uv run --no-sync shm research-v04 --repo-root .
+```
+
+The enabled `config/sp500.yaml` routes daily downloads through one serial,
+rate-limited queue instead of the legacy downloader. Existing current caches
+need no request; overlap checks, archived repairs, persistent provider-call
+budgets and global 429/Retry-After pauses prevent retry storms. The previous
+V04's required prices share this queue. Current source and price completeness
+are separate gates shown on the dashboard.
+
+The new historical study uses historical members, never today's winners
+retroactively. Incomplete membership or corrupted historical quotes makes
+results inconclusive and blocks winner/account creation. v0.2/v0.3 records and
+accounts remain separately accessible. See `docs/spec-v0.4.md` and ADR-012.
+
+Detailed parquet/decision traces, raw cache backups and queue state are local
+artifacts rather than source files; published reports retain snapshot hashes
+and the reproducible commands. Container upgrades add missing versioned assets
+without replacing existing account evidence or the SQLite schedule.
+
+### Fixed-rule trend exits (v0.3)
+
+SPEC v0.3 adds a separate, closed C0–C4 study and version-isolated paper runtime.
+Its objective is net CAGR above SPY and a smaller maximum drawdown at both
+10 and 25 bps costs. A 10% drawdown triggers a review, not forced liquidation;
+there is no maximum holding-age exit. See `docs/spec-v0.3.md` and ADR-011.
+
+```bash
+uv run --no-sync shm research-v03 --repo-root .
+```
+
+This reads the existing adjusted-price caches through 2026-09-04 and records
+**known-history research**, never a fresh OOS test. It preserves the old OOS
+ledger. Results are in `reports/v03/selection.json` and its referenced report.
+Only a candidate meeting both cost-scenario gates creates
+`config/v03/winner.json`; no qualifying candidate means no new account.
+
+For a frozen winner, replace `C3` below with its actual id:
+
+```bash
+uv run --no-sync shm paper init-v03 --strategy-id C3 --repo-root .
+uv run --no-sync shm paper daily-decision --strategy-id C3 --repo-root .
+uv run --no-sync shm paper status-v03 --strategy-id C3 --repo-root .
+```
+
+The existing daily service automatically initializes and advances a frozen
+winner. Independent 10/25 bps books, daily decisions, monthly reports and 10%
+drawdown reviews live under `paper/v03/<candidate>/`. No historical dates can
+be backfilled as timely forward decisions. The dashboard defaults to V04 and
+also exposes C0–C4, clearly separating historical screening from forward
+performance. A candidate without a paper account has no displayed account NAV.
+The next-open fills and model costs do not establish broker execution costs.
+
+### Preserved v0.2 baseline
+
 P2 research has passed KR2. The three frozen OOS candidates were run in the
 precommitted order, exhausting the `3/3` OOS budget: V04 and V08 passed, while
 V02 missed the strict SPY Sharpe comparison. V04 (`params_hash` `2064365d`) is
@@ -68,7 +136,7 @@ with the actual step output and retry attempts. New runs also record steps
 skipped because they are not due. Older database history is retained.
 The daily check time can be changed in the page and is stored in SQLite.
 Each run makes up to three attempts with a five-minute delay.
-The stock strategy still makes decisions only on its 20-session rebalance
+The preserved V04 stock strategy still makes decisions only on its 20-session rebalance
 dates and simulates execution at the next session's open after that session
 has closed. The page refreshes its read-only data every 30 seconds.
 

@@ -1,0 +1,20 @@
+{
+  "reporting_period": [
+    "2017-06-16",
+    "2017-12-31"
+  ],
+  "units": "USD thousands",
+  "net_assets_beginning": 50201124,
+  "net_increase_from_operations": 20648182,
+  "common_share_issuance_proceeds": 68799,
+  "common_share_repurchases": -8432186,
+  "reported_net_assets_end": 62485919,
+  "reported_net_cash_from_operations": 8363787,
+  "reported_net_cash_used_in_financing": -8363387,
+  "reported_net_change_in_cash": 400,
+  "net_asset_bridge_residual": 0,
+  "financing_bridge_residual": 0,
+  "cash_change_bridge_residual": 0,
+  "interpretation": "Audited statements account for reported capital cash flows through share issuance and repurchases, with no shareholder distribution line or unexplained residual. This is affirmative statement reconciliation, not inference from a missing CSV dividend column.",
+  "precision_limit": "Financial statement dollar amounts are reported in thousands; zero means no reported shareholder distribution, not a claim of an independently queried exhaustive exchange action feed."
+}

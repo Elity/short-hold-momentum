@@ -1,0 +1,240 @@
+{
+  "status": "RAW_TAIL_CANDIDATE_VERIFIED_NOT_CANONICALIZED_NOT_APPLIED",
+  "source": {
+    "repository": "https://github.com/szrlee/Stock-Time-Series-Analysis",
+    "author": "szrlee",
+    "commit": "55639c5cfa7556c4372ff361c026acb792bfdcf4",
+    "commit_date": "2018-01-11T06:14:03Z",
+    "path_in_repository": "data/AABA_2006-01-01_to_2018-01-01.csv",
+    "pinned_raw_url": "https://raw.githubusercontent.com/szrlee/Stock-Time-Series-Analysis/55639c5cfa7556c4372ff361c026acb792bfdcf4/data/AABA_2006-01-01_to_2018-01-01.csv",
+    "local_raw_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-tail-candidate/AABA-szrlee-55639c5.source.csv",
+    "raw_sha256": "219a6434d20f717ed921a8335ff9b3c9ca9d04b0c0b0e266db010cb922c040eb",
+    "bytes": 145792,
+    "upstream_declared_in_pinned_collection_code": "Google Finance via pandas_datareader",
+    "collection_call": "pdr.DataReader(ticker, 'google', start, end)",
+    "ticker_label_added_by_collection_notebook": "data['Name'] = ticker",
+    "Kaggle_relationship": "Search returned this author repository and third-party notebooks linking the hinted Kaggle dataset; the actual retrieved/pinned source here is GitHub.",
+    "Kaggle_dataset_version": null,
+    "Kaggle_version_verified": false,
+    "not_a_new_Yahoo_refresh": true
+  },
+  "columns": [
+    "Date",
+    "Open",
+    "High",
+    "Low",
+    "Close",
+    "Volume",
+    "Name"
+  ],
+  "absent_fields": [
+    "Adj Close",
+    "Dividends",
+    "Stock Splits"
+  ],
+  "full_source": {
+    "rows": 3019,
+    "first": "2006-01-03",
+    "last": "2017-12-29",
+    "missing_sessions": [
+      "2010-04-01"
+    ],
+    "duplicate_dates": 0,
+    "invalid_rows": [
+      {
+        "Date": "2011-08-02 00:00:00",
+        "Open": 12.96,
+        "High": 12.94,
+        "Low": 12.52,
+        "Close": 12.85,
+        "Volume": 35799512,
+        "Name": "AABA"
+      }
+    ],
+    "disposition": "Full original file preserved; early defects excluded from the requested tail and never used to replace WIKI prefix."
+  },
+  "requested_tail": {
+    "rows": 136,
+    "first": "2017-06-19",
+    "last": "2017-12-29",
+    "missing_sessions": [],
+    "invalid_rows": 0,
+    "duplicate_dates": 0,
+    "all_Name_AABA": true,
+    "all_positive_integer_share_volume": true,
+    "first_observation": {
+      "Date": "2017-06-19 00:00:00",
+      "Open": 54.0,
+      "High": 55.03,
+      "Low": 53.8,
+      "Close": 54.46,
+      "Volume": 39430343,
+      "Name": "AABA"
+    },
+    "last_observation": {
+      "Date": "2017-12-29 00:00:00",
+      "Open": 69.79,
+      "High": 70.13,
+      "Low": 69.43,
+      "Close": 69.85,
+      "Volume": 6613070,
+      "Name": "AABA"
+    },
+    "csv_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-tail-candidate/AABA-2017-06-19-to-2017-12-29.raw-candidate.csv",
+    "csv_sha256": "a87f6b0ac1f7f09ef8954127c06102b6b4aebed6f2a3907c4f9f201c1f7dd8fb",
+    "parquet_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-tail-candidate/AABA-2017-06-19-to-2017-12-29.raw-candidate.parquet",
+    "parquet_sha256": "1bbe90f4d5467505946ea8e6fb2bc77884ada785cbdd3db698c9d7f604c93ee1"
+  },
+  "rename_boundary": {
+    "WIKI_2017_06_16_close": 52.5892,
+    "Google_2017_06_16_close": 52.58,
+    "close_difference": -0.009199999999999875,
+    "close_relative_difference": -0.00017494086238234452,
+    "Google_2017_06_19_open": 54.0,
+    "Google_2017_06_19_close": 54.46,
+    "unadjusted_overnight_return_using_WIKI_prior_close": 0.026826800940116913,
+    "interpretation": "Same price scale is supported by actual overlapping observations; not an instruction to rescale the series or substitute either close for an execution price."
+  },
+  "overlap_statistics": {
+    "2006-01-03": {
+      "shared_sessions": 2883,
+      "fields": {
+        "open": {
+          "max_absolute_difference": 0.7199999999999989,
+          "max_relative_difference": 0.026375282592313462,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 9
+        },
+        "high": {
+          "max_absolute_difference": 0.2400000000000002,
+          "max_relative_difference": 0.018209408194233705,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 1
+        },
+        "low": {
+          "max_absolute_difference": 0.23000000000000043,
+          "max_relative_difference": 0.018039215686274545,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 1
+        },
+        "close": {
+          "max_absolute_difference": 0.125,
+          "max_relative_difference": 0.007053291536050146,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 0
+        },
+        "volume": {
+          "max_absolute_difference": 18345003.0,
+          "max_relative_difference": 0.6645802055713694,
+          "median_relative_difference": 5.2933621816751325e-05,
+          "count_above_one_percent": 120
+        }
+      }
+    },
+    "2017-01-01": {
+      "shared_sessions": 115,
+      "fields": {
+        "open": {
+          "max_absolute_difference": 0.21999999999999886,
+          "max_relative_difference": 0.004365079365079343,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 0
+        },
+        "high": {
+          "max_absolute_difference": 0.005000000000002558,
+          "max_relative_difference": 0.00011755025273310353,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 0
+        },
+        "low": {
+          "max_absolute_difference": 0.005000000000002558,
+          "max_relative_difference": 0.0001215805471125242,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 0
+        },
+        "close": {
+          "max_absolute_difference": 0.009199999999999875,
+          "max_relative_difference": 0.00017494086238238794,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 0
+        },
+        "volume": {
+          "max_absolute_difference": 18345003.0,
+          "max_relative_difference": 0.6645802055713694,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 20
+        }
+      }
+    },
+    "2017-05-01": {
+      "shared_sessions": 34,
+      "fields": {
+        "open": {
+          "max_absolute_difference": 0.21999999999999886,
+          "max_relative_difference": 0.004365079365079343,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 0
+        },
+        "high": {
+          "max_absolute_difference": 0.0,
+          "max_relative_difference": 0.0,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 0
+        },
+        "low": {
+          "max_absolute_difference": 0.005000000000002558,
+          "max_relative_difference": 0.00010112245929826187,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 0
+        },
+        "close": {
+          "max_absolute_difference": 0.009199999999999875,
+          "max_relative_difference": 0.00017494086238238794,
+          "median_relative_difference": 0.0,
+          "count_above_one_percent": 0
+        },
+        "volume": {
+          "max_absolute_difference": 18345003.0,
+          "max_relative_difference": 0.6645802055713694,
+          "median_relative_difference": 0.007840383805010363,
+          "count_above_one_percent": 17
+        }
+      }
+    }
+  },
+  "identity_reference": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/audit.json",
+  "limitations": [
+    "No adjusted-close, dividend or split columns; the complete 2017 H2 cash/split ledger and final adjustment convention are not verified by this source-only task.",
+    "Some earlier OHLC and volumes disagree with WIKI; preserve WIKI prefix and assess any proposed join explicitly.",
+    "The raw candidate does not itself certify every strategy-specific exit date, though it covers every session from June 19 to the last session of 2017.",
+    "Kaggle version was not fetched; version here is the pinned GitHub commit plus content hashes."
+  ],
+  "public_requests_used": 4,
+  "public_request_limit": 4,
+  "request_ledger": [
+    {
+      "request": 1,
+      "kind": "targeted web search",
+      "artifact": "request-01-file-search.json"
+    },
+    {
+      "request": 2,
+      "kind": "GitHub file commit metadata",
+      "artifact": "request-02-file-commit.meta.json"
+    },
+    {
+      "request": 3,
+      "kind": "pinned raw single CSV",
+      "artifact": "request-03.meta.json"
+    },
+    {
+      "request": 4,
+      "kind": "pinned collection notebook read-only",
+      "artifact": "request-04.meta.json"
+    }
+  ],
+  "network_calls_by_audit_script": 0,
+  "canonical_price_series_generated": false,
+  "repo_or_manifest_modified": false,
+  "backtest_run": false
+}

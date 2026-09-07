@@ -1,0 +1,73 @@
+{
+  "ticker": "ATVI",
+  "candidate_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/ATVI-2021-extension/ATVI-through-2021-08-19.candidate.parquet",
+  "expected_current_override_path": "data/research/v04/prices/ATVI-through-2020-04-01.parquet",
+  "expected_current_override_sha256": "c6beda01fad277fa3c202d419180163c816f3daaf54978600fed94eb10d46d7b",
+  "price_override": {
+    "path": "data/research/v04/prices/ATVI-through-2021-08-19.parquet",
+    "sha256": "3ae0974fa6785531839c5743c16243894e5d60ff6cd322577a864e727ea82a74",
+    "source_ticker": "ATVI",
+    "source_name": "Activision Blizzard Inc.",
+    "first": "2003-10-01",
+    "last": "2021-08-19",
+    "invalid_rows": 0,
+    "source_archive_sha256": "5739988ed3062b923f7834ca89e5e4b8bcc18f02c89f79fd2d6c9159fcc9151c",
+    "method": "Preserve all 4154 currently active rows exactly; append 349 whole SheepB v1 OHLCV rows through 2021-08-19. SEC-confirmed 2020/2021 ordinary dividends use the frozen WIKI total-return convention; nominal fields remain separate.",
+    "single_day_repairs": [
+      {
+        "date": "2017-08-07",
+        "source": {
+          "dataset": "camnugent/sandp500",
+          "version": 4,
+          "dataset_last_updated": "2018-02-10T03:15:53.777Z",
+          "publisher": "Cam Nugent",
+          "upstream": "IEX API, confirmed by dataset metadata and included getSandP.py",
+          "download_url": "https://www.kaggle.com/api/v1/datasets/download/camnugent/sandp500",
+          "member": "individual_stocks_5yr/individual_stocks_5yr/ATVI_data.csv",
+          "zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+          "member_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6"
+        },
+        "volume_basis": "Dataset describes volume as number of shares traded. Preserve the reported integer share count; exact venue/consolidation scope is not independently established and differs from WIKI.",
+        "OHLCV": {
+          "open": 62.14,
+          "high": 62.85,
+          "low": 61.8,
+          "close": 62.51,
+          "volume": 7287073
+        }
+      },
+      {
+        "date": "2017-11-08",
+        "source": {
+          "dataset": "camnugent/sandp500",
+          "version": 4,
+          "last_updated": "2018-02-10T03:15:53.777Z",
+          "provider": "IEX, confirmed by existing metadata and included acquisition script",
+          "zip_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-sp500.source.zip",
+          "zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+          "member": "individual_stocks_5yr/individual_stocks_5yr/ATVI_data.csv",
+          "member_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6",
+          "network_requests": 0
+        },
+        "OHLCV": {
+          "open": 62.5,
+          "high": 64.9,
+          "low": 62.15,
+          "close": 64.55,
+          "volume": 12604699
+        }
+      }
+    ],
+    "evidence_path": "data/reference/v04-remediation/price-evidence/ATVI-2021-extension/report.md",
+    "evidence_sha256": "a20596337ab2df11478832e0a5a9d99a37bfa3193bf37846a18ceb60eeb760b2",
+    "prefix_sha256": "c6beda01fad277fa3c202d419180163c816f3daaf54978600fed94eb10d46d7b",
+    "extension_source_sha256": "7b77347e5ecada0deb3675257f34b09b39119dc5b5e250043ea91fd623d67395",
+    "extension_zip_sha256": "22f61a91843c579577a1757bd31653fd998ba8054723da3d4b41d994cda46373",
+    "upstream_provider": "Yahoo Finance via yfinance",
+    "independent_price_vendor": false
+  },
+  "evidence_copy_from": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/ATVI-2021-extension",
+  "new_corporate_actions": [],
+  "existing_unresolved_gates_must_be_retained": true,
+  "remaining_ATVI_gap_starts": "2021-08-20"
+}

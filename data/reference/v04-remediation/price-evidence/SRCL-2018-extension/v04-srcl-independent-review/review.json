@@ -1,0 +1,167 @@
+{
+  "decision": "APPROVE_BOUNDED_APPLICATION",
+  "candidate_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/SRCL-through-2018-12-28.candidate.parquet",
+  "candidate_sha256": "f3c6c3325c4d582a89905183ec0f16c14f84c511928c68c2e0afe8492d2102bd",
+  "scope": {
+    "required_start": "2007-11-12",
+    "required_end": "2018-12-28",
+    "candidate_first_preserved": "2003-10-01",
+    "candidate_rows": 3838,
+    "required_rows": 2802,
+    "unchanged_original_rows": 3646,
+    "new_whole_row_count": 192,
+    "one_restored_date": "2017-11-08",
+    "tail_start": "2018-03-28",
+    "tail_rows": 191
+  },
+  "checks": {
+    "candidate_hash_matches_declared_fixed_artifact": true,
+    "source_index_hashes_match": true,
+    "baseline_copy_is_unchanged_current_override": true,
+    "all_original_rows_retained": true,
+    "same_column_set": true,
+    "all_original_fields_preserved_exactly": true,
+    "new_dates_exactly_one_gap_plus_191_tail": true,
+    "required_calendar_complete_no_extra": true,
+    "tail_calendar_complete_no_extra": true,
+    "dates_unique": true,
+    "candidate_ends_at_bound": true,
+    "candidate_contains_expected_3838_rows": true,
+    "finite_required_numeric_fields": true,
+    "positive_required_prices": true,
+    "nonnegative_volume_and_dollar_volume": true,
+    "required_ohlc_internally_coherent": true,
+    "new_rows_downloaded_at_left_unknown": true,
+    "all_rows_adjusted_flag_true": true,
+    "required_window_close_is_nominal": true,
+    "required_WIKI_no_recorded_cash_events": true,
+    "required_WIKI_no_recorded_split_events": true,
+    "required_SheepB_adjusted_equals_close": true,
+    "tail_is_whole_original_SheepB_OHLCV": true,
+    "gap_is_whole_original_IEX_OHLCV": true,
+    "new_rows_nominal_close_equals_selected_source_close": true,
+    "new_rows_dollar_volume_is_nominal_close_times_source_shares": true,
+    "no_new_ordinary_cash_credit_proposed": true,
+    "no_new_corporate_action_proposed": true,
+    "issuer_source_text_hash_bound": true,
+    "exact_Stericycle_SEC_identity": true,
+    "issuer_2016_2018_common_cash_policy_confirmed": true,
+    "preferred_conversion_not_treated_as_common_distribution": true,
+    "all_reviewed_inputs_unchanged_during_review": true
+  },
+  "failed_checks": [],
+  "all_old_columns_exact": {
+    "open": true,
+    "high": true,
+    "low": true,
+    "close": true,
+    "volume": true,
+    "as_traded_close": true,
+    "dollar_volume": true,
+    "adjusted": true,
+    "source": true,
+    "downloaded_at": true
+  },
+  "IEX_whole_row_fields": {
+    "open": true,
+    "high": true,
+    "low": true,
+    "close": true,
+    "volume": true
+  },
+  "SheepB_whole_tail_fields": {
+    "open": true,
+    "high": true,
+    "low": true,
+    "close": true,
+    "volume": true
+  },
+  "IEX_gap_row": {
+    "open": 66.98,
+    "high": 67.37,
+    "low": 66.6804,
+    "close": 67.1,
+    "volume": 922226.0,
+    "as_traded_close": 67.1,
+    "dollar_volume": 61881364.599999994
+  },
+  "source_evidence": {
+    "status": "SOURCE_FACTS_REVIEWED",
+    "new_network_requests": 0,
+    "SEC_direct_identity": {
+      "cik": "0000861878",
+      "name": "STERICYCLE INC",
+      "ein": "363640402",
+      "filing": {
+        "accessionNumber": "0001564590-19-005500",
+        "filingDate": "2019-02-28",
+        "reportDate": "2018-12-31",
+        "form": "10-K",
+        "primaryDocument": "srcl-10k_20181231.htm"
+      },
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/01-sec-submissions.body.json",
+      "sha256": "ecc28aa742e805b2028368cc0981dd61064b74b091e39d145915b8bddf3cb5b3"
+    },
+    "filing_content": {
+      "source_grade": "Search-indexed third-party EDGAR Online mirror excerpt of issuer filing, matched exact accession; not direct SEC HTML or complete original PDF",
+      "url": "https://content.edgar-online.com/ExternalLink/EDGAR/0001564590-19-005500.html?hash=ed54712ea43ad06f4dc998d3f330efc7f922aea5cce684ff963633eef5262776",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-srcl-bounded/2018-10K.edgar-online.indexed.txt",
+      "sha256": "377889eb0fcbc8a5b55a06bb0b3e13034f9c64101d69cb230ed795f3be0d8757",
+      "identical_to_saved_search_returned_content": true,
+      "SEC_HTML_request_status": 403,
+      "common_stock_identity_and_cash_dividends_excerpt": "The Company’s common stock is listed on the Nasdaq Global Select Market under the ticker symbol \"SRCL.\" There were 88 shareholders of record as of February 25, 2019. We did not declare or pay any cash dividends on our common stock during 2018, 2017 or 2016. We currently expect that we will retain future earnings for debt repayment and use in the operation and expansion of our business and do not anticipate paying any cash dividends on our common stock in the foreseeable future.",
+      "preferred_conversion_excerpt": "Finally, in September 2018, our Series A Mandatory Convertible Preferred Stock (“Series A Preferred Stock”) was converted, in accordance with the terms of issue, into a total of 4.7 million shares of our common stock (for additional information, see Part II, Item 8. Financial Statements and Supplementary Data; Note 14 – Preferred Stock in the Consolidated Financial Statements)."
+    },
+    "performance_graph": {
+      "method_excerpt_available": "Performance Graph The following graph compares the cumulative total return (i.e., share price appreciation plus dividends) on our common stock over the five-year period ended December 31, 2018 with the cumulative total return for the same period on the S&P 500 Index, the Dow Jones U.S. Waste & Disposal Services Index, the Nasdaq Global Select Index, and the S&P Mid Cap 400 Index. The Company has included the Nasdaq Global Select Market Composite Index, replacing the Nasdaq National Market Composite Index as the Company’s common stock is registered on the Nasdaq Global Select Market. In addition, the Company’s common stock is no longer included as part of the S&P 500 Index, as of December 31, 2018, and the S&P 500 Index will be excluded from future performance analysis. Instead the Company is now included as a part of the S&P Mid Cap 400 Index which has been included in the performance analysis below and will be included in the performance analysis in future periods. The graph assumes that $100 was invested on December 31, 2013 in our common stock and in the shares represented by each of the four indices, and that all dividends were reinvested. \n2018 10-K Annual Report Stericycle, Inc.  • 35 \nPART II The stock price performance of our common stock reflected in the following graph is not necessarily indicative of future performance. \n2018 10-K Annual Report Stericycle, Inc.  • 36 \n",
+      "numeric_graph_or_table_available_in_saved_text": false,
+      "crosscheck_performed": false,
+      "new_requirement_introduced": false
+    },
+    "IEX_vendor_provenance": {
+      "dataset_ref": "camnugent/sandp500",
+      "version": 4,
+      "metadata_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-kaggle-metadata.source.json",
+      "metadata_sha256": "f178d81c5312e7388336f5a9f666858acc974caff5b2940b52b4b2966ba55d1c",
+      "upstream_excerpt": "Due to volatility in google finance, for the newest version I have switched over to acquiring the data from The Investor's Exchange api, the simple script I use to do this is found [here][2]. Special thanks to Kaggle, Github, pandas_datareader and The Market.",
+      "grade": "Independent retained vendor CSV upstream declaration, not exchange transaction certification"
+    },
+    "retained_limitations": [
+      "No new issuer action verification for 2007-2015; preserve legacy WIKI source grade.",
+      "No exact issuer OHLCV anchor for each tail date.",
+      "Preferred dividends and conversion apply to preferred holders, not an entitlement of existing common holders.",
+      "Source facts alone do not clear global historical evidence gate or certify path closure."
+    ]
+  },
+  "inherited_source_differences": {
+    "not_modified_or_adjudicated": true,
+    "examples": {
+      "2017-06-08_open": {
+        "WIKI": 80.23,
+        "SheepB": 78.80000305175781
+      },
+      "2017-06-23_volume": {
+        "WIKI": 1193649.0,
+        "SheepB": 2468300.0
+      }
+    },
+    "interpretation": "These are existing vendor disagreements in unchanged rows, not evidence authorizing replacement of the old prefix. No new acceptance tolerance is introduced."
+  },
+  "specific_conflict_blocking_this_bounded_application": null,
+  "review_limits": [
+    "Bounded data application only, not global PRICE_REPAIR_EVIDENCE closure.",
+    "2007-2015 retains existing WIKI evidence; no newly obtained complete issuer split/dividend/spinoff census.",
+    "New issuer text confirms no common cash dividends for2016-2018; preferred dividends/conversion do not accrue to existing common holdings.",
+    "The 191-day tail is vendor archive evidence with source-scale corroboration, not issuer/exchange-certified daily quotes.",
+    "Performance graph numeric values are absent from retained source text; no invented comparison was made.",
+    "Actual holdings/executions/receivables must be checked in the original ten fixed candidate/cost paths after application; no automatic forced Dec28 sale is introduced.",
+    "No later acquisition lifecycle or source expansion is approved."
+  ],
+  "constraints": {
+    "new_network_requests": 0,
+    "backtests_run": 0,
+    "repo_writes": 0,
+    "producer_files_written": 0,
+    "new_acceptance_standards": 0
+  }
+}

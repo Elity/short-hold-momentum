@@ -1,0 +1,9 @@
+{
+  "zip": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-sp500.source.zip",
+  "sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+  "BCR_file_matches": [],
+  "BCR_rows_in_all_stocks_5yr": 0,
+  "target_date": "2017-11-08",
+  "target_available": false,
+  "network_requests_for_BCR": 0
+}

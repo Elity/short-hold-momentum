@@ -1,0 +1,25 @@
+{
+  "ticker": "ARG",
+  "event": "ordinary_dividend",
+  "ex_date": "2016-03-11",
+  "cash_per_share": 0.6,
+  "previous_nominal_close": 141.87,
+  "ex_day_nominal_close": 141.57,
+  "back_adjustment_factor": 0.9957797003587255,
+  "changed_rows": 3132,
+  "changed_fields": [
+    "open",
+    "high",
+    "low",
+    "close"
+  ],
+  "source_path": "data/research/v04/prices/ARG.parquet",
+  "source_sha256": "3c317d32e5043f25524dbb4bc7f61742a4f813a8ab3a63356f4e5e3aba507806",
+  "output_path": "data/research/v04/prices/ARG-dividend-repaired.parquet",
+  "output_sha256": "81e44001f60d02f0e3ca60dc6b44f6c17b0b2acc65580adc9fdd50580a3dd78d",
+  "amount_source": "SEC Airgas FY2016 10-K: four quarterly dividends of $0.60, total $2.40",
+  "ex_date_source": "StreetInsider and Investing historical dividend records; exact ex-date not independently confirmed by issuer release",
+  "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md",
+  "evidence_sha256": "527580a59cf2cbf6037ba2da37cc0ed6e12f1902fb8378976fde03f37300e4fa",
+  "method": "Multiply adjusted OHLC strictly before ex-date by ex_day_close / (ex_day_close + dividend), the exact existing WIKI total-return convention confirmed against the 2015-12-10 recorded ARG dividend; ex-day return equals (P_ex + D) / P_previous - 1. Nominal fields and volumes unchanged; no separate cash credit and no change to $143 merger entitlement."
+}

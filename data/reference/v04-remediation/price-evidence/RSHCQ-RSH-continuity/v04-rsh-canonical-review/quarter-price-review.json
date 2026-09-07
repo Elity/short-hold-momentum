@@ -1,0 +1,74 @@
+[
+  {
+    "quarter": "2010Q4",
+    "issuer_high": 23.38,
+    "issuer_low": 17.93,
+    "recomputed_raw_high": 23.38,
+    "recomputed_raw_low": 17.93,
+    "primary_table_pair_present": true,
+    "exact_match": true
+  },
+  {
+    "quarter": "2010Q3",
+    "issuer_high": 23.16,
+    "issuer_low": 17.87,
+    "recomputed_raw_high": 23.16,
+    "recomputed_raw_low": 17.87,
+    "primary_table_pair_present": true,
+    "exact_match": true
+  },
+  {
+    "quarter": "2010Q2",
+    "issuer_high": 24.0,
+    "issuer_low": 17.7,
+    "recomputed_raw_high": 24.0,
+    "recomputed_raw_low": 17.7,
+    "primary_table_pair_present": true,
+    "exact_match": true
+  },
+  {
+    "quarter": "2010Q1",
+    "issuer_high": 23.91,
+    "issuer_low": 18.55,
+    "recomputed_raw_high": 23.91,
+    "recomputed_raw_low": 18.55,
+    "primary_table_pair_present": true,
+    "exact_match": true
+  },
+  {
+    "quarter": "2009Q4",
+    "issuer_high": 20.57,
+    "issuer_low": 14.82,
+    "recomputed_raw_high": 20.57,
+    "recomputed_raw_low": 14.82,
+    "primary_table_pair_present": true,
+    "exact_match": true
+  },
+  {
+    "quarter": "2009Q3",
+    "issuer_high": 17.45,
+    "issuer_low": 12.66,
+    "recomputed_raw_high": 17.45,
+    "recomputed_raw_low": 12.66,
+    "primary_table_pair_present": true,
+    "exact_match": true
+  },
+  {
+    "quarter": "2009Q2",
+    "issuer_high": 15.2,
+    "issuer_low": 8.38,
+    "recomputed_raw_high": 15.2,
+    "recomputed_raw_low": 8.38,
+    "primary_table_pair_present": true,
+    "exact_match": true
+  },
+  {
+    "quarter": "2009Q1",
+    "issuer_high": 12.95,
+    "issuer_low": 6.47,
+    "recomputed_raw_high": 12.95,
+    "recomputed_raw_low": 6.47,
+    "primary_table_pair_present": true,
+    "exact_match": true
+  }
+]

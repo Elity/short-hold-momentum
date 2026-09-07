@@ -1,0 +1,50 @@
+{
+  "window": [
+    "2003-12-19",
+    "2011-07-11"
+  ],
+  "research_key": "RSHCQ",
+  "actual_historical_symbol": "RSH",
+  "source_archive_rows": 8344,
+  "window_rows": 1902,
+  "expected_sessions": 1902,
+  "missing_sessions": [],
+  "extra_sessions": [],
+  "duplicated_dates": 0,
+  "invalid_ohlcv_rows": 0,
+  "nonunit_splits": 0,
+  "raw_and_adjusted_volume_identical": true,
+  "cash_dates": [
+    "2004-11-29",
+    "2005-11-29",
+    "2006-11-29",
+    "2007-11-27",
+    "2008-11-25",
+    "2009-11-24",
+    "2010-11-23"
+  ],
+  "cash_amounts": [
+    0.25,
+    0.25,
+    0.25,
+    0.25,
+    0.25,
+    0.25,
+    0.25
+  ],
+  "factor_at_start": 0.8264896968110506,
+  "factor_at_end": 0.9130211209933915,
+  "max_factor_step_residual": 4.440892098500626e-16,
+  "max_common_ohlc_factor_residual": {
+    "open": 7.105427357601002e-15,
+    "high": 7.105427357601002e-15,
+    "low": 1.0658141036401503e-14,
+    "close": 3.552713678800501e-15
+  },
+  "max_daily_total_return_gross_residual": 4.440892098500626e-16,
+  "dividend_convention": "Adjusted close gross return equals (current nominal close + same-date cash dividend) / prior nominal close; nominal closing-price reinvestment convention.",
+  "later_actions_included_in_window_cash": false,
+  "total_return_audit_is_not_a_claim_of_actual_pay_date_cash_reinvestment": true,
+  "application_candidate_read": false,
+  "generated_price_rows": 0
+}

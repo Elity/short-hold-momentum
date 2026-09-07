@@ -1,0 +1,288 @@
+{
+  "status": "VERIFIED_BOUNDED_EXTENSION_WITH_EXPLICIT_LEGACY_REPAIRS",
+  "base": {
+    "path": "data/research/v04/prices/FL.parquet",
+    "sha256": "8e74d578db3db6d7bf02452e4965f15f30e22986d0321ef86d8bce78907de7e4",
+    "rows": 3646
+  },
+  "source": {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/FL.parquet",
+    "sha256": "0d47533f419a3da85aff4c9e9288a9de3a27464dd51e3eaf03c7e17c3d269a6d",
+    "dataset": "sheepb/stock-market-dataset-20002021",
+    "version": 1,
+    "upstream": "Yahoo/yfinance",
+    "archive_sha256": "22f61a91843c579577a1757bd31653fd998ba8054723da3d4b41d994cda46373"
+  },
+  "prefix_preserving_candidate": {
+    "file": "FL-extended-prefix-unchanged.parquet",
+    "sha256": "0d3d3e45f7a71bef2bed16d538ec22807ec8f6457bdacdd98796dca1ff220307",
+    "rows": 4502
+  },
+  "repaired_candidate": {
+    "file": "FL-history-repaired-through-2021-08-19.parquet",
+    "sha256": "33946ddd8eac2b907e4e82f75b5177d08fa3cb405e8e46c7fafc646fb9fd8a2f",
+    "rows": 4503,
+    "first": "2003-10-01",
+    "last": "2021-08-19"
+  },
+  "new_tail_rows": 856,
+  "old_missing_row": {
+    "date": "2017-11-08",
+    "nominal_iex_row": {
+      "date": "2017-11-08 00:00:00",
+      "open": 29.07,
+      "high": 29.97,
+      "low": 28.42,
+      "close": 29.88,
+      "volume": 3012717.0,
+      "as_traded_close": 29.88,
+      "dollar_volume": 90019983.96,
+      "adjusted": true,
+      "source": "IEX via Cam Nugent sandp500 v4; full 2017-11-08 row; preserved canonical unit",
+      "downloaded_at": "2026-09-06 19:36:32.709750891+00:00"
+    },
+    "IEX_sha256": "fb58716cd2188dcdbea9fbfd5b1dc9d883f2a5d18586830587b8d1f6d4c576e7",
+    "Yahoo_price_absolute_errors": {
+      "Open": 3.051757815342171e-07,
+      "High": 6.866455066756316e-07,
+      "Low": 7.629394360719743e-08,
+      "Close": 8.392333974427402e-07
+    },
+    "Yahoo_volume_difference": -17.0
+  },
+  "missed_dividend": {
+    "ex_date": "2018-01-18",
+    "cash": 0.31,
+    "record": "2018-01-19",
+    "payable": "2018-02-02",
+    "ex_nominal_close": 48.59,
+    "pre_ex_multiplier": 0.9936605316973415,
+    "primary": "primary-followup/2017Q4-issuer-dividend-indexed.txt"
+  },
+  "dividend_checks": [
+    {
+      "date": "2018-04-19",
+      "dividend": 0.345,
+      "nominal_close": 41.63999938964844,
+      "factor": 1.0082853027151044,
+      "total_return_identity_error": 0.0
+    },
+    {
+      "date": "2018-07-19",
+      "dividend": 0.345,
+      "nominal_close": 53.099998474121094,
+      "factor": 1.014836309107435,
+      "total_return_identity_error": 2.220446049250313e-16
+    },
+    {
+      "date": "2018-10-18",
+      "dividend": 0.345,
+      "nominal_close": 48.79999923706055,
+      "factor": 1.0220108691917755,
+      "total_return_identity_error": 1.1102230246251565e-16
+    },
+    {
+      "date": "2019-01-17",
+      "dividend": 0.345,
+      "nominal_close": 57.59000015258789,
+      "factor": 1.0281333513750877,
+      "total_return_identity_error": 0.0
+    },
+    {
+      "date": "2019-04-17",
+      "dividend": 0.38,
+      "nominal_close": 62.7599983215332,
+      "factor": 1.0343585056767328,
+      "total_return_identity_error": 0.0
+    },
+    {
+      "date": "2019-07-18",
+      "dividend": 0.38,
+      "nominal_close": 42.349998474121094,
+      "factor": 1.0436396449050458,
+      "total_return_identity_error": 0.0
+    },
+    {
+      "date": "2019-10-17",
+      "dividend": 0.38,
+      "nominal_close": 44.18000030517578,
+      "factor": 1.0526161741563924,
+      "total_return_identity_error": 2.220446049250313e-16
+    },
+    {
+      "date": "2020-01-16",
+      "dividend": 0.38,
+      "nominal_close": 39.380001068115234,
+      "factor": 1.0627734655563488,
+      "total_return_identity_error": 2.220446049250313e-16
+    },
+    {
+      "date": "2020-04-16",
+      "dividend": 0.4,
+      "nominal_close": 21.739999771118164,
+      "factor": 1.0823277153584716,
+      "total_return_identity_error": 1.1102230246251565e-16
+    },
+    {
+      "date": "2020-10-15",
+      "dividend": 0.15,
+      "nominal_close": 38.349998474121094,
+      "factor": 1.086561070345782,
+      "total_return_identity_error": 2.220446049250313e-16
+    },
+    {
+      "date": "2021-01-14",
+      "dividend": 0.15,
+      "nominal_close": 47.31999969482422,
+      "factor": 1.0900053679282624,
+      "total_return_identity_error": 2.220446049250313e-16
+    },
+    {
+      "date": "2021-04-15",
+      "dividend": 0.2,
+      "nominal_close": 58.75,
+      "factor": 1.093716024499933,
+      "total_return_identity_error": 0.0
+    },
+    {
+      "date": "2021-07-15",
+      "dividend": 0.2,
+      "nominal_close": 57.54999923706055,
+      "factor": 1.0975169490490184,
+      "total_return_identity_error": 2.220446049250313e-16
+    }
+  ],
+  "tail_dividends": [
+    [
+      "2018-04-19",
+      0.345,
+      "2018-04-20",
+      "2018-05-04"
+    ],
+    [
+      "2018-07-19",
+      0.345,
+      "2018-07-20",
+      "2018-08-03"
+    ],
+    [
+      "2018-10-18",
+      0.345,
+      "2018-10-19",
+      "2018-11-02"
+    ],
+    [
+      "2019-01-17",
+      0.345,
+      "2019-01-18",
+      "2019-02-01"
+    ],
+    [
+      "2019-04-17",
+      0.38,
+      "2019-04-18",
+      "2019-05-03"
+    ],
+    [
+      "2019-07-18",
+      0.38,
+      "2019-07-19",
+      "2019-08-02"
+    ],
+    [
+      "2019-10-17",
+      0.38,
+      "2019-10-18",
+      "2019-11-01"
+    ],
+    [
+      "2020-01-16",
+      0.38,
+      "2020-01-17",
+      "2020-01-31"
+    ],
+    [
+      "2020-04-16",
+      0.4,
+      "2020-04-17",
+      "2020-05-01"
+    ],
+    [
+      "2020-10-15",
+      0.15,
+      "2020-10-16",
+      "2020-10-30"
+    ],
+    [
+      "2021-01-14",
+      0.15,
+      "2021-01-15",
+      "2021-01-29"
+    ],
+    [
+      "2021-04-15",
+      0.2,
+      "2021-04-16",
+      "2021-04-30"
+    ],
+    [
+      "2021-07-15",
+      0.2,
+      "2021-07-16",
+      "2021-07-30"
+    ]
+  ],
+  "nominal_overlap": {
+    "Open": {
+      "rows": 3646,
+      "median_ratio": 1.0000000000000022,
+      "p99_absolute_relative_error": 0.007921302467815625,
+      "max_absolute_relative_error": 0.16446275947507827
+    },
+    "High": {
+      "rows": 3646,
+      "median_ratio": 1.0000000000000073,
+      "p99_absolute_relative_error": 0.00022412374174144475,
+      "max_absolute_relative_error": 0.14739408710491353
+    },
+    "Low": {
+      "rows": 3646,
+      "median_ratio": 1.0000000000000093,
+      "p99_absolute_relative_error": 0.00019714347765269793,
+      "max_absolute_relative_error": 0.0016505433208284792
+    },
+    "Close": {
+      "rows": 3646,
+      "median_ratio": 1.0,
+      "p99_absolute_relative_error": 5.3086641410571334e-08,
+      "max_absolute_relative_error": 0.008362645834264604
+    }
+  },
+  "yearly_nominal_close_ratios": {
+    "2003": 1.0,
+    "2004": 1.0000000034046348,
+    "2005": 1.0,
+    "2006": 1.0,
+    "2007": 0.9999999974636322,
+    "2008": 1.0,
+    "2009": 0.999999993190233,
+    "2010": 0.9999999974636322,
+    "2011": 1.0000000036043735,
+    "2012": 1.0,
+    "2013": 1.0000000041702073,
+    "2014": 1.0,
+    "2015": 1.000000003630575,
+    "2016": 0.9999999974081331,
+    "2017": 1.0,
+    "2018": 0.9999999966763693
+  },
+  "full_xnys_calendar_complete": true,
+  "physical_ohlcv_invalid_rows": 0,
+  "ordinary_dividend_cash_actions_created": 0,
+  "source_independence": "WIKI versus Yahoo source overlap; IEX versus Yahoo only for missing row. Multiple Yahoo archives are not independent vendors.",
+  "limits": [
+    "Some exact dividend record/pay dates use secondary tables corroborated by provider factors; issuer sources confirm annual amounts and selected individual payments.",
+    "2021Q2 full share table ends July31; September3 cover share count and nominal overlap support the August19 endpoint, not a daily corporate-action ledger.",
+    "No prices after August19,2021 or terminal event are supplied; all global unresolved research gates remain."
+  ]
+}

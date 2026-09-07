@@ -1,0 +1,89 @@
+STERICYCLE INC - FORM 10-K - February 23, 2018 STERICYCLE INC - FORM 10-K - February 23, 2018 Attached files file filename EX-21 - EX-21 - STERICYCLE INC srcl-ex21_8.htm EX-32 - EX-32 - STERICYCLE INC srcl-ex32_7.htm EX-23 - EX-23 - STERICYCLE INC srcl-ex23_11.htm EX-31.2 - EX-31.2 - STERICYCLE INC srcl-ex312_9.htm EX-31.1 - EX-31.1 - STERICYCLE INC srcl-ex311_10.htm EX-10.28 - EX-10.28 - STERICYCLE INC srcl-ex1028_761.htm EX-10.32 - EX-10.32 - STERICYCLE INC srcl-ex1032_762.htm 
+UNITED STATES SECURITIES AND EXCHANGE COMMISSION Washington, D.C. 20549 
+FORM 10-K ☒ ANNUAL REPORT PURSUANT TO SECTION 13 OR 15 (d) OF THE SECURITIES EXCHANGE ACT OF 1934 For the fiscal year ended December 31, 2017 or ☐ TRANSITION REPORT PURSUANT TO SECTION 13 OR 15 (d) OF THE SECURITIES EXCHANGE ACT OF 1934 For the transition period from             to Commission File Number 1-37556 
+Stericycle, Inc. (Exact name of registrant as specified in its charter) 
+ Delaware 36-3640402 (State or other jurisdiction of incorporation or organization) (IRS Employer Identification Number) 
+28161 North Keith Drive Lake Forest, Illinois 60045 (Address of principal executive offices, including zip code) (847) 367-5910 (Registrant’s telephone number, including area code) 
+Securities registered pursuant to Section 12 (b) of the Act: 
+Common stock, par value $.01 per share 
+NASDAQ Global Select Market Depositary Shares, each representing a 1/10th ownership interest in a share of 5.25% Mandatory Convertible Preferred Stock, Series A, par value $0.01 per share 
+NASDAQ Global Select Market (Title of each class) 
+(Name of each exchange on which registered) 
+Securities registered pursuant to Section 12 (g) of the Act: None Indicate by check mark if the registrant is a well-known seasoned issuer, as defined in Rule 405 of the Securities Act. YES ☒ NO ☐ Indicate by check mark if the registrant is not required to file reports pursuant to Section 13 or Section 15 (d) of the Act. YES ☐ NO ☒ Indicate by check mark whether the registrant (1) has filed all reports required to be filed by Section 13 or 15 (d) of the Securities Exchange Act of 1934 during the preceding 12 months (or for such shorter period that the registrant was required to file reports), and (2) has been subject to such filing requirements for the past 90 days. YES ☒ NO ☐ Indicate by check mark whether the registrant has submitted electronically and posted on its corporate Web site, if any, every Interactive Data File required to be submitted and posted pursuant to Rule 405 of Regulation S-T during the preceding 12 months (or for such shorter period that the registrant was required to submit and post such files). YES ☒ NO ☐ 
+Indicate by check mark if disclosure of delinquent filers pursuant to Item 405 of Regulation S-K is not contained herein, and will not be contained, to the best of registrant’s knowledge, in definitive proxy or information statements incorporated by reference in Part III of this Form 10-K, or any amendment to this Form 10-K. ☒ Indicate by check mark whether the registrant is a large accelerated filer, an accelerated filer, a non-accelerated filer, or a smaller reporting company. See the definition of "accelerated filer", "large accelerated filer" and "smaller reporting company" in Rule 12b-2 of the Exchange Act. Large accelerated filer ☒ 
+Accelerated filer ☐ Non-accelerated filer ☐ Smaller reporting company ☐ 
+Emerging Growth Company ☐ 
+ If an emerging growth company, indicate by check mark if the registrant has elected not to use the extended transition period for complying with any new or revised financial accounting standards provided pursuant to Section 13 (a) of the Exchange Act. ☐ Indicate by check mark whether the registrant is a shell company (as defined in Exchange Act Rule 12b-2 of the Exchange Act). YES ☐ NO ☒ The aggregate market value of voting and non-voting common equity held by non-affiliates computed by reference to the price at which common equity was last sold as of the last business day of the registrant’s most recently completed second fiscal quarter (June 30, 2017): $6,512,899,920. On February 19, 2018, there were 85,544,357 shares of the Registrant’s Common Stock outstanding. 
+DOCUMENTS INCORPORATED BY REFERENCE Information required by Items 10, 11, 12 and 13 of Part III of this Report is incorporated by reference from the Registrant’s definitive Proxy Statement for the 2018 Annual Meeting of Stockholders to be held on May 23, 2018. 
+ 
+TABLE OF CONTENTS 
+Table of Contents 
+ Page No. 
+PART I. 
+ 
+ 
+ Item 1. Business 3 
+ 
+ Item 1A. Risk Factors 17 
+ 
+ Item 1B. Unresolved Staff Comments 28 
+ 
+ Item 2. Properties 28 
+ 
+ Item 3. Legal Proceedings 28 
+ 
+ Item 4. Mine Safety Disclosures 28 
+ 
+ PART II. 
+ 
+ 
+ Item 5. Market Price for Registrant's Common Equity, Related Stockholder Matters 29 
+ 
+ Item 6. Selected Financial Data 31 
+ 
+ Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations 33 
+ 
+ Item 7A. Quantitative and Qualitative Disclosures about Market Risk 58 
+ 
+ Item 8. Financial Statements and Supplementary Data 59 
+ 
+ Item 9. Changes in and Disagreements with Accountants on Accounting and Financial Disclosure 106 
+ 
+ Item 9A. Controls and Procedures 106 
+ 
+ Item 9B. Other Information 111 
+ 
+ PART III. 
+ 
+ 
+ Item 10. Directors, Executive Officers and Corporate Governance 112 
+ 
+ Item 11. Executive Compensation 112 
+ 
+ Item 12. Security Ownership of Certain Beneficial Owners and Management and Related Stockholder Matters 112 
+ 
+ Item 13. Certain Relationships and Related Transactions, and Director Independence 113 
+ 
+ Item 14. Principal Accounting Fees and Services 113 
+ 
+ PART IV. 
+ 
+ 
+ Item 15. Exhibits and Financial Statement Schedules 114 
+ 
+ Item 16. Form 10-K Summary 120 
+ 
+ SIGNATURES 121 
+ 
+ PART I PART I Item 1. Business Unless the context requires otherwise, the “Company”, “Stericycle”, we," "us" or "our" refers to Stericycle, Inc., a Delaware corporation, and its subsidiaries on a consolidated basis. Stericycle was incorporated in 1989. Overview Services Stericycle is a business-to-business services provider with a focus on regulated and compliance solutions. Our core purpose is to help our customers fulfill their promise by providing solutions that protect people and brands, promote health and safeguard the environment. Over our 28 year history, Stericycle has developed the scale, expertise and experience to handle many complicated and often behind-the-scenes services that allow our more than one million customers to focus on running their business. We operate in the United States (“U.S.”) and 20 other countries. Our worldwide networks include a total of 256 processing facilities, 2 landfills, 22 communication centers, 325 transfer sites, 75 customer service or administrative offices, and 110 warehouse or parking facilities. 
+256 Processing Facilities 2 Landfill Locations 22 Communication Centers 325 Transfer Sites 75 Office Locations 
+We are one of the leading providers in our core service lines, which include: 
+Medical waste management services (including reusable sharps disposal management services) Pharmaceutical waste services Hazardous waste management services Secure information destruction (including document and hard drive destruction services) 
+2017 10-K Annual Report Stericycle, Inc.  • 3 
+ PART I 
+Compliance programs under the Steri-Safe®, Clinical Services, First Practice Management, SeguriMed and EnviroAssure brand names Regulated recall and returns management communication, logistics, and data management services for expired, withdrawn or recalled products Live voice and automated communication services including afterhours answering, appointment scheduling, appointment reminders, secure messaging, and event registration We operate our business in 21 markets around the globe. Our full portfolio of services is available in the United States, Canada, Ireland, the Netherlands, Spain, and the United Kingdom (“U.K.”). Only regulated waste services are provided in Argentina, Brazil, Chile, Japan, Mexico, Portugal, Republic of Korea, and Romania. Only secure information destruction services are provided in Australia, Austria, Belgium, France, Germany, Luxembourg and Singapore. Secure information destruction services under the Shred-it brand are also provided in the United Arab Emirates through a joint venture with the Company’s portion of income reported as an equity investment. Customers Our broad offering of services appeals to a wide range of small and large business customers. The majority of our customers are healthcare businesses (hospitals, physician and dental practices, outpatient clinics, long-term care facilities, etc.). We also provide services to retailers, manufacturers, financial services providers, professional services providers, governmental entities, and other businesses. In total, we serve more than one million customers worldwide. No single customer accounts for more than 1.2% of our total revenues, and our top ten customers collectively account for approximately 7.1% of total revenues. We provide service to the majority of these customers under multi-year contracts. 
+2017 10-K Annual Report Stericycle, Inc.  • 4 
+ PART I Although we have several standard contracts, terms vary depending upon the customer’s service requirements, types of services and geographies. Segments Our three operating segments are: 
+• Domestic and Canada Regulated Waste and Compliance Services (“Domestic and Canada RCS”) 
+• International Regulated Waste and Compliance Services (“International RCS”) 
+• Domestic Communication and Related Services (“Domestic CRS”) Our Regulated Waste and Compliance Services segments for both Domestic and Canada, as well as International, include medical waste disposal, pharmaceutical waste disposal, and hazardous waste management; secure information destruction of documents and e-media, and compliance services. Our Domestic Communication and Related Services segment consists of inbound/outbound communication, automated patient reminders, online scheduling, notifications, product retrievals, product returns, and quality audits. Domestic CRS does not consistently meet the quantitative criteria to be a separate reportable segment and therefore is included in the “All Other” reporting segment. Costs related to our corporate headquarter and shared services functions are also included in “All Other.” Financial and other information related to our reporting segments is included in Part II, Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations and Part II, Item 8. Financial Statements and Supplementary Data; Note 16 - Segment Reporting. Business Strategy Focus on Regulated Business-to-Business Operations We focus on providing business-to-business services in areas of operations that are highly regulated. By helping our customers maintain compliance with complex regulations, we protect people and brands, promote health, and safeguard the environment. STERICYCLE INC - FORM 10-K - February 23, 2018

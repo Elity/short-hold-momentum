@@ -1,0 +1,73 @@
+{
+  "budget": 8,
+  "used": 8,
+  "no_new_yahoo_calls": true,
+  "no_registration_or_payment": true,
+  "no_retry_or_bypass": true,
+  "requests": [
+    {
+      "number": 1,
+      "file": "01-jwn-submissions.meta.json",
+      "sha256": "56f8206fd0d87d791dc78a49f56b32fdd90987ab34b51c9a51580e8b1972b659",
+      "url": "https://data.sec.gov/submissions/CIK0000072333.json",
+      "query": null,
+      "error": null
+    },
+    {
+      "number": 2,
+      "file": "02-jwn-2018-dividends-search.json",
+      "sha256": "6def8f6aeeb8efb174a2022f4832c891659671abd503b4ab989d8b4cbbd33303",
+      "url": null,
+      "query": "site.investor.nordstrom.com 2018 Nordstrom declares quarterly dividend May August November 0.37 record payable",
+      "error": null
+    },
+    {
+      "number": 3,
+      "file": "03-jwn-2019-dividends-search.json",
+      "sha256": "ff8ffd83311d4b3f45a9fda922cc795ff36f4acc7c2b9d28e02f4c9e44ccbd56",
+      "url": null,
+      "query": "site.investor.nordstrom.com 2019 Nordstrom declares quarterly dividend 0.37 record payable",
+      "error": null
+    },
+    {
+      "number": 4,
+      "file": "04-jwn-issuer-dividends-direct.json",
+      "sha256": "42afa4c18b132b1751ee2c3e52c44dae21e1488c1ebe56fa32f8868634565a2c",
+      "url": "https://investor.nordstrom.com/stock-information/dividends-splits",
+      "query": null,
+      "error": null
+    },
+    {
+      "number": 5,
+      "file": "05-jwn-2019-10k-direct.json",
+      "sha256": "e4c6b59c03df1d4b516fed0fba1cdb80ca88ae099becb2829aef5668aae58a21",
+      "url": "https://www.sec.gov/Archives/edgar/data/72333/000007233320000078/jwn-212020x10k.htm",
+      "query": null,
+      "error": null
+    },
+    {
+      "number": 6,
+      "file": "06-jwn-2020-10k-direct.json",
+      "sha256": "08ae49178a2bbf1b90855c20b92fafb9068b8cc8c9ca534cd1bf49dd01a49fd6",
+      "url": "https://www.sec.gov/Archives/edgar/data/72333/000007233321000099/jwn-20210130.htm",
+      "query": null,
+      "error": null
+    },
+    {
+      "number": 7,
+      "file": "07-jwn-2021q2-direct.json",
+      "sha256": "59e3b85e2d44725dee8fd6353f8f9ea3930be882b3970257e6601e8060fc566f",
+      "url": "https://www.sec.gov/Archives/edgar/data/72333/000007233321000212/jwn-20210731.htm",
+      "query": null,
+      "error": null
+    },
+    {
+      "number": 8,
+      "file": "08-jwn-2021q2-raw.meta.json",
+      "sha256": "11a25055c7222fe53ac8b3099770c120d7b71b81eb4920179e2bdfcd0d597a6f",
+      "url": "https://www.sec.gov/Archives/edgar/data/72333/000007233321000212/jwn-20210731.htm",
+      "query": null,
+      "error": "<HTTPError 403: 'Forbidden'>"
+    }
+  ]
+}

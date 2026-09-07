@@ -1,0 +1,47 @@
+{
+  "budget": 4,
+  "requests_used": 4,
+  "requests": [
+    {
+      "number": 1,
+      "type": "search",
+      "args": {
+        "query": "RadioShack RSHCQ RSH common stock February 2015 OTC SEC",
+        "contentFormat": "text",
+        "maxResults": 7,
+        "maxLength": 22000
+      }
+    },
+    {
+      "number": 2,
+      "type": "search",
+      "args": {
+        "query": "\"RadioShack\" \"RSHC\" \"RSHCQ\" common shares",
+        "contentFormat": "text",
+        "maxResults": 8,
+        "maxLength": 14000
+      }
+    },
+    {
+      "number": 3,
+      "type": "search",
+      "args": {
+        "query": "RadioShack annual report 2010 2007 \"0.25\" dividends common stock",
+        "contentFormat": "text",
+        "maxResults": 10,
+        "maxLength": 130000
+      }
+    },
+    {
+      "number": 4,
+      "type": "search",
+      "args": {
+        "query": "\"RadioShack\" \"RSHCQ\" \"General Wireless\" sale",
+        "contentFormat": "text",
+        "maxResults": 10,
+        "maxLength": 35000
+      }
+    }
+  ],
+  "further_network_requests_allowed": false
+}

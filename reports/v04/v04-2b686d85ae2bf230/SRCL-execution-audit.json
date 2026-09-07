@@ -1,0 +1,284 @@
+{
+  "run_id": "v04-2b686d85ae2bf230",
+  "status": "INCONCLUSIVE",
+  "winner": null,
+  "price_coverage": 0.8982621381993511,
+  "basis_coverage": 0.8645997659091615,
+  "missing_tickers_including_quarantine": 109,
+  "items": [
+    {
+      "strategy": "S500-C0",
+      "bps": 10,
+      "transactions": 3,
+      "last_holding_date": "2010-11-17",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-17",
+          "execution_date": "2010-11-18",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 74.55952784327958,
+          "price": 70.94,
+          "notional": 5289.252905202254,
+          "cost": 5.289252905202254,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 71.51899029783027
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C0",
+      "bps": 25,
+      "transactions": 3,
+      "last_holding_date": "2010-11-17",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-17",
+          "execution_date": "2010-11-18",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 69.75384617978868,
+          "price": 70.94,
+          "notional": 4948.3378479942085,
+          "cost": 12.37084461998552,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 52.17936463479066
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 10,
+      "transactions": 3,
+      "last_holding_date": "2010-11-17",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-17",
+          "execution_date": "2010-11-18",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 77.14696331964717,
+          "price": 70.94,
+          "notional": 5472.8055778957705,
+          "cost": 5.4728055778957705,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 74.00091015547159
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 25,
+      "transactions": 3,
+      "last_holding_date": "2010-11-17",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-17",
+          "execution_date": "2010-11-18",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 71.94960011732324,
+          "price": 70.94,
+          "notional": 5104.104632322911,
+          "cost": 12.760261580807278,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 53.82189836776338
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 10,
+      "transactions": 3,
+      "last_holding_date": "2010-11-16",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-16",
+          "execution_date": "2010-11-17",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 83.30086487032628,
+          "price": 70.47,
+          "notional": 5870.211947411893,
+          "cost": 5.870211947411892,
+          "reason": "sma50_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": 40.79160051834977
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 25,
+      "transactions": 3,
+      "last_holding_date": "2010-11-16",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-16",
+          "execution_date": "2010-11-17",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 78.4343208608846,
+          "price": 70.47,
+          "notional": 5527.266591066537,
+          "cost": 13.818166477666344,
+          "reason": "sma50_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": 21.90082324238029
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 10,
+      "transactions": 3,
+      "last_holding_date": "2010-11-17",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-17",
+          "execution_date": "2010-11-18",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 89.48848453741765,
+          "price": 70.94,
+          "notional": 6348.313093084408,
+          "cost": 6.348313093084408,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 85.83914413798131
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 25,
+      "transactions": 3,
+      "last_holding_date": "2010-11-17",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-17",
+          "execution_date": "2010-11-18",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 82.40579640610356,
+          "price": 70.94,
+          "notional": 5845.867197048987,
+          "cost": 14.614667992622469,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 61.64365600158546
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 10,
+      "transactions": 3,
+      "last_holding_date": "2010-11-17",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-17",
+          "execution_date": "2010-11-18",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 107.81501302018032,
+          "price": 70.94,
+          "notional": 7648.397023651592,
+          "cost": 7.648397023651593,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 103.41831678921685
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 25,
+      "transactions": 3,
+      "last_holding_date": "2010-11-17",
+      "last_transaction": [
+        {
+          "signal_date": "2010-11-17",
+          "execution_date": "2010-11-18",
+          "ticker": "SRCL",
+          "side": "sell",
+          "quantity": 99.53464719970763,
+          "price": 70.94,
+          "notional": 7060.98787234726,
+          "cost": 17.65246968086815,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 74.45689283774094
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "all_held_marks_within_verified_window": true,
+      "SRCL_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    }
+  ]
+}

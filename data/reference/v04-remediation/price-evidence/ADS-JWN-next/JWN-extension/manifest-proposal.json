@@ -1,0 +1,201 @@
+{
+  "apply_ready": true,
+  "selected_variant": "JWN-tail-plus-prefix-repairs.candidate.parquet",
+  "comparison_variant_do_not_apply": "JWN-tail-prefix-unchanged.candidate.parquet",
+  "source_quality_limitations": {
+    "events": [
+      {
+        "declaration_date": "2017-11-15",
+        "ex_date": "2017-11-24",
+        "record_date": "2017-11-27",
+        "payment_date": "2017-12-12",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "prefix_missing_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      },
+      {
+        "declaration_date": "2018-02-21",
+        "ex_date": "2018-03-02",
+        "record_date": "2018-03-05",
+        "payment_date": "2018-03-20",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "prefix_missing_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      },
+      {
+        "declaration_date": "2018-05-08",
+        "ex_date": "2018-05-17",
+        "record_date": "2018-05-18",
+        "payment_date": "2018-06-04",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "extension_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      },
+      {
+        "declaration_date": "2018-08-22",
+        "ex_date": "2018-08-31",
+        "record_date": "2018-09-04",
+        "payment_date": "2018-09-19",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "extension_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      },
+      {
+        "declaration_date": "2018-11-14",
+        "ex_date": "2018-11-23",
+        "record_date": "2018-11-26",
+        "payment_date": "2018-12-11",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "extension_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      },
+      {
+        "declaration_date": "2019-02-27",
+        "ex_date": "2019-03-08",
+        "record_date": "2019-03-11",
+        "payment_date": "2019-03-26",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "extension_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      },
+      {
+        "declaration_date": "2019-05-23",
+        "ex_date": "2019-05-31",
+        "record_date": "2019-06-03",
+        "payment_date": "2019-06-18",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "extension_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      },
+      {
+        "declaration_date": "2019-08-20",
+        "ex_date": "2019-08-29",
+        "record_date": "2019-08-30",
+        "payment_date": "2019-09-16",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "extension_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      },
+      {
+        "declaration_date": "2019-11-21",
+        "ex_date": "2019-11-27",
+        "record_date": "2019-11-29",
+        "payment_date": "2019-12-16",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "extension_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      },
+      {
+        "declaration_date": "2020-02-27",
+        "ex_date": "2020-03-09",
+        "record_date": "2020-03-10",
+        "payment_date": "2020-03-25",
+        "cash_per_nominal_share": 0.37,
+        "currency": "USD",
+        "scope": "extension_dividend",
+        "amount_source": "Published Mergent table hosted by Nordstrom, corroborated by SEC quarterly/annual dividend disclosures and saved issuer releases",
+        "ex_date_source": "Mergent historical table on issuer website; date agrees with source adjustment-factor event",
+        "date_source_grade": "ISSUER_HOSTED_THIRD_PARTY_TABLE_NOT_INDIVIDUAL_SEC_EXDATE_ANNOUNCEMENT",
+        "amount_not_inferred_from_factor": true
+      }
+    ],
+    "tail_count": 8,
+    "prefix_missing_count": 2,
+    "amounts_never_inferred_from_factors": true,
+    "date_grade": "Issuer-hosted Mergent history, independently matching vendor adjustment dates; not all dates are individual SEC announcements.",
+    "primary_amount_support": "SEC 2020 10-K gives all four 2019 quarters at 0.37 and 2020 Q1 at 0.37; SEC 2019 10-K gives 2017/2018/2019 annual totals 1.48; issuer May/Aug 2018 releases and 2018 Q1/Q2 filings corroborate 0.37 installments.",
+    "suspension_support": "SEC 2020 10-K says cash dividends suspended from Q2 2020, consistent with no further Mergent records or factor events through 2021-08-19.",
+    "2021q2_limit": "Browse result is truncated before financial statements; final direct SEC request returned 403 and was not retried."
+  },
+  "required_unchanged_unresolved": [
+    {
+      "id": "TIE_NO_VERIFIED_REPLACEMENT",
+      "reason": "NYSE Titanium Metals缓存混入其他证券；免费候选仍有2个整行缺口、6个季度报价冲突及早期成交量口径疑点，未应用。"
+    },
+    {
+      "id": "MIL_SECURITY_IDENTITY_MISMATCH",
+      "reason": "历史成员是 Millipore，但 WIKI 的 MIL 元数据为 MFC Industrial，2010年报价约7至16美元，与Millipore每股107美元收购事件不符。"
+    },
+    {
+      "id": "ARCHIVE_DELISTING_AND_LATER_GAPS",
+      "reason": "2018年停止更新的归档不能补齐之后的退市公司行情、换股和现金收购结算；新增序列仍需逐项核验身份与终止事件，不能作为合格收益证据。"
+    },
+    {
+      "id": "AGN_OLD_MISSING_DISTINCT_SECURITY",
+      "reason": "原Allergan Inc与Watson/Actavis为独立发行人；WIKI AGN为后者的历史，原Allergan价格尚未取得可信完整替代。"
+    },
+    {
+      "id": "LSI_SECURITY_IDENTITY_MISMATCH",
+      "reason": "WIKI LSI不对应历史LSI Corporation：2012/13八季报价与SEC均不符，不能作为原半导体公司的行情。"
+    }
+  ],
+  "price_override": {
+    "path": "data/research/v04/prices/JWN-through-2021-08-19-dividend-repaired.parquet",
+    "sha256": "06e1a93159d3bb81a7d1599ae3441cdc4dd602d6e40155b711f63ee9ef44ed91",
+    "source_ticker": "JWN",
+    "source_name": "Nordstrom Inc.",
+    "first": "2003-10-01",
+    "last": "2021-08-19",
+    "invalid_rows": 0,
+    "source_archive_sha256": "590fc660aecc365ace17b6d03bb05636f2c1801981fe989da10f86d437ab6dd3",
+    "method": "Extend with 856 full SheepB v1 nominal OHLCV rows using canonical WIKI dividend reinvestment factors; explicitly repair 2017-11-24 and 2018-03-02 missing 0.37 dividends in prior adjusted OHLC only; fill 2017-11-08 whole row after independent local IEX cross-check. Preserve original files and all existing nominal price/volume/dollar-volume fields.",
+    "evidence_path": "data/reference/v04-remediation/price-evidence/ADS-JWN-next/JWN-extension/report.md",
+    "evidence_sha256": "73695bcdbabb567bcde3a59c48ff0ae898f8e2229e995c458eea50029e832bc1",
+    "prefix_sha256": "1e01003047228373f09124d26372dfd64a6452e25c291eed7ca10307a726ab4c",
+    "extension_source_sha256": "289d709a94b9165e1f1b2a5ffd2a80ec78a2465e47b29ae0f1d2c9788fa15aae",
+    "cash_dividend_events_separately_credited": false
+  },
+  "corporate_actions_added": [],
+  "preserve_original_files": true,
+  "remaining_existing_price_conflicts": {
+    "date": "2017-06-08",
+    "existing_wiki_open": 46.94,
+    "sheepb_open": 40.47999954223633,
+    "existing_local_iex_full_row": {
+      "date": "2017-06-08",
+      "open": 46.94,
+      "high": 47.9,
+      "low": 43.75,
+      "close": 44.63,
+      "volume": 23161854,
+      "Name": "JWN"
+    },
+    "status": "WIKI_OPEN_46.94_CORROBORATED_BY_LOCAL_IEX; preserve the existing full row, do not assume SheepB is superior."
+  }
+}

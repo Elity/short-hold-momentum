@@ -27,6 +27,8 @@ PRICE_COLUMNS = [
     "downloaded_at",
 ]
 
+ELIGIBILITY_COLUMNS = ["as_traded_close", "dollar_volume"]
+
 DownloadFunction = Callable[..., pd.DataFrame]
 
 
@@ -126,9 +128,14 @@ def normalize_price_frame(
         result["downloaded_at"] = existing.fillna(stamp)
     else:
         result["downloaded_at"] = stamp
-    result["adjusted"] = True
-    result["source"] = "yfinance"
-    return result[PRICE_COLUMNS].sort_values("date", kind="stable").reset_index(drop=True)
+    if "adjusted" not in result:
+        result["adjusted"] = True
+    if "source" not in result:
+        result["source"] = "yfinance"
+    eligibility = [column for column in ELIGIBILITY_COLUMNS if column in result]
+    for column in eligibility:
+        result[column] = pd.to_numeric(result[column], errors="coerce")
+    return result[PRICE_COLUMNS + eligibility].sort_values("date", kind="stable").reset_index(drop=True)
 
 
 def _default_downloader(

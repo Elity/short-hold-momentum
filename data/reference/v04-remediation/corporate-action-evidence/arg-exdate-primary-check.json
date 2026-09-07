@@ -1,0 +1,37 @@
+{
+  "status": "CLOSED_WITH_SOURCE_QUALITY_LIMITATION",
+  "amount_per_nominal_share": 0.6,
+  "amount_and_quarter_status": "PRIMARY_CONFIRMED",
+  "fiscal_quarter_end": "2016-03-31",
+  "ex_date": "2016-03-11",
+  "record_date": "2016-03-15",
+  "payment_date": "2016-03-31",
+  "exact_date_status": "SECONDARY_MARKET_SOURCES",
+  "primary_source": "https://www.sec.gov/Archives/edgar/data/804212/000080421216000048/arg-33116form10xk.htm",
+  "secondary_sources": [
+    "https://www.streetinsider.com/dividend_history.php?q=ARG",
+    "https://in.investing.com/equities/airgas-inc-dividends"
+  ],
+  "primary_source_checks": {
+    "annual_report_exact_dates_found": false,
+    "annual_report_checked_strings": [
+      "March 11",
+      "March 15",
+      "January 26"
+    ],
+    "targeted_search_files": [
+      "arg-date-businesswire.search.json",
+      "arg-date-issuer.search.json",
+      "arg-date-wire-domain.search.json"
+    ],
+    "result": "Targeted issuer and wire searches did not locate a direct dividend declaration with exact dates; amount and quarter remain primary-confirmed."
+  },
+  "repair_input": {
+    "previous_session": "2016-03-10",
+    "previous_nominal_close": 141.87,
+    "backward_adjustment_multiplier": 0.9957707760625926,
+    "apply_to": "adjusted OHLC before 2016-03-11",
+    "preserve_raw_archive": true,
+    "not_a_terminal_cash_supplement": true
+  }
+}

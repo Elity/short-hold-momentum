@@ -1,0 +1,136 @@
+{
+  "request_number": 1,
+  "url": "https://data.sec.gov/submissions/CIK0000072333.json",
+  "status": 200,
+  "bytes": 165266,
+  "sha256": "b96917abe9b24a32dec6a0eb3eb08e7d03cb0747ae8d8b9bc213089a5e9576e3",
+  "issuer_name": "NORDSTROM INC",
+  "selected_filings": [
+    {
+      "accessionNumber": "0000072333-21-000237",
+      "filingDate": "2021-12-03",
+      "reportDate": "2021-10-30",
+      "form": "10-Q",
+      "primaryDocument": "jwn-20211030.htm"
+    },
+    {
+      "accessionNumber": "0000072333-21-000212",
+      "filingDate": "2021-09-03",
+      "reportDate": "2021-07-31",
+      "form": "10-Q",
+      "primaryDocument": "jwn-20210731.htm"
+    },
+    {
+      "accessionNumber": "0000072333-21-000185",
+      "filingDate": "2021-06-04",
+      "reportDate": "2021-05-01",
+      "form": "10-Q",
+      "primaryDocument": "jwn-20210501.htm"
+    },
+    {
+      "accessionNumber": "0000072333-21-000099",
+      "filingDate": "2021-03-16",
+      "reportDate": "2021-01-30",
+      "form": "10-K",
+      "primaryDocument": "jwn-20210130.htm"
+    },
+    {
+      "accessionNumber": "0000072333-20-000246",
+      "filingDate": "2020-12-04",
+      "reportDate": "2020-10-31",
+      "form": "10-Q",
+      "primaryDocument": "jwn-20201031.htm"
+    },
+    {
+      "accessionNumber": "0000072333-20-000195",
+      "filingDate": "2020-09-04",
+      "reportDate": "2020-08-01",
+      "form": "10-Q",
+      "primaryDocument": "jwn-20200801.htm"
+    },
+    {
+      "accessionNumber": "0000072333-20-000142",
+      "filingDate": "2020-06-10",
+      "reportDate": "2020-05-02",
+      "form": "10-Q",
+      "primaryDocument": "jwn-q12020x10q.htm"
+    },
+    {
+      "accessionNumber": "0000072333-20-000078",
+      "filingDate": "2020-03-20",
+      "reportDate": "2020-02-01",
+      "form": "10-K",
+      "primaryDocument": "jwn-212020x10k.htm"
+    },
+    {
+      "accessionNumber": "0000072333-19-000230",
+      "filingDate": "2019-12-04",
+      "reportDate": "2019-11-02",
+      "form": "10-Q",
+      "primaryDocument": "jwn-q32019x10q.htm"
+    },
+    {
+      "accessionNumber": "0000072333-19-000201",
+      "filingDate": "2019-09-04",
+      "reportDate": "2019-08-03",
+      "form": "10-Q",
+      "primaryDocument": "jwn-q22019x10q.htm"
+    },
+    {
+      "accessionNumber": "0000072333-19-000152",
+      "filingDate": "2019-06-05",
+      "reportDate": "2019-05-04",
+      "form": "10-Q",
+      "primaryDocument": "jwn-q12019x10q.htm"
+    },
+    {
+      "accessionNumber": "0000072333-19-000060",
+      "filingDate": "2019-03-18",
+      "reportDate": "2019-02-02",
+      "form": "10-K",
+      "primaryDocument": "jwn-222019x10k.htm"
+    },
+    {
+      "accessionNumber": "0000072333-18-000181",
+      "filingDate": "2018-12-10",
+      "reportDate": "2018-11-03",
+      "form": "10-Q",
+      "primaryDocument": "jwn-q32018x10q.htm"
+    },
+    {
+      "accessionNumber": "0000072333-18-000132",
+      "filingDate": "2018-09-05",
+      "reportDate": "2018-08-04",
+      "form": "10-Q",
+      "primaryDocument": "jwn-q22018x10q.htm"
+    },
+    {
+      "accessionNumber": "0000072333-18-000096",
+      "filingDate": "2018-06-07",
+      "reportDate": "2018-05-05",
+      "form": "10-Q",
+      "primaryDocument": "jwn-q12018x10q.htm"
+    },
+    {
+      "accessionNumber": "0000072333-18-000049",
+      "filingDate": "2018-03-19",
+      "reportDate": "2018-02-03",
+      "form": "10-K",
+      "primaryDocument": "jwn-232018x10k.htm"
+    }
+  ],
+  "older_files": [
+    {
+      "name": "CIK0000072333-submissions-001.json",
+      "filingCount": 2015,
+      "filingFrom": "2007-04-12",
+      "filingTo": "2018-01-28"
+    },
+    {
+      "name": "CIK0000072333-submissions-002.json",
+      "filingCount": 1019,
+      "filingFrom": "1994-02-10",
+      "filingTo": "2007-04-11"
+    }
+  ]
+}

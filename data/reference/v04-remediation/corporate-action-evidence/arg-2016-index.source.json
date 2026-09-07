@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "[BrowseApiIsFilteredOut] result is dropped (Details: result is dropped) (TraceId: 6a9da17238e54616acc6242b439ee137)"
+    }
+  ],
+  "isError": true
+}

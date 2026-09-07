@@ -1,0 +1,23 @@
+{
+  "archive_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-sp500.source.zip",
+  "archive_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+  "member": "individual_stocks_5yr/individual_stocks_5yr/XEC_data.csv",
+  "member_sha256": "925dd82d168b5db014e908d3a70bb6cfd05e93cb0a0b1565324707dd86d466bb",
+  "rows": 1259,
+  "first": "2013-02-08",
+  "last": "2018-02-07",
+  "provider_evidence": [
+    {
+      "member": "getSandP.py",
+      "line": 9,
+      "text": "\t\"\"\" try to query the iex for a stock, if failed note with print \"\"\""
+    },
+    {
+      "member": "getSandP.py",
+      "line": 12,
+      "text": "\t\tstock_df = web.DataReader(stock,'iex', start_time, now_time)"
+    }
+  ],
+  "network_requests": 0,
+  "applied": false
+}

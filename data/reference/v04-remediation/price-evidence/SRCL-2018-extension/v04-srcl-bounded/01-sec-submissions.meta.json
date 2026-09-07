@@ -1,0 +1,14 @@
+{
+  "number": 1,
+  "kind": "single_public_SEC_HTTP",
+  "url": "https://data.sec.gov/submissions/CIK0000861878.json",
+  "status": "returned",
+  "cik_is_candidate_until_response_identity_checked": true,
+  "timeout_seconds": 25,
+  "http_status": 200,
+  "bytes": 160256,
+  "sha256": "ecc28aa742e805b2028368cc0981dd61064b74b091e39d145915b8bddf3cb5b3",
+  "elapsed_seconds": 0.6388394581153989,
+  "issuer_name_returned": "STERICYCLE INC",
+  "candidate_CIK_confirmed_as_stericycle": true
+}

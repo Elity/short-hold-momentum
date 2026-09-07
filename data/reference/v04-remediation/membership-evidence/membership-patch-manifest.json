@@ -1,0 +1,295 @@
+{
+  "scope": "Append-only dated membership reconstruction, 2026-07-01..2026-09-04; no price or strategy change.",
+  "generated_at": "2026-09-06T15:35:51.234913+00:00",
+  "base_path": "/Users/fighting/code/short-hold-momentum/data/reference/sp500_history.csv",
+  "base_sha256": "39a9202c9ef69a74c0ff07e2113ad41fb6da7c8c5b6cd9541f0185fb4391e717",
+  "base_git_blob_sha": "dd4fd53569ce3a107dae4fe61cfee0a37ee4d52b",
+  "upstream_repository": "https://github.com/fja05680/sp500",
+  "upstream_pinned_commit_in_project_docs": "c31ac3cc56f28cf9a02b4e694eff7ceab596a0ff",
+  "candidate_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-membership/sp500_history.through-20260904.csv",
+  "candidate_sha256": "d1773b3aa69fefbdb8ec43477476ced815e4c5f56997babcbabd5b99f40f954e",
+  "original_rows": 2718,
+  "appended_sessions": 47,
+  "last_date": "2026-09-04",
+  "events": [
+    {
+      "effective_date": "2026-07-01",
+      "effective_at": "open",
+      "add": [
+        "MBGL"
+      ],
+      "remove": [],
+      "kind": "temporary_spin_off",
+      "basis": "Official general spin-off methodology plus SPGI July 1 spin completion; temporary S&P 500 inclusion is reconstructed, not explicitly enumerated in a security-specific S&P 500 notice.",
+      "sources": [
+        "spinoff-methodology-202603.tool.json",
+        "mbgl-spin-effective-20260701.tool.json",
+        "mbgl-smallcap-effective-20260702.tool.json"
+      ],
+      "identities": {
+        "MBGL": {
+          "name": "Mobility Global Inc.",
+          "cik": null,
+          "identity_note": "Official name and ticker verified; CIK not separately verified by this patch."
+        }
+      }
+    },
+    {
+      "effective_date": "2026-07-02",
+      "effective_at": "open",
+      "add": [],
+      "remove": [
+        "MBGL"
+      ],
+      "kind": "temporary_spin_off_exit",
+      "basis": "Reconstructed from at-least-one-regular-way-day policy and S&P notice assigning MBGL to S&P SmallCap 600 at July 2 open.",
+      "sources": [
+        "spinoff-methodology-202603.tool.json",
+        "mbgl-smallcap-effective-20260702.tool.json"
+      ]
+    },
+    {
+      "announcement_date": "2026-07-31",
+      "effective_date": "2026-08-05",
+      "effective_at": "open",
+      "add": [
+        "FERG"
+      ],
+      "remove": [
+        "EA"
+      ],
+      "kind": "index_replacement",
+      "basis": "Security-specific S&P Dow Jones Indices announcement.",
+      "sources": [
+        "ferg-effective-20260805.tool.json"
+      ],
+      "identities": {
+        "FERG": {
+          "name": "Ferguson Enterprises Inc.",
+          "cik": "0002011641",
+          "cusip": "31488V107"
+        },
+        "EA": {
+          "name": "Electronic Arts Inc.",
+          "cik": null
+        }
+      }
+    },
+    {
+      "announcement_date": "2026-08-13",
+      "effective_date": "2026-08-18",
+      "effective_at": "open",
+      "add": [
+        "RDDT"
+      ],
+      "remove": [
+        "AVB"
+      ],
+      "kind": "index_replacement",
+      "basis": "Security-specific S&P Dow Jones Indices announcement.",
+      "sources": [
+        "reddit-effective-20260818.tool.json"
+      ],
+      "identities": {
+        "RDDT": {
+          "name": "Reddit Inc.",
+          "cik": "0001713445",
+          "cusip": "75734B100"
+        },
+        "AVB": {
+          "name": "AvalonBay Communities Inc.",
+          "cik": "0000915912"
+        }
+      }
+    },
+    {
+      "announcement_date": "2026-08-17",
+      "effective_date": "2026-08-18",
+      "effective_at": "open",
+      "add": [
+        "VMRK"
+      ],
+      "remove": [
+        "EQR"
+      ],
+      "kind": "surviving_issuer_ticker_change",
+      "basis": "S&P notice says the EQR surviving company remains in S&P 500; SEC merger-completion exhibit explicitly says VMRK trading begins August 18.",
+      "sources": [
+        "reddit-effective-20260818.tool.json",
+        "vivmark-effective-20260818.tool.json"
+      ],
+      "identities": {
+        "EQR": {
+          "name": "Equity Residential",
+          "cik": "0000906107"
+        },
+        "VMRK": {
+          "name": "Vivmark Residential",
+          "cik": "0000906107",
+          "cusip": "29476L107"
+        }
+      },
+      "warning": "Membership change does not itself implement share conversion, trading history mapping or cash settlement for held EQR/AVB positions."
+    }
+  ],
+  "sources": [
+    {
+      "file": "archive-review-2026-07-02-Midera-Food-Processing-and-Centrus-Energy-Set-to-Join-S-P-SmallCap-600.tool.json",
+      "file_sha256": "3a3b44d1f59a86f364f03a3854845da607a0a35e003f607f8cddf5b720aeb901",
+      "url": "https://press.spglobal.com/2026-07-02-Midera-Food-Processing-and-Centrus-Energy-Set-to-Join-S-P-SmallCap-600",
+      "source_cached_at": "2026-07-24T10:05:00Z",
+      "source_last_updated_at": "2026-07-02T00:00:00",
+      "response_trace_id": "6a9d880057cf4244a8666c52c11e8efa",
+      "evidence_saved_at": "2026-09-06T15:34:25.142732+00:00"
+    },
+    {
+      "file": "archive-review-2026-07-09-Solaris-Energy-Infrastructure-Set-to-Join-S-P-SmallCap-600.tool.json",
+      "file_sha256": "23170097e2da0c4aca4a393f473d65644c51706acab3e9f6f19644c07c2d9b4b",
+      "url": "https://press.spglobal.com/2026-07-09-Solaris-Energy-Infrastructure-Set-to-Join-S-P-SmallCap-600",
+      "source_cached_at": "2026-07-21T04:17:00Z",
+      "source_last_updated_at": "2026-07-09T00:00:00",
+      "response_trace_id": "6a9d8800eef94963aa66e42c32db1505",
+      "evidence_saved_at": "2026-09-06T15:34:25.156623+00:00"
+    },
+    {
+      "file": "archive-review-2026-07-14-BrightSpring-Health-Services-Set-to-Join-S-P-MidCap-400-and-Karman-Holdings-to-Join-S-P-SmallCap-600.tool.json",
+      "file_sha256": "4d5cd16c69355b1a57b743633cb47e697e78c3b68823e909a460f85fe4513528",
+      "url": "https://press.spglobal.com/2026-07-14-BrightSpring-Health-Services-Set-to-Join-S-P-MidCap-400-and-Karman-Holdings-to-Join-S-P-SmallCap-600",
+      "source_cached_at": "2026-07-30T04:46:00Z",
+      "source_last_updated_at": "2026-07-14T00:00:00",
+      "response_trace_id": "6a9d88002bf6442e98f7de7adc775d17",
+      "evidence_saved_at": "2026-09-06T15:34:25.164743+00:00"
+    },
+    {
+      "file": "archive-review-2026-07-16-Molina-Healthcare-Set-to-Join-S-P-MidCap-400-and-Construction-Partners-to-Join-S-P-SmallCap-600.tool.json",
+      "file_sha256": "fcf0e11d6b0ce41cea87a31d32048be9d7ac7e54b2967d312fc4ee92078164df",
+      "url": "https://press.spglobal.com/2026-07-16-Molina-Healthcare-Set-to-Join-S-P-MidCap-400-and-Construction-Partners-to-Join-S-P-SmallCap-600",
+      "source_cached_at": "2026-09-05T15:36:00Z",
+      "source_last_updated_at": "2026-07-16T00:00:00",
+      "response_trace_id": "6a9d880084e44f59b3e5c9add30ab8af",
+      "evidence_saved_at": "2026-09-06T15:34:25.171589+00:00"
+    },
+    {
+      "file": "archive-review-2026-07-20-Krystal-Biotech-Set-to-Join-S-P-MidCap-400-Tutor-Perini-and-V2X-to-Join-S-P-SmallCap-600.tool.json",
+      "file_sha256": "c4674f708f523a2e0a87686c3094b026d0794d5f2bfa844843b410f9c385c67f",
+      "url": "https://press.spglobal.com/2026-07-20-Krystal-Biotech-Set-to-Join-S-P-MidCap-400-Tutor-Perini-and-V2X-to-Join-S-P-SmallCap-600",
+      "source_cached_at": "2026-08-06T22:34:00Z",
+      "source_last_updated_at": "2026-07-20T00:00:00",
+      "response_trace_id": "6a9d8801951e45b99ab05889acc31fd0",
+      "evidence_saved_at": "2026-09-06T15:34:25.177599+00:00"
+    },
+    {
+      "file": "archive-review-2026-07-29-Five9-Set-to-Join-S-P-SmallCap-600.tool.json",
+      "file_sha256": "2a58aca1cd4848a727ab17d4090c780df82592d54895c19bfc4f1013bb0d4396",
+      "url": "https://press.spglobal.com/2026-07-29-Five9-Set-to-Join-S-P-SmallCap-600",
+      "source_cached_at": "2026-07-29T22:44:00Z",
+      "source_last_updated_at": "2026-07-29T00:00:00",
+      "response_trace_id": "6a9d8801b0e14d3aad6f4a832e18909f",
+      "evidence_saved_at": "2026-09-06T15:34:25.184057+00:00"
+    },
+    {
+      "file": "archive-review-2026-08-26-Tenable-Holdings-Set-to-Join-S-P-SmallCap-600.tool.json",
+      "file_sha256": "dbd33a1611ac03b999a7d361033f313fac5a40dbcdec7c8db0d2b4dc98bb26a3",
+      "url": "https://press.spglobal.com/2026-08-26-Tenable-Holdings-Set-to-Join-S-P-SmallCap-600",
+      "source_cached_at": "2026-08-29T13:45:00Z",
+      "source_last_updated_at": "2026-08-26T00:00:00",
+      "response_trace_id": "6a9d880189c84c6aa50263c5f7365d55",
+      "evidence_saved_at": "2026-09-06T15:34:25.195500+00:00"
+    },
+    {
+      "file": "ferg-effective-20260805.tool.json",
+      "file_sha256": "6a9e6f0228d1d341c6690bddd10fc6de98cddd56748f55d1f80105d08166e0aa",
+      "url": "https://press.spglobal.com/2026-07-31-Ferguson-Enterprises-Set-to-Join-S-P-500-and-ADI-Global-Distribution-to-Join-S-P-SmallCap-600?asPDF=1",
+      "source_cached_at": "2026-08-24T23:27:00Z",
+      "source_last_updated_at": "2026-07-31T00:00:00",
+      "response_trace_id": "6a9d860b75cc40f2be0053e401688e97",
+      "evidence_saved_at": "2026-09-06T15:26:04.001492+00:00"
+    },
+    {
+      "file": "future-changes-20260921.tool.json",
+      "file_sha256": "39f510b45bf347f4df38f1c173bf48c4dcf97c3783b1541ab20a47a26a31efeb",
+      "url": "https://press.spglobal.com/2026-09-04-Bloom-Energy,-Illumina,-and-Everpure-Set-to-Join-S-P-500-Others-to-Join-S-P-100,-S-P-MidCap-400,-and-S-P-SmallCap-600",
+      "source_cached_at": "2026-09-06T05:31:00Z",
+      "source_last_updated_at": "2026-09-04T00:00:00",
+      "response_trace_id": "6a9d860bdaef410eae2625fc1219e77c",
+      "evidence_saved_at": "2026-09-06T15:26:04.024985+00:00"
+    },
+    {
+      "file": "mbgl-smallcap-effective-20260702.tool.json",
+      "file_sha256": "c6ad7ab683a01ec205f5ac67c3b00177a6418dc995984158d517fa64d48f5953",
+      "url": "https://press.spglobal.com/2026-06-26-Gulfport-Energy-and-Mobility-Global-Set-to-Join-S-P-SmallCap-600",
+      "source_cached_at": "2026-08-22T13:21:00Z",
+      "source_last_updated_at": "2026-06-26T00:00:00",
+      "response_trace_id": "6a9d86a709c44d0a805b45ae4c302abe",
+      "evidence_saved_at": "2026-09-06T15:28:39.063232+00:00"
+    },
+    {
+      "file": "mbgl-spin-effective-20260701.tool.json",
+      "file_sha256": "4394142d0823ab08a6c7bcb5b15325e387d00dafe9f909c3441c27a8cd056fcc",
+      "url": "https://press.spglobal.com/2026-07-01-S-P-GLOBAL-INC-COMPLETES-SEPARATION-OF-MOBILITY-GLOBAL-INC",
+      "source_cached_at": "2026-08-25T21:08:00Z",
+      "source_last_updated_at": "2026-07-01T00:00:00",
+      "response_trace_id": "6a9d86a79c624502a39e041fa6f7e526",
+      "evidence_saved_at": "2026-09-06T15:28:39.306887+00:00"
+    },
+    {
+      "file": "reddit-effective-20260818.tool.json",
+      "file_sha256": "f97ab783cac6781b599ef847c13412e2aee5c47191557154e067c19a377f1967",
+      "url": "https://press.spglobal.com/2026-08-13-Reddit-Set-to-Join-S-P-500-and-Sun-Communities-to-Join-S-P-MidCap-400",
+      "source_cached_at": "2026-09-03T06:14:00Z",
+      "source_last_updated_at": "2026-08-13T00:00:00",
+      "response_trace_id": "6a9d860ba91b4e23b6b456eb64873a30",
+      "evidence_saved_at": "2026-09-06T15:26:04.010676+00:00"
+    },
+    {
+      "file": "spinoff-methodology-202603.tool.json",
+      "file_sha256": "d714c8762613b42f294029e6d6ce4362e577541cecf4b9d2ad0be6b9850043ab",
+      "url": "https://www.spglobal.com/spdji/pt/documents/methodologies/methodology-sp-equity-indices-policies-practices.pdf",
+      "source_cached_at": "2026-07-27T01:00:00Z",
+      "source_last_updated_at": "",
+      "response_trace_id": "6a9d86a6c4614463aae7e15bb7711048",
+      "evidence_saved_at": "2026-09-06T15:28:38.751205+00:00"
+    },
+    {
+      "file": "vivmark-effective-20260818.tool.json",
+      "file_sha256": "4f0011ad08c1465ada1b3e52be854d51eade745df709cf655c98ef799665878c",
+      "url": "https://www.sec.gov/Archives/edgar/data/915912/000110465926097833/tm2623381d1_ex99-1.htm",
+      "source_cached_at": "2026-08-17T20:10:00Z",
+      "source_last_updated_at": "",
+      "response_trace_id": "6a9d860c6f2f46f2b3387fef4ee9ac72",
+      "evidence_saved_at": "2026-09-06T15:26:04.018418+00:00"
+    }
+  ],
+  "official_archive_review": {
+    "url": "https://press.spglobal.com/index.php?keywords=s%26P+500+index&l=100",
+    "retrieved_at": "2026-09-06T15:30:41.101614+00:00",
+    "status": 200,
+    "raw_html_file": "official-archive-live.html",
+    "raw_html_sha256": "02a60379d0f7b1939a12cdffce86d779507307cc4a57cae54af68fd9b003dedc",
+    "reviewed_non_sp500_replacement_notices": 7
+  },
+  "current_equity_crosscheck": {
+    "snapshot_id": "2026-09-03-f1a6912b781a903b",
+    "source_as_of": "2026-09-03",
+    "snapshot_sha256": "e63534b737b8d51390ed021fb50c8c162311f1e5b7235e71546986e551224cbf",
+    "same_set_at_cutoff": true,
+    "security_count": 503
+  },
+  "selection_dates_in_extension": [
+    "2026-07-22",
+    "2026-08-19"
+  ],
+  "validation": {
+    "original_bytes_preserved": true,
+    "strictly_ordered_unique_dates": true,
+    "exact_effective_day_boundaries": true,
+    "all_extra_dates_are_xnys_sessions": true,
+    "no_september21_anticipation": true
+  },
+  "limitations": [
+    "Existing pre-July history is inherited from fja05680/Trading Evolved and not independently re-audited here.",
+    "MBGL temporary inclusion/removal is a reconstruction under the published 2026 policy and dated corporate event, not a directly downloaded S&P 500 constituent file; none of its temporary dates is a strategy selection date.",
+    "Public selected-change lists and a matching endpoint alone do not prove all historical changes. Official announcement archive was reviewed and raw live HTML preserved alongside the event sources.",
+    "No security-price aliasing, acquisition cash consideration, merger share conversion, or delisting-price repair is performed by this membership patch."
+  ]
+}

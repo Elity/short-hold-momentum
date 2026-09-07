@@ -1,0 +1,4 @@
+,wiki,wiki,wiki,wiki,wiki,wiki,wiki,wiki,wiki,wiki,wiki,wiki,wiki,sheepb,sheepb,sheepb,sheepb,sheepb,sheepb,sheepb,sheepb,canonical,canonical,canonical,canonical,canonical,canonical,canonical,canonical,canonical,canonical
+,ticker,open,high,low,close,volume,ex-dividend,split_ratio,adj_open,adj_high,adj_low,adj_close,adj_volume,Open,High,Low,Close,Adj Close,Volume,Name,Company Name,open,high,low,close,volume,as_traded_close,dollar_volume,adjusted,source,downloaded_at
+date,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+2015-08-28,XEC,104.64,110.29,104.84,107.75,1537283.0,0.0,1.0,103.72043155196,109.320779777,103.91867396701,106.80310110592,1537283.0,104.83999633789062,110.29000091552734,104.83999633789062,107.75,100.44607543945312,1537300.0,XEC,Cimarex Energy,103.72043155196,109.320779777,103.91867396701,106.80310110592,1537283.0,107.75,165642243.25,True,Quandl WIKI frozen 2018 archive via Kaggle,2026-09-06 16:05:58.760750+00:00

@@ -1,0 +1,3 @@
+# Preserve hash-pinned source evidence byte-for-byte, including original CRLF
+# and Markdown whitespace. Source formatting is not application code style.
+data/reference/v04-remediation/** -text -whitespace

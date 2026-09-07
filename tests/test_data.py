@@ -113,6 +113,17 @@ def test_multiindex_ticker_named_low_does_not_collide_with_low_price_field() -> 
     assert normalized.loc[0, "low"] == 9
 
 
+def test_price_contract_preserves_eligibility_basis_and_correction_provenance() -> None:
+    frame = _prices(["2024-01-02"])
+    frame["as_traded_close"] = 200.0
+    frame["dollar_volume"] = 20_000_000.0
+    frame["source"] = "verified historical correction"
+    normalized = normalize_price_frame(normalize_price_frame(frame, ticker="TEST"), ticker="TEST")
+    assert normalized.loc[0, "as_traded_close"] == 200.0
+    assert normalized.loc[0, "dollar_volume"] == 20_000_000.0
+    assert normalized.loc[0, "source"] == "verified historical correction"
+
+
 def test_retry_and_one_ticker_failure_do_not_abort_batch(tmp_path) -> None:
     attempts: dict[str, int] = {}
     sleeps: list[float] = []

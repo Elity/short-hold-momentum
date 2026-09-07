@@ -1,0 +1,16 @@
+date,period,sheepb_factor,sheepb_factor_step,wiki_ex_dividend_observed,wiki_split_ratio_observed,wiki_factor,wiki_factor_step,issuer_confirmed_amount,interpretation
+2016-11-01,old_prefix,0.9385305440120447,1.0025496761216883,0.52,1.0,0.9933361581585208,1.0025775750966581,,factor change is date/scale observation; cash amount not inferred
+2017-02-13,old_prefix,0.9406852998803197,1.0022958262660142,0.52,1.0,0.9956035511713269,1.0022826039243402,,factor change is date/scale observation; cash amount not inferred
+2017-05-11,old_prefix,0.9425809533127251,1.002015190866787,0.52,1.0,0.9976653347101951,1.0020708880923896,,factor change is date/scale observation; cash amount not inferred
+2017-08-10,old_prefix,0.9446942559975774,1.0022420989118666,0.52,1.0,1.0,1.0023401287070612,,factor change is date/scale observation; cash amount not inferred
+2017-11-13,old_prefix,0.9468783151029821,1.0023118928957757,0.0,1.0,1.0,1.0,,factor change is date/scale observation; cash amount not inferred
+2018-02-13,old_prefix,0.9490570451074873,1.0023009285626443,0.0,1.0,1.0,1.0,,factor change is date/scale observation; cash amount not inferred
+2018-05-11,tail,0.9516818221656184,1.0027656732512413,,,,,,factor change is date/scale observation; cash amount not inferred
+2018-08-13,tail,0.9540653807163832,1.0025045801403716,,,,,,factor change is date/scale observation; cash amount not inferred
+2018-11-13,tail,0.9567427053928336,1.0028061799502168,,,,,,factor change is date/scale observation; cash amount not inferred
+2019-02-20,tail,0.9602027337182903,1.0036166197147767,,,,,,factor change is date/scale observation; cash amount not inferred
+2019-05-13,tail,0.9642801544405518,1.004246542282683,,,,,,factor change is date/scale observation; cash amount not inferred
+2019-09-03,tail,0.9692464458774329,1.0051503161581339,,,,,,factor change is date/scale observation; cash amount not inferred
+2019-11-13,tail,0.9748936828428385,1.0058262789638652,,,,,,factor change is date/scale observation; cash amount not inferred
+2020-02-13,tail,0.9807991969710074,1.0060576270638508,,,,,,factor change is date/scale observation; cash amount not inferred
+2020-05-13,tail,0.9859151624123256,1.0052160510183077,,,,,,factor change is date/scale observation; cash amount not inferred

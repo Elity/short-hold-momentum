@@ -1,0 +1,132 @@
+{
+  "status": "CONTINUITY_SUPPORTED_BY_AUDITED_FINANCIAL_STATEMENTS_AND_IDENTITY_EVIDENCE",
+  "period": {
+    "from": "2017-06-19",
+    "through": "2017-12-29"
+  },
+  "reported_holder_cash_distributions": {
+    "ordinary_dividend": 0.0,
+    "special_dividend": 0.0,
+    "mandatory_cash_distribution": 0.0,
+    "evidence_basis": [
+      "Audited cash flow statement p13",
+      "Audited changes in net assets p14",
+      "Financial highlights p15",
+      "Notes 14/15 pp34-35"
+    ],
+    "interpretation": "No shareholder distribution is reported for the audited June16-Dec31 period, and the published statements reconcile without one."
+  },
+  "share_unit_continuity": {
+    "continuation_factor": 1.0,
+    "mandatory_stock_exchange": false,
+    "evidence_basis": "June19 identity 8-K says shareholder action not required; audited Note14 accounts for common-share capital activity as employee option/RSU issuance and voluntary buybacks, with no split or mandatory exchange reported."
+  },
+  "voluntary_corporate_actions": {
+    "employee_share_issuance_approximately": 4100000,
+    "repurchased_shares_approximately": 138400000,
+    "self_tender_shares_approximately": 64500000,
+    "open_market_repurchase_shares_approximately": 73900000,
+    "shares_outstanding_2017_12_31": 824921315,
+    "nonparticipant_holder_treatment": "No separate cash credit or change in held units for a shareholder who neither tenders nor sells. Issuance/buyback effects are already reflected in market price."
+  },
+  "proposed_total_return_join": {
+    "preserve_WIKI_adjusted_prefix": true,
+    "prefix_last_date": "2017-06-16",
+    "prefix_last_adjustment_factor": 1.0,
+    "append_Google_whole_nominal_OHLCV_from": "2017-06-19",
+    "tail_adjustment_factor": 1.0,
+    "additional_cash_return": 0.0,
+    "terminal_cash_event": false,
+    "nominal_price_and_dollar_volume": "Use source Close and source Volume for tail dollar volume. Preserve WIKI raw dollar-volume values and adjusted OHLCV for prefix."
+  },
+  "nominal_unit_support": [
+    "Google source overlap with WIKI in 2017 has matching dollar-per-share scale",
+    "SEC financial highlights end market price USD 69.85 exactly matches final raw quote",
+    "Official 32.85% market total return matches the prior-close to period-end price ratio at stated precision",
+    "Audited capital share activity supports unchanged share units for continuing holders"
+  ],
+  "financial_statement_reconciliation": {
+    "reporting_period": [
+      "2017-06-16",
+      "2017-12-31"
+    ],
+    "units": "USD thousands",
+    "net_assets_beginning": 50201124,
+    "net_increase_from_operations": 20648182,
+    "common_share_issuance_proceeds": 68799,
+    "common_share_repurchases": -8432186,
+    "reported_net_assets_end": 62485919,
+    "reported_net_cash_from_operations": 8363787,
+    "reported_net_cash_used_in_financing": -8363387,
+    "reported_net_change_in_cash": 400,
+    "net_asset_bridge_residual": 0,
+    "financing_bridge_residual": 0,
+    "cash_change_bridge_residual": 0,
+    "interpretation": "Audited statements account for reported capital cash flows through share issuance and repurchases, with no shareholder distribution line or unexplained residual. This is affirmative statement reconciliation, not inference from a missing CSV dividend column.",
+    "precision_limit": "Financial statement dollar amounts are reported in thousands; zero means no reported shareholder distribution, not a claim of an independently queried exhaustive exchange action feed."
+  },
+  "independent_candidate_review": {
+    "candidate_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-canonical/AABA-YHOO-through-2017-12-29.diagnostic.parquet",
+    "candidate_sha256": "4cd04ac14c56a64642c40f017acd1a3b7d9cec36a86e880c4f0c7f194509c6f7",
+    "candidate_rows": 3588,
+    "decision": "JOIN_MATCHES_AUDITED_2017_H2_CONTINUITY_CONCLUSION",
+    "checks": {
+      "prefix_open_equals_WIKI_adjusted": true,
+      "tail_open_equals_unscaled_Google": true,
+      "prefix_high_equals_WIKI_adjusted": true,
+      "tail_high_equals_unscaled_Google": true,
+      "prefix_low_equals_WIKI_adjusted": true,
+      "tail_low_equals_unscaled_Google": true,
+      "prefix_close_equals_WIKI_adjusted": true,
+      "tail_close_equals_unscaled_Google": true,
+      "prefix_volume_equals_WIKI_adjusted": true,
+      "tail_volume_equals_unscaled_Google": true,
+      "prefix_nominal_close_equals_WIKI_raw": true,
+      "prefix_dollar_volume_equals_raw_close_times_raw_volume": true,
+      "tail_nominal_close_equals_Google_Close": true,
+      "tail_dollar_volume_equals_raw_close_times_raw_volume": true,
+      "terminal_WIKI_factor_equals_one": true,
+      "all_candidate_XNYS_sessions_present": true,
+      "unique_dates": true,
+      "all_OHLCV_valid": true
+    },
+    "tail_max_daily_return_difference_from_nominal_price_returns": 0.0,
+    "official_end_market_price": 69.85,
+    "candidate_end_market_price": 69.85,
+    "official_market_total_return_percent": 32.85,
+    "reference_prior_close_date": "2017-06-15",
+    "reference_prior_close": 52.58,
+    "reference_price_return_percent": 32.84518828451881,
+    "market_return_crosscheck": "Report period starts June 16; June 15 prior close is 52.58. 69.85 / 52.58 - 1 rounds to official 32.85%. This corroborates no additional distribution adjustment; it is not a standalone proof of the action ledger.",
+    "last_WIKI_close_date": "2017-06-16",
+    "last_WIKI_close": 52.5892,
+    "Google_same_date_close": 52.58,
+    "unrescaled_boundary_difference_usd": 0.0092,
+    "first_Google_tail_open_date": "2017-06-19",
+    "first_Google_tail_open": 54.0,
+    "first_post_removal_cycle_signal_date_parent_verified": "2017-06-23",
+    "next_open_for_that_cycle": "2017-06-26",
+    "next_open_quote": 55.38,
+    "execution_limit": "These are schedule and quote anchors, not proof that every strategy actually holds or exits AABA on June 26. Parent will validate actual fills across candidates.",
+    "source_label_note": "Candidate source currently still says action review pending; this read-only review does not modify that label or candidate bytes.",
+    "candidate_modified_by_review": false,
+    "repo_modified_by_review": false
+  },
+  "primary_source": "https://www.sec.gov/Archives/edgar/data/1011006/000119312518058471/d434197dncsr.htm",
+  "primary_capture_characters": 325498,
+  "capture_scope": "Main HTML capture includes the entire Altaba June16-Dec31 financial statements, Notes1-16 and auditor report; it continues into the earlier Yahoo period but ends before that earlier period is complete.",
+  "limited_capture_not_used_as_full_proof": "request-02 .txt capture has only 11696 characters and ends in the investment schedule.",
+  "qualifications": [
+    "No independent exchange corporate-action feed was queried; conclusion is supported by complete audited period statements, identity notice, and price-return crosscheck.",
+    "Issued and repurchased share counts in Note14 are approximate; do not describe them as an exact per-share rollforward.",
+    "Fund dividend income from underlying holdings is not an AABA shareholder payout.",
+    "Do not apply 2018 tenders or 2019 liquidation distributions backward into this 2017 source.",
+    "Prior WIKI corporate actions before the reviewed period are inherited, not re-audited here.",
+    "Actual strategy holding/exit path remains a separate parent-side validation."
+  ],
+  "public_requests_used": 4,
+  "public_request_limit": 4,
+  "new_price_provider_calls": 0,
+  "network_calls_by_audit_script": 0,
+  "repo_or_manifest_modified": false
+}

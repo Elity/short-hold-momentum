@@ -1,0 +1,25 @@
+{
+  "research_run_id": "v04-d5148b169f605564",
+  "source_membership": {
+    "source_first_date": "1996-01-02",
+    "source_last_date": "2026-06-30",
+    "required_start": "2005-01-04",
+    "required_end": "2026-09-04",
+    "missing_rebalance_dates": [
+      "2026-07-22",
+      "2026-08-19"
+    ],
+    "status": "INCONCLUSIVE",
+    "outside_coverage_behavior": "membership_unknown_no_new_ranking_buys"
+  },
+  "missing_count": 274,
+  "candidate_aliases": 35,
+  "candidate_local_cache_present": 23,
+  "candidate_coverage_gain_pp_unverified": 2.5027480368117314,
+  "tie_sha256": "da52cb6ec82e80528b27b9d9a43d0d67b69474a9c0dc463303c817e21eae44c1",
+  "tie_range": [
+    "2003-12-19",
+    "2018-12-31"
+  ],
+  "unverified_alias_warning": "These are hypotheses for identity verification, not authorized cache substitutions."
+}

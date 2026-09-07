@@ -1,0 +1,8 @@
+{
+  "commit_api": "https://api.github.com/repos/kristoffer-paulsson/stock-data/commits?path=atvi.csv&per_page=1",
+  "commit": "d1a45ba7bef3750460ffd3e8555d212360bc9782",
+  "commit_date": "2023-01-02T18:25:40Z",
+  "url": "https://raw.githubusercontent.com/kristoffer-paulsson/stock-data/d1a45ba7bef3750460ffd3e8555d212360bc9782/atvi.csv",
+  "sha256": "2650b350fe0fdb01ca3cb9a99c9ba2bf1de1bad05fe894129a5da8a9ded23c43",
+  "bytes": 267324
+}

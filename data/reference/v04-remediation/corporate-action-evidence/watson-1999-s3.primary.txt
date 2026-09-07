@@ -1,0 +1,1189 @@
+-----BEGIN PRIVACY-ENHANCED MESSAGE-----
+Proc-Type: 2001,MIC-CLEAR
+Originator-Name: webmaster@www.sec.gov
+Originator-Key-Asymmetric:
+ MFgwCgYEVQgBAQICAf8DSgAwRwJAW2sNKK9AVtBzYZmr6aGjlWyK3XmZv3dTINen
+ TWSM7vrzLADbmYQaionwg5sDW3P6oaM5D3tdezXMm7z1T+B+twIDAQAB
+MIC-Info: RSA-MD5,RSA,
+ OBRlXobHu1ZY/uw5z8ZZktoiZ7v/opuo8k7spLgCh3xuhuskgg9pUjvZrPGj6J1D
+ jLTqfF4bbVRAZB89YjfYbA==
+
+<SEC-DOCUMENT>0001017062-99-000816.txt : 19990510
+<SEC-HEADER>0001017062-99-000816.hdr.sgml : 19990510
+ACCESSION NUMBER:		0001017062-99-000816
+CONFORMED SUBMISSION TYPE:	S-3/A
+PUBLIC DOCUMENT COUNT:		4
+FILED AS OF DATE:		19990507
+
+FILER:
+
+	COMPANY DATA:	
+		COMPANY CONFORMED NAME:			WATSON PHARMACEUTICALS INC
+		CENTRAL INDEX KEY:			0000884629
+		STANDARD INDUSTRIAL CLASSIFICATION:	PHARMACEUTICAL PREPARATIONS [2834]
+		IRS NUMBER:				953872914
+		STATE OF INCORPORATION:			NV
+		FISCAL YEAR END:			1231
+
+	FILING VALUES:
+		FORM TYPE:		S-3/A
+		SEC ACT:		
+		SEC FILE NUMBER:	333-70943
+		FILM NUMBER:		99613099
+
+	BUSINESS ADDRESS:	
+		STREET 1:		311 BONNIE CIRCLE
+		CITY:			CORONA
+		STATE:			CA
+		ZIP:			91720
+		BUSINESS PHONE:		9092701400
+
+	MAIL ADDRESS:	
+		STREET 1:		311 BONNIE CIRCLE
+		CITY:			CORONA
+		STATE:			CA
+		ZIP:			91720
+</SEC-HEADER>
+<DOCUMENT>
+<TYPE>S-3/A
+<SEQUENCE>1
+<DESCRIPTION>PRE-EFFECTIVE AMENDMENT #1 TO FORM S-3
+<TEXT>
+
+<PAGE>
+ 
+      As filed with the Securities and Exchange Commission on May 7, 1999
+                                        
+                                                      Registration No. 333-70943
+
+================================================================================
+
+                       SECURITIES AND EXCHANGE COMMISSION
+                             WASHINGTON, D.C. 20549
+                          Pre-Effective Amendment No.1
+                                       TO
+                                    FORM S-3
+            REGISTRATION STATEMENT UNDER THE SECURITIES ACT OF 1933
+
+                       _________________________________
+
+                          WATSON PHARMACEUTICALS, INC.
+             (Exact name of registrant as specified in its charter)
+
+               NEVADA                                    95-3872914
+    (State or other jurisdiction of         (I.R.S. Employer Identification No.)
+     incorporation or organization)
+
+                               311 BONNIE CIRCLE
+                           CORONA, CALIFORNIA  91720
+                                 (909) 270-1400
+    (Address, including zip code, and telephone number, including area code,
+                  of registrant's principal executive offices)
+
+                        _______________________________
+
+                               ROBERT C. FUNSTEN
+                 VICE PRESIDENT, GENERAL COUNSEL AND SECRETARY
+                          WATSON PHARMACEUTICALS, INC.
+                               311 BONNIE CIRCLE
+                           CORONA, CALIFORNIA  91720
+                                 (909) 270-1400
+ (Name, address, including zip code, and telephone number, including area code,
+                             of agent for service)
+
+                                   COPIES TO:
+
+                            MICHEL J. FELDMAN, ESQ.
+                              STEVE CURTIS, ESQ.
+                             D'ANCONA & PFLAUM LLC
+                         111 E. WACKER DR., STE. 2800
+                            CHICAGO, IL  60601-4205
+                                (312) 602-2000
+
+              - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+        APPROXIMATE DATE OF COMMENCEMENT OF PROPOSED SALE TO THE PUBLIC:
+               From time to time after the effective date of this
+                       Registration Statement on Form S-3
+
+              - - - - - - - - - - - - - - - - - - - - - - - - - -
+<PAGE>
+ 
+     If the only securities being registered on this Form are being offered
+pursuant to dividend or interest reinvestment plans, please check the following
+box.  [_]
+
+     If any of the securities being registered on this Form are to be offered on
+a delayed or continuous basis pursuant to Rule 415 under the Securities Act of
+1933, other than securities offered only in connection with dividend or interest
+reinvestment plans, check the following box.  [X]
+
+     If this Form is filed to register additional securities for an offering
+pursuant to Rule 462(b) under the Securities Act, please check the following box
+and list the Securities Act registration statement number of the earlier
+effective registration statement for the same offering. [_]
+
+     If this Form is a post-effective amendment filed pursuant to Rule 462(c)
+under the Securities Act, check the following box and list the Securities Act
+registration statement number of the earlier effective registration statement
+for the same offering.  [_]
+
+     If delivery of the prospectus is expected to be made pursuant to Rule 434,
+please check the following box.  [_]
+
+                              ___________________
+
+     The registrant hereby amends this registration statement on such date or
+dates as may be necessary to delay its effective date until the registrant shall
+file an amendment which specifically states that this registration statement
+shall thereafter become effective in accordance with Section 8(a) of the
+Securities Act of 1933, as amended, or until this registration statement shall
+become effective on such date as the Securities and Exchange Commission, acting
+pursuant to said Section 8(a), may determine.
+
+
+             INTRODUCTORY STATEMENT NOT FORMING PART OF PROSPECTUS
+
+     This registration statement on Form S-3 relates to the shares of the
+registrant's common stock issuable upon exercise of the TheraTech stock options
+described herein.  The registrant has already filed a registration statement on
+Form S-8 relating to shares of its common stock issuable upon exercise of the
+stock options held by officers, consultants, and employees of TheraTech which
+are eligible to be registered on Form S-8.
+
+                                       2
+<PAGE>
+ 
+     THE INFORMATION IN THIS PROSPECTUS IS NOT COMPLETE AND MAY BE CHANGED. WE
+MAY NOT SELL THESE SECURITIES UNTIL THE REGISTRATION STATEMENT FILED WITH THE
+SECURITIES AND EXCHANGE COMMISSION IS EFFECTIVE. THIS PROSPECTUS IS NOT AN OFFER
+TO SELL THESE SECURITIES AND IT IS NOT SOLICITING AN OFFER TO BUY THESE
+SECURITIES IN ANY STATE WHERE THE OFFER OR SALE IS NOT PERMITTED.
+
+                                       3
+<PAGE>
+ 
+                    PRELIMINARY PROSPECTUS DATED MAY 7, 1999
+
+                             SUBJECT TO COMPLETION
+
+                                   PROSPECTUS
+
+                                 55,587 SHARES
+                          WATSON PHARMACEUTICALS, INC.
+                        COMMON STOCK ($0.0033 PAR VALUE)
+
+     This prospectus relates to up to 55,587 shares of Watson common stock that
+may be issued upon exercise of stock options issued under the TheraTech, Inc.
+1992 Amended and Restated Directors' Stock Option Plan.  On January 15, 1999, a
+subsidiary of Watson Pharmaceuticals, Inc., a Nevada corporation, merged with
+TheraTech, Inc., a Delaware corporation, pursuant to an Agreement and Plan of
+Merger dated as of October 23, 1998. At the time of the merger each share of
+TheraTech common stock outstanding was converted into the right to receive
+approximately 0.2663 of a share of Watson common stock, including certain stock
+options previously exercisable for TheraTech common stock that are now
+exercisable for Watson common stock.
+
+     See "DESCRIPTION OF STOCK OPTIONS" below on page 12 for a description of
+the stock options.  See "RISK FACTORS" below on page 6 for a description of
+risks associated with investing in stock options to acquire Watson common stock.
+
+     Watson common stock is traded on the New York Stock Exchange under the
+symbol "WPI." On May 5, 1999, the last reported sale price of the company's
+common stock on the New York Stock Exchange was $40.38 per share.
+
+                             ---------------------
+
+NEITHER THE SECURITIES AND EXCHANGE COMMISSION NOR ANY STATE SECURITIES HAS
+APPROVED OR DISAPPROVED OF THE SECURITIES TO BE ISSUED UNDER THIS PROSPECTUS OR
+PASSED UPON THE ADEQUACY OR ACCURACY OF THIS PROSPECTUS.  ANY REPRESENTATION TO
+THE CONTRARY IS A CRIMINAL OFFENSE.
+
+                             ---------------------
+                                        
+                  The date of this prospectus is       , 1999
+
+                                       4
+<PAGE>
+ 
+                          INFORMATION REGARDING WATSON
+
+     Watson is a fully integrated pharmaceutical company engaged in the research
+and development, production, marketing and distribution of off-patent and
+branded pharmaceutical products.
+
+     Watson has made significant recent acquisitions of businesses, products and
+technologies.  During 1997, Watson acquired Royce Laboratories, Inc., a
+developer and manufacturer of off-patent pharmaceutical products, and Oclassen
+Pharmaceuticals, Inc., a developer and marketer of dermatology products.  Watson
+acquired The Rugby Group, Inc., a developer and marketer of off-patent
+pharmaceutical products, in February 1998.  Watson also made several product
+acquisitions during 1997 and 1998, including the acquisition of certain oral
+contraceptive products from G.D. Searle & Co. and the acquisition of an anti-
+hypertensive product from Rhone-Poulenc Rorer.  In January 1999, Watson acquired
+TheraTech, Inc., a leading drug-delivery company.  Watson continues regularly to
+review potential opportunities to acquire or invest in other technologies,
+products or product rights and businesses compatible with its existing business.
+
+     Watson's principal executive offices are located at 311 Bonnie Circle,
+Corona, California 91720. Its telephone number is (909) 270-1400.
+
+                                  RISK FACTORS
+
+     In addition to other information in this prospectus on Form S-3, you should
+carefully consider the following risk factors in evaluating Watson's business.
+
+Risks Associated with Investing in Watson common stock
+
+An investment in stock options to acquire shares of Watson common stock may not
+provide you with the same return as your investment in options to acquire shares
+of TheraTech common stock.
+
+     As a result of the merger between Watson and TheraTech, the nature of your
+investment has changed.  TheraTech is no longer an independent company; it is a
+wholly owned subsidiary of Watson.  TheraTech option holders are now Watson
+option holders.  Your continuing financial interest in the business of
+TheraTech, a drug-delivery technology company, has ceased and you now have a
+financial interest in the business of Watson, a larger and fully integrated
+pharmaceutical company.  The value of your stock options will increase if the
+value of Watson common stock increases above your exercise price (as adjusted to
+reflect the merger of Watson and TheraTech) and the value of your stock options
+will decline if the value of Watson common stock decreases.  The value of
+TheraTech's business may or may not have an effect on the value of Watson common
+stock.  If you exercise your stock options to acquire shares of Watson common
+stock, you will be entitled to vote on all matters submitted to a vote of the
+Watson stockholders; however, you will not acquire a right to vote on matters
+specifically affecting TheraTech.
+
+The effect of future transactions on Watson's business or stock price is
+uncertain.
+
+     Watson regularly reviews potential transactions related to technologies,
+products or product rights and businesses complementary to its business. Such
+transactions could include mergers, acquisitions, strategic alliances, licensing
+agreements or co-promotion agreements. In the future, Watson may choose to enter
+into such transactions at any time. The impact of transactions on the market
+price of a company's stock is often uncertain, but may cause substantial
+fluctuations to the market price. Consequently, you should be aware that the
+announcement of any such transaction could have a material adverse effect upon
+the market price of Watson's common stock. Moreover, depending upon the nature
+of any transaction, Watson may experience a charge to earnings, which could be
+material, and could possibly have an adverse impact upon the market price of
+Watson common stock. In connection with the TheraTech merger, Watson expects to
+record merger-related expenses of approximately $20 million in the first quarter
+of 1999. In addition, this transaction or any other future transaction could be
+disruptive to the management of Watson, and any such disruption could also have
+a material adverse effect on its business or financial condition.
+
+                                       5
+<PAGE>
+ 
+Watson's stock price has experienced substantial volatility.  Watson has not
+paid and does not intend to pay dividends.
+
+     The market price of Watson common stock has been and may continue to be
+volatile. For example, the market price of Watson common stock has fluctuated
+during the past twelve months between $30.50 per share and $63.00 per share and
+may continue to fluctuate. Generally market price fluctuations in a company's
+stock may be due to acquisition or other material public announcements, along
+with a variety of additional factors including, without limitation:
+
+     (a)  new product introductions,
+     (b)  the purchasing practices of the company's customers,
+     (c)  changes in the degree of competition for a company's products,
+     (d)  the announcement of technological innovations or new commercial
+          products by a company or its competitors,
+     (e)  governmental regulation,
+     (f)  regulatory approvals or regulatory issues,
+     (g)  developments relating to patents or proprietary rights,
+     (h)  publicity regarding actual or potential clinical results with respect
+          to products under development by a company or others and
+     (i)  political developments or proposed legislation in the pharmaceutical
+          or healthcare industry.
+
+Any of these factors, among others, could have a significant impact on the
+market price of Watson's common stock.
+
+     The company has not paid any cash dividends since inception, although
+certain of its wholly-owned subsidiaries may have paid dividends prior to a
+combination with Watson. Watson does not anticipate paying cash dividends in the
+foreseeable future.
+
+Holders of the company's issued common stock could experience dilution as a
+result of future transactions.
+
+     In April 1998, Watson filed a registration statement with the SEC which
+allows Watson to raise up to $300 million from offerings of senior or
+subordinated debt securities, common stock, preferred stock or a combination
+thereof, at such times and in such amounts as Watson deems appropriate. To date,
+Watson has issued $150 million in senior unsecured notes pursuant to such
+registration statement. In addition,
+
+     (a)  Watson may engage in future transactions, including the acquisition of
+          technologies, products, product rights and businesses, which could
+          involve the issuance of its securities and
+
+     (b)  Watson has commitments pursuant to existing stock option plans and
+          free-standing stock options and warrants which are likely to result in
+          the issuance of additional shares of Watson common stock.
+
+The issuance of any securities for these or other reasons could result in
+dilution of existing shareholders' equity interest in Watson.  In addition, the
+Watson Board of Directors has the authority to issue, without vote or action of
+shareholders, shares of preferred stock, in one or more series, and to fix the
+rights, preferences, privileges and restrictions thereof.  Any such series of
+preferred stock could contain dividend rights, conversion rights, voting rights,
+terms of redemption, redemption prices, liquidation preferences or other rights
+superior to the rights of holders of Watson common stock. The Watson Board of
+Directors has no present intention of issuing any such preferred series, but
+reserves the right to do so in the future.
+
+Risks Associated with Investing in the Business of Watson
+
+Watson is dependent on product development and commercialization for continued
+growth and development.
+
+     Watson's future results of operations will depend to a significant extent
+upon its ability to successfully commercialize new proprietary and off-patent
+pharmaceutical products in a timely manner. As a result, new products must be
+continually developed, tested and manufactured and, in addition, must meet
+regulatory standards and receive requisite regulatory approvals. Products
+currently in development by the company may or may not receive the regulatory
+approvals necessary for marketing by Watson or other third-party partners.
+Furthermore, the development and commercialization process is time-consuming and
+costly.  If any of Watson's products, if and when 
+
+                                       6
+<PAGE>
+ 
+developed and approved, cannot be successfully commercialized, Watson's
+operating results could be adversely affected. This risk particularly exists
+with respect to the development of proprietary products because of the
+uncertainties and higher costs associated with research and development of such
+products and the unproven market acceptability of such products. Delays or
+unanticipated costs in any part of the process or the inability of Watson to
+obtain regulatory approval for its products, including failure to maintain its
+manufacturing facilities in compliance with all applicable regulatory
+requirements, could adversely affect Watson's operating results.
+
+Watson is dependent on key personnel for its continued growth and development.
+
+     The success of Watson's present and future operations will depend, to a
+great extent, upon the experience, abilities and continued services of certain
+executive officers of Watson, including Allen Y. Chao, Ph.D. The loss of the
+services of any of these officers could have a material adverse effect on the
+company.  Watson has entered into employment agreements with certain of its
+executive officers, including Dr. Chao.  Watson does not carry key-man life
+insurance on any of its officers. Watson's success also will depend upon its
+ability to attract and retain other highly qualified scientific, managerial,
+sales and manufacturing personnel. However, there is a risk of departure of
+employees due to certain factors, including factors relating to the integration
+process following mergers.  Competition for such personnel is intense. In this
+respect, Watson competes with numerous pharmaceutical and healthcare companies,
+as well as universities and nonprofit research organizations.  If Watson cannot
+continue to attract and retain qualified personnel, the company's results of
+operations and strategic plan may be negatively impacted.
+
+Watson may not be able to obtain patent coverage or otherwise protect
+proprietary technology.
+
+     Watson's success with its proprietary products will depend in part on its
+ability to obtain patent protection for its products. Watson has a number of
+U.S. and foreign patents issued and pending. However, if Watson's patent
+applications are not approved, or, if approved, if such patents are not upheld
+in a court of law, it may prohibit Watson from commercially exploiting products
+it develops.  Also, such patents may or may not provide competitive advantages
+for their respective products or they may be challenged or circumvented by
+competitors, in which case the company's ability to commercially exploit these
+products may be diminished.
+
+     Watson also relies on trade secrets and proprietary know-how which it seeks
+to protect, in part, through confidentiality agreements with its partners,
+customers, employees and consultants. It is possible that these agreements will
+be breached or that they won't be enforceable in every instance, and that Watson
+will not have adequate remedies for any such breach. It is also possible that
+Watson's trade secrets will become known or independently developed by
+competitors.
+
+     Watson may be required or may desire to obtain licenses to patents and
+other proprietary rights held by third parties to develop, manufacture and
+market products.  If Watson is unable to obtain these licenses on commercially
+reasonable terms, or if any licensed patents or proprietary rights are deemed
+invalid or unenforceable, Watson's ability to commercially exploit such products
+may be inhibited.  In addition, intellectual property law is subject to change
+by the courts and other governmental bodies. For example, a 1997 Supreme Court
+ruling could impact a party's ability to enforce its patents and to defend
+against potential patent infringement claims by third parties.  Watson's ability
+to commercialize its products will depend on it not infringing the valid patent
+rights of others.  Litigation concerning patents and proprietary technologies
+can be protracted and expensive and brand companies are increasingly suing
+competitors as a way of delaying the introduction of competitors' products. Any
+such litigation may be costly and time consuming, and could result in a
+substantial delay in a new product introduction, any of which could have a
+material adverse effect on Watson's business, financial condition or results of
+operations.
+
+Watson may experience difficulty integrating the business of TheraTech into its
+operations.
+
+     The merger of Watson and TheraTech involves the integration of two
+companies that have previously operated independently. Watson and TheraTech may
+encounter difficulties in integrating their businesses, which could have a
+material adverse effect on the operating results or financial condition of the
+combined company's business. Watson or TheraTech may experience disruption in
+its business or employee base as a result of uncertainty following the merger
+and during the integration process. There is also a risk that key employees of
+TheraTech may seek employment elsewhere, including with competitors.
+Furthermore, the operations, management and personnel of the two companies may
+not be compatible, and Watson or TheraTech may also experience the loss of key
+personnel for that reason.  If the companies are not able to successfully blend
+their products and technology to create the advantages which the TheraTech
+merger is intended to create, it may affect the company's results of operations,
+
+                                       7
+<PAGE>
+ 
+its ability to develop and introduce new products and the market price of your
+shares.  Further, there may be overlap between the products or customers of
+Watson and TheraTech which may create conflicts in relationships or other
+commitments detrimental to the integrated businesses.
+
+Increased competition may cause reduced revenues and gross margins.
+
+     Due to the introduction of products from time to time that may compete with
+Watson's products, Watson may continue to experience increased price
+competition.  Consequently, Watson may experience a reduction in future sales or
+gross margin of such products which, absent additional offsetting revenues,
+could have a material adverse effect on the financial condition and results of
+operations of Watson.
+
+Watson is dependent on certain suppliers that in some cases may be the only
+source of finished products or raw materials.
+
+     Some materials used in Watson's manufactured products, and some products
+sold by Watson, are currently available only from sole or limited suppliers.
+This includes products that have historically accounted for a significant
+portion of Watson's revenues. In addition, sources for materials for Watson's
+products must be approved by the U.S. Food and Drug Administration,  the U.S.
+Drug Enforcement Administration and/or other governmental agencies or bodies.
+For some products sold by Watson, only one or very few suppliers have been
+approved for certain component materials or products. Any interruption or delay
+in supply of materials or products from sole or limited source suppliers, or
+delays in the applicable governmental approval of new suppliers, or delay in
+approving Watson as the manufacturer of such products, could have a material
+adverse effect on Watson's business.
+
+The Year 2000 issue may affect Watson's operations.
+
+     Watson has assessed and continues to assess the potential impact of the
+situation commonly referred to as the "Year 2000 Issue." The Year 2000 Issue
+concerns the inability of information systems and computer software programs to
+properly recognize and process date sensitive information relating to the Year
+2000 and beyond. Watson has several information system improvement initiatives
+underway which management believes will adequately address the Year 2000 Issue.
+However, if third party payors, suppliers, distributors, transporters or joint
+venture partners do not adequately address their Year 2000 Issues or if Watson
+fails to successfully complete its Year 2000 initiative, it could be adversely
+affected in the future.
+
+Watson may not receive anticipated income from its existing or future joint
+ventures.
+
+     A portion of Watson's net income is derived from joint ventures. In
+addition, a substantial portion of Watson's efforts in developing controlled-
+release technology prior to the TheraTech merger was primarily conducted through
+joint ventures. These arrangements involve various partners. Watson does not
+control the joint ventures or the commercial exploitation of the licensed
+products.  Although restrictions contained in certain of Watson's joint venture
+arrangements have not in the past had a material adverse impact on Watson's
+marketing of its products, any such marketing restriction could affect future
+revenues and have a material adverse effect on its operations. Watson's earnings
+may be negatively impacted if existing collaborative or joint venture partners
+withdraw or if these products are not timely developed, approved or successfully
+commercialized.
+
+Product liability claims are a risk and insurance is expensive.
+
+     The design, development and manufacture of Watson's products involve an
+inherent risk of product liability claims and associated adverse publicity.
+Insurance coverage is expensive and may be difficult to obtain, and may not be
+available in the future on acceptable terms, or at all. Although Watson
+currently maintains product liability insurance for its products in the amounts
+Watson believes to be commercially reasonable, if the coverage limits of
+Watson's insurance policies are not adequate, a claim brought against Watson,
+whether fully covered by insurance or not, could have a material adverse effect
+upon Watson.
+
+                                       8
+<PAGE>
+ 
+Risks Associated with Investing in the Pharmaceutical Industry
+
+The pharmaceutical industry is extensively regulated by various government
+agencies.
+
+     All pharmaceutical manufacturers are subject to extensive, complex, costly
+and evolving governmental regulations and restrictions administered by the Food
+and Drug Administration ("the FDA"), other federal and state agencies, and
+numerous governmental authorities in other countries. Moreover, Watson and
+certain of its vendors are subject to the periodic inspection of their
+facilities and operations and/or the testing of their products by the Food and
+Drug Administration, the U.S. Drug Enforcement Agency, the U.S. Environmental
+Protection Agency  and similar state, local and foreign regulatory authorities.
+Each of these organizations conducts periodic inspections to confirm continued
+compliance with its regulations.  In connection with such an inspection by the
+FDA of the company's Corona, California facility, the FDA issued to the company
+a Warning Letter in January 1999.  The Warning Letter related to the company's
+current Good Manufacturing Practices compliance in areas such as documentation,
+training and laboratory controls.  The company has responded to the Food and
+Drug Administration and has adopted certain improvements to its procedures.
+Watson intends to implement certain additional corrective improvements and
+anticipates that these activities will be substantially completed within the
+next few months.  The company does not expect that expenditures for these
+improvements will be material.  Production at Watson's Corona facility has not
+been interrupted and the company expects that production will continue while it
+implements the improvements.   In connection with a January 1999 inspection of
+the company's Miami, Florida facility, the FDA issued to Watson a Warning Letter
+in April 1999.  In the Warning Letter, the agency commented that observations
+about inadequate investigations, documentation and training had appeared in past
+inspection reports (although the FDA acknowledged that a number of these had
+occurred prior to Watson purchase of the Miami facility). Watson believes that
+certain ongoing improvements it has implemented and intends to implement at its
+Miami facility will address the FDA's concern and has responded to the FDA
+accordingly. Moreover, in the April 1999 Warning Letter, the FDA acknowledged
+that it had received the company's previously submitted responses to the FDA's
+observations made in its January 1999 inspection. The FDA's January 1999
+observations generally concerned the company's current Good Manufacturing
+Practices compliance in areas such as documentation, investigations and
+training. The FDA stated that it would evaluate the corrections taken by the
+company at the FDA's next inspection.
+
+     Failure to comply with governmental regulations can result in fines,
+unanticipated compliance expenditures, interruption of production and criminal
+prosecution.  Although Watson has instituted internal compliance programs, if
+such programs do not meet regulatory agency standards or if compliance is
+deficient in any way, it may have a material adverse effect on the company.
+
+     The process for obtaining governmental approval to manufacture and market
+pharmaceutical products is rigorous, time-consuming and costly, and Watson
+cannot predict the extent to which it may be affected by legislative and
+regulatory developments. Watson is dependent on receiving FDA and other
+governmental approvals prior to manufacturing, marketing and shipping its
+products. Consequently, there is always the chance that the FDA or other
+applicable agency will not approve products, or that the rate, timing and cost
+of such approvals will adversely affect Watson's product introduction plans or
+results of operations. The Uruguay Round Agreements Act ("URAA"), which became
+effective June 8, 1994, lengthens the term of existing and future patents by
+changing the patent term to the longer of 17 years from the date of patent grant
+or 20 years from the date of patent application. These URAA changes could
+postpone approval eligibility of some products.
+
+The pharmaceutical industry is highly competitive which affects the company's
+product selection, pricing, gross margins and market share.
+
+     The pharmaceutical industry is intensely competitive. Watson's competitors
+vary depending upon product categories, and within each product category, upon
+dosage strengths and drug-delivery systems. Such competitors include the major
+brand name and off-patent manufacturers of pharmaceuticals, especially those
+doing business in the United States. Many competitors have been in business for
+a longer period of time than Watson, have a greater number of products on the
+market and have greater financial and other resources. Newly introduced off-
+patent products with limited or no off-patent competition are typically sold at
+higher selling prices, often resulting in increased gross profit margins. As
+competition from other manufacturers intensifies, selling prices typically
+decline. Consequently, the maintenance of profitable operations will depend, in
+part, on Watson's ability to maintain efficient production capabilities and to
+develop and introduce new products in a timely and cost-effective manner.
+Developments by others could make Watson's products or technologies
+noncompetitive or obsolete.
+
+                                       9
+<PAGE>
+ 
+     THIS PROSPECTUS CONTAINS FORWARD-LOOKING STATEMENTS WITHIN THE MEANING OF
+SECTION 27A OF THE SECURITIES ACT AND SECTION 21E OF THE EXCHANGE ACT. YOU
+SHOULD BE AWARE THAT ANY SUCH STATEMENTS ARE PROJECTIONS OR ESTIMATES AS TO
+FUTURE EVENTS, WHICH MAY OR MAY NOT OCCUR. IN ADDITION TO THE OTHER INFORMATION
+IN THIS PROSPECTUS, YOU SHOULD CAREFULLY CONSIDER THE FOLLOWING RISK FACTORS.
+
+                                       10
+<PAGE>
+ 
+                      WHERE YOU CAN FIND MORE INFORMATION
+
+     Information regarding Watson, including historical financial statements and
+detailed descriptions of the business of Watson is included in documents other
+than this prospectus.  Watson files annual, quarterly and special reports, proxy
+statements and other information with the Securities and Exchange Commission.
+You may read and copy reports, statements or other information about Watson on
+file at the Securities and Exchange Commission's public reference rooms in
+Washington, D.C., New York, New York and Chicago, Illinois.  Please call the
+Securities and Exchange Commission at 1-800-SEC-0330 for further information on
+the public reference rooms.  You may also find Watson's Securities and Exchange
+Commission filings through commercial document retrieval services and the web
+site maintained by the Securities and Exchange Commission at http://www.sec.gov.
+                                                             ------------------
+You may find additional information about Watson via its website:
+
+http://www.watsonpharm.com.  Information in the company's web site is intended
+- --------------------------                                                    
+to be timely and accurate; however, there can be no assurance that this is the
+case.  Such information is expressly excluded from this prospectus.
+
+     The company has filed with the Securities and Exchange Commission under the
+Securities Act of 1933, as amended, a registration statement on Form S-3
+(herein, together with all amendments and exhibits thereto, referred to as the
+"registration statement") with respect to the shares of the company's common
+stock to be issued pursuant to this prospectus.  This document is a part of that
+registration statement.  This prospectus does not contain all of the information
+set forth in the registration statement, certain parts of which are omitted in
+accordance with the rules and regulations of the Securities and Exchange
+Commission.  Statements contained herein or in any document incorporated by
+reference herein as to the contents of any contract or other document referred
+to herein or therein are not necessarily complete, and in each circumstance
+reference is made to the copy of such contract or other document filed as an
+exhibit to the registration statement, or incorporated by reference.  Each such
+statement is qualified in all respects by such reference.  The registration
+statement and any amendments thereto, including exhibits filed as a part
+thereof, are available for inspection and copying as set forth above.
+
+                INCORPORATION OF CERTAIN DOCUMENTS BY REFERENCE
+
+     This prospectus may refer you to information about Watson located in other
+documents. The information in those documents, which are identified below, is
+specifically deemed to be part of this prospectus and to have been delivered to
+you in connection with making your decision to vote on the merger.  You can
+obtain a free copy of these and other documents on the Securities and Exchange
+Commission's Web site or, free of charge, by writing, calling or faxing:
+
+                     Attention:  Ms. Sara Swee
+                     Director Of Corporate Communications.
+                     Watson Pharmaceuticals, Inc.
+                     311 Bonnie Circle
+                     Corona, California  91720
+                     Tel:  (909) 270-1400
+                     Fax: (909) 270-1429
+
+     The following documents filed with the Securities and Exchange Commission
+are incorporated by reference herein:
+
+     1.  Annual Report of the company on Form 10-K for the year ended December
+         31, 1998.
+
+     2.  Current Report of the company on Form 8-K dated January 15, 1999.
+
+     3.  The description of the company's common stock contained in its
+         Registration Statement on Form
+         8-A dated April 3, 1992.
+
+     You should also consider as a part of this document all documents that
+Watson files under the Securities Exchange Act of 1934, as amended, after the
+date of this prospectus but prior to the termination of the offering made by
+this prospectus.  If any document Watson files under the Securities Exchange Act
+of 1934 changes in any way a statement made in any earlier document, including
+this document, you should consider the most recently reported information to be
+the correct information, rendering the earlier statements invalid to the extent
+they are modified.
+
+                                       11
+<PAGE>
+ 
+     You should only rely on the information contained in this document or that
+we have referred you to. We have not authorized anyone to provide you with
+different information. You should only consider this prospectus an offer to
+purchase the securities discussed in this prospectus if it is lawful in the
+jurisdiction in which you reside. Although we believe we have provided you with
+all of the information which would be helpful to you in your decision to acquire
+shares of common stock, it is possible that after we have delivered this
+prospectus to you events may occur at Watson which might affect your decision
+and or the value of common stock.
+
+                                USE OF PROCEEDS
+
+     The net proceeds received by the company upon any exercise of the stock
+options described below under "DESCRIPTION OF STOCK OPTIONS" will be added to
+the company's capital and will be used for general corporate purposes. During
+periods that the exercise prices of such options are higher than the market
+price of the company's common stock, the company does not expect that such
+options will be exercised.
+
+                          DESCRIPTION OF STOCK OPTIONS
+
+     In connection with the merger, each of the TheraTech stock options has
+become an option to purchase a number of whole shares of Watson common stock
+equal to the number of shares of TheraTech common stock into which such stock
+options were exercisable immediately prior to the merger multiplied by the
+exchange ratio of 0.2663 at a stock option exercise price determined by dividing
+the exercise price of such stock option immediately prior to the merger by the
+exchange ratio of 0.2663 (being rounded to the nearest full cent with $0.005
+rounded upward).
+
+                              GENERAL DESCRIPTION
+
+     Under the 1992 TheraTech Directors' Stock Option Plan, non-employee
+directors of TheraTech,  directors who were not officers or employees of
+TheraTech, were eligible to receive stock option grants. The Directors' Stock
+Option Plan provided for:
+
+          (a) an initial grant of a stock option to acquire 7,500 shares of
+     TheraTech common stock (which equates to approximately 1,997 shares of
+     Watson common stock after applying the exchange ratio of 0.2663) providing
+     that one-third of the shares subject to each initial grant of a stock
+     option becoming exercisable on the first, second and third anniversary of
+     its grant date, respectively, and
+
+          (b) each non-employee director received a stock option to purchase
+     4,000 shares of TheraTech common stock during each year thereafter that the
+     non-employee director continued to serve as director (which equates to
+     approximately 1,065 shares of Watson common stock after applying the
+     exchange ratio of 0.2663).
+
+     A total of 208,750 options to acquire TheraTech common stock was issued and
+outstanding under the Directors' Stock Option Plan at the time of the merger,
+which equates to approximately 55,587 shares of Watson common stock, after
+applying the exchange ratio of 0.2663.
+
+     The exercise price per share of all stock options granted under the
+Directors' Stock Option Plan was equal to the per share fair market value of
+TheraTech common stock on the date of grant.  Payment of the purchase price upon
+exercise of any stock option granted under the Directors' Stock Option Plan may
+be made in cash, by Watson common stock held by the optionee or by promissory
+note.
+
+                                       12
+<PAGE>
+ 
+                                 LEGAL MATTERS
+
+     The validity of the issuance of the company's common stock being offered
+hereby will be passed upon for the company by D'Ancona & Pflaum LLC, Chicago,
+Illinois. As of the date of this registration statement, Michel J. Feldman, a
+member of D'Ancona & Pflaum LLC and a director of the company, beneficially owns
+46,000 shares of the company's common stock, 1,000 of which he disclaims
+beneficial ownership.  In addition, other members of D'Ancona & Pflaum LLC own
+additional shares of the company's common stock, which ownership is not material
+in the aggregate.
+
+                                    EXPERTS
+
+     The consolidated financial statements of Watson Pharmaceuticals, Inc. as of
+December 31, 1998 and 1997 and for each of the three years in the period ended
+December 31, 1998 incorporated in this prospectus by reference to the Annual
+Report on Form 10-K of Watson Pharmaceuticals, Inc. for the year ended December
+31, 1998 have been so incorporated in reliance on the report of
+PricewaterhouseCoopers LLP, independent accountants, given on the authority of
+said firm as experts in auditing and accounting.
+
+     The financial statements of Oclassen Pharmaceuticals, Inc. for the years
+ended December 31, 1996 incorporated by reference in this prospectus and
+elsewhere in the registration statement have been audited by Arthur Andersen
+LLP, independent public accountants, as indicated in their reports with respect
+thereto, and are included herein in reliance upon the authority of said firm as
+experts in accounting and auditing in giving said reports.
+
+     The consolidated financial statements of Somerset Pharmaceuticals, Inc. and
+subsidiaries as of December 31, 1997 and 1996, and for each of the three years
+in the period ended December 31, 1997, incorporated in this prospectus by
+reference from the Annual Report on Form 10-K of Watson Pharmaceuticals, Inc.
+for the year ended December 31, 1998 have been audited by Deloitte & Touche LLP,
+independent auditors, as stated in their report, which is incorporated herein by
+reference, and have been so incorporated in reliance upon the report of such
+firm given upon their authority as experts in accounting and auditing.
+
+                                    PART II
+
+                     INFORMATION NOT REQUIRED IN PROSPECTUS
+
+ITEM 14.  OTHER EXPENSES OF ISSUANCE AND DISTRIBUTION.
+
+     The only expenses incurred in connection with this transaction are the
+following, all of which are estimated.
+
+<TABLE>
+<CAPTION>
+<S>                                                               <C>
+     Accounting fees and expenses..............................   $ 8,000
+     Legal fees and expenses...................................   $ 8,000
+ 
+     Total.....................................................   $16,000
+                                                                  =======
+</TABLE>
+
+ITEM 15.  INDEMNIFICATION OF DIRECTORS AND OFFICERS.
+
+     Section 78.751 of the Nevada Revised Statutes authorizes a corporation,
+under certain circumstances, to indemnify its directors and officers (including
+reimbursement for expenses incurred). The registrant has provided for
+indemnification to the fullest extent permitted by the provisions of the Nevada
+statute in its Articles of Incorporation and Bylaws.
+
+     The registrant maintains a directors' and officers' liability insurance
+policy that, subject to the terms and conditions of the policy, provides
+coverage up to $30,000,000 in the aggregate (subject to a $250,000 retention per
+loss) arising from any wrongful act (as defined by the policy) in his or her
+capacity as a director or officer.  The policy reimburses the registrant for
+amounts which lawfully indemnifies the registrant or as required or permitted by
+law to indemnify its directors and officers.
+
+                                       13
+<PAGE>
+ 
+ITEM 16.  EXHIBITS AND FINANCIAL STATEMENT SCHEDULES
+
+(a) Exhibits
+
+       2.1  Agreement and Plan of Merger, among Watson Pharmaceuticals, Inc.,
+            TheraTech, Inc. and The Jazz Merger Corp. dated as of October 23,
+            1998, incorporated by reference to Appendix A of the Proxy
+            Statement/Prospectus included in the Registration Statement on S-4,
+            Reg. No. 333-68007 and hereby incorporated by reference.
+
+       3.1  Articles of Incorporation of Watson and all amendments thereto,
+            filed as Exhibit 3.1 to Watson's Quarterly Report on Form 10-Q for
+            the quarter ended June 30, 1995 and Exhibit 3.1 (A) to Watson's
+            Quarterly Report on Form 10-Q for the quarter ended June 30, 1996
+            and hereby incorporated by reference.
+
+       3.2  Bylaws of Watson, as amended as of December 11, 1998, filed as
+            Exhibit 3.2 to Watson's Registration Statement on Form S-8 filed on
+            January 21, 1999 and hereby incorporated by reference.
+
+       4.1  TheraTech, Inc. 1992 Amended and Restated Directors' Stock Option
+            Plan, incorporated by reference to TheraTech's Proxy Statement filed
+            in connection with its 1994 Annual Meeting of Stockholders, and
+            hereby incorporated by reference.
+
+      *5.1  Opinion of D'Ancona & Pflaum LLC as to the legality of the common
+            stock being offered.
+
+      *5.2  Opinion of Kummer, Kaempfer, Bonner & Renshaw as to the legality of
+            the common stock being offered.
+
+     *23.1  Consent of D'Ancona & Pflaum LLC (included in exhibits 5.1).
+
+     *23.2  Consent of Kummer, Kaempfer, Bonner & Renshaw (included in exhibit
+            5.2).
+
+      23.3  Consent of PricewaterhouseCoopers LLP.
+
+      23.4  Consent of Deloitte & Touche LLP.
+
+      23.5  Consent of Arthur Andersen LLP.
+
+     *24.1  Power of Attorney.
+
+     ________________________
+     *Previously filed.
+
+     (b) Financial Statement Schedules
+
+     None.
+
+ITEM 17.  UNDERTAKINGS.
+
+     The undersigned registrant hereby undertakes:
+
+     (1)  To file, during any period in which offers or sales are being made, a
+          post-effective amendment to this Registration Statement:
+
+          (i)    To include any prospectus required by section 10(a)(3) of the
+                 Securities Act of 1933;
+
+          (ii)   To reflect in the prospectus any facts or events arising after
+                 the effective date of the Registration Statement (or the most
+                 recent post-effective amendment thereof) which, 
+
+                                       14
+<PAGE>
+ 
+                 individually or in the aggregate, represent a fundamental
+                 change in the information set forth in the Registration
+                 Statement;
+
+          (iii)  To include any material information with respect to the plan of
+                 distribution not previously disclosed in the Registration
+                 Statement or any material change to such information in the
+                 Registration Statement;
+
+     Provided, however, that paragraphs (1)(i) and (1)(ii) do not apply if the
+information required to be included in a post-effective amendment by those
+paragraphs is contained in periodic reports filed with or furnished to the
+Securities and Exchange Commission by the registrant pursuant to section 13 or
+section 15(d) of the Securities Exchange Act of 1934 that are incorporated by
+reference in the Registration Statement.
+
+     (2)  That, for the purpose of determining any liability under the
+          Securities Act of 1933, each such post-effective amendment shall be
+          deemed to be a new registration statement relating to the securities
+          offered therein, and the offering of such securities at that time
+          shall be deemed to be the initial bona fide offering thereof.
+
+     (3)  To remove from registration by means of a post-effective amendment any
+          of the securities being registered which remain unsold at the
+          termination of the offering.
+
+     (4)  That, for purposes of determining any liability under the Securities
+          Act of 1933, each filing of the registrant's annual report pursuant to
+          section 13(a) or section 15(d) of the Securities Exchange Act of 1934
+          that is incorporated by reference in the registration statement shall
+          be deemed to be a new registration statement relating to the
+          securities offered therein, and the offering of such securities at
+          that time shall be deemed to be the initial bona fide offering
+          thereof.
+
+     Insofar as indemnification for liabilities arising under the Securities Act
+of 1933 may be permitted to directors, officers and controlling persons of the
+registrant pursuant to the foregoing provisions (see Item 15 above), or
+otherwise, the registrant has been advised that in the opinion of the Securities
+and Exchange Commission such indemnification is against public policy as
+expressed in the Act and is, therefore, unenforceable. In the event that a claim
+for indemnification against such liabilities (other than the payment by the
+registrant of expenses incurred or paid by a director, officer or controlling
+person of the registrant in the successful defense of any action, suit or
+proceeding) is asserted by such director, officer or controlling person in
+connection with the securities being registered, the registrant will, unless in
+the opinion of its counsel the matter has been settled by controlling precedent,
+submit to a court of appropriate jurisdiction the question whether such
+indemnification by it is against public policy as expressed in the Act and will
+be governed by the final adjudication of such issue.
+
+     The undersigned registrant hereby undertakes that:
+
+     (1)  For purposes of determining any liability under the Securities Act of
+          1933, the information omitted from the form of prospectus filed as
+          part of this registration statement in reliance upon Rule 430A and
+          contained in a form of prospectus filed by the registrant pursuant to
+          Rule 424(b)(1) or (4) or 497(h) under the Securities Act shall be
+          deemed to be part of this registration statement as of the time it was
+          declared effective.
+
+     (2)  For the purpose of determining any liability under the Securities Act
+          of 1933, each post-effective amendment that contains a form of
+          prospectus shall be deemed to be a new registration statement relating
+          to the securities offered therein, and the offering of such securities
+          at that time shall be deemed to be the initial bona fide offering
+          thereof.
+
+                                       15
+<PAGE>
+ 
+                                   SIGNATURES
+
+       Pursuant to the requirements of the Securities Act of 1933, the
+registrant certifies that it has reasonable grounds to believe that it meets all
+of the requirements for filing on Form S-3 and has duly caused this registration
+statement to be signed on its behalf by the undersigned, thereunto duly
+authorized, in the City of Corona, State of California, on the 6th day of May,
+1999.
+
+<TABLE>
+<CAPTION>
+                                           
+                                               WATSON PHARMACEUTICALS, INC.
+                                               (registrant)
+<S>                                       <C> 
+                                                      By:   /s/     ALLEN Y. CHAO
+                                                         ------------------------
+                                                             Allen Y. Chao, Ph.D.
+                                            Chairman, Chief Executive Officer and
+                                          President (Principal Executive Officer)
+
+                                                      By:   /s/  MICHAEL E. BOXER
+                                                         ------------------------
+                                                                 Michael E. Boxer
+                                                          Chief Financial Officer
+                                                    (Principal Financial Officer)
+
+                                                      By:   /s/     R. CHATO ABAD
+                                                         ------------------------
+                                                                    R. Chato Abad
+                                                           Vice President-Finance
+                                                   (Principal Accounting Officer)
+</TABLE> 
+
+     Pursuant to the requirements of the Securities Act of 1933, this
+registration statement has been signed by the following persons in the
+capacities and on the dates indicated:
+
+<TABLE>
+<CAPTION>
+                  Signatures                                            Titles                             Date
+                  ----------                                            ------                             ----           
+<S>                                                     <C>                                             <C>
+           /s/ Allen Y. Chao, Ph.D                      Chairman, Chief Executive Officer and           May 6, 1999
+- ----------------------------------------------          President (Principal Executive Officer)
+              Allen Y. Chao, Ph.D.
+
+                    *                                   Director                                        May 6, 1999
+- ----------------------------------------------
+              Michel J. Feldman
+
+                    *                                   Director                                        May 6, 1999
+- ----------------------------------------------
+              Michael J. Fedida
+
+                    *                                   Director                                        May 6, 1999
+- ----------------------------------------------
+             Alec D. Keith, Ph.D.
+
+                    *                                   Director                                        May 6, 1999
+- ----------------------------------------------
+             Albert F. Hummel
+
+                    *                                   Director                                        May 6, 1999
+- ----------------------------------------------
+             Ronald R. Taylor
+
+                    *                                   Director                                        May 6, 1999
+- ----------------------------------------------
+              Andrew L. Turner
+
+
+ *By:    /s/  ALLEN Y. CHAO                             Attorney-in-fact                                May 6, 1999
+- ----------------------------------------------
+        Allen Y. Chao, Ph.D.
+</TABLE>
+
+                                       16
+<PAGE>
+ 
+                          WATSON PHARMACEUTICALS, INC.
+                                 EXHIBIT INDEX
+                   PRE-EFFECTIVE AMENDMENT NO. 1 TO FORM S-3
+
+
+       2.1  Agreement and Plan of Merger, among Watson Pharmaceuticals, Inc.,
+            TheraTech, Inc. and The Jazz Merger Corp. dated as of October 23,
+            1998, incorporated by reference to Appendix A of the Proxy
+            Statement/Prospectus included in the Registration Statement on S-4,
+            Reg. No. 333-68007 and hereby incorporated by reference.
+
+       3.1  Articles of Incorporation of Watson and all amendments thereto,
+            filed as Exhibit 3.1 to Watson's Quarterly Report on Form 10-Q for
+            the quarter ended June 30, 1995 and Exhibit 3.1 (A) to Watson's
+            Quarterly Report on Form 10-Q for the quarter ended June 30, 1996
+            and hereby incorporated by reference.
+
+       3.2  Bylaws of Watson, as amended as of December 11, 1998, filed as
+            Exhibit 3.2 to Watson's Registration Statement on Form S-8 filed on
+            January 21, 1999 and hereby incorporated by reference.
+
+       4.1  TheraTech, Inc. 1992 Amended and Restated Directors' Stock Option
+            Plan, incorporated by reference to TheraTech's Proxy Statement filed
+            in connection with its 1994 Annual Meeting of Stockholders and
+            hereby incorporated by reference.
+
+      *5.1  Opinion of D'Ancona & Pflaum LLC as to the legality of the common
+            stock being offered.
+
+      *5.2  Opinion of Kummer, Kaempfer, Bonner & and Renshaw as to the
+            legality of the common stock being offered.
+
+     *23.1  Consent of D'Ancona & Pflaum LLC (included in exhibit 5.1).
+
+     *23.2  Consent of Kummer, Kaempfer, Bonner & Renshaw (included in exhibit
+            5.2).
+
+      23.3  Consent of PricewaterhouseCoopers LLP.
+
+      23.4  Consent of Deloitte & Touche LLP.
+
+      23.5  Consent of Arthur Andersen LLP.
+
+     *24.1  Power of Attorney.
+
+     ________________________
+     *    Previously filed.
+
+                                       17
+</TEXT>
+</DOCUMENT>
+<DOCUMENT>
+<TYPE>EX-23.3
+<SEQUENCE>2
+<DESCRIPTION>CONSENT OF PRICEWATERHOUSECOOPERS LLP
+<TEXT>
+
+<PAGE>
+ 
+                                                                    EXHIBIT 23.3
+                                                                                
+                       CONSENT OF INDEPENDENT ACCOUNTANTS
+                                        
+
+We hereby consent to the incorporation by reference in this Amendment No. 1 to
+the Registration Statement on Form S-3 of our report dated February 17, 1999
+relating to the financial statements, which appears in Watson Pharmaceuticals,
+Inc.'s Annual Report on Form 10-K for the year ended December 31, 1998.  We also
+consent to the reference to us under the heading "Experts" in such Registration
+Statement.
+
+ 
+/s/  PRICEWATERHOUSECOOPERS LLP
+- -------------------------------
+
+Los Angeles, California
+May 4, 1999
+</TEXT>
+</DOCUMENT>
+<DOCUMENT>
+<TYPE>EX-23.4
+<SEQUENCE>3
+<DESCRIPTION>CONSENT OF DELOITTE & TOUCHE LLP
+<TEXT>
+
+<PAGE>
+ 
+                                                                    EXHIBIT 23.4
+
+INDEPENDENT AUDITORS' CONSENT
+
+
+We consent to the incorporation by reference in this Registration Statement of
+Watson Pharmaceuticals, Inc. on Form S-3 of our report dated February 4, 1998
+relating to the consolidated financial statements of Somerset Pharmaceuticals,
+Inc. and subsidiaries as of December 31, 1997 and 1996 and for each of the three
+years in the period ended December 31, 1997, incorporated by reference in the
+Annual Report on Form 10-K of Watson Pharmaceuticals, Inc. for the year ended
+December 31, 1998 and to the reference to us under the heading "Experts" in the
+Prospectus, which is part of this Registration Statement.
+
+
+/s/  DELOITTE & TOUCHE LLP
+- --------------------------
+
+Pittsburgh, Pennsylvania
+May 4, 1999
+</TEXT>
+</DOCUMENT>
+<DOCUMENT>
+<TYPE>EX-23.5
+<SEQUENCE>4
+<DESCRIPTION>CONSENT OF ARTHUR ANDERSEN LLP
+<TEXT>
+
+<PAGE>
+ 
+                                                                    EXHIBIT 23.5
+
+
+                         CONSENT OF ARTHUR ANDERSEN LLP
+
+                                        
+As independent public accountants, we hereby consent to the incorporation by
+reference in this Registration Statement No. 333-70943 of our report dated
+January 17, 1997 and to all references to our Firm included in this Registration
+Statement on Pre-Effective Amendment No. 1 to Form S-3. It should be noted that
+we have not audited any financial statements of Oclassen Pharmaceuticals, Inc.
+subsequent to December 31, 1996 or performed any audit procedures subsequent to
+the date of our report.
+
+
+/s/  ARTHUR ANDERSEN LLP
+- ------------------------
+
+May 6, 1999
+</TEXT>
+</DOCUMENT>
+</SEC-DOCUMENT>
+-----END PRIVACY-ENHANCED MESSAGE-----

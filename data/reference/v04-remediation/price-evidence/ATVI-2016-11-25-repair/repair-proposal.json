@@ -1,0 +1,27 @@
+{
+  "status": "PROPOSAL_ONLY",
+  "ticker": "ATVI",
+  "date": "2016-11-25",
+  "operation": "replace_one_whole_row_in_final_2021_candidate_after_original_row_check",
+  "expected_original_row_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-next-data-evidence/ATVI-2016-11-25-repair/original-row.json",
+  "expected_original_row_sha256": "24d253f5ddbabf8c78542b7f1c85b16bd08b30648ad9a3a6acd2f59b2725f549",
+  "canonical_factor": 0.9940071913703556,
+  "replacement_row": {
+    "date": "2016-11-25",
+    "open": 37.22556931681982,
+    "high": 37.35479025169796,
+    "low": 36.977067518977236,
+    "close": 36.99694766280464,
+    "volume": 3206319.0,
+    "as_traded_close": 37.22,
+    "dollar_volume": 119339193.17999999,
+    "adjusted": true,
+    "source": "IEX via Cam Nugent Kaggle sandp500 v4 (2018-02-10); whole 2016-11-25 OHLCV row, existing WIKI canonical adjustment factor preserved",
+    "downloaded_at": "2026-09-06T19:07:55.266425+00:00"
+  },
+  "selected_source_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-extracted.source.csv",
+  "selected_source_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6",
+  "audit_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-next-data-evidence/ATVI-2016-11-25-repair/audit.json",
+  "audit_sha256": "bc14d05cf8e42a820aa946ca9a6dc35a5ab777fe990a05d0d66df8f32c38eb22",
+  "manifest_instruction": "Append a dated whole-row repair entry, update the final candidate hash and invalid-row audit; do not replace unrelated history."
+}

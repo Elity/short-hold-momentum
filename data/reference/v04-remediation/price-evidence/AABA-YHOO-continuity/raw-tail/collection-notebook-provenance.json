@@ -1,0 +1,23 @@
+{
+  "notebook_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-tail-candidate/data_collection-55639c5.source.ipynb",
+  "sha256": "27f3e5b159dff5a91fb71fa02643c65ce90ce558384bcee3499992b65e4a0445",
+  "commit": "55639c5cfa7556c4372ff361c026acb792bfdcf4",
+  "cells_read_only_not_executed": [
+    {
+      "cell": 0,
+      "source": "import pandas_datareader as pdr"
+    },
+    {
+      "cell": 2,
+      "source": "start = datetime.datetime(2006, 1, 1)\nend = datetime.datetime(2018, 1, 1)\nstart_date_str = str(start.date())\nend_date_str = str(end.date())"
+    },
+    {
+      "cell": 4,
+      "source": "for ticker in stocks:\n    file_name = 'data/' + ticker + '_' + start_date_str + '_to_' + end_date_str + '.csv'\n    print(file_name)\n    data = pdr.DataReader(ticker, 'google', start, end)\n    print(data.shape)\n    data.to_csv(file_name)"
+    },
+    {
+      "cell": 6,
+      "source": "for (i, ticker) in enumerate(stocks):\n    file_name = 'data/' + ticker + '_' + start_date_str + '_to_' + end_date_str + '.csv'\n    print(file_name)\n    data = pd.read_csv(file_name, parse_dates=['Date'], index_col=['Date'])\n    print(data.shape)\n    data['Name'] = ticker\n    data.to_csv(file_name)\n    \n    if i == 0:\n        all_stocks = data\n    else:\n        all_stocks = all_stocks.append(data)\n        \nprint(all_stocks.shape)\nall_stocks_file_name = 'data/all_stocks_' + start_date_str + '_to_' + end_date_str + '.csv'\nall_stocks.to_csv(all_stocks_file_name)"
+    }
+  ]
+}

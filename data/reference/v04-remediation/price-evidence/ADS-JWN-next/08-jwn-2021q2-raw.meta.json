@@ -1,0 +1,6 @@
+{
+  "request_number": 8,
+  "url": "https://www.sec.gov/Archives/edgar/data/72333/000007233321000212/jwn-20210731.htm",
+  "reason": "prior Browse text cut off before interim financial statements",
+  "error": "<HTTPError 403: 'Forbidden'>"
+}

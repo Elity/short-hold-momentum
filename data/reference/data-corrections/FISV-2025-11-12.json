@@ -1,0 +1,29 @@
+{
+  "ticker": "FISV",
+  "cik": "0000798354",
+  "date": "2025-11-12",
+  "currency": "USD",
+  "adjusted": true,
+  "ohlcv": {
+    "open": 64.2,
+    "high": 64.87,
+    "low": 63.11,
+    "close": 64.38,
+    "volume": 6241184
+  },
+  "source": "FinancialContent/CloudQuote",
+  "crosscheck": "Stoculator old FI history; same CIK and matching neighboring adjusted OHLC",
+  "source_urls": [
+    "https://markets.financialcontent.com/siliconvalley.com/quote/historical?Symbol=537%3A930831",
+    "https://stoculator.com/stock/FI/historical"
+  ],
+  "archive": {
+    "ticker": "FISV",
+    "as_of": "2026-09-04",
+    "sha256": "e3a072f7957d7de49c9d005716d9ed6b50108a764c2da414effe2bcc005de67e",
+    "reason": "verified_single_missing_session_two_sources",
+    "path": "data/snapshots/backups/market-refresh/2026-09-04/FISV-e3a072f7957d7de4.parquet"
+  },
+  "corrected_sha256": "d7306facffbf947280890c26facd3e16b9fd7b4396742cce0c1833fc87a6ece9",
+  "applied_at": "2026-09-06T14:41:07.037072+00:00"
+}

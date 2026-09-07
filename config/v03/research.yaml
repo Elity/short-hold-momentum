@@ -1,0 +1,10 @@
+spec_version: '0.3'
+evidence: known_history
+dev_start: '2005-01-01'
+cutoff: '2026-09-04'
+warmup_trading_days: 260
+rebalance_every_trading_days: 20
+candidate_ids: [C0, C1, C2, C3, C4]
+cost_bps: [10, 25]
+initial_cash: 100000.0
+selection_order: [stress_excess_cagr_desc, stress_abs_maxdd_asc, turnover_asc, module_count_asc, id_asc]

@@ -1,0 +1,212 @@
+{
+  "runtime_inputs_modified": false,
+  "actions": [
+    {
+      "action": {
+        "action_id": "CFN_BDX_2015-03-17",
+        "source_ticker": "CFN",
+        "announced_date": "2014-10-05",
+        "known_date": "2015-03-17",
+        "last_trading_session": "2015-03-16",
+        "effective_session": "2015-03-17",
+        "cash_per_share": 49.0,
+        "cash_settlement_session": "2015-03-24",
+        "evidence": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "source_price_treatment": "terminal_before_action",
+        "target_ticker": "BDX",
+        "exchange_ratio": 0.0777,
+        "cash_in_lieu_price": null
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md",
+      "evidence_sha256": "527580a59cf2cbf6037ba2da37cc0ed6e12f1902fb8378976fde03f37300e4fa",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      },
+      "terms_status": "PRIMARY_SOURCE_CONFIRMED",
+      "source_quality_note": "Research fractional economic shares follow ADR014; actual whole-share cash-in-lieu VWAP not supplied."
+    },
+    {
+      "action": {
+        "action_id": "ARG_CASH_2016-05-23",
+        "source_ticker": "ARG",
+        "announced_date": "2015-11-17",
+        "known_date": "2016-05-23",
+        "last_trading_session": "2016-05-20",
+        "effective_session": "2016-05-23",
+        "cash_per_share": 143.0,
+        "cash_settlement_session": "2016-05-31",
+        "evidence": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md; settlement model: docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "source_price_treatment": "terminal_before_action"
+      },
+      "evidence_path": "data/reference/v04-remediation/corporate-action-evidence/cfn-arg-findings.md",
+      "evidence_sha256": "527580a59cf2cbf6037ba2da37cc0ed6e12f1902fb8378976fde03f37300e4fa",
+      "cash_settlement_status": "MODEL_ASSUMPTION_NOT_BROKER_OBSERVED",
+      "settlement_policy": {
+        "rule": "fifth_XNYS_session_after_effective",
+        "model_only": true,
+        "path": "docs/decisions/ADR-014-corporate-actions-and-security-identity.md",
+        "sha256": "c7ab8f96a4498d907a59a1146f9550cfabc5a3f5477e92a26cab4813e054b54a"
+      },
+      "terms_status": "PRIMARY_SOURCE_CONFIRMED",
+      "source_quality_note": "ARG archive misses fiscal-2016 Q4 ordinary dividend; terminal cash does not cure that earlier total-return defect."
+    }
+  ],
+  "local_sources": {
+    "CFN": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/CFN.parquet",
+      "sha256": "d94d1ddfec609396a8c995cc0791251902b97d13b488bc2bf520d075b2add70e",
+      "rows": 1400,
+      "first": "2009-08-21",
+      "last": "2015-03-16",
+      "last_raw_close": 59.91,
+      "last_adjusted_close": 59.91,
+      "last_adjusted_to_nominal_factor": 1.0,
+      "last_cash_dividends": [],
+      "terminal_merger_event_embedded": false
+    },
+    "ARG": {
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ARG.parquet",
+      "sha256": "cd7f6c2b0234adcc3551d87ef1192f955de15a57518eff6db74652d0994d10f2",
+      "rows": 3182,
+      "first": "2003-10-01",
+      "last": "2016-05-20",
+      "last_raw_close": 142.95,
+      "last_adjusted_close": 142.95,
+      "last_adjusted_to_nominal_factor": 1.0,
+      "last_cash_dividends": [
+        {
+          "date": "2014-09-11",
+          "ex-dividend": 0.55
+        },
+        {
+          "date": "2014-12-10",
+          "ex-dividend": 0.55
+        },
+        {
+          "date": "2015-03-11",
+          "ex-dividend": 0.55
+        },
+        {
+          "date": "2015-06-11",
+          "ex-dividend": 0.6
+        },
+        {
+          "date": "2015-09-11",
+          "ex-dividend": 0.6
+        },
+        {
+          "date": "2015-12-10",
+          "ex-dividend": 0.6
+        }
+      ],
+      "terminal_merger_event_embedded": false,
+      "archive_fiscal_2016_q4_dividends": 0.0,
+      "sec_fiscal_2016_q4_dividend": 0.6,
+      "around_reported_ex_date": [
+        {
+          "date": "2016-03-09",
+          "close": 141.76,
+          "adj_close": 141.76,
+          "ex-dividend": 0.0
+        },
+        {
+          "date": "2016-03-10",
+          "close": 141.87,
+          "adj_close": 141.87,
+          "ex-dividend": 0.0
+        },
+        {
+          "date": "2016-03-11",
+          "close": 141.57,
+          "adj_close": 141.57,
+          "ex-dividend": 0.0
+        },
+        {
+          "date": "2016-03-14",
+          "close": 141.54,
+          "adj_close": 141.54,
+          "ex-dividend": 0.0
+        }
+      ]
+    }
+  },
+  "successor_price_anchor": {
+    "ticker": "BDX",
+    "issuer": "Becton, Dickinson and Company",
+    "date": "2015-03-16",
+    "primary_nominal_close": 142.29,
+    "cache_as_traded_close": 142.2899969467163,
+    "cache_adjusted_close": 91.44170379638672,
+    "cache_sha256": "84f26f971a53f4382432d3da98d0dc687c7b671264cee94fed4d91f0b2df9696",
+    "primary_source": "https://www.sec.gov/Archives/edgar/data/10795/000162828015008984/R16.htm"
+  },
+  "fractional_share_rule_CFN": {
+    "aggregate_per_record_holder": true,
+    "fraction_precision_decimals": 3,
+    "cash_rounding": "floor_to_cent",
+    "fractional_stock_issued": false,
+    "price_basis": "simple average of 10 daily NYSE BDX VWAPs ending 2015-03-16",
+    "price_value": null,
+    "research_policy": "ADR014 divisible economic shares",
+    "primary_url": "https://investors.bd.com/sec-filings/all-sec-filings/content/0001193125-14-364186/d800483dex21.htm",
+    "primary_html_sha256": "a4211a7152c4b9b18281873ef6f7850c1d682314a28c0e4c961587d591fbcd35"
+  },
+  "ARG_ordinary_dividend_gap": {
+    "amount_per_nominal_share": 0.6,
+    "fiscal_quarter_end": "2016-03-31",
+    "amount_and_quarter_status": "PRIMARY_CONFIRMED",
+    "ex_date": "2016-03-11",
+    "record_date": "2016-03-15",
+    "payment_date": "2016-03-31",
+    "exact_date_status": "SECONDARY_MARKET_SOURCES",
+    "primary_url": "https://www.sec.gov/Archives/edgar/data/804212/000080421216000048/arg-33116form10xk.htm",
+    "secondary_url": "https://www.streetinsider.com/dividend_history.php?q=ARG",
+    "not_a_terminal_cash_supplement": true
+  },
+  "evidence_files": {
+    "KRFT-action-proposal.json": "6f0047b3bfc71b0e8a4da7cc770602fc76c9ea61e60caea733365b044c314d34",
+    "KRFT-issuer-closing.txt": "2420f4bd1237e5dc3d3c9a1f8937c64d061b0b5e5339512f28980e5d6a694767",
+    "KRFT-price-audit.json": "39c6ccfddc57a555b4a6abb5d71dbd6c57ccf6fe494cc15f5bac6e5f40c40219",
+    "KRFT-sec-announcement-8k.txt": "2f0a428340bdaf956fb7e4a030f2af42e819fb62345499d3aa474dd4a2f7c508",
+    "KRFT-sec-closing-8k.txt": "20a381293af888f4b804c9972d761928aa231c36b36280435870568238e93178",
+    "KRFT-sources.json": "091e15f146495bb20a328fedcdbcb5b555ba7baec896682ae0d5d2bb3f994c26",
+    "KRFT-special-dividend-declaration.txt": "5a6fe14800e148c7fbd191e354856897baea191a3cd5e139dab1c86c2a53c363",
+    "arg-2016-full-html.source.json": "df4ba358120107aee430d3aafa1ac8e3553eb95f45e2dc4703801d3e39df12fa",
+    "arg-2016-index.source.json": "bb703e927b689fd1c73c86bffeeadfb5c291832013fde94efe28fe1a6b0ff72e",
+    "arg-annual-sonic.search.json": "7c8765ea9b2a5daa4af0d2313515ab5d2e22548d8e43577154dc94a5437ab2b9",
+    "arg-completion.excerpt.txt": "8387896a33df28ffdb2f82a5f52abb66930848f952efbba23afc73238af316dd",
+    "arg-completion.search.json": "47d023dbeb4cab4dc686ab32db8d35ec7485ac70363685c986afaf051945c770",
+    "arg-date-businesswire.search.json": "649d8a3be41b0fa9d45afd2092e029b05d3e4a1fd3dd7f1f0529253227ea1d1c",
+    "arg-date-issuer.search.json": "53842ae2cbf2b9ffb2c5c9a0e1e7aa5fb11b597e762311e8f33b9c3b1949ede5",
+    "arg-date-wire-domain.search.json": "313c5f8f9118402daa6efa45b0923e52053a39678757e2967db7db211d082c49",
+    "arg-declared-dividend.search.json": "2b8989a14ddef1759c95859c6f782d242810d9b7eccccbc35a99f9b0e779b325",
+    "arg-dividend-2016.search.json": "d7731814e2f7bc6a666a8b18ffb7fff2059a26e47c7cd1bc30f18c7297be2e0c",
+    "arg-dividend.search.json": "86f5f8d3bcd9b20c61b68a363d61dcc7c78d443fe75d102cc37713140c58399b",
+    "arg-exdate-primary-check.json": "cbab101a30169a50b4a76fe92b12fd0c5f82f1bc1dad546d30819bf4daad1386",
+    "arg-final-quarter.search.json": "eba6413e8954da815cc159348ffe43c8f132bce41c6b297945ca5bcf90a93834",
+    "arg-ordinary-dividend-dates-secondary.excerpt.txt": "68d371aa9dec412f533994e1a9aaeb485226bf390354041de1ee4221b7fd3cdd",
+    "arg-ordinary-dividend-primary.excerpt.txt": "2449ede85d7a3d8417a661c35c7aa777a9c1aad72c9c87539edc978b03948741",
+    "cfn-agreement-exhibit.source.json": "058f62ce21d3d2bca2e9a214b5a34121570d1fdc35f794e16087c8a2ac09c339",
+    "cfn-agreement-html.source.json": "d809bd5a5c467e083b3cc1c86e8bef82d09c26b1cb5bcc580ac50a7100ac8c63",
+    "cfn-company-agreement.direct.html": "a4211a7152c4b9b18281873ef6f7850c1d682314a28c0e4c961587d591fbcd35",
+    "cfn-company-agreement.direct.meta.json": "9a8e0b0379521bbd05d2059b6aad8a7e4ba31c0d7c92bd461a71877ec558966c",
+    "cfn-company-agreement.direct.txt": "27acc2e9073543ae807b245766cb772effa02a66b4eb02c652bb99b6f3ef7cd8",
+    "cfn-company-agreement.source.json": "fffc56cbfe43f19489579a4f40bcc3a8d88d76b1600188d981c09588ee47d72d",
+    "cfn-completion.excerpt.txt": "d6d9f2ff5afc19c3c0762e8fa4e203b40cab2460b942cf6130749f44849cfbd9",
+    "cfn-completion.search.json": "60e335785c127a0fee8db0e8ba02060272bf6030bb9513e546d4dccdb7acce0a",
+    "cfn-dividend-covenant.excerpt.txt": "38bf422584e59f387964b5a78fcff407f2e2e5f23f263644d084be4a2396f698",
+    "cfn-fractional-clause.search.json": "367727dcb1b9416784ed04aea51e9179861c23aa321b67cf1f5cc0b3d142458b",
+    "cfn-fractional-rule.excerpt.txt": "eeb4274e7861c164f3982c9ac5dbd12ca701f10d77413a4c255b191204e8a44c",
+    "cfn-fractional.search.json": "3745aad37355df53d6e0ea4f0192390ddf62b5f9781b886d0c48aa39e036ae4e",
+    "cfn-fractions-sonic.search.json": "163c70f9028a3b43795feb8f96e92d784beed24d502db22496b9de70a22b2e23",
+    "cfn-merger-agreement-links.source.json": "f53d5ff78addfd24f8d1de704b7a77781a291ac997026502dea0482b50a0f3fd",
+    "cfn-merger-full.source.json": "71073cdcf93b90734617d0739b96dd1542a8058c9fecac2bb86a9fa702611f6d",
+    "cfn-occ.search.json": "72bde396a36a3d65127cc1fec21fa1f6a8490d9667991fd2e9646f1b88feca21",
+    "cfn-own-8k.search.json": "a225697e9f701d24e71ea3635f3bfdc723fa124e0bdca07f9837d546cadfd234",
+    "manifest-entries.json": "fb6dc6e5f096ca1bc34d9eabc11d8f6c949da7267ee0675eebadd821b5a543b9"
+  }
+}

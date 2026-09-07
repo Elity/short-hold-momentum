@@ -1,0 +1,74 @@
+{
+  "status": "REQUESTED_PRIMARY_FACTS_OBTAINED",
+  "dividend": {
+    "declaration": "2017-11-15",
+    "amount_per_share_usd": 0.31,
+    "record_date": "2018-01-19",
+    "payable_date": "2018-02-02",
+    "amount_not_inferred_from_annual_total": true,
+    "issuer_pdf_url": "https://www.footlocker-inc.com/ns/pdfs/2017/4Q17-Dividend-Release.pdf",
+    "issuer_original_pdf_downloaded": false,
+    "issuer_indexed_text_sha256": "85532cd0da4f234105180f0e0b38f2fffaf7ac8c607fb8887af90bb13277f4cb",
+    "issuer_search_title_warning": "Search title says May 11, 1998; actual release body clearly says November 15, 2017. Use body/date, not index title.",
+    "company_prnewswire_url": "https://www.prnewswire.com/news-releases/foot-locker-inc-declares-quarterly-dividend-of-031-per-share-300557094.html",
+    "company_prnewswire_text_sha256": "1787cfee26a76b1bf4da61f7d42a28714abe0047ca742553f50fa98410da4778"
+  },
+  "quarterly_primary": {
+    "url": "https://investors.footlocker-inc.com/static-files/a3da522c-cb46-4718-971a-df6b3f306d9e",
+    "period_end": "2021-07-31",
+    "retrieved_status": 200,
+    "format": "RTF",
+    "original_sha256": "a06ac2f937c9973c593ab91537e7feba6fbd4ce61c3060a90e00a81018785827",
+    "text_sha256": "0f5b0a2ea9fc277c3027981ce905e3162423a14ef0c04a06bc2989bd7fce04d1",
+    "equity_statement_page": 4,
+    "q2_common_issued_thousands": {
+      "begin": 104286,
+      "restricted_stock": 11,
+      "director_and_stock_plans": 219,
+      "end": 104516
+    },
+    "q2_treasury_thousands": {
+      "begin": -887,
+      "tax_withholding": -3,
+      "repurchases": -125,
+      "espp_reissued": 301,
+      "end": -714
+    },
+    "h1_common_issued_thousands": {
+      "begin": 103693,
+      "restricted_stock": 479,
+      "director_and_stock_plans": 344,
+      "end": 104516
+    },
+    "h1_treasury_thousands": {
+      "begin": -74,
+      "tax_withholding": -195,
+      "repurchases": -746,
+      "espp_reissued": 301,
+      "end": -714
+    },
+    "all_share_rollforwards_reconcile": true,
+    "split_or_reverse_split_lines": 0,
+    "issued_vs_outstanding_distinction": "104,516 thousand issued less 714 thousand treasury implies approximately 103,802 thousand outstanding on July 31; cover separately gives 103,807,679 outstanding on September 3.",
+    "cover_outstanding_asof": "2021-09-03",
+    "cover_outstanding_shares": 103807679,
+    "inference_limit": "Complete H1 and Q2 tables support no split during the reported financial period through July 31. September 3 cover count supports subsequent scale continuity but is not a full August transaction roll-forward."
+  },
+  "network_operations": 3,
+  "queries": [
+    {
+      "number": 1,
+      "saved": "01-search.json"
+    },
+    {
+      "number": 2,
+      "saved": "02-search.json"
+    },
+    {
+      "number": 3,
+      "saved": "03-FL-2021Q2-retrieval.json"
+    }
+  ],
+  "no_retries_of_existing_failed_paths": true,
+  "repo_root_work_or_manifest_modified": false
+}

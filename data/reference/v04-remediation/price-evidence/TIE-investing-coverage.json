@@ -1,0 +1,124 @@
+{
+  "source_url": "https://www.investing.com/equities/titanium-metals-historical-data",
+  "requested_range": [
+    "2003-10-01",
+    "2013-01-07"
+  ],
+  "observed_range": [
+    "2009-07-23",
+    "2013-01-07"
+  ],
+  "rows": 867,
+  "missing_volume_count": 194,
+  "first_volume_date": "2010-04-30",
+  "missing_sessions": [
+    "2009-08-26",
+    "2010-05-21",
+    "2010-07-02",
+    "2011-02-17"
+  ],
+  "ohlc_inconsistent_count": 21,
+  "ohlc_inconsistent_examples": [
+    {
+      "date": "2010-03-12",
+      "open": 14.24,
+      "high": 14.14,
+      "low": 14.14,
+      "close": 14.14
+    },
+    {
+      "date": "2010-03-15",
+      "open": 14.08,
+      "high": 14.02,
+      "low": 14.02,
+      "close": 14.02
+    },
+    {
+      "date": "2010-03-18",
+      "open": 14.64,
+      "high": 14.57,
+      "low": 14.57,
+      "close": 14.57
+    },
+    {
+      "date": "2010-03-25",
+      "open": 16.97,
+      "high": 15.91,
+      "low": 15.91,
+      "close": 15.91
+    },
+    {
+      "date": "2010-03-30",
+      "open": 17.19,
+      "high": 16.7,
+      "low": 16.52,
+      "close": 16.52
+    },
+    {
+      "date": "2010-04-06",
+      "open": 17.18,
+      "high": 17.04,
+      "low": 16.92,
+      "close": 16.92
+    },
+    {
+      "date": "2010-04-09",
+      "open": 16.67,
+      "high": 16.45,
+      "low": 16.45,
+      "close": 16.45
+    },
+    {
+      "date": "2010-04-14",
+      "open": 17.29,
+      "high": 17.06,
+      "low": 17.06,
+      "close": 17.06
+    },
+    {
+      "date": "2010-04-15",
+      "open": 17.06,
+      "high": 16.93,
+      "low": 16.04,
+      "close": 16.04
+    },
+    {
+      "date": "2010-04-19",
+      "open": 15.98,
+      "high": 15.97,
+      "low": 15.97,
+      "close": 15.97
+    }
+  ],
+  "quarter_2010": {
+    "1": {
+      "high": 17.19,
+      "low": 10.55,
+      "rows": 61
+    },
+    "2": {
+      "high": 20.97,
+      "low": 14.12,
+      "rows": 62
+    },
+    "3": {
+      "high": 22.87,
+      "low": 16.93,
+      "rows": 63
+    },
+    "4": {
+      "high": 20.88,
+      "low": 16.65,
+      "rows": 64
+    }
+  },
+  "raw_sha256": "3dc964acb02f0b02e7b6cb47cd700551131eb69bf0bcaf41627fd2eb98950b7e",
+  "usable_as_complete_total_return_input": false,
+  "limitations": [
+    "No pre-2009-07-23 rows returned",
+    "Missing volume not zero; displayed K/M volumes rounded",
+    "OHLC range contradictions exist",
+    "Missing trade sessions remain",
+    "Corporate action/total return adjustment convention unverified"
+  ]
+}

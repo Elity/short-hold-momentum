@@ -1,0 +1,67 @@
+[
+  {
+    "id": "2017_quarter_amounts_and_2016_initial_quarter",
+    "source_id": "P17M",
+    "matches": true
+  },
+  {
+    "id": "dividend_program_start",
+    "source_id": "P17M",
+    "matches": true
+  },
+  {
+    "id": "individual_2017_event_2017-02-13",
+    "source_id": "P17M",
+    "matches": true
+  },
+  {
+    "id": "individual_2017_event_2017-05-11",
+    "source_id": "P17M",
+    "matches": true
+  },
+  {
+    "id": "individual_2017_event_2017-08-10",
+    "source_id": "P17M",
+    "matches": true
+  },
+  {
+    "id": "individual_2017_event_2017-11-13",
+    "source_id": "P17M",
+    "matches": true
+  },
+  {
+    "id": "2018Q1_declaration",
+    "source_id": "P17M",
+    "matches": true
+  },
+  {
+    "id": "2018_2019_quarterly_paid_amounts",
+    "source_id": "P19M",
+    "matches": true
+  },
+  {
+    "id": "2020Q1_declaration",
+    "source_id": "P19M",
+    "matches": true
+  },
+  {
+    "id": "2019Q2_issuer_declaration",
+    "source_id": "P19Q2_RELEASE",
+    "matches": true
+  },
+  {
+    "id": "2020Q2_SEC_declaration",
+    "source_id": "P20Q2_SEC",
+    "matches": true
+  },
+  {
+    "id": "2020Q2_common_stock_class",
+    "source_id": "P20Q2_RELEASE",
+    "matches": true
+  },
+  {
+    "id": "secondary_explicit_ex_date_2017Q1",
+    "source_id": "S17Q1_EX",
+    "matches": true
+  }
+]

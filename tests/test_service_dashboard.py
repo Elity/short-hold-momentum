@@ -183,8 +183,8 @@ def test_dashboard_http_settings_history_details_and_static_assets(tmp_path, mon
             ((NOW-timedelta(days=100)).isoformat(), old),
         )
     monkeypatch.setattr(
-        app, "build_dashboard", lambda root, database, timezone: build_dashboard(
-            root, database, timezone, now=NOW
+        app, "build_dashboard", lambda root, database, timezone, **kwargs: build_dashboard(
+            root, database, timezone, now=NOW, **kwargs
         )
     )
     service = app.RunService(
@@ -206,6 +206,16 @@ def test_dashboard_http_settings_history_details_and_static_assets(tmp_path, mon
             result = json.load(response)
             assert len(result["runs"]) == 2
             assert result["progress"]["next"] == "2026-11-12"
+            assert result["strategy"]["id"] == "V04"
+        with urlopen(base + "/api/dashboard?strategy_id=C3&cost_bps=25") as response:
+            result = json.load(response)
+            assert result["strategy"]["id"] == "C3"
+            assert result["strategy"]["performance_verdict"] == "NOT_STARTED"
+            assert result["account"]["total"] is None
+            assert result["trades"] == []
+        with pytest.raises(HTTPError) as error:
+            urlopen(base + "/api/dashboard?strategy_id=../V04")
+        assert error.value.code == 400
         with urlopen(base + "/api/runs/1") as response:
             assert json.load(response)["steps"][0]["status"] == "failed"
         request = Request(base + "/api/settings", json.dumps({"daily_time": "08:00"}).encode(),

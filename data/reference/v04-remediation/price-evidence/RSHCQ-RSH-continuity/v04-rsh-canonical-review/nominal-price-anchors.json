@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2004-09-30",
+    "shares": 722842,
+    "reported_value_usd": 20702195,
+    "parsed_source_line": "RadioShack Corp. .................. 722,842 20,702,195",
+    "dated_table_header_present": true,
+    "implied_price": 28.640000166011383,
+    "raw_close": 28.64,
+    "adjusted_close_not_nominal": 23.67066491666849,
+    "total_rounding_difference_usd": -0.12000000104308128,
+    "passes_integer_dollar_rounding": true,
+    "file": "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/corporate-action-evidence/spy-2004-membership.primary.txt",
+    "source_sha256": "b7c447d986f0a58f0a6791dd70b2433cbea34d57b703438c43ac4e394b8dd4a0"
+  },
+  {
+    "date": "2005-09-30",
+    "shares": 565742,
+    "reported_value_usd": 14030402,
+    "parsed_source_line": "RadioShack Corp. ............... 565,742 14,030,402",
+    "dated_table_header_present": true,
+    "implied_price": 24.80000070703607,
+    "raw_close": 24.8,
+    "adjusted_close_not_nominal": 20.649998128471655,
+    "total_rounding_difference_usd": -0.40000000037252903,
+    "passes_integer_dollar_rounding": true,
+    "file": "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/corporate-action-evidence/spy-2005-membership.primary.txt",
+    "source_sha256": "0b15a59d6d3ac20d7c00effd3596664f73b3e2258a765cb53f81e348a47c5788"
+  }
+]

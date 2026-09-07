@@ -1,0 +1,13 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"url\":\"https://press.spglobal.com/index.php?keywords=s%26P+500+index&l=100\",\"retryAfter\":\"2026-09-06T15:27:11Z\",\"traceId\":\"6a9d863bc51a451686abfe46db2dbeb9\"}"
+    }
+  ],
+  "structuredContent": {
+    "url": "https://press.spglobal.com/index.php?keywords=s%26P+500+index&l=100",
+    "retryAfter": "2026-09-06T15:27:11Z",
+    "traceId": "6a9d863bc51a451686abfe46db2dbeb9"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "status": "NO_OBSERVED_EVIDENCE_CONFLICT_WITHIN_BOUNDED_WINDOW",
+  "network_requests": 0,
+  "repo_writes": 0,
+  "generated_price_rows": 0,
+  "hash_references_checked": 20,
+  "distinct_hashed_files": 18,
+  "fund_anchors_matched": 2,
+  "issuer_quarters_matched": 8,
+  "source_window_rows": 1902,
+  "cash_events": 7,
+  "max_factor_step_residual": 4.440892098500626e-16,
+  "max_daily_total_return_gross_residual": 4.440892098500626e-16,
+  "actual_fixed_strategy_exit_window_proven": false,
+  "canonical_candidate_audited": false,
+  "recommendation": "Evidence sufficient to construct and review a research-only canonical series within the exact window; application still requires candidate and actual-path boundary checks."
+}

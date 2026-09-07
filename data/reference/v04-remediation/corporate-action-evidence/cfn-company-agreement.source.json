@@ -1,0 +1,13 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"url\":\"https://investors.bd.com/sec-filings/all-sec-filings/content/0001193125-14-364186/d800483dex21.htm\",\"retryAfter\":\"2026-09-06T17:24:45Z\",\"traceId\":\"6a9da1c85a90474cb08848376108c2d5\"}"
+    }
+  ],
+  "structuredContent": {
+    "url": "https://investors.bd.com/sec-filings/all-sec-filings/content/0001193125-14-364186/d800483dex21.htm",
+    "retryAfter": "2026-09-06T17:24:45Z",
+    "traceId": "6a9da1c85a90474cb08848376108c2d5"
+  }
+}

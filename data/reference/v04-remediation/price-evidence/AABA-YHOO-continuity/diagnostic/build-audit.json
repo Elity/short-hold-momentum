@@ -1,0 +1,22 @@
+{
+  "status": "DIAGNOSTIC_NOT_APPLIED_ACTION_REVIEW_REQUIRED",
+  "candidate_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-canonical/AABA-YHOO-through-2017-12-29.diagnostic.parquet",
+  "candidate_sha256": "4cd04ac14c56a64642c40f017acd1a3b7d9cec36a86e880c4f0c7f194509c6f7",
+  "rows": 3588,
+  "prefix_rows": 3452,
+  "tail_rows": 136,
+  "first": "2003-10-01",
+  "last": "2017-12-29",
+  "sources": {
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-identity/YHOO-WIKI-source.parquet": "d144fb2c24d02561cfcc015b7a813d574ec8f7c0191cb3c2fa1ccb73eef16128",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-aaba-tail-candidate/AABA-2017-06-19-to-2017-12-29.raw-candidate.parquet": "1bbe90f4d5467505946ea8e6fb2bc77884ada785cbdd3db698c9d7f604c93ee1"
+  },
+  "prefix_adjusted_OHLCV_preserved_exactly": true,
+  "nominal_close_and_dollar_volume_preserved": true,
+  "raw_tail_unscaled": true,
+  "missing_sessions": [],
+  "invalid_rows": 0,
+  "conditional_total_return_assumption": "No mandatory distributions or split units affecting the appended 2017 interval; requires separate primary action review.",
+  "no_terminal_cash_or_membership_change_created": true,
+  "no_repo_files_modified": true
+}

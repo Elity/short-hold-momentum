@@ -1,0 +1,13 @@
+{
+  "url": "https://www.investing.com/equities/c-r-bard-historical-data",
+  "read_method": "Normal Chrome page; opened visible date range picker; set 2017-11-01 to 2017-11-15; Apply; read rendered table cells via CUA",
+  "security_heading": "CR Bard Inc (BCR), NYSE, Currency in USD",
+  "observed_on": "2026-09-07",
+  "missing_day": "2017-11-08",
+  "fields": {"open": 334.05, "high": 334.21, "low": 333.08, "close": 334.08, "volume": 635560},
+  "volume_precision": "Source renders 635.56K. 635560 is the reported rounded volume, not a verified exact share count; display resolution is 10 shares.",
+  "price_precision": "Source displays OHLC to two decimal places. Neighboring raw-price observations agree with WIKI at displayed precision.",
+  "provider_differences": "Neighboring volumes differ from WIKI, occasionally materially; use only the missing day's source-reported volume, without overwriting archive volumes.",
+  "authorization_context": "Root explicitly accepted registering this source-reported rounded volume with precision disclosure; no Yahoo calls used.",
+  "other_sources_checked": ["Already-downloaded Cam Nugent S&P500 archive lacks BCR", "kristoffer-paulsson/stock-data bcr.csv has no Git history and raw path returns 404"]
+}

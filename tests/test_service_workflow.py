@@ -57,6 +57,54 @@ def test_daily_workflow_runs_update_and_status_when_nothing_is_due(
     ]
 
 
+def test_sp500_workflow_uses_shared_throttled_queue_instead_of_legacy_downloader(tmp_path, monkeypatch):
+    (tmp_path / "config").mkdir()
+    (tmp_path / "config/sp500.yaml").write_text("enabled: true\n")
+    monkeypatch.setattr(workflow, "latest_completed_session", lambda now=None: pd.Timestamp("2026-09-04"))
+    monkeypatch.setattr(workflow, "build_paper_progress", lambda root: SimpleNamespace(
+        next_rebalance_date=pd.Timestamp("2026-09-17"), pending_cycles=()))
+    monkeypatch.setattr(workflow, "_forward_start", lambda root: pd.Timestamp("2026-09-05"))
+    monkeypatch.setattr(workflow, "validate_required_price_caches", lambda root: "ok")
+    monkeypatch.setattr(workflow, "_completed_report_months", lambda root, session: ())
+    commands = []
+    result = workflow.run_daily_workflow(tmp_path, command_runner=lambda command, cwd: commands.append(command) or "ok")
+    assert [command[3] for command in commands] == ["sp500-refresh", "market-refresh-sp500", "paper"]
+    assert not any(command[3:5] == ["data", "update"] for command in commands)
+    assert "new risk paused" in result.actions[-1]
+
+
+def test_observation_workflow_initializes_and_runs_without_a_historical_winner(tmp_path, monkeypatch):
+    import json
+    (tmp_path / "config/v04").mkdir(parents=True)
+    (tmp_path / "config/sp500.yaml").write_text("enabled: true\n")
+    (tmp_path / "config/v04/observation.json").write_text(json.dumps({"strategy_id": "S500-C3"}))
+    monkeypatch.setattr(workflow, "latest_completed_session", lambda now=None: pd.Timestamp("2026-09-04"))
+    monkeypatch.setattr(workflow, "build_paper_progress", lambda root: SimpleNamespace(
+        next_rebalance_date=pd.Timestamp("2026-09-17"), pending_cycles=()))
+    monkeypatch.setattr(workflow, "_forward_start", lambda root: pd.Timestamp("2026-09-05"))
+    monkeypatch.setattr(workflow, "validate_required_price_caches", lambda root: "ok")
+    monkeypatch.setattr(workflow, "_completed_report_months", lambda root, session: ())
+    commands, steps = [], []
+    result = workflow.run_daily_workflow(tmp_path,
+        command_runner=lambda command, cwd: commands.append(command) or "ok",
+        reporter=lambda name, status, *_: steps.append((name, status)))
+    assert [c[3:5] for c in commands if c[3] == "paper"] == [
+        ["paper", "init-observation"], ["paper", "daily-decision"], ["paper", "status"]]
+    assert ("v04-observation-init", "success") in steps
+    assert ("v04-observation-daily-decision", "success") in steps
+    assert any("S500-C3 observation" in action for action in result.actions)
+    directory = tmp_path / "paper/v04/S500-C3"
+    (directory / "reports").mkdir(parents=True)
+    (directory / "manifest.json").write_text("{}")
+    (directory / "state.json").write_text(json.dumps({"forward_start": "2026-07-01"}))
+    (directory / "reports/2026-07.json").write_text("{}")
+    commands.clear()
+    workflow.run_daily_workflow(tmp_path, command_runner=lambda command, cwd: commands.append(command) or "ok")
+    paper = [c[3:] for c in commands if c[3] == "paper"]
+    assert [c[1] for c in paper] == ["daily-decision", "report-v04", "status"]
+    assert paper[1][-2:] == ["--month", "2026-08"]
+
+
 def test_daily_workflow_records_a_missed_rebalance_and_moves_forward(
     tmp_path, monkeypatch
 ) -> None:

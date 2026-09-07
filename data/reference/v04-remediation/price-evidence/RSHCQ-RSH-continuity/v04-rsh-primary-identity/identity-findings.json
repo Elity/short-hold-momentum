@@ -1,0 +1,157 @@
+{
+  "status": "HISTORICAL_ISSUER_IDENTITY_SUPPORTED_FOR_BOUNDED_RESEARCH_REVIEW",
+  "new_public_request_count": 4,
+  "request_limit": 4,
+  "runtime_or_manifest_changes": false,
+  "live_global_alias_authorized": false,
+  "prices_applied": false,
+  "research_reference_only": {
+    "research_key": "RSHCQ",
+    "source_ticker": "RSH",
+    "issuer_name": "RadioShack Corporation",
+    "cik": "0000096289",
+    "stock_class": "common stock, par value USD1 per share",
+    "window_start": "2003-12-19",
+    "window_end": "2011-07-11",
+    "historical_trade_symbol_in_window": "RSH",
+    "cusip_clue": {
+      "value": "750438103",
+      "evidence_as_of": "2015-02-03",
+      "source": "OCC36153 hosted by MIAX",
+      "use": "legacy common-stock identification clue; not an assertion of a per-date master record"
+    }
+  },
+  "ticker_chain": [
+    {
+      "symbol": "RSH",
+      "evidence": "2010 SEC10-K and2015 NYSE/SEC announcements",
+      "last_nyse_session": "2015-02-02"
+    },
+    {
+      "symbol": "RSHC",
+      "underlying_effective_date": "2015-02-03",
+      "option_symbol_effective_date": "2015-02-04",
+      "evidence": "OCC36153",
+      "common_share_deliverable": "100 RadioShack Corporation common shares; CUSIP750438103; no change to other terms"
+    },
+    {
+      "symbol": "RSHCQ",
+      "exact_effective_date": null,
+      "known_used_by_date": "2015-06-23",
+      "evidence": "contemporaneous Hilco transaction-party release labels old RadioShack Corporation OTCMKTS:RSHCQ; MarketBeat separately links previousNYSE:RSH andCIK96289",
+      "level": "transaction-party release plus secondary identifier cross-check, not a retrieved primary exact-effective-date notice"
+    }
+  ],
+  "successor_boundary": {
+    "legacy_seller": "RadioShack Corporation (RSHCQ)",
+    "asset_brand_buyer": "General Wireless Operations Inc., doing business as RadioShack",
+    "contract_named_buyer": "General Wireless Inc.",
+    "do_not_collapse_buyer_entities_or_legacy_common": true,
+    "equity_exchange_ratio": null,
+    "old_share_cancellation_date": null,
+    "legacy_common_cash_settlement": null,
+    "reason": "Asset/brand purchase is not evidence that legacy common stock became buyer equity; finite window ends2011, no2015 settlement needed."
+  },
+  "cash_evidence": [
+    {
+      "source_ex_date": "2004-11-29",
+      "source_WIKI_cash": 0.25,
+      "independent_primary_amount_status": "NOT_OBTAINED_THIS_BUDGET",
+      "annual_declared_per_share_supported": null,
+      "exact_ex_date_status": "WIKI_SOURCE_DATE_NOT_EXPLICITLY_CONFIRMED_BY_PRIMARY_THIS_TASK",
+      "declaration_date": null,
+      "record_date": null,
+      "pay_date": null,
+      "price_import_approved_by_this_task": false
+    },
+    {
+      "source_ex_date": "2005-11-29",
+      "source_WIKI_cash": 0.25,
+      "independent_primary_amount_status": "NOT_OBTAINED_THIS_BUDGET",
+      "annual_declared_per_share_supported": null,
+      "exact_ex_date_status": "WIKI_SOURCE_DATE_NOT_EXPLICITLY_CONFIRMED_BY_PRIMARY_THIS_TASK",
+      "declaration_date": null,
+      "record_date": null,
+      "pay_date": null,
+      "price_import_approved_by_this_task": false
+    },
+    {
+      "source_ex_date": "2006-11-29",
+      "source_WIKI_cash": 0.25,
+      "independent_primary_amount_status": "ISSUER_ANNUAL_DECLARED_TOTAL_ONLY",
+      "annual_declared_per_share_supported": 0.25,
+      "exact_ex_date_status": "WIKI_SOURCE_DATE_NOT_EXPLICITLY_CONFIRMED_BY_PRIMARY_THIS_TASK",
+      "declaration_date": null,
+      "record_date": null,
+      "pay_date": null,
+      "price_import_approved_by_this_task": false
+    },
+    {
+      "source_ex_date": "2007-11-27",
+      "source_WIKI_cash": 0.25,
+      "independent_primary_amount_status": "ISSUER_ANNUAL_DECLARED_TOTAL_ONLY",
+      "annual_declared_per_share_supported": 0.25,
+      "exact_ex_date_status": "WIKI_SOURCE_DATE_NOT_EXPLICITLY_CONFIRMED_BY_PRIMARY_THIS_TASK",
+      "declaration_date": null,
+      "record_date": null,
+      "pay_date": null,
+      "price_import_approved_by_this_task": false
+    },
+    {
+      "source_ex_date": "2008-11-25",
+      "source_WIKI_cash": 0.25,
+      "independent_primary_amount_status": "ISSUER_ANNUAL_DECLARED_TOTAL_ONLY",
+      "annual_declared_per_share_supported": 0.25,
+      "exact_ex_date_status": "WIKI_SOURCE_DATE_NOT_EXPLICITLY_CONFIRMED_BY_PRIMARY_THIS_TASK",
+      "declaration_date": null,
+      "record_date": null,
+      "pay_date": null,
+      "price_import_approved_by_this_task": false
+    },
+    {
+      "source_ex_date": "2009-11-24",
+      "source_WIKI_cash": 0.25,
+      "independent_primary_amount_status": "ISSUER_ANNUAL_DECLARED_TOTAL_ONLY",
+      "annual_declared_per_share_supported": 0.25,
+      "exact_ex_date_status": "WIKI_SOURCE_DATE_NOT_EXPLICITLY_CONFIRMED_BY_PRIMARY_THIS_TASK",
+      "declaration_date": null,
+      "record_date": null,
+      "pay_date": null,
+      "price_import_approved_by_this_task": false
+    },
+    {
+      "source_ex_date": "2010-11-23",
+      "source_WIKI_cash": 0.25,
+      "independent_primary_amount_status": "DIRECT_ANNUAL_SINGLE_PAYMENT_2010",
+      "annual_declared_per_share_supported": 0.25,
+      "exact_ex_date_status": "WIKI_SOURCE_DATE_NOT_EXPLICITLY_CONFIRMED_BY_PRIMARY_THIS_TASK",
+      "declaration_date": "2010-11-04",
+      "record_date": "2010-11-26",
+      "pay_date": "2010-12-16",
+      "price_import_approved_by_this_task": false
+    }
+  ],
+  "price_unit_evidence": {
+    "SEC_quarter_checks": "SEC-2009-2010-quarter-price-check.csv",
+    "quarters_matched": 8,
+    "quarters_checked": 8,
+    "both_high_low_differences_all_zero": true,
+    "other_existing_anchors": "audit agent owns SPY2004/2005 holdings-value divided by shares anchors; not recomputed here",
+    "full_period_no_split_primary_declaration_obtained": false
+  },
+  "remaining_boundaries": [
+    "Exact RSHC-to-RSHCQ change date not obtained; no need to invent it to describe2003-2011 actualRSH history.",
+    "2004/2005 annual dividend amounts not independently confirmed in four requests.",
+    "2006-2009annual totals do not independently confirm each exact event date or record/payment date.",
+    "2010ex-date retained asWIKI-observed; issuer confirms annual.25, Nov4declaration, Nov26record, Dec16paid.",
+    "No full2003-2011issuer split/action census was obtained; do not label all per-date actions primary verified.",
+    "The SEC2010text is an indexed excerpt capped near130000chars, not a complete original annual-file download."
+  ],
+  "excluded_wrong_issuer_search_hit": {
+    "request": 3,
+    "url": "https://www.sec.gov/Archives/edgar/data/1011006/000119312511050000/d10k.htm",
+    "issuer": "Yahoo! Inc.",
+    "reason": "CIK1011006, YHOO and its split history do not belong to RadioShack; excluded."
+  },
+  "source_index_sha256": "6243f30cf2032d645bb2e4d11e14555c47d738e33099573b3662b019867546a5"
+}

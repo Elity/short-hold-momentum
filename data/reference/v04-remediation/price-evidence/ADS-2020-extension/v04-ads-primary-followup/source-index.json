@@ -1,0 +1,96 @@
+[
+  {
+    "source_id": "P17M",
+    "file": "2017-10K.edgar-online.indexed.txt",
+    "url": "https://content.edgar-online.com/ExternalLink/EDGAR/0001101215-18-000066.html?hash=c98884c49db786c62a5ece157d3d18cff9faa9b89140baad35b4ed51efa74fa0&dest=ADS-20171231EX101097FF1_HTM",
+    "title": "ALLIANCE DATA SYSTEMS CORP (Form: 10-K, Received: 02/27/2018 08:47:10) ",
+    "request_number": 1,
+    "response_file": "01-2017-annual-search.json",
+    "source_grade": "Issuer 2017 Form10-K content mirrored by EDGAR Online, retrieved via search index; capped partial text, not original full SEC HTML download",
+    "characters": 300102,
+    "sha256": "82a4a43de124839320cce7b76e0cfcc4265dbef6d0cccaf8ed7bcae4c82ee3e0",
+    "accession": "0001101215-18-000066",
+    "cik": "0001101215",
+    "report_period": "2017-12-31"
+  },
+  {
+    "source_id": "P18Q1",
+    "file": "2018-01-25-results.SEC-indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/1101215/000110121518000014/exhibit_99-1.htm",
+    "title": "https://www.sec.gov/Archives/edgar/data/1101215/000110121518000014/exhibit_99-1.htm",
+    "request_number": 1,
+    "response_file": "01-2017-annual-search.json",
+    "source_grade": "Issuer earnings release in SEC exhibit, indexed text; supports common dividend increase to0.57 beginning2018Q1",
+    "characters": 11243,
+    "sha256": "ba69219bef918b8e948ec53a760db8123c75191aade162080b5a33e4f4d82cab"
+  },
+  {
+    "source_id": "P17Q1_RELEASE",
+    "file": "2017-01-26-dividend.issuer-repost.indexed.txt",
+    "url": "https://www.marketscreener.com/quote/stock/BREAD-FINANCIAL-HOLDINGS--11535/news/Alliance-Data-Declares-Dividend-on-Common-Stock-23757713/",
+    "title": "Alliance Data : Declares Dividend on Common Stock | MarketScreener",
+    "request_number": 1,
+    "response_file": "01-2017-annual-search.json",
+    "source_grade": "Contemporaneous issuer PRNewswire release reposted by MarketScreener; use historical announcement only, not current profile/price/news",
+    "characters": 9132,
+    "sha256": "0e0f1f2ef014dbba54d153d87657b1709380fbb0e70bf6b112c43003e9506ca1"
+  },
+  {
+    "source_id": "S17Q1_EX",
+    "file": "2017-01-26-dividend.secondary.indexed.txt",
+    "url": "https://www.dividendinvestor.com/dividend-news/20170126/alliance-data-systems-corp.-nyse-ads-declared-a-dividend-of-$0.5200-per-share/",
+    "title": "ADS Dividend Announcement $0.5200/Share 1/26/2017",
+    "request_number": 1,
+    "response_file": "01-2017-annual-search.json",
+    "source_grade": "Secondary contemporaneous dividend announcement; explicitly labels ex-date2017-02-13; later current-news widgets excluded",
+    "characters": 2185,
+    "sha256": "a974461bd45b71f91c79b33bd79162274680dbd3df0f175cf4894804dfe9b6b5"
+  },
+  {
+    "source_id": "P19M",
+    "file": "2019-10K.edgar-online.indexed.txt",
+    "url": "https://content.edgar-online.com/ExternalLink/EDGAR/0001101215-20-000049.html?hash=cf79382c33b096b7827ce8946709422385b2b637418a710e04d34cd2efb66ee1&dest=ADS-20191231X10K_HTM",
+    "title": "ALLIANCE DATA SYSTEMS CORP (Form: 10-K, Received: 02/28/2020 08:27:22)",
+    "request_number": 2,
+    "response_file": "02-2019-annual-search.json",
+    "source_grade": "Issuer 2019 Form10-K content mirrored by EDGAR Online, retrieved via search index; partial text, not full original filing; includes Item5 quarterly paid cash table",
+    "characters": 198404,
+    "sha256": "02c11d849501b4f366b7cb3a8046c1969bd6a77c6d72dd465544a730d3e7f48e",
+    "accession": "0001101215-20-000049",
+    "cik": "0001101215",
+    "report_period": "2019-12-31"
+  },
+  {
+    "source_id": "P19Q2_RELEASE",
+    "file": "2019-04-25-dividend.issuer-release.indexed.txt",
+    "url": "https://www.prnewswire.com/news-releases/alliance-data-declares-dividend-on-common-stock-300837786.html",
+    "title": "Alliance Data Declares Dividend on Common Stock",
+    "request_number": 2,
+    "response_file": "02-2019-annual-search.json",
+    "source_grade": "Issuer PRNewswire announcement indexed text; individual0.63 common declaration and stated record/payable dates",
+    "characters": 4404,
+    "sha256": "a3250d3f232c820f739888d368f156951592b16794b6b4fc2b8256f74d3d0ab8"
+  },
+  {
+    "source_id": "P20Q2_SEC",
+    "file": "2020-04-23-dividend.SEC-indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/1101215/000110121520000078/form_8k.htm",
+    "title": "https://www.sec.gov/Archives/edgar/data/1101215/000110121520000078/form_8k.htm",
+    "request_number": 3,
+    "response_file": "03-2020-q2-search.json",
+    "source_grade": "Issuer SEC8-K indexed text; ordinary ADS stock identity and declared0.21, record/payable dates; not proof actual cash was paid",
+    "characters": 3474,
+    "sha256": "5c9878792cac4d24ce9f8b23373fbca61fe048df4b94824eb0712983e8a69925"
+  },
+  {
+    "source_id": "P20Q2_RELEASE",
+    "file": "2020-04-23-dividend.issuer-release.indexed.txt",
+    "url": "https://www.prnewswire.com/news-releases/alliance-data-declares-dividend-on-common-stock-301045591.html",
+    "title": "Alliance Data Declares Dividend on Common Stock",
+    "request_number": 4,
+    "response_file": "04-2020-half-year-search.json",
+    "source_grade": "Issuer PRNewswire announcement indexed text; same declaration as SEC8-K, not an independent cash-payment event",
+    "characters": 4501,
+    "sha256": "87c81690aace0d532ceb222413c4b3037ce36b8c1ddf40947b2054d0fb9bcb9d"
+  }
+]

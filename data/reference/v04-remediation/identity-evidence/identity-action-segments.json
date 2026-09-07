@@ -1,0 +1,184 @@
+{
+  "status": "BOUNDED_IDENTITY_AND_ACTION_REVIEW",
+  "runtime_inputs_modified": false,
+  "no_new_price_downloads": true,
+  "reviewed_tickers": [
+    "STR",
+    "LSI",
+    "ALTR"
+  ],
+  "segments": [
+    {
+      "ticker": "STR",
+      "historical_issuer": "Questar Corporation",
+      "issuer_cik": "0000751652",
+      "identity_status": "SUPPORTED_BY_PRIMARY_FILINGS_AND_QUARTER_PRICES",
+      "accepted_start": "2003-10-01",
+      "accepted_end": "2016-09-16",
+      "acceptance_scope": "Issuer attribution, not an assertion that every daily bar or all historical corporate actions are independently verified.",
+      "excluded_segments": [],
+      "effective_date": "2016-09-16",
+      "trading_timing": "SEC 8-K says suspend after close of trading on the closing date.",
+      "cash_consideration_per_old_share_usd": 25.0,
+      "additional_contingent_dividend_per_old_share_usd": 0.07018,
+      "combined_nominal_entitlement_usd": 25.07018,
+      "dividend_record_date": "2016-09-16",
+      "dividend_payment_date": null,
+      "payment_note": "Issuer says payable as soon as practicable after closing; do not invent a broker cash-posting date.",
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/751652/000119312516712322/d258533d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/751652/000075165216000424/exhibit99jointpressrelease.htm",
+        "https://www.sec.gov/Archives/edgar/data/68589/000075165216000260/str12311510k.htm"
+      ],
+      "metadata_correction": "Archive label is an ETF; raw price series is supported as Questar. No post-2016 rows occur in this extracted file.",
+      "archive_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/STR.parquet",
+      "archive_sha256": "4b6dee790e430b33c08099e47405b64a1c87e974394e6a777fdffc61e34bf986",
+      "archive_rows": 3264,
+      "accepted_rows": 3264,
+      "excluded_rows": 0,
+      "quarter_checks_matched": 8,
+      "quarter_checks_total": 8,
+      "last_accepted_bar": {
+        "date": "2016-09-16",
+        "open": 25.06,
+        "high": 25.07,
+        "low": 25.06,
+        "close": 25.06,
+        "volume": 15387570.0,
+        "adj_close": 25.06
+      },
+      "archive_contingent_dividend_present": false,
+      "archive_last_dividend_rows": [
+        {
+          "date": "2015-11-18",
+          "ex-dividend": 0.21
+        },
+        {
+          "date": "2016-02-24",
+          "ex-dividend": 0.22
+        },
+        {
+          "date": "2016-06-01",
+          "ex-dividend": 0.22
+        },
+        {
+          "date": "2016-08-17",
+          "ex-dividend": 0.22
+        }
+      ]
+    },
+    {
+      "ticker": "LSI",
+      "historical_issuer": "LSI Corporation (formerly LSI Logic)",
+      "issuer_cik": "0000703360",
+      "identity_status": "REJECT_ARCHIVE_FOR_HISTORICAL_ISSUER",
+      "accepted_start": null,
+      "accepted_end": null,
+      "excluded_segments": [
+        {
+          "start": "2003-10-01",
+          "end": "2018-03-07",
+          "reason": "The archive fails all eight 2012/2013 quarterly price-range checks for LSI Corporation. Do not repair with a constant scale factor or rename it into the historical member."
+        }
+      ],
+      "effective_date": "2014-05-06",
+      "trading_timing": "Company notified NASDAQ on May 6 that trading should be suspended; exact intraday effective time is not established here.",
+      "cash_consideration_per_old_share_usd": 11.15,
+      "cash_event_application": "Terms verified for genuine LSI Corporation old shares only. The wrong archive cannot provide a trustworthy position quantity or last price for this cash event.",
+      "later_symbol_issuer": {
+        "name": "Life Storage, Inc. (formerly Sovran Self Storage, Inc.)",
+        "issuer_cik": null,
+        "old_symbol": "SSS",
+        "new_symbol": "LSI",
+        "ticker_effective_date": "2016-08-15",
+        "scope": "Primary issuer announcement proves later ticker reuse. The exact entire archive origin as Sovran/Life Storage is not independently proved by this bounded packet."
+      },
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/703360/000119312514185188/d723241d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/703360/000119312514069522/d628854d10k.htm",
+        "https://www.sec.gov/Archives/edgar/data/1060224/000119312516681926/d243423dex991.htm"
+      ],
+      "archive_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/LSI.parquet",
+      "archive_sha256": "3e800fc42be844158e4929b6d71b540077b752e2d0a1adbb8620e25f365f8f0c",
+      "archive_rows": 3420,
+      "accepted_rows": 0,
+      "excluded_rows": 3420,
+      "quarter_checks_matched": 0,
+      "quarter_checks_total": 8,
+      "last_accepted_bar": null
+    },
+    {
+      "ticker": "ALTR",
+      "historical_issuer": "Altera Corporation",
+      "issuer_cik": "0000768251",
+      "identity_status": "PRE_TERMINATION_SEGMENT_SUPPORTED",
+      "accepted_start": "2003-10-01",
+      "accepted_end": "2015-12-24",
+      "acceptance_scope": "Issuer attribution supported by eight quarters of closing-price ranges and cash event; not a guarantee of every daily OHLC value.",
+      "excluded_segments": [
+        {
+          "start": "2018-03-01",
+          "end": "2018-03-07",
+          "reason": "Five rows occur after old Altera shares were cancelled. Altair Engineering separately began public ALTR trading on 2017-11-01; never append this tail to old Altera."
+        }
+      ],
+      "effective_date": "2015-12-28",
+      "trading_timing": "Merger effective date is confirmed; exact intraday phase not established. Last old-issuer bar in this archive is 2015-12-24.",
+      "cash_consideration_per_old_share_usd": 54.0,
+      "later_symbol_issuer": {
+        "name": "Altair Engineering Inc.",
+        "issuer_cik": "0001701732",
+        "first_public_trading_date": "2017-11-01",
+        "ipo_price_usd": 13.0,
+        "scope": "New issuer and ticker reuse are confirmed; individual tail rows are not independently re-quoted here."
+      },
+      "sources": [
+        "https://www.sec.gov/Archives/edgar/data/768251/000119312515414631/d102231d8k.htm",
+        "https://www.sec.gov/Archives/edgar/data/768251/000076825115000008/altera10k12312014.htm",
+        "https://www.sec.gov/Archives/edgar/data/1701732/000156459019005799/altr-10k_20181231.htm"
+      ],
+      "archive_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ALTR.parquet",
+      "archive_sha256": "331e6325302f2c04d7d2283404a2e1eed50a1b5bf4dd295fd1d7ff341f1e8778",
+      "archive_rows": 3086,
+      "accepted_rows": 3081,
+      "excluded_rows": 5,
+      "quarter_checks_matched": 8,
+      "quarter_checks_total": 8,
+      "last_accepted_bar": {
+        "date": "2015-12-24",
+        "open": 53.94,
+        "high": 53.97,
+        "low": 53.94,
+        "close": 53.96,
+        "volume": 3079930.0,
+        "adj_close": 53.96
+      }
+    }
+  ],
+  "source_file_hashes": {
+    "altr-2014-10k.source.json": "db8a97b8904c72a47ab4ec89a48ec2b55f8f5982ea360829921a6ce26b0f0ceb",
+    "altr-2018-10k.source.json": "721b5d70ac4728cd3e135034c8ae5fedb0011fa18c3bf939aee91563947799bf",
+    "altr-2018-quarter.search.json": "49382d1dec08f284236d669dc467e31e93878e5138d7987295b2ace3d8c48db6",
+    "altr-ipo.search.json": "406bf172892400db0aac333e4dd6fb8b6e43dff3704ce13ca8a5b17e963a8848",
+    "altr-merger.search.json": "82f49e84cb5bdd8f31c6960130ab7cdbb7e3b40d0916f2dd49d5d2990a9934b0",
+    "altr-quarter.search.json": "63e2ae1d7edf1f92ad96624dd087a685df913c3b37ee00b5525b7d9dbc5a6863",
+    "lsi-2013-10k.source.json": "abf869607b9c049108e1a385d47010eb5269bd55b71250a40effdb803bd1bef5",
+    "lsi-merger.search.json": "c2fc0ea5a8734682c491bf3e7b3240a7df64c34bff86eb509aad0ee01c858484",
+    "lsi-quarter.search.json": "f4d70e6e08053e528f458bed3a10a0d77c66e128c820799baf0505ed4f4e0592",
+    "lsi-rename.search.json": "1ec54f0be82b8337d1137fabe3c95066d68b71f37504a58df4dceb86f82a7049",
+    "sss-2013-annual-mirror.source.json": "7171de6a596625f5735882e8daf1c865c7d2978bee21b1effaf5011bad825cd6",
+    "sss-exact-quarter.search.json": "bec9121478965a53d43bcf36066bada2b5e11aa194c5a7d2c28f005e16cd335e",
+    "sss-quarter.search.json": "22c604bccb40c3eb4184fb422c72351a609791e6d70c8d655ce8afb7c2c976ef",
+    "str-2007-exact.search.json": "bd191a54f477e5e1a1114f9fde2960e1c5a94a2fde8f050bb360de0711044a78",
+    "str-2007-quarter.search.json": "66e4a4ead66485fa76477832d0a0d486b3b75ab517c8ff748b30f1a4c499834b",
+    "str-2015-10k.source.json": "9bfcdaf284f2bbd90d5e4e87a1f99ff3877f4831d4fa5a1ab3fbb029f7e55844",
+    "str-final-dividend.search.json": "fe1fe586f3ede68c20123b93b6c87f0f21f60ba66370a55ae8c0c5dd1ebd83c6",
+    "str-merger.search.json": "601b9c2eb4ac4b62e10114d21b45f411eabb3df037436053b10e386487d77611",
+    "str-quarter.search.json": "c043804813845a36db6625ba49a9202a4f722c19144f65dfbda85012931c3146"
+  },
+  "limits": [
+    "Quarter checks identify the issuer and reject gross mismatches; they do not verify every daily OHLCV value.",
+    "Cash consideration is stated per nominal old share. Existing adjusted-price holdings need the correct share basis; never apply verified cash to an unverified issuer path.",
+    "Effective dates identify shareholder entitlement changes, not a fabricated broker cash-payment timestamp."
+  ]
+}

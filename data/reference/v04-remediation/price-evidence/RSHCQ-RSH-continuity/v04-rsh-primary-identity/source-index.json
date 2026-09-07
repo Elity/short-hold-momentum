@@ -1,0 +1,92 @@
+[
+  {
+    "file": "SEC-2015-delisting.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628915000007/form8k020615.htm",
+    "title": "form8k020615.htm",
+    "source_level": "SEC primary filing text retrieved through search index",
+    "request_number": 1,
+    "response_file": "01-identity-search.json",
+    "chars": 2916,
+    "sha256": "5cd3924236d91e41bdf826aac09c55b719de0c79fd80e65abe996395c3da35ba"
+  },
+  {
+    "file": "NYSE-2015-RSH-delisting.indexed.txt",
+    "url": "https://ir.theice.com/press/news-details/2015/NYSE-to-Suspend-Trading-Immediately-in-RadioShack-Corporation-and-Commence-Delisting-Proceedings/default.aspx",
+    "title": "Intercontinental Exchange - NYSE to Suspend Trading Immediately in RadioShack Corporation and Commence Delisting Proceedings",
+    "source_level": "Exchange primary announcement text retrieved through search index",
+    "request_number": 1,
+    "response_file": "01-identity-search.json",
+    "chars": 2942,
+    "sha256": "111f0e017879c8f99f25f6eaf7243d9fbe30e0b67ca0f37ff87d373a1a89c29e"
+  },
+  {
+    "file": "OCC-RSH-to-RSHC-36153.indexed.txt",
+    "url": "https://www.miaxglobal.com/sites/default/files/alert-files/RSH_Symbol_Change_36153.pdf",
+    "title": "RADIOSHACK CORPORATION - SYMBOL CHANGE (RSH)",
+    "source_level": "OCC memo hosted by MIAX, indexed text; underlying identity only, not a settlement price",
+    "request_number": 1,
+    "response_file": "01-identity-search.json",
+    "chars": 2625,
+    "sha256": "f81517bf983292935aaa3dae41c84bc523371e5f4f05dff0243cb2c8e971921d"
+  },
+  {
+    "file": "2010-SEC-10K.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628911000010/form10k123110.htm",
+    "title": "form10k123110.htm",
+    "source_level": "SEC 2010 annual filing indexed excerpt capped at130000 chars; not full original HTML download",
+    "request_number": 3,
+    "response_file": "03-annual-dividends-search.json",
+    "chars": 130017,
+    "sha256": "dc027ba18bd3c8e249a56b11d6d2bad61d3dcee679d9ec0b6be500bbaf3adbec"
+  },
+  {
+    "file": "2010-issuer-dividend.indexed.txt",
+    "url": "https://www.prnewswire.com/news-releases/radioshack-corporation-declares-dividend-106915723.html",
+    "title": "RadioShack Corporation Declares Dividend",
+    "source_level": "Issuer release via PRNewswire indexed text",
+    "request_number": 3,
+    "response_file": "03-annual-dividends-search.json",
+    "chars": 2011,
+    "sha256": "8962255694e57aaeb8bb0ffbbd95321d2131ec03b3a65efae8e34bb793c1d775"
+  },
+  {
+    "file": "Hilco-RSHCQ-sale.indexed.txt",
+    "url": "https://www.marketscreener.com/news/latest/RadioShack-Intellectual-Property-Sells-For-Over-26MM-20582529/",
+    "title": "RadioShack Intellectual Property Sells For Over $26MM | MarketScreener",
+    "source_level": "Contemporaneous liquidator GlobeNewswire release republished by MarketScreener",
+    "request_number": 4,
+    "response_file": "04-legacy-versus-buyer-search.json",
+    "chars": 5234,
+    "sha256": "f5c07fed7eb3552c23d30cee1bccd1a7170a2f96992f347ab783478315b5d322"
+  },
+  {
+    "file": "GeneralWireless-brand-purchase.indexed.txt",
+    "url": "https://www.prnewswire.com/news-releases/general-wireless-acquires-the-radioshack-brand-300107296.html",
+    "title": "General Wireless Acquires the RadioShack Brand",
+    "source_level": "Buyer-issued PRNewswire release indexed text",
+    "request_number": 4,
+    "response_file": "04-legacy-versus-buyer-search.json",
+    "chars": 2741,
+    "sha256": "a381ad7758c1d9c78cacba8d7985c3b5a4a260c17c00eafd33d1229b511f27f8"
+  },
+  {
+    "file": "MarketBeat-RSHCQ-profile.indexed.txt",
+    "url": "https://www.marketbeat.com/stocks/OTCMKTS/RSHCQ/",
+    "title": "RS Legacy (RSHCQ) Stock Price, News & Analysis\r",
+    "source_level": "Secondary current profile; only historical-symbol and CIK fields used",
+    "request_number": 2,
+    "response_file": "02-rshcq-bridge-search.json",
+    "chars": 4733,
+    "sha256": "577f3808e82fa15dda687dee8790795a0d7b91603253fb6b08d0396f787922b3"
+  },
+  {
+    "file": "GeneralWireless-asset-contract.mirror.txt",
+    "url": "https://contracts.justia.com/companies/radioshack-corp-28376/contract/455134/",
+    "title": "Asset Purchase Agreement between General Wireless Inc. and RadioShack | RADIOSHACK CORP | Business Contracts | Justia",
+    "source_level": "Asset purchase agreement exhibit mirrored by Justia; site summary not used",
+    "request_number": 4,
+    "response_file": "04-legacy-versus-buyer-search.json",
+    "chars": 11336,
+    "sha256": "05b61104861945ef12f398e52b12f399e48fde08cb1b874b0df1a58327cc36df"
+  }
+]

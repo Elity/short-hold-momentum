@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/718877/000071887720000003/atvi-12312019x10xk.htm",
+      "file": "ATVI-2019-10K.html",
+      "sha256": "18d5dd93d537d520f969246cec18bcc49811ef75bf503904215ab3f09f3380ef",
+      "scope": "2017-2019 issued-share and treasury-share roll-forward; annual cash dividend amounts, record dates and payment dates; Nasdaq common-stock identity"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/718877/000162828020006454/atvi-3312020x10xq.htm",
+      "file": "ATVI-2020-Q1.html",
+      "sha256": "15a5dfa58f39b978ce0ae7f822b880c37a5f851f0c5d1c813509226fe487212c",
+      "scope": "2020Q1 share roll-forward and 2020-04-28 outstanding shares; 2020 dividend record/pay dates beyond source endpoint"
+    }
+  ],
+  "retrieval": "Read public SEC files directly after locating their exact filings. Two focused primary-source discovery queries; no Yahoo refresh or additional market-data requests.",
+  "interpretation": "Later-filed financial statements verify historical units and corporate actions; they are not trading signals or an independent OOS sample."
+}

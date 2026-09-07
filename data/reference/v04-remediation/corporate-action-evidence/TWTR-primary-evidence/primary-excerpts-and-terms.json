@@ -1,0 +1,120 @@
+{
+  "scope": {
+    "additional_primary_query_limit": 4,
+    "additional_primary_queries_used": 4,
+    "new_source_price_downloads": 0,
+    "main_repo_modifications": 0,
+    "candidate_parquet_generated_or_modified": false,
+    "retrieval_method": "Sonic returned indexed text from original SEC documents; no additional direct fetch was made."
+  },
+  "status": "IDENTITY_IPO_AND_DEFAULT_MERGER_TERMS_SUPPORTED; FULL_PERIOD_NO_DIVIDEND_NO_SPLIT_UNCONFIRMED",
+  "identity": {
+    "legal_issuer": "Twitter, Inc.",
+    "cik": "0001418091",
+    "domicile": "Delaware",
+    "security_class": "Common Stock",
+    "par_value_usd": 0.000005,
+    "ticker": "TWTR",
+    "exchange": "New York Stock Exchange",
+    "cusip": "90184L102",
+    "grade": "PRIMARY_DOCUMENT_EXTRACTS"
+  },
+  "trading_dates": {
+    "first_trading_date": "2013-11-07",
+    "first_trading_date_status": "EXPLICIT_ISSUER_2013_10K_STATEMENT",
+    "last_trading_date_primary_explicit": null,
+    "last_trading_date_inferred": "2022-10-27",
+    "last_trading_date_caveat": "The requests did not return a NYSE notice explicitly naming the final trading date. October 27 is the session immediately before the supported October 28 pre-open suspension; combine with locally audited October 27 actual trading data before labeling the actual last trade date confirmed.",
+    "first_unavailable_session": "2022-10-28",
+    "first_unavailable_basis": "Issuer closing 8-K Item 3.01 plus Dorsey Schedule 13D explicitly confirms suspended prior to NYSE open October 28; issuer extract omits the verb after 'was' and has not been silently repaired.",
+    "legal_merger_completion_date": "2022-10-27"
+  },
+  "merger": {
+    "agreement_date": "2022-04-25",
+    "legal_completion_date": "2022-10-27",
+    "default_cash_per_old_share_usd": 54.2,
+    "default_stock_ratio": 0,
+    "default_successor_ticker": null,
+    "interest_on_merger_consideration": false,
+    "exceptions": "Company/subsidiary shares; Musk/Parent/Acquisition Sub shares; perfected appraisal/dissenters' shares excluded from ordinary default. Separate voluntary insider rollover agreements must not replace the default cash result.",
+    "known_actual_broker_payment_date": null
+  },
+  "public_period_actions": {
+    "requested_period_start": "2013-11-07",
+    "requested_period_end": "2022-10-27",
+    "no_cash_dividends_confirmed_through": null,
+    "no_ordinary_dividends_whole_period": null,
+    "no_stock_splits_whole_period": null,
+    "status": "UNCONFIRMED_IN_4_REQUEST_BUDGET",
+    "limits": [
+      "Request 3 returned other issuers despite the query's CIK path; excluded.",
+      "Request 4 located the 2021 10-K and filing headers, but the main body result was only 'twtr-20211231...'; do not infer a dividend policy from title or index.",
+      "2013 report/prospectus search extracts are truncated and do not establish a whole public-period action ledger.",
+      "No split or dividend factors, zeros, or blanket 'none' assertions are approved by this packet."
+    ]
+  },
+  "quotes": [
+    {
+      "fact": "CIK and issuer",
+      "request": 4,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000141809122000029/0001418091-22-000029-index-headers.html",
+      "quote": "COMPANY CONFORMED NAME: TWITTER, INC. CENTRAL INDEX KEY: 0001418091 "
+    },
+    {
+      "fact": "Original registered common stock",
+      "request": 2,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000095012314003031/twtr-10k_20131231.htm",
+      "quote": "Securities registered pursuant to Section 12(b) of the Act: Title of each class Name of each exchange on which registered Common Stock, Par Value $0.000005 Per Share New York Stock Exchange "
+    },
+    {
+      "fact": "Actual first trading date",
+      "request": 2,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000095012314003031/twtr-10k_20131231.htm",
+      "quote": "The registrant has elected to use November 7, 2013, which was the initial trading date on the New York Stock Exchange, as the calculation date because on June 30, 2013 (the last business day of the registrant’s mostly recently completed second fiscal quarter), the registrant was a privately-held company. "
+    },
+    {
+      "fact": "TWTR registered common class and exchange at completion",
+      "request": 1,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522272772/d411753d8k.htm",
+      "quote": "Securities registered pursuant to Section 12 (b) of the Act: Title of each class Trading Symbol (s) Name of each exchange on which registered Common Stock, par value $0.000005 per share TWTR New York Stock Exchange Preferred Stock Purchase Rights N/A New York Stock Exchange "
+    },
+    {
+      "fact": "Default merger cash and completion",
+      "request": 1,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522272772/d411753d8k.htm",
+      "quote": "Introductory Note As previously disclosed, on April 25, 2022, Twitter, Inc. (“Twitter”) entered into an Agreement and Plan of Merger (the “Merger Agreement”) with X Holdings I, Inc. (“Parent”), X Holdings II, Inc., a wholly owned subsidiary of Parent (“Acquisition Sub”), and, solely for the purpose of certain provisions of the Merger Agreement, Elon R. Musk. On October 27, 2022, pursuant to the terms of the Merger Agreement, Acquisition Sub merged with and into Twitter (the “Merger”), with Twitter surviving the Merger and becoming a wholly owned subsidiary of Parent (the “Surviving Corporation”). Parent is majority-owned and controlled by Mr. Musk. Pursuant to the terms of the Merger Agreement, at the effective time of the Merger, each issued and outstanding share of Twitter’s common stock (subject to certain exceptions set forth in the Merger Agreement) was canceled and converted into the right to receive $54.20 in cash, without interest (the “Merger Consideration”). "
+    },
+    {
+      "fact": "Default consideration excluded shares",
+      "request": 1,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522272772/d411753d8k.htm",
+      "quote": "Item 2.01 Completion of Acquisition or Disposition of Assets. On October 27, 2022, pursuant to the terms of the Merger Agreement, the Merger was consummated. At the effective time of the Merger, each issued and outstanding share of Twitter’s common stock (other than shares held by the Company or any of its subsidiaries or held, directly or indirectly, by Mr. Musk, Parent or Acquisition Sub immediately prior to the effective time of the Merger, or any shares held by a holder who has properly exercised and perfected their demand for appraisal or dissenters’ rights under applicable law) was canceled and converted into the right to receive the Merger Consideration. "
+    },
+    {
+      "fact": "Issuer delisting statement; extractor omits a verb",
+      "request": 1,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522272772/d411753d8k.htm",
+      "quote": "Item 3.01 Notice of Delisting or Failure to Satisfy a Continued Listing Rule or Standard; Transfer of Listing. On October 27, 2022, Twitter notified the New York Stock Exchange (the “NYSE”) of the consummation of the Merger and requested that the NYSE delist Twitter’s common stock on October 28, 2022. As a result, trading of Twitter’s common stock on the NYSE was prior to the opening of the NYSE on October 28, 2022. "
+    },
+    {
+      "fact": "Complete pre-open suspension statement from shareholder's SEC filing",
+      "request": 1,
+      "url": "https://www.sec.gov/Archives/edgar/data/1590945/000119312522274034/d393652dsc13d.htm",
+      "quote": "The Reporting Person understands that, on October 27, 2022, the Issuer notified The New York Stock Exchange (the “NYSE”) of the consummation of the Merger and requested that the NYSE delist the Issuer’s common stock on October 28, 2022. As a result, the Reporting Person understands that trading of the Issuer’s common stock on the NYSE was suspended prior to the opening of the NYSE on October 28, 2022. "
+    },
+    {
+      "fact": "CUSIP",
+      "request": 1,
+      "url": "https://www.sec.gov/Archives/edgar/data/1418091/000110465922113051/tm2229215d1_sc13da.htm",
+      "quote": "Common Stock (Title of Class of Securities) 90184L102 (CUSIP Number) "
+    }
+  ],
+  "primary_urls": {
+    "issuer_closing_8k": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522272772/d411753d8k.htm",
+    "issuer_2013_10k": "https://www.sec.gov/Archives/edgar/data/1418091/000095012314003031/twtr-10k_20131231.htm",
+    "dorsey_13d": "https://www.sec.gov/Archives/edgar/data/1590945/000119312522274034/d393652dsc13d.htm",
+    "musk_13da": "https://www.sec.gov/Archives/edgar/data/1418091/000110465922113051/tm2229215d1_sc13da.htm",
+    "issuer_2021_10k_headers": "https://www.sec.gov/Archives/edgar/data/1418091/000141809122000029/0001418091-22-000029-index-headers.html",
+    "issuer_2021_10k_discovered_but_body_not_read": "https://www.sec.gov/Archives/edgar/data/1418091/000141809122000029/twtr-20211231.htm"
+  }
+}

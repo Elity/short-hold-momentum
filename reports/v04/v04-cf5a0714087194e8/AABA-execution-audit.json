@@ -1,0 +1,264 @@
+{
+  "run_id": "v04-cf5a0714087194e8",
+  "status": "INCONCLUSIVE",
+  "winner": null,
+  "price_coverage": 0.8974200103557877,
+  "basis_coverage": 0.8637141172299981,
+  "missing_tickers": 110,
+  "items": [
+    {
+      "strategy": "S500-C0",
+      "bps": 10,
+      "transactions": 9,
+      "last_holding_date": "2015-03-06 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-03-06",
+          "execution_date": "2015-03-09",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 281.8764517584524,
+          "price": 43.6,
+          "notional": 12289.813296668524,
+          "cost": 12.289813296668523,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -1215.0706642787366
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C0",
+      "bps": 25,
+      "transactions": 9,
+      "last_holding_date": "2015-03-06 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-03-06",
+          "execution_date": "2015-03-09",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 246.52153638987943,
+          "price": 43.6,
+          "notional": 10748.338986598745,
+          "cost": 26.870847466496866,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -1097.3051184395947
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 10,
+      "transactions": 9,
+      "last_holding_date": "2015-03-06 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-03-06",
+          "execution_date": "2015-03-09",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 276.71919709557926,
+          "price": 43.6,
+          "notional": 12064.956993367256,
+          "cost": 12.064956993367256,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -1192.839545609619
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 25,
+      "transactions": 9,
+      "last_holding_date": "2015-03-06 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-03-06",
+          "execution_date": "2015-03-09",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 240.6882377141504,
+          "price": 43.6,
+          "notional": 10494.007164336956,
+          "cost": 26.23501791084239,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -1071.3402125413058
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 10,
+      "transactions": 4,
+      "last_holding_date": "2015-01-05 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-01-05",
+          "execution_date": "2015-01-06",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 199.77695091539204,
+          "price": 49.2,
+          "notional": 9829.02598503729,
+          "cost": 9.82902598503729,
+          "reason": "sma50_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": 70.3314755697661
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 25,
+      "transactions": 4,
+      "last_holding_date": "2015-01-05 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-01-05",
+          "execution_date": "2015-01-06",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 177.16057219275413,
+          "price": 49.2,
+          "notional": 8716.300151883504,
+          "cost": 21.79075037970876,
+          "reason": "sma50_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": 36.34006237103995
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 10,
+      "transactions": 9,
+      "last_holding_date": "2015-03-06 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-03-06",
+          "execution_date": "2015-03-09",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 254.8221366099753,
+          "price": 43.6,
+          "notional": 11110.245156194924,
+          "cost": 11.110245156194924,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -14.56818154999084
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 25,
+      "transactions": 9,
+      "last_holding_date": "2015-03-06 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-03-06",
+          "execution_date": "2015-03-09",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 214.6355817175287,
+          "price": 43.6,
+          "notional": 9358.111362884254,
+          "cost": 23.395278407210636,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -40.33539169426619
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 10,
+      "transactions": 9,
+      "last_holding_date": "2015-03-06 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-03-06",
+          "execution_date": "2015-03-09",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 333.4768706111895,
+          "price": 43.6,
+          "notional": 14539.591558647862,
+          "cost": 14.539591558647862,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -1557.6584363684556
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 25,
+      "transactions": 9,
+      "last_holding_date": "2015-03-06 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2015-03-06",
+          "execution_date": "2015-03-09",
+          "ticker": "AABA",
+          "side": "sell",
+          "quantity": 284.90472197519506,
+          "price": 43.6,
+          "notional": 12421.845878118504,
+          "cost": 31.054614695296262,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": -1371.0346368471198
+        }
+      ],
+      "AABA_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    }
+  ]
+}

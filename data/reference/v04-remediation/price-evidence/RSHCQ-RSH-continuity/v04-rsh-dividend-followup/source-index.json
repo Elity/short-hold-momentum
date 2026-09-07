@@ -1,0 +1,84 @@
+[
+  {
+    "source_id": "S2004",
+    "file": "2004-SEC-10K.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628905000016/k123104.txt",
+    "title": "https://www.sec.gov/Archives/edgar/data/96289/000009628905000016/k123104.txt",
+    "source_grade": "Issuer SEC filing text obtained through search index; original TXT not downloaded independently",
+    "request_number": 3,
+    "response_file": "03-search.json",
+    "characters": 285071,
+    "bytes": 285071,
+    "sha256": "13a5241f270ac77496ab5b3135f7312e8c92be3e82f8036559164fb1e373f489"
+  },
+  {
+    "source_id": "S2005_HEADER",
+    "file": "2005-SEC-10K.header.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628906000013/k123105.htm",
+    "title": "https://www.sec.gov/Archives/edgar/data/96289/000009628906000013/k123105.htm",
+    "source_grade": "SEC indexed partial filing; issuer identity and filing provenance only; returned text has no dividend amount",
+    "request_number": 1,
+    "response_file": "01-search.json",
+    "characters": 11192,
+    "bytes": 11298,
+    "sha256": "c1a37fd5380f56b9af62f7a5d7890facae70eed33592930381a0e3d85d886cf5"
+  },
+  {
+    "source_id": "S2005_MIRROR",
+    "file": "2005-10K.companiesmarketcap.indexed.txt",
+    "url": "https://companiesmarketcap.com/radioshack/sec-reports-10k/0000096289-06-000013/",
+    "title": "RadioShack - 10-K annual report",
+    "source_grade": "Issuer SEC filing mirrored by a third party, obtained through search index; dividend passage not independently returned from SEC endpoint",
+    "request_number": 4,
+    "response_file": "04-search.json",
+    "characters": 250151,
+    "bytes": 251507,
+    "sha256": "d2d7362ea62d423b8832734596b9f8315ce31c6d5ac2abb804cc58b4fc4d5cc1",
+    "original_sec_url": "https://www.sec.gov/Archives/edgar/data/96289/000009628906000013/k123105.htm",
+    "accession": "0000096289-06-000013",
+    "excluded_content": "Third-party site summary, market value, delisting and last-trade commentary"
+  },
+  {
+    "source_id": "SDC",
+    "file": "DividendChannel-RSH.indexed.txt",
+    "url": "https://www.dividendchannel.com/symbol/rsh/",
+    "title": "RSH | RadioShack Corp. | Dividend History | Dividend Channel",
+    "source_grade": "Secondary dividend history; table column is Date, not an explicit Ex-dividend date label",
+    "request_number": 2,
+    "response_file": "02-search.json",
+    "characters": 6529,
+    "bytes": 6549,
+    "sha256": "1a34a3501a0a565663f06a524a6d15f301bd8997782b9da4e1f67f8a3470b05a",
+    "caveat": "Provider says data may be adjusted for splits and directs readers to verify with the company"
+  },
+  {
+    "source_id": "S2010",
+    "file": "../v04-rsh-primary-identity/2010-SEC-10K.indexed.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/96289/000009628911000010/form10k123110.htm",
+    "source_grade": "SEC 2010 annual filing indexed excerpt capped at130000 chars; not full original HTML download",
+    "reused_existing_local_evidence": true,
+    "request_number": null,
+    "characters": 130017,
+    "bytes": 130456,
+    "sha256": "dc027ba18bd3c8e249a56b11d6d2bad61d3dcee679d9ec0b6be500bbaf3adbec"
+  },
+  {
+    "source_id": "S2010_RELEASE",
+    "file": "../v04-rsh-primary-identity/2010-issuer-dividend.indexed.txt",
+    "url": "https://www.prnewswire.com/news-releases/radioshack-corporation-declares-dividend-106915723.html",
+    "source_grade": "Issuer release via PRNewswire indexed text",
+    "reused_existing_local_evidence": true,
+    "request_number": null,
+    "characters": 2011,
+    "bytes": 2016,
+    "sha256": "8962255694e57aaeb8bb0ffbbd95321d2131ec03b3a65efae8e34bb793c1d775"
+  },
+  {
+    "source_id": "SWIKI",
+    "file": "../v04-rsh-identity-preflight/required-window-vendor-cash-actions.csv",
+    "source_grade": "Existing vendor event fields, not issuer evidence",
+    "reused_existing_local_evidence": true,
+    "request_number": null,
+    "sha256": "89ea437f636e2003aac024aa264f5d46691606ee308179f0b12a47971d9ea0ae"
+  }
+]

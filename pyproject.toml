@@ -18,6 +18,7 @@ dependencies = [
   "PyYAML>=6.0.2,<7",
   "vectorbt>=0.28,<0.29",
   "yfinance>=0.2.54,<1",
+  "cryptography>=44,<47",
 ]
 
 [project.scripts]
@@ -28,6 +29,10 @@ shm-service = "shm.service.app:main"
 dev = [
   "pytest>=8.3,<10",
 ]
+
+[[tool.uv.index]]
+url = "https://packagefeedproxy.microsoft.io/pypi/simple/"
+default = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/shm"]

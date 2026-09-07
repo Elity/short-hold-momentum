@@ -1,0 +1,188 @@
+{
+  "status": "VERIFIED_BOUNDED_PRICE_EXTENSION_NOT_A_RESEARCH_PASS",
+  "source": {
+    "dataset": "sheepb/stock-market-dataset-20002021",
+    "version": 1,
+    "upstream_provider": "Yahoo Finance via yfinance",
+    "capture_dataset": "SheepB stock-market-dataset-20002021 v1",
+    "prior_capture_dataset": "Jackson Crow stock-market-dataset",
+    "prior_capture_upstream_provider": "Yahoo Finance via yfinance",
+    "independent_price_vendor": false,
+    "download_url": "https://www.kaggle.com/api/v1/datasets/download/sheepb/stock-market-dataset-20002021?datasetVersionNumber=1",
+    "zip_sha256": "22f61a91843c579577a1757bd31653fd998ba8054723da3d4b41d994cda46373",
+    "zip_rehashed": true,
+    "member": "full_stock_df.csv",
+    "extracted_parquet": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ATVI.parquet",
+    "extracted_sha256": "7b77347e5ecada0deb3675257f34b09b39119dc5b5e250043ea91fd623d67395",
+    "extraction_record": {
+      "ticker": "ATVI",
+      "source_name": "Activision Blizzard",
+      "rows": 5444,
+      "first": "1999-12-31",
+      "last": "2021-08-19",
+      "invalid_rows": 0,
+      "duplicate_dates": 0,
+      "sha256": "7b77347e5ecada0deb3675257f34b09b39119dc5b5e250043ea91fd623d67395"
+    },
+    "metadata_sha256": "d763dcf15eebed98f3a80bfc65d2269c47905825b77e3417fca6498141bbbc3e",
+    "local_extraction_time_used_as_downloaded_at": "2026-09-06T18:47:25.012402773+00:00"
+  },
+  "retained_prefix": {
+    "repo_path": "data/research/v04/prices/ATVI-through-2020-04-01.parquet",
+    "sha256": "c6beda01fad277fa3c202d419180163c816f3daaf54978600fed94eb10d46d7b",
+    "rows": 4154,
+    "last": "2020-04-01",
+    "all_columns_equal_after_round_trip": true,
+    "original_file_and_manifest_untouched": true,
+    "inherited_issue_not_modified": "2016-11-25 old-prefix Open is below Low; parent will independently verify and replace the whole source row in a separate audited remediation."
+  },
+  "candidate": {
+    "work_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/ATVI-2021-extension/ATVI-through-2021-08-19.candidate.parquet",
+    "sha256": "3ae0974fa6785531839c5743c16243894e5d60ff6cd322577a864e727ea82a74",
+    "rows": 4503,
+    "appended_rows": 349,
+    "first_new_day": "2020-04-02",
+    "last": "2021-08-19",
+    "missing_xnys_days_in_appended_tail": [],
+    "duplicate_days": 0,
+    "invalid_ohlcv_rows_in_appended_tail": 0
+  },
+  "primary_documents": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/718877/000162828021002828/atvi-20201231.htm",
+      "file": "ATVI-2020-10K.html",
+      "expected_sha256": "079fa346fae873ef3d050841c7254cfe7fd91f6073d2dc909d7c22019f4571fd",
+      "scope": "2020 full-year share roll-forward and 2020/2021 dividend declaration, record and payment dates"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/718877/000162828021021200/atvi-20210930.htm",
+      "file": "ATVI-2021-Q3.html",
+      "expected_sha256": "e99b107be442d5dc77d9e371bad448984562fbece84817e3192e194d83395195",
+      "scope": "Quarterly 2020/2021 share roll-forwards through September 2021; confirmation of actual 2021 dividend payment"
+    }
+  ],
+  "ordinary_dividends": [
+    {
+      "ex_date": "2020-04-14",
+      "dividend": 0.41,
+      "record_date": "2020-04-15",
+      "payment_date": "2020-05-06",
+      "ex_nominal_close": 63.279998779296875,
+      "new_factor": 1.0198895137811492,
+      "model_return": 0.014980060227838488,
+      "economic_total_return": 0.014980060227838488,
+      "absolute_error": 0.0
+    },
+    {
+      "ex_date": "2021-04-14",
+      "dividend": 0.47,
+      "record_date": "2021-04-15",
+      "payment_date": "2021-05-06",
+      "ex_nominal_close": 96.69000244140624,
+      "new_factor": 1.0248470901527873,
+      "model_return": -0.0038958219248961257,
+      "economic_total_return": -0.0038958219248962367,
+      "absolute_error": 1.1102230246251565e-16
+    }
+  ],
+  "split_and_share_units": {
+    "conclusion": "No split or reverse split in the appended interval; nominal Close and Volume may be used directly only for this verified interval.",
+    "primary_rollforward_millions": {
+      "2020_begin_issued": 1197,
+      "2020_options_issued": 5,
+      "2020_rsus_issued": 1,
+      "2020_tax_surrender_rounded": 0,
+      "2020_end_issued": 1203,
+      "2021_q1_options": 1,
+      "2021_q1_rsus": 4,
+      "2021_q1_tax_surrender": -2,
+      "2021_q1_end_issued": 1206,
+      "2021_q2_end_issued": 1206,
+      "2021_q3_options_rounded": 0,
+      "2021_q3_rsus": 2,
+      "2021_q3_tax_surrender": -1,
+      "2021_q3_end_issued": 1207,
+      "treasury_shares_unchanged": 429
+    },
+    "reasoning": "Full-year 2020 and quarterly 2021 share roll-forwards attribute changes to employee equity issuance and tax surrender, with no split/reverse-split line. Complete post-2018 raw OHLC overlap is unchanged, excluding a later net split rescaling. The Q3 statement covers the August 19 endpoint.",
+    "limit": "Financial statements published later verify historical units only. They are not used as point-in-time selection signals."
+  },
+  "overlap": {
+    "period": [
+      "2018-03-28",
+      "2020-04-01"
+    ],
+    "rows": 507,
+    "nominal_ohlc": {
+      "Open": {
+        "rows": 507,
+        "maximum_relative_difference": 1.1102230246251565e-16,
+        "median_relative_difference": 0.0
+      },
+      "High": {
+        "rows": 507,
+        "maximum_relative_difference": 2.220446049250313e-16,
+        "median_relative_difference": 0.0
+      },
+      "Low": {
+        "rows": 507,
+        "maximum_relative_difference": 0.0,
+        "median_relative_difference": 0.0
+      },
+      "Close": {
+        "rows": 507,
+        "maximum_relative_difference": 1.1102230246251565e-16,
+        "median_relative_difference": 0.0
+      }
+    },
+    "interpretation": "Agreement across two capture dates of the same Yahoo Finance/yfinance upstream, not independent-vendor price corroboration. Volume differences are capture revisions; prefix values are retained.",
+    "volume_changes_not_applied_to_prefix": [
+      {
+        "date": "2019-07-18",
+        "volume": 8158500.0,
+        "Volume": 8157700.0
+      },
+      {
+        "date": "2019-10-25",
+        "volume": 6319800.0,
+        "Volume": 6320200.0
+      }
+    ],
+    "maximum_volume_relative_difference": 9.805724091438428e-05
+  },
+  "basis": {
+    "anchor": "2020-04-01",
+    "initial_canonical_factor": 1.0133240449687022,
+    "anchor_provider_factor": 0.9886790399966032,
+    "last_canonical_factor": 1.0248470901527873,
+    "constant_basis_comparison_period": [
+      "2019-03-27",
+      "2020-04-01"
+    ],
+    "old_canonical_to_sheep_adjusted_ratio": {
+      "median": 1.0249271832103168,
+      "min": 1.0249270980017227,
+      "max": 1.0249272514483605
+    },
+    "formula": "On ex-date f_new=f_old*(Close_ex+D)/Close_ex; otherwise f is unchanged. Every appended OHLC row is kept whole from SheepB and multiplied by that single row factor.",
+    "ordinary_cash_events_added": 0,
+    "maximum_return_identity_error": 1.1102230246251565e-16,
+    "maximum_relative_difference_vs_constant_rescaled_vendor_AdjClose": 9.713055278837146e-05,
+    "nominal_fields_unchanged": true
+  },
+  "unit_round_trip": {
+    "synthetic_only": true,
+    "nominal_shares": 100.0,
+    "adjusted_quantity": 97.57553196066712,
+    "factor": 1.0248470901527873,
+    "nominal_value": 8316.999816894531,
+    "adjusted_value": 8316.99981689453,
+    "one_dollar_per_nominal_share_cash": 100.0
+  },
+  "remaining_gap": {
+    "first_missing_day": "2021-08-20",
+    "includes_later_terminal_event": true,
+    "existing_unresolved_gates_retained": true,
+    "study_cutoff_unchanged": "2026-09-04"
+  }
+}

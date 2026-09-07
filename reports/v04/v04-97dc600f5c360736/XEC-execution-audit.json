@@ -1,0 +1,274 @@
+{
+  "run_id": "v04-97dc600f5c360736",
+  "status": "INCONCLUSIVE",
+  "winner": null,
+  "price_coverage": 0.8975941080899984,
+  "basis_coverage": 0.8639099753820091,
+  "missing_tickers_including_quarantine": 110,
+  "items": [
+    {
+      "strategy": "S500-C0",
+      "bps": 10,
+      "transactions": 4,
+      "last_holding_date": "2016-10-05 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-10-05",
+          "execution_date": "2016-10-06",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 94.76808832914035,
+          "price": 138.89541910650203,
+          "notional": 13162.853346397957,
+          "cost": 13.162853346397956,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 325.08510677866366
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C0",
+      "bps": 25,
+      "transactions": 4,
+      "last_holding_date": "2016-10-05 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-10-05",
+          "execution_date": "2016-10-06",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 80.92184436892539,
+          "price": 138.89541910650203,
+          "notional": 11239.673488493025,
+          "cost": 28.099183721232556,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 244.31865536076387
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 10,
+      "transactions": 4,
+      "last_holding_date": "2016-10-05 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-10-05",
+          "execution_date": "2016-10-06",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 87.06708587883706,
+          "price": 138.89541910650203,
+          "notional": 12093.21938352288,
+          "cost": 12.09321938352288,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 298.6681847113458
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C1",
+      "bps": 25,
+      "transactions": 4,
+      "last_holding_date": "2016-10-05 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-10-05",
+          "execution_date": "2016-10-06",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 73.79276138239827,
+          "price": 138.89541910650203,
+          "notional": 10249.476519234306,
+          "cost": 25.623691298085763,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 222.79457885451387
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 10,
+      "transactions": 4,
+      "last_holding_date": "2016-09-14 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-09-14",
+          "execution_date": "2016-09-15",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 63.72713876355467,
+          "price": 125.3723348545214,
+          "notional": 7989.620180384928,
+          "cost": 7.989620180384928,
+          "reason": "sma50_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -642.3210404688056
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C2",
+      "bps": 25,
+      "transactions": 4,
+      "last_holding_date": "2016-09-14 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-09-14",
+          "execution_date": "2016-09-15",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 55.029303720132546,
+          "price": 125.3723348545214,
+          "notional": 6899.152292811618,
+          "cost": 17.247880732029046,
+          "reason": "sma50_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -576.1614144518608
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 10,
+      "transactions": 4,
+      "last_holding_date": "2016-09-13 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-09-13",
+          "execution_date": "2016-09-14",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 85.43151911107,
+          "price": 125.90011354771188,
+          "notional": 10755.83795663723,
+          "cost": 10.75583795663723,
+          "reason": "atr_trailing_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -816.0408232961597
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C3",
+      "bps": 25,
+      "transactions": 4,
+      "last_holding_date": "2016-09-13 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-09-13",
+          "execution_date": "2016-09-14",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 69.83012139887747,
+          "price": 125.90011354771188,
+          "notional": 8791.620213169177,
+          "cost": 21.979050532922944,
+          "reason": "atr_trailing_exit",
+          "event_type": "risk_exit",
+          "realized_pnl": -694.3645008949026
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE",
+        "SIGNAL_DATA_10": "INCONCLUSIVE",
+        "SIGNAL_DATA_25": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 10,
+      "transactions": 4,
+      "last_holding_date": "2016-10-05 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-10-05",
+          "execution_date": "2016-10-06",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 105.75481733548509,
+          "price": 138.89541910650203,
+          "notional": 14688.859676343764,
+          "cost": 14.688859676343766,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 362.7731306181987
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    },
+    {
+      "strategy": "S500-C4",
+      "bps": 25,
+      "transactions": 4,
+      "last_holding_date": "2016-10-05 00:00:00",
+      "last_transaction": [
+        {
+          "signal_date": "2016-10-05",
+          "execution_date": "2016-10-06",
+          "ticker": "XEC",
+          "side": "sell",
+          "quantity": 87.91404362812996,
+          "price": 138.89541910650203,
+          "notional": 12210.857935076416,
+          "cost": 30.52714483769104,
+          "reason": "rebalance",
+          "event_type": "rebalance",
+          "realized_pnl": 265.4294534937758
+        }
+      ],
+      "all_fills_match_true_adjusted_open": true,
+      "XEC_warnings": [],
+      "nonpass_checks": {
+        "PRICE_REPAIR_EVIDENCE": "INCONCLUSIVE"
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "before": {
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-canonical/ADS-repaired-through-2020-07-02.candidate.parquet": "ff8ee755db4e74b7e127b1147f4cd41e1c9977fb774796faf9a637c9dd384438",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/dividend-ledger.json": "f21ad921d2fbc3c57110cb030d279871175c8b143b6f066589e9734acdd1a927",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/source-index.json": "1495b0f57a517510219e5b7c9ec68faa31a1384d7da967fac31c725f7795800b",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/issuer-and-date-excerpts.json": "be018fb6630441f88c4842f60e33565781b72c2178b06ac9cdd2c852fc3de359",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ADS.parquet": "89b9ebd7f9e2ff9aabb86c15bc11d2add682f73f7eaf54aa2bb05fe323a5ff62",
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ADS.parquet": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ADS.parquet": "173d8919cbfe7d86a62b8f3795c9a106036c5a97d12283934e5147607bdd13d9",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-bounded-preflight/ADS-IEX.source.csv": "b4569e912defe1d4caa45edbb26765bf0f36750513d8fed18c972eea7c7b25de",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-10K.edgar-online.indexed.txt": "82a4a43de124839320cce7b76e0cfcc4265dbef6d0cccaf8ed7bcae4c82ee3e0",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2018-01-25-results.SEC-indexed.txt": "ba69219bef918b8e948ec53a760db8123c75191aade162080b5a33e4f4d82cab",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-01-26-dividend.issuer-repost.indexed.txt": "0e0f1f2ef014dbba54d153d87657b1709380fbb0e70bf6b112c43003e9506ca1",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-01-26-dividend.secondary.indexed.txt": "a974461bd45b71f91c79b33bd79162274680dbd3df0f175cf4894804dfe9b6b5",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2019-10K.edgar-online.indexed.txt": "02c11d849501b4f366b7cb3a8046c1969bd6a77c6d72dd465544a730d3e7f48e",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2019-04-25-dividend.issuer-release.indexed.txt": "a3250d3f232c820f739888d368f156951592b16794b6b4fc2b8256f74d3d0ab8",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2020-04-23-dividend.SEC-indexed.txt": "5c9878792cac4d24ce9f8b23373fbca61fe048df4b94824eb0712983e8a69925",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2020-04-23-dividend.issuer-release.indexed.txt": "87c81690aace0d532ceb222413c4b3037ce36b8c1ddf40947b2054d0fb9bcb9d"
+  },
+  "after": {
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-canonical/ADS-repaired-through-2020-07-02.candidate.parquet": "ff8ee755db4e74b7e127b1147f4cd41e1c9977fb774796faf9a637c9dd384438",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/dividend-ledger.json": "f21ad921d2fbc3c57110cb030d279871175c8b143b6f066589e9734acdd1a927",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/source-index.json": "1495b0f57a517510219e5b7c9ec68faa31a1384d7da967fac31c725f7795800b",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/issuer-and-date-excerpts.json": "be018fb6630441f88c4842f60e33565781b72c2178b06ac9cdd2c852fc3de359",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-remediation-archive/prices/ADS.parquet": "89b9ebd7f9e2ff9aabb86c15bc11d2add682f73f7eaf54aa2bb05fe323a5ff62",
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ADS.parquet": "9f05d12e7246535b97874c42650e86566fea49de8e8058672fa73d1990ad4455",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/sheepb-extracted/ADS.parquet": "173d8919cbfe7d86a62b8f3795c9a106036c5a97d12283934e5147607bdd13d9",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-bounded-preflight/ADS-IEX.source.csv": "b4569e912defe1d4caa45edbb26765bf0f36750513d8fed18c972eea7c7b25de",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-10K.edgar-online.indexed.txt": "82a4a43de124839320cce7b76e0cfcc4265dbef6d0cccaf8ed7bcae4c82ee3e0",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2018-01-25-results.SEC-indexed.txt": "ba69219bef918b8e948ec53a760db8123c75191aade162080b5a33e4f4d82cab",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-01-26-dividend.issuer-repost.indexed.txt": "0e0f1f2ef014dbba54d153d87657b1709380fbb0e70bf6b112c43003e9506ca1",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-01-26-dividend.secondary.indexed.txt": "a974461bd45b71f91c79b33bd79162274680dbd3df0f175cf4894804dfe9b6b5",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2019-10K.edgar-online.indexed.txt": "02c11d849501b4f366b7cb3a8046c1969bd6a77c6d72dd465544a730d3e7f48e",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2019-04-25-dividend.issuer-release.indexed.txt": "a3250d3f232c820f739888d368f156951592b16794b6b4fc2b8256f74d3d0ab8",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2020-04-23-dividend.SEC-indexed.txt": "5c9878792cac4d24ce9f8b23373fbca61fe048df4b94824eb0712983e8a69925",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2020-04-23-dividend.issuer-release.indexed.txt": "87c81690aace0d532ceb222413c4b3037ce36b8c1ddf40947b2054d0fb9bcb9d"
+  },
+  "unchanged": true
+}

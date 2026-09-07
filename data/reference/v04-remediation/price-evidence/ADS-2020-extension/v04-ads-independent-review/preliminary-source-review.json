@@ -1,0 +1,131 @@
+{
+  "status": "PRELIMINARY_SOURCE_REVIEW_CANDIDATE_PENDING",
+  "network_requests": 0,
+  "primary_content_grade": "Issuer annual filing content via saved third-party search-index mirrors; not a new direct SEC HTML/PDF fetch.",
+  "source_hashes": {
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-10K.edgar-online.indexed.txt": "82a4a43de124839320cce7b76e0cfcc4265dbef6d0cccaf8ed7bcae4c82ee3e0",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2019-10K.edgar-online.indexed.txt": "02c11d849501b4f366b7cb3a8046c1969bd6a77c6d72dd465544a730d3e7f48e"
+  },
+  "cash_amounts_supported": {
+    "2016_Q4": 0.52,
+    "2017_all_four_quarters": 0.52,
+    "2018_all_four_quarters": 0.57,
+    "2019_all_four_quarters": 0.63,
+    "2020_Q1_declared": 0.63,
+    "2020_Q2_declared_from_saved_SEC_8K": 0.21
+  },
+  "old_missing_event_amounts": {
+    "2017-11-13": 0.52,
+    "2018-02-13": 0.57
+  },
+  "2017_Q4_0_52_not_later_year_0_57": true,
+  "15_event_amount_sum_if_ledger_dates_confirmed": 8.24,
+  "amount_not_inferred_from_vendor_factor": true,
+  "quotes": [
+    {
+      "year": 2017,
+      "key": "identity",
+      "text": "Commission file number 001-15749 ALLIANCE DATA SYSTEMS CORPORATION (Exact name of registrant as specified in its charter) Delaware 31-1429215 (State or other jurisdiction of incorporation or organization) (I.R.S. Employer Identification No.) 7500 Dallas Parkway, Suite 700 75024 Plano, Texas (Zip Code) (Address of principal executive offices) (214) 494-3000 (Registrant’s telephone number, including area code) ",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-10K.edgar-online.indexed.txt",
+      "sha256": "82a4a43de124839320cce7b76e0cfcc4265dbef6d0cccaf8ed7bcae4c82ee3e0"
+    },
+    {
+      "year": 2017,
+      "key": "common_dividend_table",
+      "text": "Dividends We declared and paid cash dividends per share during the periods presented as follows: Dividends Per Share Amount (in millions) Year Ended December 31, 2017 First quarter 0.52 29.0 Second quarter 0.52 29.0 Third quarter 0.52 28.8 Fourth quarter 0.52 28.7 Total cash dividends declared and paid 2.08 115.5 Year Ended December 31, 2016 First quarter Second quarter Third quarter Fourth quarter 0.52 30.0 Total cash dividends declared and paid 0.52 30.0 On January 25, 2018, our Board of Directors declared a quarterly cash dividend of $0.57 per share on our common stock, payable on March 20, 2018 to stockholders of record at the close of business on February 14, 2018. ",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2017-10K.edgar-online.indexed.txt",
+      "sha256": "82a4a43de124839320cce7b76e0cfcc4265dbef6d0cccaf8ed7bcae4c82ee3e0"
+    },
+    {
+      "year": 2017,
+      "key": "2017_actual_dividends_and_2018_Q1_declaration",
+      "text": "On January 26, 2017, our Board of Directors declared a quarterly cash dividend of $0.52 per share on our common stock to stockholders of record at the close of business on February 15, 2017, resulting in a dividend payment of $29.0 million on March 17, 2017. On April 20, 2017, our Board of Directors declared a quarterly cash dividend of $0.52 per share on our common stock to stockholders of record at the close of business on May 15, 2017, resulting in a dividend payment of $29.0 million on June 19, 2017. On July 20, 2017, our Board of Directors declared a quarterly cash dividend of $0.52 per share on our common stock to stockholders of record at the close of business on August 14, 2017, resulting in a dividend payment of $28.8 million on September 19, 2017. On October 19, 2017, our Board of Directors declared a quarterly cash dividend of $0.52 per share on our common stock to stockholders of record at the close of business on November 14, 2017, resulting in a dividend payment of $28.7 million on December 19, 2017. On January 25, 2018, our Board of Directors declared a quarterly cash dividend of $0.57 per share on our common stock, payable on March 20, 2018 to stockholders of record at the close of business on February 14, 2018. "
+    },
+    {
+      "year": 2019,
+      "key": "identity",
+      "text": "Commission file number 001-15749 ALLIANCE DATA SYSTEMS CORPORATION (Exact name of registrant as specified in its charter) Delaware 31-1429215 (State or other jurisdiction of (I.R.S. Employer incorporation or organization) Identification No.) 3075 Loyalty Circle 43219 Columbus, Ohio (Zip Code) (Address of principal executive offices) (614) 729-4000 (Registrant’s telephone number, including area code) ",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2019-10K.edgar-online.indexed.txt",
+      "sha256": "02c11d849501b4f366b7cb3a8046c1969bd6a77c6d72dd465544a730d3e7f48e"
+    },
+    {
+      "year": 2019,
+      "key": "common_dividend_table",
+      "text": "Dividends We paid cash dividends per share during the periods presented as follows: Dividends Per Share Amount (in millions) Year Ended December 31, 2019 First quarter $ 0.63 $ 33.9 Second quarter 0.63 33.1 Third quarter 0.63 30.4 Fourth quarter 0.63 30.0 Total cash dividends paid $ 2.52 $ 127.4 Year Ended December 31, 2018 First quarter $ 0.57 $ 31.7 Second quarter 0.57 31.6 Third quarter 0.57 31.2 Fourth quarter 0.57 30.7 Total cash dividends paid $ 2.28 $ 125.2 On January 30, 2020 our Board of Directors declared a quarterly cash dividend of $0.63 per share on our common stock, payable on March 19, 2020 to stockholders of record at the close of business on February 14, 2020. ",
+      "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-ads-primary-followup/2019-10K.edgar-online.indexed.txt",
+      "sha256": "02c11d849501b4f366b7cb3a8046c1969bd6a77c6d72dd465544a730d3e7f48e"
+    }
+  ],
+  "nominal_anchor_checks": [
+    {
+      "date": "2017-06-30",
+      "source": "WIKI",
+      "issuer_nominal_close": 256.69,
+      "observed_nominal_close": 256.69,
+      "difference": 0.0,
+      "matches_reported_cent": true
+    },
+    {
+      "date": "2017-06-30",
+      "source": "SheepB",
+      "issuer_nominal_close": 256.69,
+      "observed_nominal_close": 256.69000244140625,
+      "difference": 2.4414062522737368e-06,
+      "matches_reported_cent": true
+    },
+    {
+      "date": "2017-06-30",
+      "source": "canonical",
+      "issuer_nominal_close": 256.69,
+      "observed_nominal_close": 256.69,
+      "difference": 0.0,
+      "matches_reported_cent": true
+    },
+    {
+      "date": "2018-02-21",
+      "source": "WIKI",
+      "issuer_nominal_close": 239.59,
+      "observed_nominal_close": 239.59,
+      "difference": 0.0,
+      "matches_reported_cent": true
+    },
+    {
+      "date": "2018-02-21",
+      "source": "SheepB",
+      "issuer_nominal_close": 239.59,
+      "observed_nominal_close": 239.58999633789065,
+      "difference": -3.6621093499888957e-06,
+      "matches_reported_cent": true
+    },
+    {
+      "date": "2018-02-21",
+      "source": "canonical",
+      "issuer_nominal_close": 239.59,
+      "observed_nominal_close": 239.59,
+      "difference": 0.0,
+      "matches_reported_cent": true
+    },
+    {
+      "date": "2019-06-28",
+      "source": "SheepB",
+      "issuer_nominal_close": 140.13,
+      "observed_nominal_close": 140.1300048828125,
+      "difference": 4.8828125045474735e-06,
+      "matches_reported_cent": true
+    },
+    {
+      "date": "2020-02-20",
+      "source": "SheepB",
+      "issuer_nominal_close": 103.06,
+      "observed_nominal_close": 103.05999755859376,
+      "difference": -2.441406238062882e-06,
+      "matches_reported_cent": true
+    }
+  ],
+  "pending": [
+    "Final producer ledger/date grades and source bindings",
+    "Fixed candidate hash and reconstruction normalization contract",
+    "Independent per-row reconstruction; actual fixed ten paths deferred until application"
+  ],
+  "nominal_anchor_comparison_count": 8
+}

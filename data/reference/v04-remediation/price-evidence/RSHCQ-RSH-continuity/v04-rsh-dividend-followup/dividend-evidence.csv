@@ -1,0 +1,8 @@
+source_WIKI_ex_date,source_WIKI_cash,issuer_per_share_amount,issuer_amount_source_id,issuer_amount_evidence_grade,secondary_date,secondary_cash,secondary_source_id,secondary_date_column_label,secondary_date_and_amount_match,primary_ex_date_explicitly_verified,declaration_date,record_date,actual_pay_date,approved_for_application
+2004-11-29,0.25,0.25,S2004,ISSUER_ANNUAL_PAYMENT_IN_SEC_INDEXED_TEXT,2004-11-29,0.25,SDC,Date,True,False,2004-09-24,2004-12-01,2004-12-20,False
+2005-11-29,0.25,0.25,S2005_MIRROR,ISSUER_ANNUAL_PAYMENT_IN_THIRD_PARTY_FILING_MIRROR,2005-11-29,0.25,SDC,Date,True,False,2005-09-29,2005-12-01,2005-12-19,False
+2006-11-29,0.25,0.25,S2010,ISSUER_ANNUAL_DECLARED_TOTAL_ONLY_IN_SEC_INDEXED_TEXT,2006-11-29,0.25,SDC,Date,True,False,,,,False
+2007-11-27,0.25,0.25,S2010,ISSUER_ANNUAL_DECLARED_TOTAL_ONLY_IN_SEC_INDEXED_TEXT,2007-11-27,0.25,SDC,Date,True,False,,,,False
+2008-11-25,0.25,0.25,S2010,ISSUER_ANNUAL_DECLARED_TOTAL_ONLY_IN_SEC_INDEXED_TEXT,2008-11-25,0.25,SDC,Date,True,False,,,,False
+2009-11-24,0.25,0.25,S2010,ISSUER_ANNUAL_DECLARED_TOTAL_ONLY_IN_SEC_INDEXED_TEXT,2009-11-24,0.25,SDC,Date,True,False,,,,False
+2010-11-23,0.25,0.25,S2010,ISSUER_ANNUAL_PAYMENT_IN_SEC_INDEXED_TEXT,2010-11-23,0.25,SDC,Date,True,False,2010-11-04,2010-11-26,2010-12-16,False

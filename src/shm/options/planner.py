@@ -6,7 +6,7 @@ import csv
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
-from typing import Mapping, Sequence
+from typing import Collection, Mapping, Sequence
 
 from shm.options.calculator import (
     OptionOrder,
@@ -73,6 +73,10 @@ def build_overlay_plan(
     source: OptionChainSource | None = None,
     risk_free_rate: float = 0.0,
     dividend_yields: Mapping[str, float] | None = None,
+    allow_new_risk: bool = True,
+    pending_exit_symbols: Collection[str] = (),
+    stock_exposure: float | None = None,
+    max_total_exposure: float = 1.0,
 ) -> OverlayPlan:
     """Create a constrained CC/CSP proposal without submitting any orders."""
 
@@ -81,9 +85,16 @@ def build_overlay_plan(
     orders: list[OptionOrder] = []
     skipped: list[SkippedOverlay] = []
     held = {holding.ticker.upper() for holding in holdings}
+    pending_exits = {ticker.upper() for ticker in pending_exit_symbols}
+    if stock_exposure is None:
+        stock_exposure = sum(h.shares * h.spot for h in holdings) / portfolio_equity
+    exposure_budget = portfolio_equity * max(0.0, min(1.0, max_total_exposure) - stock_exposure)
 
     for holding in holdings:
         ticker = holding.ticker.upper()
+        if ticker in pending_exits:
+            skipped.append(SkippedOverlay(ticker, "covered_call", "stock exit is pending"))
+            continue
         if holding.shares < 100:
             skipped.append(
                 SkippedOverlay(ticker, "covered_call", "fewer than 100 shares")
@@ -131,6 +142,9 @@ def build_overlay_plan(
     seen_candidates: set[str] = set()
     for candidate in candidates[:5]:
         ticker = candidate.ticker.upper()
+        if not allow_new_risk:
+            skipped.append(SkippedOverlay(ticker, "cash_secured_put", "new risk is disabled"))
+            continue
         if ticker in held:
             skipped.append(
                 SkippedOverlay(ticker, "cash_secured_put", "candidate is already held")
@@ -147,10 +161,11 @@ def build_overlay_plan(
         remaining_cash = min(
             available_cash - current.cash_usage,
             portfolio_equity * 0.20 - current.csp_notional,
+            exposure_budget - current.csp_notional,
         )
         if remaining_cash <= 0:
             skipped.append(
-                SkippedOverlay(ticker, "cash_secured_put", "cash or 20% CSP cap exhausted")
+                SkippedOverlay(ticker, "cash_secured_put", "cash, 20% CSP cap, or total exposure budget exhausted")
             )
             continue
         snapshot = source.load(ticker, not_before=next_rebalance_date)

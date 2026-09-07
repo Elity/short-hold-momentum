@@ -1,0 +1,37 @@
+[
+  {
+    "date": "1999-12-08",
+    "event": "First AABA label in local historical membership table; identity is then Yahoo/YHOO.",
+    "scope": "local history; original inclusion day not independently verified"
+  },
+  {
+    "date": "2017-06-09",
+    "event": "S&P issuer announcement: Hilton to replace Yahoo before June 19 open; closed-end fund ineligible.",
+    "scope": "primary index announcement"
+  },
+  {
+    "date": "2017-06-13",
+    "event": "Yahoo sold operating business to Verizon; approximately $4.5 billion paid to the corporate fund, not an automatic payout to each common shareholder.",
+    "scope": "completed event in June 19 8-K and June 16 N-2"
+  },
+  {
+    "date": "2017-06-16",
+    "event": "Yahoo renamed Altaba and registered as closed-end investment company; last YHOO trading day and last observed WIKI quote; final member day.",
+    "scope": "primary issuer and index evidence plus local quote"
+  },
+  {
+    "date": "2017-06-19",
+    "event": "AABA trading begins at Nasdaq open; shares continue without shareholder action; not S&P 500 eligible from the open.",
+    "scope": "primary issuer and index evidence"
+  },
+  {
+    "date": "2019-10-02",
+    "event": "Nasdaq halted AABA after regular trading closed.",
+    "scope": "actual event in October 4 8-K; no terminal-price inference"
+  },
+  {
+    "date": "2019-10-04",
+    "event": "Dissolution effective at 16:00 Eastern; stock transfer books closed; holders retain rights to later liquidating distributions.",
+    "scope": "actual event in October 4 8-K; not a zero-value or full-cash assumption"
+  }
+]

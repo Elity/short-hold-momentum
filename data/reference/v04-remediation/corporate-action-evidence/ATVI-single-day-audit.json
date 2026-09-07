@@ -1,0 +1,57 @@
+{
+  "status": "SINGLE_DAY_RECOVERY_CANDIDATE",
+  "ticker": "ATVI",
+  "date": "2017-08-07",
+  "raw_yahoo_cache_present": false,
+  "failure_cause": "The exact day is absent from the original WIKI CSV, extracted WIKI parquet, and current research override; no existing Yahoo cache is available. This is an upstream missing row, not a rejected malformed row or extraction deletion.",
+  "mirror_result": "Pinned kristoffer-paulsson/stock-data ATVI also ends 2018-03-27 with 6148 rows and repeats the same missing day; it supplies no independent recovery.",
+  "selected_ohlcv": {
+    "open": 62.14,
+    "high": 62.85,
+    "low": 61.8,
+    "close": 62.51,
+    "volume": 7287073
+  },
+  "dollar_volume": 455514933.22999996,
+  "adjustment_factor_to_existing_WIKI_anchor": 1.0,
+  "adjustment_basis": "WIKI has no later dividend/split through its 2018-03-27 endpoint, and later raw/adjusted OHLC are identical; candidate preserves that existing anchor, not a 2023/current total-return anchor.",
+  "selected_source": {
+    "dataset": "camnugent/sandp500",
+    "version": 4,
+    "dataset_last_updated": "2018-02-10T03:15:53.777Z",
+    "publisher": "Cam Nugent",
+    "upstream": "IEX API, confirmed by dataset metadata and included getSandP.py",
+    "download_url": "https://www.kaggle.com/api/v1/datasets/download/camnugent/sandp500",
+    "member": "individual_stocks_5yr/individual_stocks_5yr/ATVI_data.csv",
+    "zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+    "member_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6"
+  },
+  "row_policy": "Use this entire IEX OHLCV row; do not mix price/volume from different providers.",
+  "volume_basis": "Dataset describes volume as number of shares traded. Preserve the reported integer share count; exact venue/consolidation scope is not independently established and differs from WIKI.",
+  "overlap": {
+    "interval": [
+      "2017-07-03",
+      "2017-08-31"
+    ],
+    "rows": 42,
+    "all_OHLC_within_0_011_USD": 39,
+    "price_mismatch_dates": [
+      "2017-07-06",
+      "2017-07-31",
+      "2017-08-01"
+    ],
+    "median_absolute_volume_relative_difference": 0.0133750647712861,
+    "max_absolute_volume_relative_difference": 0.6688039812349728
+  },
+  "existing_rows_unchanged": true,
+  "rows_before": 3645,
+  "rows_candidate": 3646,
+  "main_inputs_unchanged": true,
+  "candidate_file": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-with-2017-08-07.candidate.parquet",
+  "external_requests_ATVI": 8,
+  "limits": [
+    "This one-date repair does not validate all other WIKI or IEX rows.",
+    "No Yahoo API call, interpolation, zero-fill, or corporate-action cash event was used.",
+    "Kaggle Browse response with unrelated cancer_pred title was rejected; direct metadata API establishes dataset identity."
+  ]
+}

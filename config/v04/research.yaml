@@ -1,0 +1,9 @@
+spec_version: '0.4'
+evidence: known_history
+universe: historical_sp500_constituents
+forward_universe: verified_current_sp500
+dev_start: '2005-01-01'
+cutoff: '2026-09-04'
+candidate_ids: [S500-C0, S500-C1, S500-C2, S500-C3, S500-C4]
+cost_bps: [10, 25]
+minimum_pit_coverage: 0.80

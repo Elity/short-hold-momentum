@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2004-09-30",
+    "issuer_label": "RadioShack Corp.",
+    "fund_common_shares": 722842,
+    "fund_reported_value_usd": 20702195,
+    "implied_nominal_price": 28.640000166011383,
+    "WIKI_raw_close": 28.64,
+    "WIKI_adjusted_close_not_nominal": 23.67066491666849,
+    "rounding_difference_total_usd": -0.12000000104308128,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/884394/000095013505000099/b52997nanv30dza.txt",
+    "source_path": "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/corporate-action-evidence/spy-2004-membership.primary.txt",
+    "source_sha256": "b7c447d986f0a58f0a6791dd70b2433cbea34d57b703438c43ac4e394b8dd4a0",
+    "quote": "RadioShack Corp. ..................           722,842              20,702,195",
+    "limit": "Dated fund common-stock name and valuation support old issuer/nominal price scale; do not establish the RSHCQ identifier bridge."
+  },
+  {
+    "date": "2005-09-30",
+    "issuer_label": "RadioShack Corp.",
+    "fund_common_shares": 565742,
+    "fund_reported_value_usd": 14030402,
+    "implied_nominal_price": 24.80000070703607,
+    "WIKI_raw_close": 24.8,
+    "WIKI_adjusted_close_not_nominal": 20.649998128471655,
+    "rounding_difference_total_usd": -0.40000000037252903,
+    "source_url": "https://www.sec.gov/Archives/edgar/data/884394/000095013505006765/b57342mfnv30d.txt",
+    "source_path": "/Users/fighting/code/short-hold-momentum/data/reference/v04-remediation/corporate-action-evidence/spy-2005-membership.primary.txt",
+    "source_sha256": "0b15a59d6d3ac20d7c00effd3596664f73b3e2258a765cb53f81e348a47c5788",
+    "quote": "RadioShack Corp. ...............     565,742        14,030,402",
+    "limit": "Dated fund common-stock name and valuation support old issuer/nominal price scale; do not establish the RSHCQ identifier bridge."
+  }
+]

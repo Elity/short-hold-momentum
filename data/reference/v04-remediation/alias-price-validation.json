@@ -1,0 +1,444 @@
+[
+  {
+    "ticker": "BK",
+    "canonical": "BNY",
+    "identity_sources": [
+      {
+        "url": "https://www.nasdaq.com/press-release/bny-announces-planned-change-stock-ticker-symbol-bny-2026-05-11",
+        "title": "BNY Announces Planned Change of Stock Ticker Symbol to \"BNY\" | Nasdaq",
+        "evidence_file": "search-evidence-initial.json",
+        "query_id": 5,
+        "excerpts": [
+          "BNY Announces Planned Change of Stock Ticker Symbol to \"BNY\" | Nasdaq BNY Announces Planned Change of Stock Ticker Symbol to \"BNY\" Published May 11, 2026 8:00am EDT NEW YORK, May 11, 2026 /PRNewswire/ -- BNY, a global financial services company, today announced that it will change the ticker symbol for the common stock of The Bank of New York Mellon Corporation from \"BK\" to \"BNY\". The compan",
+          "unces Planned Change of Stock Ticker Symbol to \"BNY\" | Nasdaq BNY Announces Planned Change of Stock Ticker Symbol to \"BNY\" Published May 11, 2026 8:00am EDT NEW YORK, May 11, 2026 /PRNewswire/ -- BNY, a global financial services company, today announced that it will change the ticker symbol for the common stock of The Bank of New York Mellon Corporation from \"BK\" to \"BNY\". The company expects its common stock to begin trading under the new ticker symbo",
+          "6 /PRNewswire/ -- BNY, a global financial services company, today announced that it will change the ticker symbol for the common stock of The Bank of New York Mellon Corporation from \"BK\" to \"BNY\". The company expects its common stock to begin trading under the new ticker symbol, BNY, on the New York Stock Exchange (\"NYSE\") effective May 21, 2026. Founded in 1784 by Alexander Hamilton, BNY has been at the center of financial markets innovation for more",
+          "Corporation from \"BK\" to \"BNY\". The company expects its common stock to begin trading under the new ticker symbol, BNY, on the New York Stock Exchange (\"NYSE\") effective May 21, 2026. Founded in 1784 by Alexander Hamilton, BNY has been at the center of financial markets innovation for more than two centuries and in 1792, it was the first company traded on what would become the New York Stock Exchange. Today, BNY is supporting the next era of financial ",
+          "upporting the next era of financial markets and accelerating its strategy to unlock growth. The BNY ticker symbol aligns the company's market identity more closely with its brand, strategic direction, and ambition. The company will celebrate the change by ringing the Closing Bell at the NYSE on May 21, 2026. \"BNY has long stood for trust, resilience and our central role in global capital markets. As we continue reimagining ourselves as a financial serv"
+        ]
+      },
+      {
+        "url": "https://www.miaxglobal.com/sites/default/files/alert-files/BK_Symbol_Change_58945.pdf",
+        "title": "The Bank of New York Mellon Corporation - Symbol Change Option Symbols: BK/2BK New Symbols: BNY/2BNY",
+        "evidence_file": "search-evidence-initial.json",
+        "query_id": 5,
+        "excerpts": [
+          "New Symbols: BNY/2BNY Date: 05/21/2026 The Bank of New York Mellon Corporation (BK) will change its trading symbol to BNY effective May 21, 2026. As a result, option symbols BK/2BK will also change to BNY/2BNY effective at the opening of business on May 21, 2026. Strike prices and all other option terms will not change. Clearing Member input to OCC must use the new option symbols BNY/2BNY commencing May 21, 2026. Date: May 21, 2026 Option Symbols: BK changes t",
+          "\n100 \nDeliverable \n Per Contract: \n100 The Bank of New York Mellon Corporation (BNY) Common Shares \nCUSIP: \n064058100 \nDisclaimer \n This Information Memo provides an unofficial summary of the terms of corporate events affecting listed options or futures prepared for the convenience of market participants. OCC accepts no responsibility for the accuracy or completeness of the summary, particularly for information which may be relevant to investment deci"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 2.087385642113304e-08,
+    "p99_relative_error": 5.673073740219975e-08,
+    "max_relative_error": 0.0284795309898227
+  },
+  {
+    "ticker": "MMC",
+    "canonical": "MRSH",
+    "identity_sources": [
+      {
+        "url": "https://www.marsh.com/en/corp/about/news/marsh-mclennan-to-change-nyse-symbol-to-mrsh.html",
+        "title": "Marsh McLennan to change its NYSE symbol to “MRSH” on January 14; hosts fourth quarter earnings investor call on January 29",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-0",
+        "excerpts": [
+          "k, strategy and people, announced today that it will be changing its New York Stock Exchange (NYSE) ticker symbol from “MMC” to “MRSH” in connection with the Company’s upcoming brand change to Marsh. Trading under the new brand name and stock ticker symbol will take effect on January 14, 2026. There is no action required by the Company’s shareholders with respect to the ticker symbol change. The Company’s common stock will continue to be listed on the ",
+          "ction with the Company’s upcoming brand change to Marsh. Trading under the new brand name and stock ticker symbol will take effect on January 14, 2026. There is no action required by the Company’s shareholders with respect to the ticker symbol change. The Company’s common stock will continue to be listed on the NYSE, and its legal name and CUSIP will remain unchanged. Additionally, the Company will announce fourth quarter financial results via news rel",
+          " on January 14, 2026. There is no action required by the Company’s shareholders with respect to the ticker symbol change. The Company’s common stock will continue to be listed on the NYSE, and its legal name and CUSIP will remain unchanged. Additionally, the Company will announce fourth quarter financial results via news release on Thursday, January 29, 2026, before the market opens. The news release will be available on the Company's website. Followin",
+          "l change. The Company’s common stock will continue to be listed on the NYSE, and its legal name and CUSIP will remain unchanged. Additionally, the Company will announce fourth quarter financial results via news release on Thursday, January 29, 2026, before the market opens. The news release will be available on the Company's website. Following the news release, President and CEO John Doyle and CFO Mark McGivney will lead a teleconference with investor",
+          "ore information, visit marsh.com, or follow us on LinkedIn and X. Marsh McLennan to change its NYSE ticker symbol to “MRSH” on January 14. The Company will announce Q4 financial results on January 29, 2026."
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 1.8861296746663925e-08,
+    "p99_relative_error": 5.4156005790950714e-08,
+    "max_relative_error": 0.006522474933890132
+  },
+  {
+    "ticker": "ABC",
+    "canonical": "COR",
+    "identity_sources": [
+      {
+        "url": "https://investor.amerisourcebergen.com/news/news-details/2023/AmerisourceBergen-becomes-Cencora-in-alignment-with-the-companys-growing-global-footprint-and-central-role-in-pharmaceutical-access-and-care/default.aspx?code=c10cSuWwd&aff_unique2=c10cSuWwd",
+        "title": "Cencora, Inc. - AmerisourceBergen becomes Cencora, in alignment with the company’s growing global footprint and central role in pharmaceutical access and care",
+        "evidence_file": "search-evidence-initial.json",
+        "query_id": 2,
+        "excerpts": [
+          "N, Pa.-- (BUSINESS WIRE)-- Cencora (NYSE: COR) today announced the completion of its name and stock ticker change from AmerisourceBergen Corporation (NYSE: ABC), marking the latest stage of the company’s evolution as a leader in global pharmaceutical services. Cencora will begin trading under the new ticker symbol “COR” on the New York Stock Exchange at the open of the market trading today, August 30, 2023. Under the new name Cencora, the company unifi",
+          "s evolution as a leader in global pharmaceutical services. Cencora will begin trading under the new ticker symbol “COR” on the New York Stock Exchange at the open of the market trading today, August 30, 2023. Under the new name Cencora, the company unifies its 46,000 employees – across several global business segments – under one identity, propelled by a bold vision and purpose-driven approach to creating healthier futures. The new name underscores Cen"
+        ]
+      },
+      {
+        "url": "https://www.miaxglobal.com/sites/default/files/alert-files/ABC_Symbol_NameChange___53077.pdf",
+        "title": "AmerisourceBergen Corporation - Name/Symbol Change Option Symbols: ABC/2ABC New Symbols: COR/2COR",
+        "evidence_file": "search-evidence-initial.json",
+        "query_id": 2,
+        "excerpts": [
+          "New Symbols: COR/2COR Date: 08/30/2023 AmerisourceBergen Corporation (ABC) will change its name and trading symbol to Cencora, Inc. (COR) effective August 30, 2023. As a result, option symbols ABC/2ABC will also change to COR/2COR effective at the opening of business on August 30, 2023. Strike prices and all other option terms will not change. Clearing Member input to OCC must use the new option symbols COR/2COR commencing August 30, 2023. Date: August 30, 202",
+          "ivisor: \n New Multiplier: \n100 \nDeliverable \n Per Contract: \n100 Cencora, Inc. (COR) Common Shares \nCUSIP: \n03073E105 \nDisclaimer \n This Information Memo provides an unofficial summary of the terms of corporate events affecting listed options or futures prepared for the convenience of market participants. OCC accepts no responsibility for the accuracy or completeness of the summary, particularly for information which may be relevant to investment deci"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 2.0367683872812847e-08,
+    "p99_relative_error": 5.2029348829307764e-08,
+    "max_relative_error": 0.021015170633209124
+  },
+  {
+    "ticker": "PKI",
+    "canonical": "RVTY",
+    "identity_sources": [
+      {
+        "url": "https://ir.revvity.com/news/investor-news/news-details/2023/Launching-Revvity-A-Scientific-Solutions-Company-Powering-Innovation-from-Discovery-to-Cure/default.aspx",
+        "title": "Revvity, Inc. - Launching Revvity: A Scientific Solutions Company Powering Innovation from Discovery to Cure\r",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-extra-3",
+        "excerpts": [
+          " customers with complete, end-to-end solutions To begin trading as RVTY under new name on May 16th (formerly NYSE: PKI) WALTHAM, Mass.-- (BUSINESS WIRE)-- Revvity, Inc. officially launches today as a science-based solutions company that leverages innovation across life sciences and diagnostics to help improve lives everywhere. Born from two words, “revolutionize” (rev) and “vita” (vit) meaning “life” in Latin, Revvity delivers end-to-end expertise and solutio"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 1.9785596494514834e-08,
+    "p99_relative_error": 5.13746145069938e-08,
+    "max_relative_error": 0.03744386852948112
+  },
+  {
+    "ticker": "ANTM",
+    "canonical": "ELV",
+    "identity_sources": [
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1156039/000119312522183957/d359422d8k.htm",
+        "title": "8-K",
+        "evidence_file": "search-evidence-initial.json",
+        "query_id": 3,
+        "excerpts": [
+          "4 (c)) Securities registered pursuant to Section 12 (b) of the Act:           Title of each class   Trading Symbol (s)   Name of each exchange on which registered Common Stock   ELV   NYSE Indicate by check mark whether the registrant is an emerging growth company as defined in Rule 405 of the Securities Act of 1933 (§230.405 of this chapter) or Rule 12b-2 of the Securities Exchange Act of 1934 (§240.12b-2 of this chapter). Emerging growth company ☐ If an emer"
+        ]
+      },
+      {
+        "url": "https://www.miaxglobal.com/alert/2022/06/27/miax-exchange-group-options-markets-corporate-action-alert-anthem-inc-antm-1",
+        "title": "MIAX Exchange Group - Options Markets - Corporate Action Alert: Anthem, Inc. (ANTM) Name and Symbol Change to Elevance Health, Inc. (ELV) | MIAX",
+        "evidence_file": "search-evidence-initial.json",
+        "query_id": 3,
+        "excerpts": []
+      },
+      {
+        "url": "https://www.miaxglobal.com/sites/default/files/alert-files/ANTM_Symbol_Name_Change___50649.pdf",
+        "title": "Anthem, Inc. - Name/Symbol Change Option Symbols: ANTM/2ANTM New Symbols: ELV/2ELV",
+        "evidence_file": "search-evidence-initial.json",
+        "query_id": 3,
+        "excerpts": [
+          "mbols: ANTM/2ANTM New Symbols: ELV/2ELV Date: 6/28/22 Anthem, Inc. (ANTM) will change its name, and trading symbol to Elevance Health, Inc. (ELV) effective June 28, 2022. As a result, option symbols ANTM/2ANTM will also change to ELV/2ELV effective at the opening of business on June 28, 2022. Strike prices and all other option terms will not change. Clearing Member input to OCC must use the new option symbols ELV/2ELV commencing June 28, 2022. Date: June 28, 2",
+          "\n New Multiplier: \n100 \nDeliverable \n Per Contract: \n100 Elevance Health, Inc. (ELV) Common Shares \nCUSIP: \n036752103 \nDisclaimer \n This Information Memo provides an unofficial summary of the terms of corporate events affecting listed options or futures prepared for the convenience of market participants. OCC accepts no responsibility for the accuracy or completeness of the summary, particularly for information which may be relevant to investment deci"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 2.0713289361484755e-08,
+    "p99_relative_error": 5.2375537229476525e-08,
+    "max_relative_error": 0.0005802199690598808
+  },
+  {
+    "ticker": "BLL",
+    "canonical": "BALL",
+    "identity_sources": [
+      {
+        "url": "https://investors.ball.com/news-presentations/press-releases/detail/82/ball-board-declares-quarterly-dividend-stock-ticker-symbol-changing-to-ball",
+        "title": "Ball Board Declares Quarterly Dividend; Stock Ticker Symbol Changing to BALL :: Ball Corporation (BALL)",
+        "evidence_file": "search-evidence-initial.json",
+        "query_id": 4,
+        "excerpts": [
+          "Ball Board Declares Quarterly Dividend; Stock Ticker Symbol Changing to BALL :: Ball Corporation (BALL) Press Releases Ball Board Declares Quarterly Dividend; Stock Ticker Symbol Changing to BALL April 27, 2022 4:47 pm EDT Download as PDF WESTMINSTER, Colo., April 27, 2022 /PRNewswire/ -- Ball Corporation 's (NYSE: BLL) board of directors today declared a cash dividend of 20 cents per share, payable",
+          "ing to BALL :: Ball Corporation (BALL) Press Releases Ball Board Declares Quarterly Dividend; Stock Ticker Symbol Changing to BALL April 27, 2022 4:47 pm EDT Download as PDF WESTMINSTER, Colo., April 27, 2022 /PRNewswire/ -- Ball Corporation 's (NYSE: BLL) board of directors today declared a cash dividend of 20 cents per share, payable June 15, 2022, to shareholders of record as of June 1, 2022. In addition, the company today announced that it is chang",
+          "ders of record as of June 1, 2022. In addition, the company today announced that it is changing its ticker symbol to BALL, effective at the start of trading on Tuesday, May 10, 2022. Since the company's initial public offering in 1972, Ball stock has traded under the ticker symbol BLL—four letter ticker symbols were previously unavailable. To celebrate our 50 th anniversary as a public company and to ensure the BALL ticker represents our 142-year old c",
+          " May 10, 2022. Since the company's initial public offering in 1972, Ball stock has traded under the ticker symbol BLL—four letter ticker symbols were previously unavailable. To celebrate our 50 th anniversary as a public company and to ensure the BALL ticker represents our 142-year old company, we are excited to change our ticker effective May 10. The transition will be seamless and coordinated through the New York Stock Exchange and the company's shar",
+          "ny's initial public offering in 1972, Ball stock has traded under the ticker symbol BLL—four letter ticker symbols were previously unavailable. To celebrate our 50 th anniversary as a public company and to ensure the BALL ticker represents our 142-year old company, we are excited to change our ticker effective May 10. The transition will be seamless and coordinated through the New York Stock Exchange and the company's shareholder recordkeeper and trans"
+        ]
+      },
+      {
+        "url": "https://www.ball.com/our-company/ball-stories/ticker-symbol-changed-to-ball",
+        "title": "Ticker Symbol Changed to BALL  - Ball",
+        "evidence_file": "search-evidence-initial.json",
+        "query_id": 4,
+        "excerpts": [
+          "Ticker Symbol Changed to BALL - Ball Business Ticker Symbol Changed to BALL May 10, 2022 It’s a subtle but notable change. Ball’s ticker symbol has changed from BLL to BALL effective May 10th. Since our initial public offering in 1972, Ball stock has traded under the ticker symbol BLL – four letter ticker symbols were previously unavailable. To celebrate",
+          "Ticker Symbol Changed to BALL - Ball Business Ticker Symbol Changed to BALL May 10, 2022 It’s a subtle but notable change. Ball’s ticker symbol has changed from BLL to BALL effective May 10th. Since our initial public offering in 1972, Ball stock has traded under the ticker symbol BLL – four letter ticker symbols were previously unavailable. To celebrate our 50th anniversary as a public company and ",
+          "- Ball Business Ticker Symbol Changed to BALL May 10, 2022 It’s a subtle but notable change. Ball’s ticker symbol has changed from BLL to BALL effective May 10th. Since our initial public offering in 1972, Ball stock has traded under the ticker symbol BLL – four letter ticker symbols were previously unavailable. To celebrate our 50th anniversary as a public company and to ensure the BALL ticker symbol represents our 142-year company and its listing on ",
+          "BALL effective May 10th. Since our initial public offering in 1972, Ball stock has traded under the ticker symbol BLL – four letter ticker symbols were previously unavailable. To celebrate our 50th anniversary as a public company and to ensure the BALL ticker symbol represents our 142-year company and its listing on the New York Stock Exchange, we are excited to change our ticker symbol to BALL. No action is required from Ball shareholders relative to ",
+          "ur initial public offering in 1972, Ball stock has traded under the ticker symbol BLL – four letter ticker symbols were previously unavailable. To celebrate our 50th anniversary as a public company and to ensure the BALL ticker symbol represents our 142-year company and its listing on the New York Stock Exchange, we are excited to change our ticker symbol to BALL. No action is required from Ball shareholders relative to the ticker symbol change. The se"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 2.1879796863188972e-08,
+    "p99_relative_error": 5.288940800318722e-08,
+    "max_relative_error": 0.012748211381130803
+  },
+  {
+    "ticker": "SYMC",
+    "canonical": "GEN",
+    "identity_sources": [
+      {
+        "url": "https://investor.gendigital.com/news/news-details/2022/Introducing-Gen-The-Company-to-Power-Digital-Freedom/default.aspx",
+        "title": "Gen Investor Relations - Introducing Gen: The Company to Power Digital Freedom",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-2",
+        "excerpts": [
+          " trade on the NASDAQ Stock Exchange under the symbol \"GEN.\" This will replace the company's current ticker, NLOK, and no action is required of shareholders with respect to the ticker symbol change. For more information, visit Investor.GenDigital.com. About Gen Gen (NASDAQ: GEN) is a global company dedicated to powering Digital Freedom through its trusted Cyber Safety brands, Norton, Avast, LifeLock, Avira, AVG, ReputationDefender and CCleaner.…",
+          "e the company's current ticker, NLOK, and no action is required of shareholders with respect to the ticker symbol change. For more information, visit Investor.GenDigital.com. About Gen Gen (NASDAQ: GEN) is a global company dedicated to powering Digital Freedom through its trusted Cyber Safety brands, Norton, Avast, LifeLock, Avira, AVG, ReputationDefender and CCleaner.…"
+        ]
+      },
+      {
+        "url": "https://in.marketscreener.com/quote/stock/GEN-DIGITAL-INC-4907/news/Introducing-Gen-The-Company-to-Power-Digital-Freedom-42231266/",
+        "title": "Introducing Gen: The Company to Power Digital Freedom | MarketScreener India",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-2",
+        "excerpts": []
+      },
+      {
+        "url": "https://newsroom.gendigital.com/Symantec-Completes-Sale-of-Enterprise-Security-Assets-to-Broadcom",
+        "title": "Press Releases | Gen Digital",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-3",
+        "excerpts": [
+          " effective immediately. Beginning tomorrow, November 5, 2019, its common stock will trade under the ticker symbol “NLOK” on the Nasdaq stock exchange. “The launch of NortonLifeLock today is a key step in our transformation towards a standalone, pure-play consumer Cyber Safety business,” said Vincent Pilette, Chief Financial Officer. “As we move through the transition period over the next twelve months, we will realign our cost structure for the company"
+        ]
+      },
+      {
+        "url": "https://www.finanznachrichten.de/nachrichten-2019-11/48086384-symantec-completes-sale-of-enterprise-security-assets-to-broadcom-company-emerges-as-nortonlifelock-will-trade-as-nlok-on-nasdaq-004.htm",
+        "title": "Symantec Completes Sale of Enterprise Security Assets to Broadcom - Company Emerges as NortonLifeLock - Will Trade as NLOK on NASDAQ",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-3",
+        "excerpts": [
+          " effective immediately. Beginning tomorrow, November 5, 2019, its common stock will trade under the ticker symbol \"NLOK\" on the Nasdaq stock exchange. \"The launch of NortonLifeLock today is a key step in our transformation towards a standalone, pure-play consumer Cyber Safety business,\" said Vincent Pilette, Chief Financial Officer. \"As we move through the transition period over the next twelve months, we will realign our cost structure for the company"
+        ]
+      },
+      {
+        "url": "https://www.marketscreener.com/quote/stock/GEN-DIGITAL-INC-4907/news/Symantec-Completes-Sale-of-Enterprise-Security-Assets-to-Broadcom-29511168/",
+        "title": "Symantec : Completes Sale of Enterprise Security Assets to Broadcom | MarketScreener",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-3",
+        "excerpts": [
+          " effective immediately. Beginning tomorrow, November 5, 2019, its common stock will trade under the ticker symbol “NLOK” on the Nasdaq stock exchange. “The launch of NortonLifeLock today is a key step in our transformation towards a standalone, pure-play consumer Cyber Safety business,” said Vincent Pilette, Chief Financial Officer. “As we move through the transition period over the next twelve months, we will realign our cost structure for the company"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 2.2275651878622682e-08,
+    "p99_relative_error": 0.0002791996758666596,
+    "max_relative_error": 0.004524911536504694
+  },
+  {
+    "ticker": "TMK",
+    "canonical": "GL",
+    "identity_sources": [
+      {
+        "url": "https://investors.globelifeinsurance.com/news-releases/2019/august/torchmark-corporation-has-officially-been-renamed-globe-life-inc?accessibility=true",
+        "title": "August 09, 2019 | Torchmark Corporation Has Officially Been Renamed Globe Life Inc. | Globe Life News Release",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-extra-4",
+        "excerpts": [
+          ", Torchmark Corporation has officially been renamed Globe Life Inc. and has announced that its NYSE ticker will be changed from TMK to GL on August 9, 2019. The Company will celebrate the occasion by ringing the opening bell at the New York Stock Exchange on the morning of August 12, 2019. The name change is part of a brand alignment strategy that will enhance the Company's ability to build name recognition with prospective customers and agent recruits"
+        ]
+      },
+      {
+        "url": "https://home.globelifeinsurance.com/press-releases/2019/august-2019/torchmark-corporation-has-officially-been-renamed",
+        "title": "Globe Life Insurance - Torchmark Corporation Has Officially Been Renamed Globe Life Inc.",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-extra-4",
+        "excerpts": [
+          ", Torchmark Corporation has officially been renamed Globe Life Inc. and has announced that its NYSE ticker will be changed from TMK to GL on August 9, 2019. The Company will celebrate the occasion by ringing the opening bell at the New York Stock Exchange on the morning of August 12, 2019. The name change is part of a brand alignment strategy that will enhance the Company's ability to build name recognition with prospective customers and agent recruits"
+        ]
+      },
+      {
+        "url": "https://www.marketscreener.com/news/latest/Torchmark-Corporation-has-officially-been-renamed-Globe-Life-Inc-29040236/",
+        "title": "Torchmark Corporation has officially been renamed Globe Life Inc. | MarketScreener",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-extra-4",
+        "excerpts": [
+          ", Torchmark Corporation has officially been renamed Globe Life Inc. and has announced that its NYSE ticker will be changed from TMK to GL on August 9, 2019. The Company will celebrate the occasion by ringing the opening bell at the New York Stock Exchange on the morning of August 12, 2019. The name change is part of a brand alignment strategy that will enhance the Company's ability to build name recognition with prospective customers and agent recruits"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 1.9920090188474404e-08,
+    "p99_relative_error": 6.445927016596205e-08,
+    "max_relative_error": 0.02180165380853527
+  },
+  {
+    "ticker": "JEC",
+    "canonical": "J",
+    "identity_sources": [
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/52988/000005298819000066/tickerchangeandcnbcrel.htm",
+        "title": "Exhibit",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-4",
+        "excerpts": [
+          "EX-99.1 2 tickerchangeandcnbcrel.htm EXHIBIT 99.1 Exhibit Press Release FOR IMMEDIATE RELEASE November 24, 2019 Jacobs Announces New NYSE Stock Ticker Symbol; Launching New Global Brand That Reflects Transformation DALLAS – s (NYSE:JEC) announces that it will begin trading on the NYSE under the updated ticker symbol “J” on Dec. 10, 2019. The company will also laun",
+          " 99.1 Exhibit Press Release FOR IMMEDIATE RELEASE November 24, 2019 Jacobs Announces New NYSE Stock Ticker Symbol; Launching New Global Brand That Reflects Transformation DALLAS – s (NYSE:JEC) announces that it will begin trading on the NYSE under the updated ticker symbol “J” on Dec. 10, 2019. The company will also launch its new brand globally on November 25, in conjunction with its fiscal fourth quarter earnings update. The introduction of the new b",
+          "sformation DALLAS – s (NYSE:JEC) announces that it will begin trading on the NYSE under the updated ticker symbol “J” on Dec. 10, 2019. The company will also launch its new brand globally on November 25, in conjunction with its fiscal fourth quarter earnings update. The introduction of the new brand marks a transformational milestone for Jacobs, moving from an engineering and construction company to a global technology-driven solutions company. Chair a"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 2.260678877430422e-08,
+    "p99_relative_error": 6.17852723039381e-08,
+    "max_relative_error": 0.007800510691839291
+  },
+  {
+    "ticker": "RE",
+    "canonical": "EG",
+    "identity_sources": [
+      {
+        "url": "https://www.everestglobal.com/gb-en/news-media/press-releases/2023/everest-to-rebrand-company-name-and-nyse-ticker",
+        "title": "Everest to Rebrand Company Name and NYSE Ticker to Reflect its Evolution, Global Growth and Diversification Strategy | Everest (United Kingdom)",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-next-4",
+        "excerpts": [
+          "Everest to Rebrand Company Name and NYSE Ticker to Reflect its Evolution, Global Growth and Diversification Strategy | Everest (United Kingdom) Media Press Releases Everest to Rebrand Company Name and NYSE Ticker to Reflect its Evolution, Global Growth and Diversification Strategy Press Releases Everest to Rebrand Company Name and NYSE Ticker to Reflect its Evolution, Global Growth and Diversif",
+          "n Strategy | Everest (United Kingdom) Media Press Releases Everest to Rebrand Company Name and NYSE Ticker to Reflect its Evolution, Global Growth and Diversification Strategy Press Releases Everest to Rebrand Company Name and NYSE Ticker to Reflect its Evolution, Global Growth and Diversification Strategy BERMUDA Seon Place, 4th Floor Hamilton HM 19, Bermuda CONTACT Dawn Lauer Senior Vice President, Chief Communications Officer (908) 300-7670 Matt Roh",
+          " Global Growth and Diversification Strategy Press Releases Everest to Rebrand Company Name and NYSE Ticker to Reflect its Evolution, Global Growth and Diversification Strategy BERMUDA Seon Place, 4th Floor Hamilton HM 19, Bermuda CONTACT Dawn Lauer Senior Vice President, Chief Communications Officer (908) 300-7670 Matt Rohrmann Head of Investor Relations (908) 604-7343 HAMILTON, Bermuda – (BUSINESS WIRE) – May 18, 2023 –Everest Re Group, Ltd. (NYSE: RE",
+          "eral Meeting yesterday, it will change its name to Everest Group, Ltd. and will trade under the new ticker symbol (NYSE: EG), effective on July 10, 2023. “Everest’s new name and stock ticker reflect the evolution of our value proposition, built on five decades of reinsurance leadership and an expanding presence in the global primary insurance market,” said Juan C. Andrade, Everest President and CEO. “In today’s heightened risk environment, our hybrid b",
+          "e under the new ticker symbol (NYSE: EG), effective on July 10, 2023. “Everest’s new name and stock ticker reflect the evolution of our value proposition, built on five decades of reinsurance leadership and an expanding presence in the global primary insurance market,” said Juan C. Andrade, Everest President and CEO. “In today’s heightened risk environment, our hybrid business model, breadth of global capabilities and outstanding talent are more vital "
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 3646,
+    "median_relative_error": 2.0790564325690042e-08,
+    "p99_relative_error": 5.211314308972707e-08,
+    "max_relative_error": 0.0260192013357452
+  },
+  {
+    "ticker": "WLTW",
+    "canonical": "WTW",
+    "identity_sources": [
+      {
+        "url": "https://investors.wtwco.com/news-releases/news-release-details/willis-towers-watson-announces-nasdaq-ticker-symbol-change-wltw",
+        "title": "Willis Towers Watson announces Nasdaq ticker symbol change from WLTW to WTW | Willis Towers Watson",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-extra-5",
+        "excerpts": [
+          "Willis Towers Watson announces Nasdaq ticker symbol change from WLTW to WTW | Willis Towers Watson Release Details Willis Towers Watson announces Nasdaq ticker symbol change from WLTW to WTW January 7, 2022 PDF Version ARLINGTON, Va., Jan. 07, 2022 (GLOBE NEWSWIRE) -- Willis Towers Watson (NASDAQ: WLTW), a leading global advisory, broking and solutions company, today announced that its ticke",
+          "hange from WLTW to WTW | Willis Towers Watson Release Details Willis Towers Watson announces Nasdaq ticker symbol change from WLTW to WTW January 7, 2022 PDF Version ARLINGTON, Va., Jan. 07, 2022 (GLOBE NEWSWIRE) -- Willis Towers Watson (NASDAQ: WLTW), a leading global advisory, broking and solutions company, today announced that its ticker symbol on the Nasdaq stock market will change to “WTW” at the open of market trading on Monday January 10, 2022. ",
+          " (NASDAQ: WLTW), a leading global advisory, broking and solutions company, today announced that its ticker symbol on the Nasdaq stock market will change to “WTW” at the open of market trading on Monday January 10, 2022. Willis Towers Watson has traded under the ticker “WLTW” since 2016. Carl Hess, Willis Towers Watson CEO, commented, \"Changing our ticker symbol is just one of the ways we are simplifying to increase our agility and effectiveness, as we ",
+          "at the open of market trading on Monday January 10, 2022. Willis Towers Watson has traded under the ticker “WLTW” since 2016. Carl Hess, Willis Towers Watson CEO, commented, \"Changing our ticker symbol is just one of the ways we are simplifying to increase our agility and effectiveness, as we move forward as a strong and independent WTW.\" No action is required from Willis Towers Watson shareholders relative to the ticker symbol change. Willis Towers Wa",
+          "d under the ticker “WLTW” since 2016. Carl Hess, Willis Towers Watson CEO, commented, \"Changing our ticker symbol is just one of the ways we are simplifying to increase our agility and effectiveness, as we move forward as a strong and independent WTW.\" No action is required from Willis Towers Watson shareholders relative to the ticker symbol change. Willis Towers Watson’s ordinary shares will continue to be listed on Nasdaq and the CUSIP will remain un"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 560,
+    "median_relative_error": 2.074878990843132e-08,
+    "p99_relative_error": 6.319957848469271e-05,
+    "max_relative_error": 0.04884144305626448
+  },
+  {
+    "ticker": "FLT",
+    "canonical": "CPAY",
+    "identity_sources": [
+      {
+        "url": "https://www.corpay.com/corporate-newsroom/17651/fleetcor-announces-rebranding-to-corpay",
+        "title": "FLEETCOR Announces Rebranding to Corpay | Corpay",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-next-5",
+        "excerpts": [
+          "ck FLEETCOR Announces Rebranding to Corpay Press Releases March 25, 2024 8:00 AM Share Adopting New Ticker CPAY ATLANTA -- (BUSINESS WIRE)--Mar. 25, 2024-- FLEETCOR Technologies, Inc. (NYSE: FLT) (“the Company”) a leading global payments Company, announced today it has rebranded the Company Corpay, Inc. The name change better reflects the Company’s current portfolio of corporate payment solutions. The Company will begin trading today on the New York St",
+          "ayment solutions. The Company will begin trading today on the New York Stock Exchange under the new ticker symbol CPAY and the new CUSIP is 219948 106. About Corpay Corpay (NYSE: CPAY) is a global S&P500 corporate payments Company that helps businesses and consumers pay expenses in a simple, controlled manner. Corpay’s suite of modern payment solutions help its customers better manage vehicle-related expenses (e.g. fueling and parking), travel expenses",
+          "ill begin trading today on the New York Stock Exchange under the new ticker symbol CPAY and the new CUSIP is 219948 106. About Corpay Corpay (NYSE: CPAY) is a global S&P500 corporate payments Company that helps businesses and consumers pay expenses in a simple, controlled manner. Corpay’s suite of modern payment solutions help its customers better manage vehicle-related expenses (e.g. fueling and parking), travel expenses (e.g. hotel bookings) and pay"
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 1831,
+    "median_relative_error": 2.1907809122367894e-08,
+    "p99_relative_error": 5.254294412893046e-08,
+    "max_relative_error": 0.0004259349874300433
+  },
+  {
+    "ticker": "KORS",
+    "canonical": "CPRI",
+    "identity_sources": [
+      {
+        "url": "https://www.sec.gov/Archives/edgar/data/1530721/000119312518362322/d653406dex991.htm",
+        "title": "EX-99.1",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-5",
+        "excerpts": [
+          "l Kors Holdings Limited (NYSE: KORS), and beginning on January 2, 2019, its New York Stock Exchange ticker symbol will be CPRI. The company is also pleased to announce that it has completed its acquisition of Versace. John D. Idol, Chairman and Chief Executive Officer of Capri Holdings said, “With the acquisition of Versace, we have now created one of the leading global fashion luxury groups in the world. The new name for our group, Capri Holdings, is "
+        ]
+      }
+    ],
+    "price_check": "PASS",
+    "overlap": 1578,
+    "median_relative_error": 2.1370852865132406e-08,
+    "p99_relative_error": 5.093000629896594e-08,
+    "max_relative_error": 0.01626013158782713
+  },
+  {
+    "ticker": "NLOK",
+    "canonical": "GEN",
+    "identity_sources": [
+      {
+        "url": "https://investor.gendigital.com/news/news-details/2022/Introducing-Gen-The-Company-to-Power-Digital-Freedom/default.aspx",
+        "title": "Gen Investor Relations - Introducing Gen: The Company to Power Digital Freedom",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-2",
+        "excerpts": [
+          " trade on the NASDAQ Stock Exchange under the symbol \"GEN.\" This will replace the company's current ticker, NLOK, and no action is required of shareholders with respect to the ticker symbol change. For more information, visit Investor.GenDigital.com. About Gen Gen (NASDAQ: GEN) is a global company dedicated to powering Digital Freedom through its trusted Cyber Safety brands, Norton, Avast, LifeLock, Avira, AVG, ReputationDefender and CCleaner.…",
+          "e the company's current ticker, NLOK, and no action is required of shareholders with respect to the ticker symbol change. For more information, visit Investor.GenDigital.com. About Gen Gen (NASDAQ: GEN) is a global company dedicated to powering Digital Freedom through its trusted Cyber Safety brands, Norton, Avast, LifeLock, Avira, AVG, ReputationDefender and CCleaner.…"
+        ]
+      },
+      {
+        "url": "https://in.marketscreener.com/quote/stock/GEN-DIGITAL-INC-4907/news/Introducing-Gen-The-Company-to-Power-Digital-Freedom-42231266/",
+        "title": "Introducing Gen: The Company to Power Digital Freedom | MarketScreener India",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-2",
+        "excerpts": []
+      }
+    ],
+    "price_check": "UNAVAILABLE"
+  },
+  {
+    "ticker": "FI",
+    "canonical": "FISV",
+    "identity_sources": [
+      {
+        "url": "https://investors.fiserv.com/news-releases/news-release-details/fiserv-announces-transfer-stock-exchange-listing-nasdaq",
+        "title": "Fiserv Announces Transfer of Stock Exchange Listing to Nasdaq - Fiserv, Inc.",
+        "evidence_file": "search-evidence-targeted.json",
+        "query_id": "price-search-final-1",
+        "excerpts": [
+          "Newsroom Fiserv Announces Transfer of Stock Exchange Listing to Nasdaq October 29, 2025 PDF Version Ticker changing from “FI” to “FISV” MILWAUKEE -- (BUSINESS WIRE)--Oct. 29, 2025-- Fiserv, Inc. (NYSE: FI), a leading global provider of payments and financial services technology, today announced its intention to transfer the listing of its Class A Common Stock (the “common stock”) to Nasdaq from the New York Stock Exchange. The Company expects its commo",
+          " to begin trading on the Nasdaq Global Select Market on November 11, 2025 under its original Nasdaq ticker symbol “FISV.” In addition to its common stock listing, Fiserv will also transfer the listing of seven bonds to Nasdaq. Bond symbol Issuer Name New Bond symbol FI/28C Fiserv Funding Unlimited Company 2.875% Senior Notes due 2028 FISV28C FI/32 Fiserv Funding Unlimited Company 3.500% Senior Notes due 2032 FISV32 FI/36 Fiserv Funding Unlimited Compan"
+        ]
+      }
+    ],
+    "price_check": "UNAVAILABLE"
+  },
+  {
+    "ticker": "EQR",
+    "canonical": "VMRK",
+    "identity_sources": [
+      {
+        "url": "https://press.spglobal.com/2026-08-13-Reddit-Set-to-Join-S-P-500-and-Sun-Communities-to-Join-S-P-MidCap-400"
+      }
+    ],
+    "overlap": 3646,
+    "median_relative_error": 1.9986963362139676e-08,
+    "p99_relative_error": 5.51759473332858e-08,
+    "price_check": "PASS"
+  }
+]

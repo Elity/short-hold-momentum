@@ -1,0 +1,12 @@
+{
+  "input_hashes_unchanged": true,
+  "491_normal_exit_rows": true,
+  "485_member_rows": true,
+  "856_full_source_tail": true,
+  "no_tail_calendar_or_physical_defects": true,
+  "eight_required_tail_steps": true,
+  "eleven_specific_primary_event_dates": true,
+  "all_cash_steps_unapproved": true,
+  "no_runtime_candidate": true,
+  "local_iex_member_hash_matches": true
+}

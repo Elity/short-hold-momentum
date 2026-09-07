@@ -1,0 +1,49 @@
+{
+  "status": "NEXT_BATCH_SINGLE_DAY_PROPOSAL_NOT_APPLIED",
+  "ticker": "ATVI",
+  "date": "2017-11-08",
+  "source": {
+    "dataset": "camnugent/sandp500",
+    "version": 4,
+    "last_updated": "2018-02-10T03:15:53.777Z",
+    "provider": "IEX, confirmed by existing metadata and included acquisition script",
+    "zip_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions-next/ATVI-independent-sp500.source.zip",
+    "zip_sha256": "4f775195e67179c9c19b63f084e5f2e049fae734023f9d10e233388d6423752a",
+    "member": "individual_stocks_5yr/individual_stocks_5yr/ATVI_data.csv",
+    "member_sha256": "a4b125b9cdf940e32a8e62395cacf00ec83086f1c42d9545f5058d2993f5f2f6",
+    "network_requests": 0
+  },
+  "ohlcv": {
+    "open": 62.5,
+    "high": 64.9,
+    "low": 62.15,
+    "close": 64.55,
+    "volume": 12604699
+  },
+  "as_traded_close": 64.55,
+  "dollar_volume": 813633320.4499999,
+  "adjustment_factor": 1.0,
+  "same_factor_basis": "No WIKI split/dividend event after 2017-11-08 through 2018-03-27; all subsequent raw/adjusted WIKI OHLC and current close/as_traded_close agree. This preserves the existing WIKI anchor, not a new modern adjustment anchor.",
+  "source_row_policy": "Whole IEX OHLCV row; no mixed provider fields, interpolation or invented volume.",
+  "volume_basis": "IEX dataset reported integer share volume; exact venue/consolidation scope is not independently established and neighboring volumes differ from WIKI.",
+  "neighbors": {
+    "interval": [
+      "2017-11-01",
+      "2017-11-15"
+    ],
+    "overlap_rows": 10,
+    "OHLC_all_within_0_011_USD": 10,
+    "price_conflict_dates": [],
+    "median_absolute_volume_relative_difference": 0.011219273662977652
+  },
+  "active_baseline_path": "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ATVI-single-day-repaired.parquet",
+  "active_baseline_sha256": "b058ed6c5af2a230ff7f66e635030af353969e71bb192cf8d0837db1a811ecd1",
+  "candidate_path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-next-data-evidence/ATVI-with-2017-11-08.candidate.parquet",
+  "candidate_sha256": "d4abb821c9f86a8c13959218098438762c3db85f0c3f042b9aa242c4dba5f9fd",
+  "row_count_before": 3646,
+  "row_count_after": 3647,
+  "prior_2017_08_07_repair_preserved": true,
+  "all_other_rows_unchanged": true,
+  "main_repo_and_deployment_modified": false,
+  "network_requests": 0
+}

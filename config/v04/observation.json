@@ -1,0 +1,29 @@
+{
+  "spec_version": "0.4",
+  "account_mode": "observation",
+  "historically_qualified": false,
+  "strategy_id": "S500-C3",
+  "config": {
+    "spec_version": "0.4",
+    "base_candidate": {
+      "id": "C3",
+      "daily_market_exit": true,
+      "stock_exit": "atr20",
+      "target_vol": 0.15,
+      "modules": 2
+    },
+    "universe_policy": "verified_current_sp500",
+    "max_source_age_sessions": 1,
+    "eligibility_basis": "as_traded_close_and_unadjusted_dollar_volume"
+  },
+  "params_hash": "b8e59cd908f8f4f050c8275a5c3b18168242978875673da290144caf4ea27f0f",
+  "cost_bps": [
+    10,
+    25
+  ],
+  "frozen_at": "2026-09-07T00:34:36Z",
+  "selection_basis": "Existing preregistered C3 profit-protection hypothesis; not chosen from historical returns.",
+  "historical_research_run_id": "v04-b2195bf623494f2f",
+  "historical_status_at_authorization": "INCONCLUSIVE",
+  "authority": "docs/decisions/ADR-016-forward-observation-account.md"
+}

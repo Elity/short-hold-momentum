@@ -1,0 +1,8 @@
+{
+  "requests_within_four": true,
+  "all_source_hashes_match": true,
+  "eight_quarters_zero_price_difference": true,
+  "seven_events_keep_source_date_level": true,
+  "unknown_rshcq_date_not_filled": true,
+  "no_live_alias_or_application": true
+}

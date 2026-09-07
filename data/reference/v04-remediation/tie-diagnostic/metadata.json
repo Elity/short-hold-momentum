@@ -1,0 +1,80 @@
+{
+  "ticker": "TIE",
+  "issuer": "Titanium Metals Corporation",
+  "status": "UNVERIFIED_GAPS",
+  "eligible_for_freeze": false,
+  "created_at_utc": "2026-09-06T17:37:48.659679+00:00",
+  "generator": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-corporate-actions/tie-candidate/generate_candidate.py",
+  "generator_sha256": "e2ee6fcb5aa2b26fca40c6c195c5041db661c1e37bc6788e3bb9936163b47253",
+  "pandas_version": "2.3.3",
+  "exchange_calendars_version": "4.13.2",
+  "calendar": "XNYS",
+  "interval": [
+    "2003-12-19",
+    "2013-01-04"
+  ],
+  "row_count": 2276,
+  "complete_row_count": 2274,
+  "source_counts": {
+    "cache": 1551,
+    "investing": 597,
+    "workbook": 126
+  },
+  "source_hierarchy": [
+    "cache only before 2010-02-22",
+    "whole workbook row",
+    "whole internally consistent Investing row"
+  ],
+  "formulas": {
+    "split_factor_t": "product(new_shares / old_shares for split ex_date > t)",
+    "as_traded_OHLC_t": "split_only_OHLC_t * split_factor_t",
+    "cash_factor_ex": "1 - cash_per_common_share / split_only_close_on_previous_XNYS_session",
+    "cash_adjustment_t": "product(cash_factor_ex for cash ex_date > t)",
+    "output_OHLC_t": "split_only_OHLC_t * cash_adjustment_t",
+    "output_volume_t": "selected_source_volume * 100 for workbook; selected_source_volume otherwise; no cash adjustment",
+    "dollar_volume_t": "split_only_close_t * output_volume_t; assumes early vendor volume in terminal split share units"
+  },
+  "limitations": [
+    "Two entire daily bars unknown; no forward/backward filling or inferred OHLCV.",
+    "Early cache price basis is inferred from source overlaps and SEC checks; adjusted=True is not accepted as proof.",
+    "Early pre-2006-05-16 vendor volume split basis is assumed, not independently verified; dollar_volume is a candidate calculation, not a verified liquidity eligibility result.",
+    "Workbook volume scale x100 is overlap-supported, approximate, and subject to rounding/feed differences.",
+    "Investing volume is displayed K/M rounding, not an exact share count.",
+    "SEC quarterly extrema can detect conflicts but cannot validate each daily price or volume.",
+    "Ex-dividend dates derive from historical T+3 convention and US-list crosscheck; declarations verify amounts/record/pay dates.",
+    "No archived Yahoo Adj Close is consumed; no unrelated foreign quote is rescaled.",
+    "January 7 legal merger does not establish intraday trading cutoff or a settlement payment date.",
+    "No explicit merger cash flow is inserted into price bars; the 16.50 merger claim belongs to separate corporate-action handling."
+  ],
+  "focused_checks_passed": [
+    "XNYS indexing and no duplicates",
+    "exactly two explicit wholly unknown bars",
+    "no post-cutoff cached bar selected",
+    "coherent positive OHLC",
+    "formula arithmetic",
+    "12 dividend denominators present",
+    "parquet round-trip",
+    "evidence hashes stable"
+  ],
+  "main_input_hashes_unchanged": true,
+  "output_hashes": {
+    "2013-01-07-incomplete-observation.csv": "0ad2e736231c07f374e8580b50a1e5bc2b8826ce19f6f593dc1443569b541196",
+    "2013-merger-8k.source.json": "1dc2bd9dbb7ef5cbafc9b77a6f35f0713394e9ccfe10ae17acf83cc910dc5c0b",
+    "2013-merger-8k.source.txt": "628149c6f4cadba2d068ac777b84c5c99ff78f8f5d6e4b56e3ed4d4f85f44b12",
+    "README.md": "a36dd2eed7f33c03ff605db9fc7af4cea86026935c8480f41b27609a3366599b",
+    "SEC-quarter-range-checks.csv": "7ef5c236c4edf876fdeb3a281a7b36d55b01832b31e1814974270eeda6c93e4f",
+    "SEC-quarter-table-evidence.json": "ea69ebe876cb1128c30878465393f70bbca00ed0dcda7bc470b2f6dbc3eca19c",
+    "TIE-candidate.csv": "f460ff2c31d320350ef40d3555b3b4698312bf3379b2d75107d322df789be135",
+    "TIE-candidate.parquet": "2b4246618cfcfaf5046668ab4de3c8f5692406e2f268a82d5ed014e869a86269",
+    "actions-used.json": "dd58d7abd91b997bec251ada0d0299f86d7f1b2f7890320085abaf8db02e3c7d",
+    "cash-dividend-factors.csv": "23796eb5a70eade7230486c61df5bd3d93b09879db9c49e7ba8d7d30fd3c705c",
+    "evidence-file-hashes.json": "d36b59fd8dfaa37fe66c0311bff2d63f72f12f94b007fc30bfa826c1f63e1f59",
+    "frozen-inputs.json": "62ca669eec4c16b8137a9816a549d24ad8f8c42195d31cfe7800c0d885f0cb11",
+    "gap-report.json": "9f569ba70e20fb3a8a44332b54411daed31e4db756f63fd2a80f0da7835a5f37",
+    "generate_candidate.py": "e2ee6fcb5aa2b26fca40c6c195c5041db661c1e37bc6788e3bb9936163b47253",
+    "input-integrity-checks.json": "182720276c36dc090bb44a5dca927ecb6c553f3e270813c443d0f63f63d8c5cb",
+    "merger-timing.json": "5139ec0726b11ca3cc680e9690061df7f68be016edff1e6f553b81de96cd8f8d",
+    "row-provenance.csv": "f29f671b56d440427fd31c2a2959ee48ea9881d42812ef2e0bbedb228f74431a",
+    "source-segments.csv": "7bbc63fd375b117ed323bc12b4c9bab6bb0814d3e966753b07238df66b3333fc"
+  }
+}

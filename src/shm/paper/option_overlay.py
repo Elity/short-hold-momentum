@@ -228,6 +228,20 @@ def run_paper_option_overlay(
     portfolio_equity = account.equity(
         {ticker: spots[ticker] for ticker in account.positions}
     )
+    results = row["results"]
+    target_exposure = float(results["target_exposure"])
+    # Older V04 rows persist the combined target, which is zero when risk is off.
+    trend_exposure = float(results.get("trend_exposure", target_exposure))
+    stock_exposure = (portfolio_equity - account.cash) / portfolio_equity
+    filled = {}
+    for fill in read_fill_csv(root / "paper/fills" / f"{account_date.date()}.csv"):
+        filled[fill.ticker] = filled.get(fill.ticker, 0) + fill.qty
+    pending_exits = {
+        ticket.ticker
+        for ticket in read_ticket_csv(root / "paper/tickets" / f"{signal.date()}.csv")
+        if ticket.side == "sell" and filled.get(ticket.ticker, 0) < ticket.qty
+    }
+    allow_new_risk = trend_exposure > 0 and target_exposure > 0
     next_rebalance_date = _next_rebalance(config, signal)
     plan = build_overlay_plan(
         holdings=holdings,
@@ -237,6 +251,10 @@ def run_paper_option_overlay(
         as_of=account_date.date(),
         next_rebalance_date=next_rebalance_date.date(),
         source=source,
+        allow_new_risk=allow_new_risk,
+        pending_exit_symbols=pending_exits,
+        stock_exposure=stock_exposure,
+        max_total_exposure=target_exposure,
     )
     ticket_path = _write_idempotent_option_ticket(
         root / "paper/tickets" / f"{account_date.date()}-options.csv",
@@ -252,6 +270,14 @@ def run_paper_option_overlay(
             "next_rebalance_date": str(next_rebalance_date.date()),
             "portfolio_equity": portfolio_equity,
             "available_cash": account.cash,
+            "risk_gate": {
+                "allow_new_risk": allow_new_risk,
+                "pending_exit_symbols": sorted(pending_exits),
+                "stock_exposure": stock_exposure,
+                "max_total_exposure": target_exposure,
+                "source": "saved_signal_results",
+            },
+            "income_recognized": False,
             "orders": [asdict(order) for order in plan.orders],
             "skipped": [asdict(item) for item in plan.skipped],
             "summary": asdict(plan.summary),

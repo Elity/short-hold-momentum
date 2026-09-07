@@ -1,0 +1,13 @@
+{
+  "number": 2,
+  "kind": "single_public_SEC_HTTP",
+  "url": "https://www.sec.gov/Archives/edgar/data/861878/000156459019005500/srcl-10k_20181231.htm",
+  "status": "failed",
+  "timeout_seconds": 25,
+  "source_url_derived_from": "Request 1 SEC submissions exact accession and primaryDocument",
+  "error_type": "HTTPError",
+  "error": "HTTP Error 403: Forbidden",
+  "elapsed_seconds": 0.18568575009703636,
+  "http_status": 403,
+  "error_body_sha256": "5c83bdf7f388adfe27d63cdba64addea009aff0400893cec2e26ebff43433649"
+}

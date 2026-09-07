@@ -1,0 +1,51 @@
+[
+  {
+    "id": "RSH_2010_COMMON_IDENTITY",
+    "file": "2010-SEC-10K.indexed.txt",
+    "quote": "Common Stock, par value $1 per share New York Stock Exchange SECURITIES REGISTERED PURSUANT TO SECTION 12 (g) OF THE"
+  },
+  {
+    "id": "RSH_2010_SYMBOL",
+    "file": "2010-SEC-10K.indexed.txt",
+    "quote": "Our common stock is listed on the New York Stock Exchange and trades under the symbol \"RSH.\" The following table presents the high and low trading prices for our common stock, as reported in the composite transaction quotations of consolidated trading for issues on the New York Stock Exchange, fo"
+  },
+  {
+    "id": "RSH_2010_DIVIDEND",
+    "file": "2010-SEC-10K.indexed.txt",
+    "quote": "On November 4, 2010, our Board of Directors declared an annual dividend of $0.25 per share. The dividend was paid on December 16, 2010, to stockholders of record on November 26, 2010. 14 PURCHASES OF EQUITY SECURITIES BY RADIOSHACK The following table sets forth information concerning purchases made by or on behalf of RadioShack or any affiliated purchaser (as defined in the SEC’s rules) of RadioShack common stock for the periods indicated. Period   Total Number of S"
+  },
+  {
+    "id": "RSH_2006_2010_ANNUAL_TOTALS",
+    "file": "2010-SEC-10K.indexed.txt",
+    "quote": "Dividends declared per share   $ 0.25     $ 0.25     $ 0.25     $ 0.25     $ 0.25   Capital expenditures   $ 80.1     $ 81.0     $ 85.6     $ 45.3     $ 91.0   Number o",
+    "column_years": [
+      2010,
+      2009,
+      2008,
+      2007,
+      2006
+    ],
+    "note": "Item6 selected financial data labeled UNAUDITED; annual declared totals, not independently exact ex-dates."
+  },
+  {
+    "id": "RSH_LEGACY_CUSIP",
+    "file": "OCC-RSH-to-RSHC-36153.indexed.txt",
+    "quote": "UNDERLYING SECURITY: \nRSH changes to RSHC (Effective February 3, 2015) \nCONTRACT MULTIPLIER:   \n STRIKE DIVISOR: \n NEW MULTIPLIER:   \n100 \nDELIVERABLE PER CONTRACT: \n100 Radioshack Corporation (RSHC) Common Shares   \nCUSIP NUMBER: \n750438103 \nDISCLAIMER This Information Memo provides an unofficial summary of the terms of corporate events affecting listed options or futures prepared for the convenience of market participants. OCC accept"
+  },
+  {
+    "id": "RSHCQ_LEGACY_SELLER",
+    "file": "Hilco-RSHCQ-sale.indexed.txt",
+    "quote": " NEWSWIRE) -- Hilco Streambank (www.hilcostreambank.com) announced the successful completion of its efforts to liquidate certain intangible assets of RadioShack Corporation (OTCMKTS: RSHCQ). Following a two day auction at the New York City offices of Jones Day commencing on May 11 th, 2015, the winning bid of $26.2MM was made by General Wireless Operations Inc. The sale closed on June 19 th, 2015. As a result of this sale and the separate sales of rights to the RadioShack trademarks in Mexico, Latin America, the Middle East and North Africa, RadioShack generated proceeds of approximately $40 million from the sale of its intellectual property assets. The intangible assets included certain U.S and Foreign registered Trademarks, 73 active patents and pending patent applications, certain data in the RadioShack customer database, 295 registered domains - includi"
+  },
+  {
+    "id": "BUYER_NOT_LEGACY_EQUITY",
+    "file": "GeneralWireless-brand-purchase.indexed.txt",
+    "quote": "General Wireless Operations Inc., doing business as RadioShack, announced today that it has closed on a $26.2 million purchase of the RadioShack brand, giving the company the ability to operate the retailer under the RadioShack brand name. \"We are excited to be moving forward as a new and reinvigorated company under one of the most recognized consumer brand names of all time,\" said Ron Garriques, Chief Executive Officer of RadioShack. \"Our stores serve over 1,200 communities, providing high-quality, high-value consumer electronics and accessories from globally recognized manufacturers and increasingly, with this acquisition, from exclusive brands that our customers know and trust such as Realistic®, AUVIO®, ENERCELL® Optimus® and more.\" General Wireless acquired 1,743 Rad"
+  },
+  {
+    "id": "SECONDARY_SYMBOL_CIK_BRIDGE",
+    "file": "MarketBeat-RSHCQ-profile.indexed.txt",
+    "quote": "Current Symbol OTCMKTS:RSHCQ Previous Symbol NYSE:RSH CIK 96289 Web www.radioshack.com Phone +1-817-4153700 Fax N/A Employees 147,000 Year Founded N/A Profitability EPS (Trailing Twelve Months) N/A Trailing P",
+    "level": "secondary corroboration; do not use noisy current profile fields as financial facts"
+  }
+]

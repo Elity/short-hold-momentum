@@ -1,0 +1,176 @@
+{
+  "status": "READY_FOR_ROOT_REVIEW_COMPLETE_DATED_CANDIDATE",
+  "apply_ready": true,
+  "unresolved": [],
+  "files": {
+    "original_runtime_path": "data/research/v04/prices/TWTR.parquet",
+    "original_runtime_sha256": "bb765a9fa4587292625ceb4efdf376e67c3d40b1ac2cd85a93fbfa37f952710c",
+    "original_rows": 1102,
+    "candidate_path": "TWTR-history-2013-2022.candidate.parquet",
+    "candidate_sha256": "82f441e0b680ecb153c110caf2bae516e38a89e2fa2480dad983ec7c39eebe4e",
+    "candidate_rows": 2259,
+    "downloaded_source_path": "../TWTR-source.csv",
+    "downloaded_source_sha256": "db416326855cad38b07d6830718c599822b2389741d1042179003d5194966631",
+    "primary_terms_path": "../TWTR-primary-evidence/primary-excerpts-and-terms.json",
+    "primary_terms_sha256": "5d7b27b2c33e83b1b5cd3312efa9b07b2fd5422856a14541bf7790039e6d4df1"
+  },
+  "change": {
+    "existing_rows_preserved_exactly": 1102,
+    "new_rows_added": 1157,
+    "new_after_20180327": 1156,
+    "new_before_or_at_20180327": 1,
+    "missing_before_2018_recovered": [
+      "2017-11-08"
+    ],
+    "source_rows_excluded_for_physical_range_conflict": [
+      "2021-05-05"
+    ],
+    "remaining_missing_xnys_sessions": [],
+    "preserved_existing_volume_instead_of_source_zero": [
+      "2015-09-22",
+      "2017-09-01"
+    ],
+    "independent_whole_row_replacement": [
+      "2021-05-05"
+    ]
+  },
+  "identity": {
+    "legal_issuer": "Twitter, Inc.",
+    "cik": "0001418091",
+    "domicile": "Delaware",
+    "security_class": "Common Stock",
+    "par_value_usd": 5e-06,
+    "ticker": "TWTR",
+    "exchange": "New York Stock Exchange",
+    "cusip": "90184L102",
+    "grade": "PRIMARY_DOCUMENT_EXTRACTS"
+  },
+  "trading_dates": {
+    "first_trading_date": "2013-11-07",
+    "first_trading_date_status": "EXPLICIT_ISSUER_2013_10K_STATEMENT",
+    "last_trading_date_primary_explicit": null,
+    "last_trading_date_inferred": "2022-10-27",
+    "last_trading_date_caveat": "The requests did not return a NYSE notice explicitly naming the final trading date. October 27 is the session immediately before the supported October 28 pre-open suspension; combine with locally audited October 27 actual trading data before labeling the actual last trade date confirmed.",
+    "first_unavailable_session": "2022-10-28",
+    "first_unavailable_basis": "Issuer closing 8-K Item 3.01 plus Dorsey Schedule 13D explicitly confirms suspended prior to NYSE open October 28; issuer extract omits the verb after 'was' and has not been silently repaired.",
+    "legal_merger_completion_date": "2022-10-27"
+  },
+  "nominal_unit_audit": {
+    "status": "UNIT_SCALE_SUPPORTED_BY_COMPLETE_HISTORY_AND_LONG_NOMINAL_OVERLAP",
+    "policy": "For a review-only candidate, source Close is treated as the same nominal share unit because its 2013-2018 ratios to existing WIKI nominal OHLC have median 1 in every field and each calendar year; the candidate does not invent a non-unit factor.",
+    "comparisons": {
+      "open": {
+        "rows": 1102,
+        "median": 1.0,
+        "minimum": 0.9980384856806591,
+        "maximum": 1.0071259303246238,
+        "within_1bp_of_one": 1090
+      },
+      "high": {
+        "rows": 1102,
+        "median": 1.0,
+        "minimum": 0.9999421914115154,
+        "maximum": 1.0001061278648975,
+        "within_1bp_of_one": 1101
+      },
+      "low": {
+        "rows": 1102,
+        "median": 1.0,
+        "minimum": 0.9998693413486671,
+        "maximum": 1.0001244461040577,
+        "within_1bp_of_one": 1097
+      },
+      "close": {
+        "rows": 1102,
+        "median": 1.0,
+        "minimum": 0.9994168513119535,
+        "maximum": 1.0000000623830316,
+        "within_1bp_of_one": 1101
+      }
+    },
+    "year_comparisons": [
+      {
+        "year": 2013,
+        "rows": 37,
+        "source_close_to_existing_nominal_median": 1.0,
+        "source_adj_close_to_existing_nominal_median": 1.0
+      },
+      {
+        "year": 2014,
+        "rows": 252,
+        "source_close_to_existing_nominal_median": 1.0,
+        "source_adj_close_to_existing_nominal_median": 1.0
+      },
+      {
+        "year": 2015,
+        "rows": 252,
+        "source_close_to_existing_nominal_median": 1.0,
+        "source_adj_close_to_existing_nominal_median": 1.0
+      },
+      {
+        "year": 2016,
+        "rows": 252,
+        "source_close_to_existing_nominal_median": 1.0,
+        "source_adj_close_to_existing_nominal_median": 1.0
+      },
+      {
+        "year": 2017,
+        "rows": 250,
+        "source_close_to_existing_nominal_median": 1.0,
+        "source_adj_close_to_existing_nominal_median": 1.0
+      },
+      {
+        "year": 2018,
+        "rows": 59,
+        "source_close_to_existing_nominal_median": 1.0,
+        "source_adj_close_to_existing_nominal_median": 1.0
+      }
+    ],
+    "source_all_adj_close_equals_close": true,
+    "source_adjustment_factor_unique": [
+      1.0
+    ],
+    "limitations": [
+      "Numerical evidence is not an official exhaustive split ledger.",
+      "Ordinary cash dividend conclusion is now supported by the adjacent primary supplement with explicit July-October inference conditions."
+    ]
+  },
+  "volume_audit": {
+    "source_units": "Publisher states shares traded; rows contain integer-valued counts, not K/M strings",
+    "all_source_volume_integer": true,
+    "all_added_volume_positive": true,
+    "overlap_rows": 1102,
+    "median_absolute_relative_difference_vs_wiki": 0.0006556836726337459,
+    "max_absolute_relative_difference_vs_wiki": 1.0,
+    "venue_or_consolidation_scope": "NOT_INDEPENDENTLY_ESTABLISHED",
+    "policy": "Keep original 1102 WIKI rows exactly; never replace source zero volume with invented values. Added rows retain reported share counts."
+  },
+  "terminal_accounting": {
+    "last_observed_sample_trade": "2022-10-27",
+    "last_observed_close": 53.700001,
+    "last_observed_volume": 136345128.0,
+    "first_unavailable_session": "2022-10-28",
+    "legal_completion_date": "2022-10-27",
+    "cash_per_old_share": 54.2,
+    "successor_ticker": null,
+    "cash_settlement_session": "2022-11-04",
+    "settlement_status": "ADR014_MODEL_NOT_OBSERVED_BROKER_TIMING",
+    "terminal_cash_embedded_in_final_bar": false,
+    "terminal_embedding_basis": "Final provider nominal and adjusted close are 53.700001, with ratio 1; no 54.20 terminal cash row is present."
+  },
+  "main_repo_modified": false,
+  "baseline_manifest_snapshot_sha256": "107e1ebb4a46f9d31cfc98393ff993cd3d742be5d5105906feda6574f99ddd82",
+  "remaining_limitations": [
+    "No official exhaustive split ledger; numerical unit evidence is stated with its conditions.",
+    "July-October ordinary dividend conclusion combines primary restriction and observed adjustment history, not a full closing-date dividend ledger.",
+    "Vendor venue/consolidation scope for volume is not independently established."
+  ],
+  "dividend_and_unit_supplement": {
+    "path": "../TWTR-primary-evidence/dividend-and-unit-supplement.json",
+    "sha256": "74564d502b1019d00eb6b039e31c661297b74305723e44e1b5a4a0f25b045131"
+  },
+  "independent_row_audit": {
+    "path": "2021-05-05-independent-row-audit.json",
+    "sha256": "7ab9f923aa8f3e01f7c28e15aac71cbdb4f5a26fcd20b36586b601141702aec9"
+  }
+}

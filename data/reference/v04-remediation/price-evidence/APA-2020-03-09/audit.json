@@ -1,0 +1,43 @@
+{
+  "ticker": "APA",
+  "dates": [
+    "2020-03-06",
+    "2020-03-09"
+  ],
+  "expected_return": -0.5386473411611574,
+  "input_path": "data/raw/prices/APA.parquet",
+  "input_sha256": "1036439f6901350d93828680c6623dec06df0efb3ff2f7f8bcd26bfee67a02b1",
+  "archive_dataset": "sheepb/stock-market-dataset-20002021",
+  "dataset_version": 1,
+  "archive_sha256": "22f61a91843c579577a1757bd31653fd998ba8054723da3d4b41d994cda46373",
+  "extracted_ticker_sha256": "d2f4e64334e0d8f3fed2297a5f5852dc8e726b51f1b94a5c47880258f65e62b9",
+  "comparisons": [
+    {
+      "field": "open",
+      "max_absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "field": "high",
+      "max_absolute_error": 0.0
+    },
+    {
+      "field": "low",
+      "max_absolute_error": 1.7763568394002505e-15
+    },
+    {
+      "field": "close",
+      "max_absolute_error": 0.0
+    }
+  ],
+  "volume_exact_match": true,
+  "prices_changed": false,
+  "loss_retained": true,
+  "source_independence": "Two dated Yahoo captures, not two independent market-data vendors.",
+  "files": {
+    "2021-capture.csv": "658c7fdf6a66f1a0a5b95374524471b8518b91ceaa7ab30bb76f86bf3a4b77b2",
+    "APA-nasdaq-reuters-market-context.source.json": "130a44a73c947fbe0baff3f4a9a109f301cfa470731ef88a7d7242c03191ddd0",
+    "APA-schaeffers-contemporaneous-intraday.source.json": "f74a1596fea1e1d8922813788f0c5895d189431dda627d0f2f6a93ae301ef73b",
+    "archive-download.json": "ca52947426ff0ddd9e673a10e63ccca8cd5aa338dfe616b1262b994347ce8c95",
+    "current-capture.csv": "2bff0f84e6745313b295210bbc308b1057ad7555a44c1198548292f643922d41"
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "scope": "Append only 2018-03-28 through 2020-04-01. Do not repair, rewrite or rescale the retained prefix.",
+  "inputs": {
+    "/Users/fighting/code/short-hold-momentum/data/research/v04/prices/ATVI-two-days-repaired.parquet": "d4abb821c9f86a8c13959218098438762c3db85f0c3f042b9aa242c4dba5f9fd",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/08-jackson-atvi-sample.body": "c41833dacfb9871e8c217b90cd16637dd4ee2b5ffedc0107f1f7343875ccd2ef",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/08-jackson-atvi-sample.meta.json": "066383eaa64a9fc73ee6359a52338b70fe96c5de118c13621cb77ea93d2d7e52",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/03-jacksoncrow-metadata.body": "64ca3186e4815fb891a7524dcd5704f8feb5b50d4cf6c227dd66dc2fed31b55f",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/10-jackson-symbols.body": "9a202f550b14453978a65e2e7a3f2bcd4b24db1bab4f2375e42100d06461ffb5",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/ATVI-2020-extension/ATVI-2019-10K.html": "18d5dd93d537d520f969246cec18bcc49811ef75bf503904215ab3f09f3380ef",
+    "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/ATVI-2020-extension/ATVI-2020-Q1.html": "15a5dfa58f39b978ce0ae7f822b880c37a5f851f0c5d1c813509226fe487212c"
+  },
+  "candidate": {
+    "path": "/Users/fighting/Documents/Codex/2026-09-06/co-2/work/v04-source-options-next/ATVI-2020-extension/ATVI-through-2020-04-01.candidate.parquet",
+    "sha256": "c6beda01fad277fa3c202d419180163c816f3daaf54978600fed94eb10d46d7b",
+    "rows": 4154,
+    "prefix_rows": 3647,
+    "new_rows": 507,
+    "first": "2003-10-01",
+    "last": "2020-04-01",
+    "prefix_round_trip_equal": true,
+    "original_base_file_unchanged": true
+  },
+  "tail_quality": {
+    "expected_xnys_sessions": 507,
+    "missing_sessions": [],
+    "duplicate_dates": 0,
+    "invalid_ohlcv_rows": 0,
+    "zero_volume_rows": 0,
+    "first_source_date": "2018-03-28",
+    "last_source_date": "2020-04-01"
+  },
+  "identity": {
+    "Nasdaq Traded": "Y",
+    "Symbol": "ATVI",
+    "Security Name": "Activision Blizzard, Inc - Common Stock",
+    "Listing Exchange": "Q",
+    "Market Category": "Q",
+    "ETF": "N",
+    "Round Lot Size": 100.0,
+    "Test Issue": "N",
+    "Financial Status": "N",
+    "CQS Symbol": null,
+    "NASDAQ Symbol": "ATVI",
+    "NextShares": "N"
+  },
+  "nominal_basis_evidence": {
+    "source_metadata": "Close is split-adjusted; Volume is shares traded. It is not generally safe to treat all historical Close as nominal.",
+    "scope_verified": "2018-03-28 through 2020-04-01 only",
+    "source_has_embedded_action_table": false,
+    "sec_share_rollforwards_millions": {
+      "2017_end_issued": 1186,
+      "2018_employee_options": 5,
+      "2018_rsus": 2,
+      "2018_tax_surrender": -1,
+      "2018_end_issued": 1192,
+      "2019_employee_options": 4,
+      "2019_rsus": 2,
+      "2019_tax_surrender": -1,
+      "2019_end_issued": 1197,
+      "2020_q1_employee_options": 1,
+      "2020_q1_rsus": 1,
+      "2020_q1_tax_surrender_rounded": 0,
+      "2020_q1_end_issued": 1199,
+      "treasury_shares_unchanged": 429,
+      "2020_04_28_outstanding_actual": 770485455
+    },
+    "no_split_conclusion": "The audited annual and quarterly share roll-forwards reconcile issuance/surrender without split or reverse-split activity. Post-2008 overlap Close is on the same dollar scale as WIKI nominal close, excluding a later cumulative split factor. Together these support no split restoration in this extension; they do not validate early pre-2008 CSV nominal prices."
+  },
+  "overlap": {
+    "period": [
+      "2008-09-08",
+      "2018-03-27"
+    ],
+    "rows": 2405,
+    "price_relative_difference": {
+      "Open": {
+        "rows": 2405,
+        "median": 2.087385642113304e-08,
+        "max": 0.026848434958759215,
+        "p95": 4.8056034906984696e-08,
+        "over_1bp": 43
+      },
+      "High": {
+        "rows": 2405,
+        "median": 2.235174201281609e-08,
+        "max": 0.00046533271288939915,
+        "p95": 0.00018884748516825094,
+        "over_1bp": 168
+      },
+      "Low": {
+        "rows": 2405,
+        "median": 2.310381919112814e-08,
+        "max": 0.0012707800489466514,
+        "p95": 9.302508723383174e-05,
+        "over_1bp": 117
+      },
+      "Close": {
+        "rows": 2405,
+        "median": 2.182945491036037e-08,
+        "max": 0.006140301799216541,
+        "p95": 5.4567238280788304e-05,
+        "over_1bp": 109
+      }
+    },
+    "volume_relative_difference": {
+      "rows": 2405,
+      "median": 0.0,
+      "max": 1.0,
+      "p95": 0.012352211602938534,
+      "over_1bp": 281
+    },
+    "largest_price_discrepancies": [
+      {
+        "date": "2008-11-03",
+        "field": "Open",
+        "old_nominal": 12.104999999999999,
+        "new_split_adjusted": 12.43000030517578,
+        "relative_difference": 0.026848434958759215
+      },
+      {
+        "date": "2016-11-25",
+        "field": "Open",
+        "old_nominal": 36.52,
+        "new_split_adjusted": 37.45000076293945,
+        "relative_difference": 0.02546551924806817
+      },
+      {
+        "date": "2009-01-26",
+        "field": "Open",
+        "old_nominal": 9.48,
+        "new_split_adjusted": 9.5600004196167,
+        "relative_difference": 0.008438862828765714
+      },
+      {
+        "date": "2011-03-18",
+        "field": "High",
+        "old_nominal": 10.745000000000003,
+        "new_split_adjusted": 10.75,
+        "relative_difference": 0.00046533271288939915
+      },
+      {
+        "date": "2009-11-04",
+        "field": "High",
+        "old_nominal": 10.805,
+        "new_split_adjusted": 10.8100004196167,
+        "relative_difference": 0.00046278756285977884
+      },
+      {
+        "date": "2010-03-01",
+        "field": "High",
+        "old_nominal": 10.944999999999999,
+        "new_split_adjusted": 10.949999809265137,
+        "relative_difference": 0.0004568121758921073
+      },
+      {
+        "date": "2018-01-30",
+        "field": "Low",
+        "old_nominal": 70.82,
+        "new_split_adjusted": 70.7300033569336,
+        "relative_difference": 0.0012707800489466514
+      },
+      {
+        "date": "2010-02-11",
+        "field": "Low",
+        "old_nominal": 10.65,
+        "new_split_adjusted": 10.65999984741211,
+        "relative_difference": 0.000938952808648752
+      },
+      {
+        "date": "2010-05-07",
+        "field": "Low",
+        "old_nominal": 10.434999999999997,
+        "new_split_adjusted": 10.4399995803833,
+        "relative_difference": 0.000479116471806762
+      },
+      {
+        "date": "2018-02-05",
+        "field": "Close",
+        "old_nominal": 68.4,
+        "new_split_adjusted": 67.9800033569336,
+        "relative_difference": 0.006140301799216541
+      },
+      {
+        "date": "2018-02-09",
+        "field": "Close",
+        "old_nominal": 66.78,
+        "new_split_adjusted": 67.08000183105469,
+        "relative_difference": 0.004492390402136559
+      },
+      {
+        "date": "2009-03-24",
+        "field": "Close",
+        "old_nominal": 10.21,
+        "new_split_adjusted": 10.239999771118164,
+        "relative_difference": 0.0029382733710248132
+      }
+    ],
+    "handling": "All overlapping WIKI/patch rows stay unchanged; vendor differences are reported, not averaged or replaced."
+  },
+  "adjustment_basis": {
+    "anchor": "2018-03-27",
+    "anchor_old_factor": 1.0,
+    "anchor_source_factor": 0.9869430205427401,
+    "old_to_new_adjusted_basis_ratio_recent_overlap": {
+      "period": [
+        "2017-03-28",
+        "2018-03-27"
+      ],
+      "rows": 252,
+      "median": 1.0132298164817914,
+      "min": 1.0132297008884383,
+      "max": 1.0132299094350905
+    },
+    "canonical_formula": "f_t = f_previous * (Close_t + dividend_t) / Close_t on ex-date; otherwise unchanged. All OHLC of that source row use the same f_t.",
+    "cash_events_exported": 0,
+    "dividend_checks": [
+      {
+        "date": "2018-03-28",
+        "cash_dividend": 0.34,
+        "nominal_close": 65.97000122070312,
+        "factor": 1.0051538577187915,
+        "adjusted_return": 0.00030172304575537545,
+        "economic_return": 0.00030172304575537545,
+        "absolute_error": 0.0
+      },
+      {
+        "date": "2019-03-27",
+        "cash_dividend": 0.37,
+        "nominal_close": 45.52000045776367,
+        "factor": 1.0133240449687022,
+        "adjusted_return": -0.011630408009106086,
+        "economic_return": -0.011630408009106086,
+        "absolute_error": 0.0
+      }
+    ],
+    "first_tail_factor": 1.0051538577187915,
+    "last_tail_factor": 1.0133240449687022,
+    "vs_vendor_AdjClose_rescaled_to_anchor": {
+      "maximum_absolute_relative_difference": 9.309372999855015e-05,
+      "last_relative_difference": 9.30937299983281e-05
+    },
+    "2020_declared_dividend_excluded": "The $0.41 dividend has record date 2020-04-15 and payment date 2020-05-06, after this source endpoint; no return or cash is credited early."
+  },
+  "round_trip_unit_check": {
+    "synthetic_only": true,
+    "nominal_shares": 100,
+    "adjusted_quantity": 98.68511508881508,
+    "factor": 1.0133240449687022,
+    "adjusted_market_value": 5750.0,
+    "nominal_market_value": 5750.0,
+    "one_dollar_nominal_cash_entitlement": 100.0
+  },
+  "open_gaps": [
+    "2020-04-02 onward remains missing in this override. No extension to the 2023 Microsoft acquisition or 2026 cutoff is implied.",
+    "The wider historical identity, delisting, coverage and research gates remain unchanged; this extension is not a PASS declaration."
+  ]
+}

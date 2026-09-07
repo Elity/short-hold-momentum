@@ -522,8 +522,9 @@ def test_local_simulator_fills_stock_ticket_at_next_official_open(tmp_path) -> N
     assert repeated.fill_path == result.fill_path
 
 
+@pytest.mark.parametrize("target,trend,allowed", [(0.75, 1.0, True), (0.0, 0.0, False), (0.75, 0.0, False)])
 def test_paper_option_overlay_uses_fill_basis_and_saved_ranking(
-    tmp_path, monkeypatch
+    tmp_path, monkeypatch, target, trend, allowed
 ) -> None:
     repo_root, signal_date = _paper_repo(tmp_path)
     calendar = xcals.get_calendar(
@@ -562,6 +563,8 @@ def test_paper_option_overlay_uses_fill_basis_and_saved_ranking(
                 "results": {
                     "ranking": ["AAA", "BBB", "CCC"],
                     "selected": ["AAA"],
+                    "target_exposure": target,
+                    "trend_exposure": trend,
                 },
             }
         )
@@ -609,10 +612,15 @@ def test_paper_option_overlay_uses_fill_basis_and_saved_ranking(
     assert received["holdings"][0].cost_basis_per_share == 100.0
     assert [candidate.ticker for candidate in received["candidates"]] == ["BBB", "CCC"]
     assert received["portfolio_equity"] == 100_000.0
+    assert received["allow_new_risk"] is allowed
+    assert received["stock_exposure"] == 0.2
+    assert received["max_total_exposure"] == target
+    assert received["pending_exit_symbols"] == set()
     assert result.ticket_path.name == f"{execution_date.date()}-options.csv"
     assert result.ticket_path.exists()
     audit = json.loads(result.audit_path.read_text(encoding="utf-8"))
     assert audit["paper_only"] is True
+    assert audit["income_recognized"] is False
     assert audit["orders"][0]["strategy"] == "covered_call"
     repeated = run_paper_option_overlay(
         account,
