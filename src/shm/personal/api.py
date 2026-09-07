@@ -7,11 +7,12 @@ import os
 from pathlib import Path
 from urllib.parse import urlparse
 
-from .domain import Invalid, Conflict, encoded
+from .domain import Invalid, Conflict, encoded, instrument, stamp
 from .store import PortfolioStore
 from .valuation import valuation, valuations
 from .comparison import compare, cached_prices
 from .ai import AIService
+from .market import automatic_close, close_marks
 
 PREFIXES = ('/api/personal/', '/api/ai/')
 
@@ -66,10 +67,16 @@ class PrivateAPI:
         if path == '/api/personal/events':
             return self.store.events() if method=='GET' else self.store.commit(p)
         if path == '/api/personal/valuations':
-            return valuations(self.store) if method=='GET' else valuation(self.store,p,save=bool(p.get('save')))
+            if method == 'GET':
+                automatic_close(self.store, self.root)
+                return valuations(self.store)
+            return valuation(self.store,p,save=bool(p.get('save')))
         if path == '/api/personal/quotes' and method=='GET':
-            return self.quotes()
+            return self.quotes(q('symbol', None), q('at', None))
+        if path == '/api/personal/quotes/refresh' and method=='POST':
+            return self.refresh_quotes(p.get('symbol'))
         if path == '/api/comparison' and method=='GET':
+            automatic_close(self.store, self.root)
             return compare(self.store,self.root,strategy_id=q('strategy_id','S500-C3'),cost_bps=int(q('cost_bps','10')),start=q('start',None),end=q('end',None))
         if path == '/api/ai/settings':
             return self.ai.settings() if method=='GET' else self.ai.save_settings(p)
@@ -81,38 +88,48 @@ class PrivateAPI:
             return self.ai.suggestions() if method=='GET' else self.ai.update_suggestion(p)
         raise Invalid('未知私人接口或方法')
 
-    def quotes(self):
+    def quotes(self, symbol=None, at=None):
         current = self.store.account()
-        if not current['account']:
+        if symbol:
+            symbols = {instrument({'kind': 'equity', 'symbol': symbol})['symbol']}
+        elif current['account']:
+            symbols = {l['instrument']['symbol'] for l in current['state']['lots'] if l['instrument']['kind']=='equity'}
+        else:
             return {'marks':{}}
-        symbols = {l['instrument']['symbol'] for l in current['state']['lots'] if l['instrument']['kind']=='equity'}
         from shm.service.workflow import latest_completed_session
-        from zoneinfo import ZoneInfo
-        import exchange_calendars as xcals
-        day = latest_completed_session()
-        at = xcals.get_calendar('XNYS').session_close(day).to_pydatetime().astimezone(ZoneInfo('America/New_York')).isoformat()
-        marks = {}
-        for symbol in symbols:
-            frame = cached_prices(self.root,symbol)
-            if not frame.empty and day in frame.index and 'as_traded_close' in frame:
-                price = frame.loc[day,'as_traded_close']
-                if price>0:
-                    marks[symbol] = {'price':str(price),'source':'SHM 日线缓存','at':at,'basis':'nominal'}
-        return {'at':at,'marks':marks,'note':'只读取名义价格；期权须录入券商估值。未确认公司行动仍会阻止持仓归因。'}
+        day = latest_completed_session(stamp(at) if at else None)
+        return {**close_marks(self.root, symbols, day), 'note': '正股 / ETF 使用最近完成交易日收盘价；期权需补充券商报价。'}
 
     def refresh_after_strategy(self):
         if not self.enabled:
             return
+        return self.refresh_quotes()
+
+    def refresh_quotes(self, symbol=None):
         account = self.store.account()
-        if not account['account']:
-            return
+        if symbol:
+            symbols = {instrument({'kind':'equity', 'symbol':symbol})['symbol']}
+        elif account['account']:
+            symbols = {l['instrument']['symbol'] for l in account['state']['lots'] if l['instrument']['kind']=='equity'}
+        else:
+            return {'marks': {}, 'note': '尚未建立账户'}
         from shm.data.market_refresh import refresh_market_cache
         from shm.service.workflow import latest_completed_session
         import pandas as pd
-        symbols = {l['instrument']['symbol'] for l in account['state']['lots'] if l['instrument']['kind']=='equity'}
         if len(symbols)>100:
             raise Invalid('个人账户持有标的超过首版单次刷新上限 100')
         day = latest_completed_session()
+        history_start = day-pd.Timedelta(days=550)
+        for ticker in symbols | {'SPY'}:
+            try:
+                frame = cached_prices(self.root, ticker)
+            except (OSError, ValueError):
+                continue  # The shared downloader repairs corrupt caches.
+            if not frame.empty:
+                history_start = min(history_start, frame.index.min())
         # Uses the same provider lock, ticker cache and 600-call counter, after the strategy finishes.
-        refresh_market_cache(self.root, symbols, as_of=day, held_tickers=symbols, daily_budget=600,
-                             history_start=str((day-pd.Timedelta(days=550)).date()), summary_namespace='personal')
+        summary = refresh_market_cache(self.root, symbols, as_of=day, held_tickers=symbols, daily_budget=600,
+                                       history_start=str(history_start.date()), require_point_in_time_eligibility=True,
+                                       summary_namespace='personal')
+        automatic_close(self.store, self.root, day)
+        return {**self.quotes(symbol), 'requested': summary['requested'], 'missing': summary['missing'], 'next_retry': summary['next_retry']}

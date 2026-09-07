@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import os
@@ -133,19 +134,19 @@ class RunService:
                         break
                 else:
                     self.store.finish_run(run_id, "success", summary=result.summary)
-                    if self.personal and self.personal.enabled:
-                        # Complete the legacy run first. Private refresh never changes its status.
-                        try:
-                            self.personal.refresh_after_strategy()
-                        except Exception:
-                            try:
-                                with self.personal.store.connection(True) as private_db:
-                                    private_db.execute('INSERT INTO audit(kind,payload,at) VALUES(?,?,?)', ('market_refresh_failed', '{}', datetime.now().isoformat()))
-                            except Exception:
-                                pass
                     return
             self.store.finish_run(run_id, "failed", error=last_error or "workflow failed")
         finally:
+            if self.personal and self.personal.enabled:
+                # The daily personal update follows all strategy attempts, including failures.
+                try:
+                    self.personal.refresh_after_strategy()
+                except Exception:
+                    try:
+                        with self.personal.store.connection(True) as private_db:
+                            private_db.execute('INSERT INTO audit(kind,payload,at) VALUES(?,?,?)', ('market_refresh_failed', '{}', datetime.now().isoformat()))
+                    except Exception:
+                        pass
             with self._guard:
                 self._active_run_id = None
 
@@ -240,6 +241,8 @@ def _handler(service: RunService):
             try:
                 payload = None
                 if method == 'POST':
+                    if parsed.path == '/api/personal/quotes/refresh' and service._active_run_id is not None:
+                        raise Invalid('模拟任务正在更新行情；完成后会自动更新个人持仓，也可稍后重试')
                     length = int(self.headers.get('Content-Length', '0'))
                     if not 0 < length <= 1_000_000:
                         raise Invalid('请求长度无效或超过 1 MB')
@@ -377,7 +380,11 @@ def _handler(service: RunService):
             self._send(HTTPStatus.NOT_FOUND, _page("Not found", "<p>页面不存在。</p>"))
 
         def _dashboard(self, message: str) -> bytes:
-            return (_STATIC / "index.html").read_bytes()
+            page = (_STATIC / "index.html").read_text()
+            for name in ('dashboard.js', 'dashboard.css', 'portfolio.js', 'portfolio.css'):
+                version = hashlib.sha256((_STATIC / name).read_bytes()).hexdigest()[:12]
+                page = page.replace(f'/static/{name}"', f'/static/{name}?v={version}"')
+            return page.encode()
 
         def _run_detail(self, run_id: int) -> bytes:
             run = service.store.get_run(run_id)

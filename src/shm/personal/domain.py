@@ -137,6 +137,8 @@ def initial(account):
         if q < 0 and ins['kind'] == 'equity' and account['type'] != 'margin':
             raise Invalid('股票空头须使用保证金账户')
         mark = dec(entry.get('mark'), '期初单位估值', nonnegative=True)
+        if entry.get('mark_at') and stamp(entry['mark_at']) > start:
+            raise Invalid('股价时间不得晚于开始记录时间')
         if not entry.get('source'):
             raise Invalid('期初估值须填写来源')
         actual = entry.get('original_cost')
@@ -195,13 +197,10 @@ def _open(state, ins, q, basis, actual, at, link, suffix=''):
 def apply(state, account, event, link='preview'):
     state = copy.deepcopy(state)
     at = event.get('at')
-    moment = stamp(at)
+    moment = stamp(at).astimezone(NY)
     if moment < stamp(account['at']):
         raise Invalid('事件不得早于账户起点')
-    if event.get('timezone', 'America/New_York') != 'America/New_York':
-        raise Invalid('成交时区须为 America/New_York')
-    if moment.utcoffset() != moment.astimezone(NY).utcoffset():
-        raise Invalid('时间偏移与当日纽约夏令时不一致')
+    # Inputs may use the user's local zone or UTC; trading-date rules remain New York based.
     before = positions(state)
     before_cash, before_obligation = state['cash'], obligation(state)
     legs = event.get('legs', [])
