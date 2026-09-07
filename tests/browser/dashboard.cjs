@@ -145,6 +145,12 @@ async function screenshot(name) {
   await page.locator('.universe-panel').waitFor();
   const sourceResponse=await context.request.get(base+'/api/dashboard?strategy_id=S500-C3&cost_bps=25');
   const sourceDashboard=await sourceResponse.json();
+  if(sourceDashboard.strategy.account_mode==='observation'){
+    assert.match(await page.locator('.strategy-bar').innerText(),/观察模拟 · 未经历史验收/);
+    assert.equal(sourceDashboard.account.total,100000);
+    assert.equal(sourceDashboard.strategy.historical_screen.winner,null);
+    checks.push('观察账户显示真实初始资金，明确未经历史验收且不伪造胜者');
+  }
   assert.match(await page.locator('.universe-panel').innerText(),/来源日期|核验交易日|证券|家公司/);
   assert.ok((await page.locator('.universe-panel').innerText()).includes(String(sourceDashboard.universe.security_count)));
   assert.equal(await page.locator('.source-links a').count(),sourceDashboard.universe.source_urls.length);

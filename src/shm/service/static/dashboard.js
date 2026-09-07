@@ -73,16 +73,19 @@ async function refresh(manual=false){
 function strategyPanel(){
   if(!data.strategy)return '';
   const s=data.strategy,risk=data.risk;
-  const labels={INCOMPLETE:'前向证据不完整',AWAITING_FIRST_SIGNAL:'等待首次前向信号',PENDING_12_MONTHS:'前向验证中 · 尚未满 12 个月',ELIGIBLE_FOR_12_MONTH_REVIEW:'已满 12 个月 · 等待完整年评价',PENDING:'前向验证中 · 尚未满 12 个月',NOT_STARTED:'前向尚未启动',PASS:'完整年前向目标通过',FAIL:'完整年前向目标未通过'};
+  const labels={INCOMPLETE:'前向证据不完整',AWAITING_FIRST_SIGNAL:'账户已建立 · 等待首次选股日',PENDING_12_MONTHS:'前向验证中 · 尚未满 12 个月',ELIGIBLE_FOR_12_MONTH_REVIEW:'已满 12 个月 · 等待完整年评价',PENDING:'前向验证中 · 尚未满 12 个月',NOT_STARTED:'前向尚未启动',PASS:'完整年前向目标通过',FAIL:'完整年前向目标未通过'};
   return '<section class="strategy-bar" aria-label="策略版本与证据"><div class="strategy-controls"><label>策略版本 <select id="strategy-select" aria-label="策略版本">'+data.strategies.map(item=>'<option value="'+esc(item.id)+'" '+(item.id===s.id?'selected':'')+'>'+esc(item.label)+'</option>').join('')+'</select></label>'+
     (s.id==='V04'?'':'<label>模型成本 <select id="cost-select" aria-label="模型成本"><option value="10" '+(state.cost===10?'selected':'')+'>10 bps</option><option value="25" '+(state.cost===25?'selected':'')+'>25 bps</option></select></label>')+
-    badge(s.id==='V04'?'原策略前向模拟':labels[s.performance_verdict]||s.performance_verdict||'前向验证中','gray')+'</div><p>'+esc(s.cost_assumption)+'</p>'+
+    badge(s.id==='V04'?'原策略前向模拟':labels[s.performance_verdict]||s.performance_verdict||'前向验证中','gray')+
+    (s.account_mode==='observation'?badge('观察模拟 · 未经历史验收','warn'):'')+'</div><p>'+esc(s.cost_assumption)+'</p>'+
+    (s.account_mode==='observation'?'<p>固定规则用于积累前向数据，尚未证明能跑赢 SPY。买入仅在既定选股日决定，数据与市场风控继续生效。</p>':'')+
+    (s.account_mode==='observation'&&s.performance_verdict==='AWAITING_FIRST_SIGNAL'?'<p>首次选股日：'+esc(data.progress.next||'待确认')+'。此前账户保留现金。</p>':'')+
     (risk?'<div class="risk-strip"><span>当前回撤 <strong>'+percent(risk.drawdown==null?null:risk.drawdown*100)+'</strong></span><span>峰值资产 <strong>'+money(risk.equity_peak)+'</strong></span><span>目标敞口 <strong>'+(risk.max_total_exposure==null?'—':fmt(risk.max_total_exposure*100,1)+'%')+'</strong></span>'+badge(risk.drawdown_alert?'已触及 10% 回撤预警':'10% 回撤预警线',risk.drawdown_alert?'warn':'gray')+'<span>同期 SPY <strong>'+percent(data.account.spy_return==null?null:data.account.spy_return*100)+'</strong></span><span>相对 SPY <strong>'+percent(data.account.excess_return==null?null:data.account.excess_return*100)+'</strong></span></div>':'')+'</section>';
 }
 function historicalPanel(){
   const selection=data.strategy?.historical_screen;
   const sp500=data.strategy?.version==='0.4',version=sp500?'v0.4':'v0.3',candidates=sp500?'S500-C0–S500-C4':'C0–C4';
-  if(!selection)return '<section class="panel historical-panel"><div class="panel-head"><h2>'+version+' 历史筛选</h2></div><p class="history-note">固定候选 '+candidates+' 的历史研究尚未产出。前向账户只在合格胜者冻结后启动。</p></section>';
+  if(!selection)return '<section class="panel historical-panel"><div class="panel-head"><h2>'+version+' 历史筛选</h2></div><p class="history-note">固定候选 '+candidates+' 的历史研究尚未产出。经单独授权的观察模拟不代表历史验收通过。</p></section>';
   const valid=row=>selection.metrics_valid!==false&&row.metrics_valid!==false;
   const metric=(row,key,name)=>valid(row)?row[key]?.[name]:null;
   const rows=selection.candidates||[];

@@ -226,18 +226,35 @@ def run_daily_workflow(
     if sp500_enabled:
         run_step("sp500-membership", ["sp500-refresh", "--repo-root", str(root), "--as-of", str(market_session.date())])
         run_step("sp500-market-cache", ["market-refresh-sp500", "--repo-root", str(root), "--as-of", str(market_session.date())])
-        winner_path = root / "config/v04/winner.json"
-        if winner_path.exists():
-            from shm.v04.profiles import SP500_IDS
-            winner = json.loads(winner_path.read_text())["strategy_id"]
+        from shm.v04.profiles import SP500_IDS
+        configured = []
+        for filename, mode in (("winner.json", "qualified"), ("observation.json", "observation")):
+            path = root / "config/v04" / filename
+            if path.exists():
+                configured.append((json.loads(path.read_text())["strategy_id"], mode))
+        if len({name for name, _ in configured}) != len(configured):
+            raise ValueError("a candidate cannot automatically switch between observation and qualified accounts")
+        for winner, mode in configured:
             if winner not in SP500_IDS:
-                raise ValueError("invalid frozen S&P 500 candidate")
-            if not (root / "paper/v04" / winner / "manifest.json").exists():
-                run_step("v04-init", ["paper", "init-v04", "--repo-root", str(root), "--strategy-id", winner,
+                raise ValueError("invalid configured S&P 500 candidate")
+            prefix = "v04-observation" if mode == "observation" else "v04"
+            directory = root / "paper/v04" / winner
+            if not (directory / "manifest.json").exists():
+                run_step(prefix + "-init", ["paper", "init-observation" if mode == "observation" else "init-v04", "--repo-root", str(root), "--strategy-id", winner,
                                       "--as-of", str(market_session.date())])
-            run_step("v04-daily-decision", ["paper", "daily-decision", "--repo-root", str(root),
+            run_step(prefix + "-daily-decision", ["paper", "daily-decision", "--repo-root", str(root),
                                             "--strategy-id", winner, "--as-of", str(market_session.date())])
-            actions.append(f"v0.4 {winner} daily risk and model-cost accounts")
+            actions.append(f"v0.4 {winner} {mode} daily risk and model-cost accounts")
+            state_path = directory / "state.json"
+            started = json.loads(state_path.read_text()).get("forward_start") if state_path.exists() else None
+            if started:
+                for period in pd.period_range(pd.Timestamp(started).to_period("M"), market_session.to_period("M"), freq="M"):
+                    calendar = xcals.get_calendar("XNYS", start=period.start_time.normalize() - pd.Timedelta(days=7),
+                                                   end=period.end_time.normalize() + pd.Timedelta(days=7))
+                    sessions = calendar.sessions_in_range(period.start_time.normalize(), period.end_time.normalize())
+                    if sessions[-1] <= market_session and not (directory / "reports" / f"{period}.json").exists():
+                        run_step(prefix + f"-report-{period}", ["paper", "report-v04", "--repo-root", str(root),
+                                                               "--strategy-id", winner, "--month", str(period)])
     else:
         run_step("data-update", ["data", "update", "--through-oos", "--skip-pit"])
     run_local_step("validate-price-cache", lambda: validate_required_price_caches(root))

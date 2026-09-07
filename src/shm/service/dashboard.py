@@ -44,6 +44,9 @@ def _strategy_metadata(root: Path, strategy_id: str, cost_bps: int) -> dict:
     sp500 = strategy_id.startswith("S500-")
     selection_path = root / "reports" / ("v04" if sp500 else "v03") / "selection.json"
     selection = json.loads(selection_path.read_text()) if selection_path.exists() else None
+    manifest_path = _paper_directory(root, strategy_id) / "manifest.json"
+    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+    mode = "legacy" if strategy_id == "V04" else manifest.get("account_mode", "qualified" if manifest else None)
     return {
         "id": strategy_id, "label": STRATEGIES[strategy_id],
         "version": "0.4" if sp500 else "0.2" if strategy_id == "V04" else "0.3",
@@ -56,6 +59,8 @@ def _strategy_metadata(root: Path, strategy_id: str, cost_bps: int) -> dict:
             f"单边 {cost_bps} bps 为模型成本假设，非实测券商成交；期权草稿收益不入账。"
         ),
         "historical_screen": selection,
+        "account_mode": mode,
+        "historical_qualification": "UNVALIDATED" if mode == "observation" else None,
     }
 
 
@@ -324,7 +329,8 @@ def _build_v03_portfolio(root: Path, strategy_id: str, cost_bps: int, now: datet
     current = status["books"][str(cost_bps)]
     initial = manifest["initial_cash"]
     total = current["equity"]
-    start = status["forward_start"] or manifest["initialized_after_session"]
+    start = status["forward_start"] or (manifest["initialized_at"][:10] if status["account_mode"] == "observation"
+                                        else manifest["initialized_after_session"])
     rows = [json.loads(path.read_text()) for path in sorted((directory / "days").glob("????-??-??.json"))]
     trades, plans, chart = [], [], []
     corporate_cash_pnl = 0.0
@@ -406,6 +412,7 @@ def _build_v03_portfolio(root: Path, strategy_id: str, cost_bps: int, now: datet
             "gain": total - initial, "gain_percent": (total / initial - 1) * 100,
             "day": chart[-1]["equity"] - chart[-2]["equity"] if len(chart) > 1 else None,
             "initial": initial, "start": start, "asof": status["last_session"],
+            "initialized_at": manifest["initialized_at"],
             "valuation_date": status["last_session"], "market_session": market_day,
             "spy_return": current["spy_cumulative_return"], "excess_return": current["excess_return"],
         },

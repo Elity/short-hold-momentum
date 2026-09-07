@@ -6,6 +6,7 @@ from pathlib import Path
 
 from shm.service import app
 from shm.service.dashboard import build_dashboard
+from shm.paper.v03 import init_paper_v03
 from shm.universe.sp500 import refresh_sp500_universe
 from test_service_dashboard import NOW, seed_dashboard
 from test_sp500_universe import source_documents
@@ -27,6 +28,7 @@ with tempfile.TemporaryDirectory(prefix="shm-dashboard-test-") as directory:
                         "benchmark_25": {"cagr": 0.1, "maxdd": -0.3},
                         "warnings": ["Synthetic invalid-price fixture: performance must remain unavailable"]}],
     }))
+    init_paper_v03(root, "S500-C3", as_of="2026-10-16", now=NOW, account_mode="observation")
     app.build_dashboard = lambda path, database, timezone, **kwargs: build_dashboard(
         path, database, timezone, now=NOW, **kwargs
     )

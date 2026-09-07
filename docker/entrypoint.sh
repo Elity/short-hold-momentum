@@ -31,7 +31,8 @@ done
 for file in config/sp500.yaml docs/spec-v0.3.md docs/decisions/ADR-011-v03-trend-exit-research.md \
             docs/spec-v0.4.md docs/decisions/ADR-012-sp500-universe.md \
             docs/decisions/ADR-013-point-in-time-data-remediation.md \
-            docs/decisions/ADR-014-corporate-actions-and-security-identity.md; do
+            docs/decisions/ADR-014-corporate-actions-and-security-identity.md \
+            docs/decisions/ADR-016-forward-observation-account.md; do
     if [ -f "$seed_root/$file" ] && [ ! -e "$repository/$file" ] && [ ! -L "$repository/$file" ]; then
         mkdir -p "$(dirname "$repository/$file")"
         cp -p "$seed_root/$file" "$repository/$file"

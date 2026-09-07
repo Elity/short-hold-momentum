@@ -142,6 +142,29 @@ def _winner(root: Path, strategy_id: str) -> dict:
     return winner
 
 
+def _authorization(root: Path, strategy_id: str, account_mode: str) -> dict:
+    if account_mode == "qualified":
+        return _winner(root, strategy_id)
+    if account_mode != "observation" or version(strategy_id) != "0.4":
+        raise ValueError("observation accounts require an explicitly configured S&P 500 candidate")
+    definition = _read(root / "config/v04/observation.json")
+    if (definition.get("account_mode") != "observation"
+            or definition.get("historically_qualified") is not False
+            or definition.get("strategy_id") != strategy_id
+            or definition.get("spec_version") != "0.4"):
+        raise ValueError("invalid observation authorization; it is not a historical winner")
+    if (definition.get("params_hash") != _hash(definition.get("config"))
+            or definition["params_hash"] != _hash(candidate_config(strategy_id))):
+        raise ValueError("observation candidate differs from its frozen configuration")
+    if definition.get("cost_bps") != list(COST_BOOKS):
+        raise ValueError("observation requires both 10 and 25 bps ledgers")
+    return definition
+
+
+def _definition(manifest: dict) -> dict:
+    return manifest["authorization"] if manifest.get("account_mode") == "observation" else manifest["winner"]
+
+
 def _schedule(root: Path, through: object) -> pd.DatetimeIndex:
     dates = yaml.safe_load((root / "config/dates.yaml").read_text(encoding="utf-8"))
     return xnys_rebalance_dates(
@@ -160,8 +183,11 @@ def _next_signal(root: Path, after: object) -> str:
 def _manifest(root: Path, strategy_id: str) -> tuple[Path, dict]:
     directory = _directory(root, strategy_id)
     manifest = _read(directory / "manifest.json")
-    if manifest["winner_hash"] != _hash(_winner(root, strategy_id)):
-        raise ValueError("v0.3 winner identity changed; existing ledger is immutable")
+    mode = manifest.get("account_mode", "qualified")
+    expected = _authorization(root, strategy_id, mode)
+    saved_hash = manifest["authorization_hash"] if mode == "observation" else manifest["winner_hash"]
+    if saved_hash != _hash(expected):
+        raise ValueError("paper authorization changed; existing ledger is immutable")
     return directory, manifest
 
 
@@ -172,6 +198,7 @@ def _daily_rows(directory: Path) -> list[dict]:
 def _initial_state(manifest: dict) -> dict:
     return {
         "strategy_id": manifest["strategy_id"],
+        "account_mode": manifest.get("account_mode", "qualified"),
         "last_session": manifest["initialized_after_session"],
         "forward_start": None,
         "books": {
@@ -193,23 +220,28 @@ def init_paper_v03(
     *,
     as_of: object | None = None,
     now: object | None = None,
+    account_mode: str = "qualified",
 ) -> dict:
-    """Initialize only the frozen winner; first trading signal must be future."""
+    """Initialize a winner or explicit observation; first trading signal is future."""
     root = Path(repo_root)
     directory = _directory(root, strategy_id)
     session = _current_session(as_of, now)
-    winner = _winner(root, strategy_id)
+    winner = _authorization(root, strategy_id, account_mode)
     frozen_at = _utc(winner["frozen_at"])
     if frozen_at > _utc(now):
         raise ValueError("winner freeze time is in the future")
     first_signal = _next_signal(root, max(session, _latest_completed(frozen_at)))
     with _locked(directory):
         if (directory / "manifest.json").exists():
-            _manifest(root, strategy_id)
+            _, existing = _manifest(root, strategy_id)
+            if existing.get("account_mode", "qualified") != account_mode:
+                raise ValueError("cannot change an existing paper account mode")
         else:
+            definition_key = "authorization" if account_mode == "observation" else "winner"
             manifest = {
                 "spec_version": version(strategy_id), "strategy_id": strategy_id,
-                "winner_hash": _hash(winner), "winner": winner,
+                "account_mode": account_mode,
+                definition_key + "_hash": _hash(winner), definition_key: winner,
                 "initial_cash": INITIAL_CASH, "cost_bps": list(COST_BOOKS),
                 "initialized_at": _utc(now).isoformat(),
                 "initialized_after_session": str(session.date()),
@@ -398,6 +430,7 @@ def _run_paper_day(
         last = pd.Timestamp(previous["last_session"])
         if session <= last:
             return {"status": "awaiting_next_session", "strategy_id": strategy_id,
+                    "account_mode": manifest.get("account_mode", "qualified"),
                     "last_session": str(last.date())}
         calendar = _calendar(last, session)
         missed = [str(day.date()) for day in calendar.sessions_in_range(last, session)
@@ -408,7 +441,8 @@ def _run_paper_day(
         states = [PortfolioState.from_dict(previous["books"][str(c)]["state"]) for c in COST_BOOKS]
         result = {
             "spec_version": version(strategy_id), "strategy_id": strategy_id,
-            "params_hash": manifest["winner"]["params_hash"],
+            "params_hash": _definition(manifest)["params_hash"],
+            "account_mode": manifest.get("account_mode", "qualified"),
             "last_session": text_date, "observed_at": _utc(now).isoformat(),
             "forward_start": started or (text_date if may_start else None),
             "missed_sessions": missed,
@@ -604,7 +638,10 @@ def paper_v03_status(repo_root: Path | str, strategy_id: str) -> dict:
     latest_error = _read(errors[-1]) if errors and errors[-1].stem > last else None
     return {
         "spec_version": version(strategy_id), "strategy_id": strategy_id,
-        "params_hash": manifest["winner"]["params_hash"],
+        "params_hash": _definition(manifest)["params_hash"],
+        "account_mode": manifest.get("account_mode", "qualified"),
+        "historical_qualification": "UNVALIDATED" if manifest.get("account_mode") == "observation" else "QUALIFIED_AT_LAUNCH",
+        "initialized_at": manifest["initialized_at"],
         "first_signal_date": manifest["first_signal_date"],
         "forward_start": start, "last_session": last,
         "next_rebalance_date": _next_signal(root, last),
@@ -673,6 +710,8 @@ def report_paper_v03(
             }
         report = {
             "strategy_id": strategy_id, "spec_version": version(strategy_id), "month": str(period),
+            "account_mode": manifest.get("account_mode", "qualified"),
+            "historical_qualification": "UNVALIDATED" if manifest.get("account_mode") == "observation" else "QUALIFIED_AT_LAUNCH",
             "forward_start": started, "complete": complete,
             "last_observed_session": observed[-1]["last_session"],
             "missing_sessions": missing, "observed_sessions": len(observed),
@@ -683,6 +722,7 @@ def report_paper_v03(
         }
         text = [f"# {strategy_id} · {period} 前向模拟月报", "",
                 f"观察起点：{started}；完整性：{'完整' if complete else '不完整'}。", "",
+                "账户模式：观察模拟，未经历史验收。" if manifest.get("account_mode") == "observation" else "账户模式：历史合格候选模拟。", "",
                 "| 模型成本 | 期末资产 | 当月收益 | SPY同期 | 当月模型成本 |",
                 "|---|---:|---:|---:|---:|"]
         for book in books.values():

@@ -147,11 +147,11 @@ def build_parser() -> argparse.ArgumentParser:
         command = commands.add_parser(name, help="Verify constituents or refresh the bounded market cache")
         command.add_argument("--repo-root", type=Path, default=Path("."))
         command.add_argument("--as-of", help="latest completed XNYS session")
-    for name in ("init-v03", "init-v04", "daily-decision", "status-v03", "status-v04", "report-v03", "report-v04"):
+    for name in ("init-v03", "init-v04", "init-observation", "daily-decision", "status-v03", "status-v04", "report-v03", "report-v04"):
         command = paper_commands.add_parser(name, help="Independent v0.3 paper account")
         command.add_argument("--repo-root", type=Path, default=Path("."))
         command.add_argument("--strategy-id", choices=STRATEGY_IDS, required=True)
-        if name in ("init-v03", "init-v04", "daily-decision"):
+        if name in ("init-v03", "init-v04", "init-observation", "daily-decision"):
             command.add_argument("--as-of", help="latest completed XNYS session")
         if name in ("report-v03", "report-v04"):
             command.add_argument("--month", required=True)
@@ -191,11 +191,12 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         print(json.dumps({key: result[key] for key in ("run_id", "status", "winner", "report_path")}, ensure_ascii=False))
         return 0
-    if args.command == "paper" and args.paper_command in ("init-v03", "init-v04", "daily-decision", "status-v03", "status-v04", "report-v03", "report-v04"):
+    if args.command == "paper" and args.paper_command in ("init-v03", "init-v04", "init-observation", "daily-decision", "status-v03", "status-v04", "report-v03", "report-v04"):
         from shm.paper.v03 import init_paper_v03, run_paper_v03, paper_v03_status, report_paper_v03
         try:
-            if args.paper_command in ("init-v03", "init-v04"):
-                result = init_paper_v03(args.repo_root, args.strategy_id, as_of=args.as_of)
+            if args.paper_command in ("init-v03", "init-v04", "init-observation"):
+                result = init_paper_v03(args.repo_root, args.strategy_id, as_of=args.as_of,
+                                        account_mode="observation" if args.paper_command == "init-observation" else "qualified")
             elif args.paper_command == "daily-decision":
                 result = run_paper_v03(args.repo_root, args.strategy_id, as_of=args.as_of)
             elif args.paper_command in ("report-v03", "report-v04"):
