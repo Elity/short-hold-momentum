@@ -55,6 +55,8 @@ const layoutChecks=[];
  assert.equal(await page.locator('[name=key]').inputValue(),'');
  assert.match(await page.locator('#p-key-status').innerText(),/密钥已保存在 NAS/);
  assert.match(await page.locator('#p-settings #p-error').innerText(),/403.*1010.*fixture-ray/);
+ // Private navigation must work even while the separate simulation API is unavailable.
+ await context.route('**/api/dashboard**',route=>route.abort());
  await page.reload();await page.locator('#p-settings #p-error').filter({hasText:'fixture-ray'}).waitFor();
  assert.equal(await page.locator('[name=key]').inputValue(),'');
  await page.screenshot({path:'.browser-artifacts/personal/ai-connection-failed.png',fullPage:true});
