@@ -14,7 +14,7 @@ from shm.personal.domain import apply, initial, positions
 
 def opened(tmp_path, *, options=False):
     store=PortfolioStore(tmp_path/'portfolio.sqlite3');store.initialize()
-    positions=[{'instrument':STOCK,'quantity':'100','mark':'100','source':'broker','original_cost':'90'}]
+    positions=[{'instrument':STOCK,'quantity':'100','mark':'100','mark_at':'2026-07-31T20:00:00Z','source':'broker','original_cost':'90'}]
     if options:
         positions.append({'instrument':OPT,'quantity':'1','mark':'2','source':'broker'})
     store.save_account({'version':0,'account':account(cash='90000',broker_nav='100200' if options else '100000',positions=positions)})
@@ -37,6 +37,7 @@ def test_opening_account_is_first_snapshot_without_duplicate_database_entry(tmp_
     v=valuations(store)[0]
     assert v['origin']=='opening' and v['nav']==D('100000')
     assert v['reconciliation']=='matched' and v['holdings'][0]['value']==D('10000')
+    assert v['holdings'][0]['price_at']=='2026-07-31T20:00:00Z'
     assert automatic_close(store,tmp_path,'2026-08-03') is None
     with store.connection() as db:
         assert db.execute('SELECT count(*) FROM valuations').fetchone()[0]==0

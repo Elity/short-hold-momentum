@@ -99,6 +99,8 @@ def opening_snapshot(account, version):
                                  'source': 'unselected', 'flows_complete': True, 'coverage': '已确认的期初资产'})
     if result['ledger_nav'] is not None:
         result.update(source='ledger', nav=result['ledger_nav'])
+    for holding, entry in zip(result['holdings'], account.get('positions', [])):
+        holding['price_at'] = entry.get('mark_at') or account['at']
     # The persisted opening account is the snapshot's source; no duplicate input or migration.
     return {**result, 'id': 'opening', 'origin': 'opening', 'valid': True, 'version': version}
 

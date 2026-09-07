@@ -34,6 +34,7 @@ with tempfile.TemporaryDirectory(prefix='shm-personal-acceptance-') as directory
         pd.DataFrame([{'date':'2026-08-03','close':50.0,'as_traded_close':100.0},
                       {'date':'2026-08-04','close':55.0,'as_traded_close':110.0}]).to_parquet(price_path,index=False)
     seed_prices()
+    pd.DataFrame([{'date':'2026-08-03','close':100.0,'as_traded_close':200.0}]).to_parquet(price_path.with_name('GOOG.parquet'),index=False)
     def refresh_prices(root,symbols,**kwargs):
         assert symbols=={'MSFT'} and kwargs['daily_budget']==600
         seed_prices()

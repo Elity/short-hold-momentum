@@ -137,6 +137,8 @@ def initial(account):
         if q < 0 and ins['kind'] == 'equity' and account['type'] != 'margin':
             raise Invalid('股票空头须使用保证金账户')
         mark = dec(entry.get('mark'), '期初单位估值', nonnegative=True)
+        if entry.get('mark_at') and stamp(entry['mark_at']) > start:
+            raise Invalid('股价时间不得晚于开始记录时间')
         if not entry.get('source'):
             raise Invalid('期初估值须填写来源')
         actual = entry.get('original_cost')
