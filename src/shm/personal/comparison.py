@@ -34,7 +34,10 @@ def compare(store, root, *, strategy_id='S500-C3', cost_bps=10, start=None, end=
         return result
     cutoff = latest_completed_session()
     # Daily cache supports only completed session closes, never an invented intraday benchmark.
-    calendar = xcals.get_calendar('XNYS', start=curve[0]['date'], end=max(str(cutoff.date()), curve[-1]['date']))
+    # A newly opened account may cover one date, including a weekend or holiday.
+    calendar = xcals.get_calendar(
+        'XNYS', start=pd.Timestamp(curve[0]['date'])-pd.Timedelta(days=7),
+        end=max(cutoff, pd.Timestamp(curve[-1]['date']))+pd.Timedelta(days=7))
     daily = {}
     for p in curve:
         day = pd.Timestamp(p['date'])

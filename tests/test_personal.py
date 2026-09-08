@@ -249,6 +249,32 @@ def test_comparison_same_start_fee_and_missing_day(tmp_path,monkeypatch):
     assert not result['complete']
 
 
+@pytest.mark.parametrize('opening', ['2026-09-05T12:00:00-04:00', '2026-09-07T02:09:33-04:00'])
+def test_comparison_waits_for_first_close_after_non_session_opening(tmp_path, monkeypatch, opening):
+    import pandas as pd
+    from shm.personal import comparison
+    s=PortfolioStore(tmp_path/'p.sqlite3');s.initialize()
+    s.save_account({'account':account(at=opening),'version':0})
+    monkeypatch.setattr(comparison,'latest_completed_session',lambda:pd.Timestamp('2026-09-04'))
+    result=comparison.compare(s,tmp_path)
+    assert result['rows']==[] and not result['complete']
+    assert result['warnings']==['等待首份收盘估值；日线 SPY 无法比较盘中期初']
+
+
+def test_comparison_accepts_single_completed_close(tmp_path, monkeypatch):
+    import pandas as pd
+    from shm.personal import comparison
+    s=PortfolioStore(tmp_path/'p.sqlite3');s.initialize()
+    s.save_account({'account':account(at='2026-09-04T16:00:00-04:00'),'version':0})
+    monkeypatch.setattr(comparison,'latest_completed_session',lambda:pd.Timestamp('2026-09-04'))
+    monkeypatch.setattr(comparison,'_build_v03_portfolio',lambda *a,**k:{'chart':[]})
+    monkeypatch.setattr(comparison,'cached_prices',lambda *a:pd.DataFrame({'close':[100]},index=pd.to_datetime(['2026-09-04'])))
+    result=comparison.compare(s,tmp_path)
+    assert len(result['rows'])==1 and result['complete']
+    assert result['rows'][0]['personal']==100
+    assert result['rows'][0]['spy']==D('100')/D('1.001')
+
+
 def test_after_close_cash_flow_before_snapshot_and_intraday_dietz():
     r,method=interval_return(AT,'2026-08-04T17:00:00-04:00','100000','110000',[{'at':'2026-08-04T16:30:00-04:00','amount':'10000'}])
     assert r==0 and method=='TWR_cash_flow_timing'
